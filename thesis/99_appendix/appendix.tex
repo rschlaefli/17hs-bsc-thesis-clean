@@ -1,0 +1,132 @@
+\chapter{Appendix}
+\label{apx:appendix}
+
+\clearpage
+\section{Monsoon Onset Dates}
+\label{apx:onset_dates}
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat{
+      \includegraphics[width = 0.35\linewidth]{./99_appendix/img/onset_hist_v1}} &
+    \subfloat{
+      \includegraphics[width = 0.4\linewidth]{./99_appendix/img/onset_joint_v1}} \\
+    \subfloat{
+      \includegraphics[width = 0.35\linewidth]{./99_appendix/img/onset_hist_v2_imd}} &
+    \subfloat{
+      \includegraphics[width = 0.4\linewidth]{./99_appendix/img/onset_joint_v2_imd}} \\
+    \subfloat{
+      \includegraphics[width = 0.35\linewidth]{./99_appendix/img/onset_hist_v2_obj}} &
+    \subfloat{
+      \includegraphics[width = 0.4\linewidth]{./99_appendix/img/onset_joint_v2_obj}} \\
+  \end{tabular}
+  \caption{Overview of Onset Distributions (1979-2017, v1: \citet{Ordonez.2016, IndiaMeteorologicalDepartment.2017b}, v2: \citet{Singh.2009, IndiaMeteorologicalDepartment.2017b}}
+  \label{apx:onset_distributions}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{cc}
+    \subfloat{
+      \includegraphics[width = 0.35\linewidth]{./99_appendix/img/onset_hist_v1_uncut}} &
+    \subfloat{
+      \includegraphics[width = 0.4\linewidth]{./99_appendix/img/onset_joint_v1_uncut}} \\
+    \subfloat{
+      \includegraphics[width = 0.35\linewidth]{./99_appendix/img/onset_hist_v2_imd_uncut}} &
+    \subfloat{
+      \includegraphics[width = 0.4\linewidth]{./99_appendix/img/onset_joint_v2_imd_uncut}} \\
+    \subfloat{
+      \includegraphics[width = 0.35\linewidth]{./99_appendix/img/onset_hist_v2_obj_uncut}} &
+    \subfloat{
+      \includegraphics[width = 0.4\linewidth]{./99_appendix/img/onset_joint_v2_obj_uncut}} \\
+  \end{tabular}
+  \caption{Overview of Onset Distributions (v1: 1887-2017, \citet{Ordonez.2016, IndiaMeteorologicalDepartment.2017b}, v2: 1960-2017, \citet{Singh.2009, IndiaMeteorologicalDepartment.2017b})}
+  \label{apx:onset_distributions_uncut}
+\end{figure}
+
+\clearpage
+\section{TRMM \& ERA}
+\label{apx:trmm_era}
+
+\subsection{Getting the Datasets}
+\label{apx:download}
+\begin{itemize}
+  \item TODO: Subsetting and Downloading (with Giovanni etc.)
+\end{itemize}
+
+\subsection{Usage with Python}
+\begin{itemize}
+  \item TODO: NetCDF4 vs. GRIB
+  \item TODO: Python Libraries for handling NetCDF4
+  \item TODO: Pseudocode for import
+\end{itemize}
+
+\clearpage
+\subsection{Feature Analysis}
+
+The visualizations in this section show the development of different ERA and TRMM features over the duration of an average monsoon. To calculate the visualizations, the data for each feature has been averaged over all years of available data (1998-2017 for TRMM, 1979-2017 for ERA).
+
+\textbf{Example:} The temperature grids 10 days previous to the objective onset dates (Monsoon over Kerala, MoK; \ref{apx:era_t}) for all available years are extracted and then averaged to yield an averaged grid representation. The visualization is then simply calculated based on the averaged grid.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/geopotential}
+  \caption{Geopotential Height and Geopotential at 200hPa (ERA-Interim, 1979-2017)}
+  \label{apx:era_geopotential}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/msl_avg}
+  \caption{Average Mean Sea-Level Pressure (ERA-Interim, 1979-2017)}
+  \label{apx:era_msl}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/r_avg}
+  \caption{Average Relative Humidity at 1000hPa (ERA-Interim, 1979-2017)}
+  \label{apx:era_r}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/t_avg}
+  \caption{Average Temperature at 1000hPa (ERA-Interim, 1979-2017)}
+  \label{apx:era_t}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/wind_avg}
+  \caption{Average Wind (U/V) at 700hPa (ERA-Interim, 1979-2017)}
+  \label{apx:era_wind}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/prec_avg}
+  \caption{Average Precipitation (TRMM, 1998-2017)}
+  \label{apx:trmm_prec}
+\end{figure}
+
+\clearpage
+\section{Event Synchronization}
+\label{apx:event_sync}
+
+[TODO: labels for rows (degree, betweenness, PageRank)]
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/event_sync_0-75_0-9.png}
+  \caption{Event synchronization for unweighted climate networks}
+  \label{apx:trmm_prec}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/event_sync_0-75_0-9_weighted.png}
+  \caption{Event synchronization for weighted climate networks}
+  \label{apx:trmm_prec}
+\end{figure}

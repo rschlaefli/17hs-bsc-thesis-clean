@@ -1,0 +1,180 @@
+% Standard 10pt
+\documentclass[a4paper, twoside, openright]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec, emptypage}
+\usepackage[a4paper, left=2.5cm, right=2.5cm, bottom=2.8cm, top=2.8cm]{geometry}
+\usepackage[ngerman,english]{babel}
+\usepackage{fancyhdr, graphicx, amsmath, hyperref, longtable, float, enumitem, blindtext}
+% For bibliography
+\usepackage{natbib}
+\bibliographystyle{authordate1}
+% For acronyms
+\usepackage{acronym}
+% For appendix
+\usepackage[toc,page]{appendix}
+% For tikz
+\usepackage{calc, ifthen, tikz}
+% For including pdfs
+\usepackage{pdfpages}
+% Caption setup
+\usepackage[tableposition=b]{caption}
+% \captionsetup[longtable]{skip=1em}
+% Important for longtable
+\usepackage{arydshln}
+
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+\renewcommand{\baselinestretch}{1.2}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand{\HRule}{\rule{\linewidth}{0.3mm}} % Defines a new command for the horizontal lines, change thickness here
+
+% \addto\captionsngerman{\let\appendixtocname\appendixname%
+	% \let\appendixpagename\appendixname}
+
+\selectlanguage{english}
+
+\title{Analysis of Weather Data using Graph-based and Neural Network Methods}
+
+\parindent 0pt
+
+\begin{document}
+
+% ----------------------------------------
+% Titelblatt
+% ----------------------------------------
+\begin{titlepage}
+\begingroup
+\centering
+\vspace*{\baselineskip}
+
+\thispagestyle{empty}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{.49\textwidth}
+		\centering
+		\includegraphics[scale=0.2]{img/UZH.png}
+	\end{minipage}
+	\begin{minipage}{.49\textwidth}
+		\centering
+		DDIS LOGO
+	\end{minipage}
+\end{figure}
+
+\vspace*{1\baselineskip}
+
+\HRule \\[0.4cm]
+{\LARGE \textbf{Analysis of Weather Data using Graph-based and Neural Network Methods}}
+\HRule \\[1.5cm]
+
+\vspace*{1\baselineskip}
+
+{\large \textbf{Bachelor Thesis}}
+
+\vspace*{1\baselineskip}
+
+% \scshape % Small caps
+\large University of Zurich - Department of Informatics \\ \vspace{3.5mm}
+\large Dynamic and Distributed Systems Group \\ \vspace{3.5mm}
+\large Prof. Abraham Bernstein, PhD
+
+\vspace*{0.5\baselineskip}
+
+\begin{align*}
+\textbf{Candidate:} &\ \text{Roland Schläfli} \\
+&\ \text{12-932-398} \\
+&\ \text{rolandschlaefli@gmail.com} \\
+\textbf{Major:} &\ \text{Information Systems} \\
+\textbf{Tutor:} &\ \text{Bibek Paudel} \\
+\textbf{Date of submission:} &\ \text{31.01.2018} \\
+\end{align*}
+
+\endgroup
+\end{titlepage}
+
+\newpage
+
+\pagenumbering{roman}
+
+% ----------------------------------------
+% Acknowledgements (Danksagung)
+% ----------------------------------------
+\chapter*{Acknowledgements}
+TBD
+
+% ----------------------------------------
+% Abstract
+% ----------------------------------------
+\chapter*{Abstract}
+TBD
+
+% ----------------------------------------
+% Abbreviations
+% ----------------------------------------
+\chapter*{Abbreviations}
+\begin{acronym}[Bash]
+	\acro{TBD}{TBD}
+\end{acronym}
+
+% ----------------------------------------
+% Table of contents
+% ----------------------------------------
+\tableofcontents
+
+% ----------------------------------------
+% List of figures
+% ----------------------------------------
+\listoffigures
+
+% ----------------------------------------
+% List of tables
+% ----------------------------------------
+\listoftables
+
+\newpage
+
+% ----------------------------------------
+% Start of content
+% ----------------------------------------
+\pagestyle{headings}
+\pagenumbering{arabic}
+
+\input{chapters/01_introduction.tex}
+\newpage
+
+\input{chapters/02_part1.tex}
+\newpage
+
+\input{chapters/03_part2.tex}
+\newpage
+
+\input{chapters/04_conclusion.tex}
+\newpage
+
+% ----------------------------------------
+% Bibliography
+% ----------------------------------------
+\bibliography{bachelor_thesis}
+
+
+% ----------------------------------------
+% Appendix
+% ----------------------------------------
+% All following chapter are appendices
+
+\begin{appendices}
+	\appendix
+	\pagestyle{plain}
+	%\pagenumbering{arabic}
+	\input{chapters/Appendix.tex}
+\end{appendices}
+
+
+\end{document}

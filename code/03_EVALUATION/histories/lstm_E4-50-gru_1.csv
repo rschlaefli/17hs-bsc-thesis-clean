@@ -1,0 +1,2 @@
+epoch,loss,lr,mean_absolute_error,mean_squared_error,val_loss,val_mean_absolute_error,val_mean_squared_error
+0,nan,0.1,nan,nan,nan,nan,nan

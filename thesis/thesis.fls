@@ -1,0 +1,454 @@
+PWD d:/Bachelorarbeit/bsc-thesis/thesis
+INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt
+INPUT d:/Bachelorarbeit/bsc-thesis/thesis/thesis.tex
+OUTPUT thesis.log
+INPUT ddis-thesis.cls
+INPUT ddis-thesis.cls
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrbook.cls
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrbook.cls
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrkbase.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrkbase.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrbase.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrlfile.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrlfile.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/tocbasic.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/tocbasic.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrsize11pt.clo
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrsize11pt.clo
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/typearea.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/typearea.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/listings.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/listings.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/lstmisc.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/lstmisc.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/listings.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/listings.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/url/url.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/url/url.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsmath.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsmath.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amstext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amstext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsgen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsgen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsbsy.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsbsy.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsopn.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsmath/amsopn.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amscls/amsthm.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amscls/amsthm.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amssymb.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amssymb.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amsfonts.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/amsfonts.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/utf8.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/utf8.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/t1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/t1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ot1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ot1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omsenc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omsenc.dfu
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/program/program.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/program/program.sty
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmex10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsa.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsa.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsb.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/umsb.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/ueur.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/amsfonts/ueur.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/jknappen/mathrsfs.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/jknappen/mathrsfs.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/was/gensymb.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/was/gensymb.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/multirow/multirow.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/multirow/multirow.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/cleveref/cleveref.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/cleveref/cleveref.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/subfig/subfig.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/subfig/subfig.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/caption/caption.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/caption/caption.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/caption/caption3.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/caption/caption3.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/tabularx.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/tabularx.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/array.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/array.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/pdflscape.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/pdflscape.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/lscape.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/lscape.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphics.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphics.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/trig.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/trig.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-cfg/graphics.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-cfg/graphics.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-def/pdftex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-def/pdftex.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/infwarerr.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/infwarerr.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ltxcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ltxcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifpdf.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifpdf.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrhack.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrhack.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/xpatch/xpatch.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/xpatch/xpatch.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/UnicodeData.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/CaseFolding.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/SpecialCasing.txt
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/listings.hak
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/listings.hak
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/lscape.hak
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/lscape.hak
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/breakcites/breakcites.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/breakcites/breakcites.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/natbib/natbib.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/natbib/natbib.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype-pdftex.def
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype-pdftex.def
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/microtype.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/todo/todo.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/todo/todo.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifvtex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifvtex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fancyvrb/fancyvrb.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fancyvrb/fancyvrb.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fancyhdr/fancyhdr.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fancyhdr/fancyhdr.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT thesis.aux
+INPUT thesis.aux
+OUTPUT thesis.aux
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/context/base/supp-pdf.mkii
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/context/base/supp-pdf.mkii
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/epstopdf-base.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/epstopdf-base.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/grfext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/grfext.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvdefinekeys.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvdefinekeys.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-cmr.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-cmr.cfg
+INPUT 00_title/title.tex
+INPUT 00_title/title.tex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmbx10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmbx12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmssbx10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmss10.tfm
+INPUT 00_title/figures/uzh_logo_e_pos.eps
+INPUT ./00_title/figures/uzh_logo_e_pos.eps
+INPUT ./00_title/figures/uzh_logo_e_pos.eps
+INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
+INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
+INPUT ./00_title/figures/uzh_logo_e_pos.eps
+INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
+INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
+OUTPUT thesis.pdf
+INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
+INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
+INPUT C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map
+INPUT 00_acknowledgements/acknowledgements.tex
+INPUT 00_acknowledgements/acknowledgements.tex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr17.tfm
+INPUT 00_abstract/zusammenfassung.tex
+INPUT 00_abstract/zusammenfassung.tex
+INPUT 00_abstract/abstract.tex
+INPUT 00_abstract/abstract.tex
+INPUT thesis.toc
+INPUT thesis.toc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmex10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-msa.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-msa.cfg
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-msb.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-msb.cfg
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm10.tfm
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-eur.cfg
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-eur.cfg
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/jknappen/ursfs.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/jknappen/ursfs.fd
+INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs5.tfm
+OUTPUT thesis.toc
+INPUT 01_introduction/introduction.tex
+INPUT 01_introduction/introduction.tex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmmi9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmsy9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm5.tfm
+INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs5.tfm
+INPUT 02_ism_overview/ism_overview.tex
+INPUT 02_ism_overview/ism_overview.tex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr17.tfm
+INPUT 03_part1/part1.tex
+INPUT 03_part1/part1.tex
+INPUT 99_appendix/img/area_overview.png
+INPUT ./99_appendix/img/area_overview.png
+INPUT ./99_appendix/img/area_overview.png
+INPUT ./99_appendix/img/area_overview.png
+INPUT ./99_appendix/img/area_overview.png
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmti10.tfm
+INPUT 99_appendix/img/trmm_sync_example.png
+INPUT ./99_appendix/img/trmm_sync_example.png
+INPUT ./99_appendix/img/trmm_sync_example.png
+INPUT ./99_appendix/img/trmm_sync_example.png
+INPUT ./99_appendix/img/trmm_sync_example.png
+INPUT 99_appendix/img/trmm_adjacency_example.png
+INPUT ./99_appendix/img/trmm_adjacency_example.png
+INPUT ./99_appendix/img/trmm_adjacency_example.png
+INPUT ./99_appendix/img/trmm_adjacency_example.png
+INPUT ./99_appendix/img/trmm_adjacency_example.png
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmti9.tfm
+INPUT 04_part2/part2.tex
+INPUT 04_part2/part2.tex
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/lstlang1.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/lstlang1.sty
+INPUT 99_appendix/img/prec_avg_onset.png
+INPUT ./99_appendix/img/prec_avg_onset.png
+INPUT ./99_appendix/img/prec_avg_onset.png
+INPUT ./99_appendix/img/prec_avg_onset.png
+INPUT ./99_appendix/img/prec_avg_onset.png
+INPUT 05_conclusion/conclusion.tex
+INPUT 05_conclusion/conclusion.tex
+INPUT thesis.bbl
+INPUT thesis.bbl
+INPUT 99_appendix/appendix.tex
+INPUT 99_appendix/appendix.tex
+INPUT 99_appendix/img/onset_hist_v1.png
+INPUT ./99_appendix/img/onset_hist_v1.png
+INPUT ./99_appendix/img/onset_hist_v1.png
+INPUT ./99_appendix/img/onset_hist_v1.png
+INPUT ./99_appendix/img/onset_hist_v1.png
+INPUT 99_appendix/img/onset_joint_v1.png
+INPUT ./99_appendix/img/onset_joint_v1.png
+INPUT ./99_appendix/img/onset_joint_v1.png
+INPUT ./99_appendix/img/onset_joint_v1.png
+INPUT ./99_appendix/img/onset_joint_v1.png
+INPUT 99_appendix/img/onset_hist_v2_imd.png
+INPUT ./99_appendix/img/onset_hist_v2_imd.png
+INPUT ./99_appendix/img/onset_hist_v2_imd.png
+INPUT ./99_appendix/img/onset_hist_v2_imd.png
+INPUT ./99_appendix/img/onset_hist_v2_imd.png
+INPUT 99_appendix/img/onset_joint_v2_imd.png
+INPUT ./99_appendix/img/onset_joint_v2_imd.png
+INPUT ./99_appendix/img/onset_joint_v2_imd.png
+INPUT ./99_appendix/img/onset_joint_v2_imd.png
+INPUT ./99_appendix/img/onset_joint_v2_imd.png
+INPUT 99_appendix/img/onset_hist_v2_obj.png
+INPUT ./99_appendix/img/onset_hist_v2_obj.png
+INPUT ./99_appendix/img/onset_hist_v2_obj.png
+INPUT ./99_appendix/img/onset_hist_v2_obj.png
+INPUT ./99_appendix/img/onset_hist_v2_obj.png
+INPUT 99_appendix/img/onset_joint_v2_obj.png
+INPUT ./99_appendix/img/onset_joint_v2_obj.png
+INPUT ./99_appendix/img/onset_joint_v2_obj.png
+INPUT ./99_appendix/img/onset_joint_v2_obj.png
+INPUT ./99_appendix/img/onset_joint_v2_obj.png
+INPUT 99_appendix/img/onset_hist_v1_uncut.png
+INPUT ./99_appendix/img/onset_hist_v1_uncut.png
+INPUT ./99_appendix/img/onset_hist_v1_uncut.png
+INPUT ./99_appendix/img/onset_hist_v1_uncut.png
+INPUT ./99_appendix/img/onset_hist_v1_uncut.png
+INPUT 99_appendix/img/onset_joint_v1_uncut.png
+INPUT ./99_appendix/img/onset_joint_v1_uncut.png
+INPUT ./99_appendix/img/onset_joint_v1_uncut.png
+INPUT ./99_appendix/img/onset_joint_v1_uncut.png
+INPUT ./99_appendix/img/onset_joint_v1_uncut.png
+INPUT 99_appendix/img/onset_hist_v2_imd_uncut.png
+INPUT ./99_appendix/img/onset_hist_v2_imd_uncut.png
+INPUT ./99_appendix/img/onset_hist_v2_imd_uncut.png
+INPUT ./99_appendix/img/onset_hist_v2_imd_uncut.png
+INPUT ./99_appendix/img/onset_hist_v2_imd_uncut.png
+INPUT 99_appendix/img/onset_joint_v2_imd_uncut.png
+INPUT ./99_appendix/img/onset_joint_v2_imd_uncut.png
+INPUT ./99_appendix/img/onset_joint_v2_imd_uncut.png
+INPUT ./99_appendix/img/onset_joint_v2_imd_uncut.png
+INPUT ./99_appendix/img/onset_joint_v2_imd_uncut.png
+INPUT 99_appendix/img/onset_hist_v2_obj_uncut.png
+INPUT ./99_appendix/img/onset_hist_v2_obj_uncut.png
+INPUT ./99_appendix/img/onset_hist_v2_obj_uncut.png
+INPUT ./99_appendix/img/onset_hist_v2_obj_uncut.png
+INPUT ./99_appendix/img/onset_hist_v2_obj_uncut.png
+INPUT 99_appendix/img/onset_joint_v2_obj_uncut.png
+INPUT ./99_appendix/img/onset_joint_v2_obj_uncut.png
+INPUT ./99_appendix/img/onset_joint_v2_obj_uncut.png
+INPUT ./99_appendix/img/onset_joint_v2_obj_uncut.png
+INPUT ./99_appendix/img/onset_joint_v2_obj_uncut.png
+INPUT 99_appendix/img/geopotential.png
+INPUT ./99_appendix/img/geopotential.png
+INPUT ./99_appendix/img/geopotential.png
+INPUT ./99_appendix/img/geopotential.png
+INPUT ./99_appendix/img/geopotential.png
+INPUT 99_appendix/img/msl_avg.png
+INPUT ./99_appendix/img/msl_avg.png
+INPUT ./99_appendix/img/msl_avg.png
+INPUT ./99_appendix/img/msl_avg.png
+INPUT ./99_appendix/img/msl_avg.png
+INPUT 99_appendix/img/r_avg.png
+INPUT ./99_appendix/img/r_avg.png
+INPUT ./99_appendix/img/r_avg.png
+INPUT ./99_appendix/img/r_avg.png
+INPUT ./99_appendix/img/r_avg.png
+INPUT 99_appendix/img/t_avg.png
+INPUT ./99_appendix/img/t_avg.png
+INPUT ./99_appendix/img/t_avg.png
+INPUT ./99_appendix/img/t_avg.png
+INPUT ./99_appendix/img/t_avg.png
+INPUT 99_appendix/img/wind_avg.png
+INPUT ./99_appendix/img/wind_avg.png
+INPUT ./99_appendix/img/wind_avg.png
+INPUT ./99_appendix/img/wind_avg.png
+INPUT ./99_appendix/img/wind_avg.png
+INPUT 99_appendix/img/prec_avg.png
+INPUT ./99_appendix/img/prec_avg.png
+INPUT ./99_appendix/img/prec_avg.png
+INPUT ./99_appendix/img/prec_avg.png
+INPUT ./99_appendix/img/prec_avg.png
+INPUT 99_appendix/img/event_sync_0-75_0-9.png
+INPUT ./99_appendix/img/event_sync_0-75_0-9.png
+INPUT ./99_appendix/img/event_sync_0-75_0-9.png
+INPUT ./99_appendix/img/event_sync_0-75_0-9.png
+INPUT ./99_appendix/img/event_sync_0-75_0-9.png
+INPUT 99_appendix/img/event_sync_0-75_0-9_weighted.png
+INPUT ./99_appendix/img/event_sync_0-75_0-9_weighted.png
+INPUT ./99_appendix/img/event_sync_0-75_0-9_weighted.png
+INPUT ./99_appendix/img/event_sync_0-75_0-9_weighted.png
+INPUT ./99_appendix/img/event_sync_0-75_0-9_weighted.png
+INPUT thesis.lof
+INPUT thesis.lof
+OUTPUT thesis.lof
+INPUT thesis.lot
+INPUT thesis.lot
+OUTPUT thesis.lot
+INPUT thesis.aux
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssbx10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb

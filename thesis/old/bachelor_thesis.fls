@@ -1,0 +1,39 @@
+PWD d:/Bachelorarbeit/bsc-thesis/thesis
+INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt
+INPUT d:/Bachelorarbeit/bsc-thesis/thesis/bachelor_thesis.tex
+OUTPUT bachelor_thesis.log
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/report.cls
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/report.cls
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/size10.clo
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/size10.clo
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/utf8.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/utf8.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/t1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/t1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ot1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ot1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omsenc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omsenc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/UnicodeData.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/CaseFolding.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/SpecialCasing.txt
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty

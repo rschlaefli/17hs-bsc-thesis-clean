@@ -1,0 +1,15 @@
+\chapter{Part 1: Synchronization of Extreme Events}
+
+The Tropical Rainfall Measurement Mission (TRMM) is a weather research effort by NASA and the Japanese Aerospace Exploration Agency (JAXA). It is based on the TRMM observatory, a satellite that was launched into space on the 27th of November, 1997. The products based on TRMM range from the raw output of the multitude of sensors on the satellite to the highly aggregated and gridded rainfall estimates we will be using in this work [TRMM].
+
+More specifically, the TRMM product that we will be using is a 3-hourly estimate of surface rainfall aggregated from the satellite sensors in combination with surface gauge values. This product is referred to as 3B42 or TMPA and is also available in a daily variation, where the eight 3-hourly measurements (i.e., 00:00, 03:00, 06:00 and so on) have been summed up to provide a single daily rainfall estimate. 
+
+3B42 is available for the area between 50° N. and 50° S. We subset this area to cover the entire Indian subcontinent (4.375-40.375° N, 61.875-97.875° E). These border coordinates are a superset of the ones used in [Stolbova]: the grid has been extended from a 35x35 to a 36x36 grid such that it can be cleanly aggregated from a 0.25° spatial resolution to the 0.5°, 1.0° as well as 2.0° resolutions.
+
+[Visualize area of TRMM]
+
+The TRMM dataset is unique in that it offers very high-resolution precipitation estimates from January 1998 to the present. It can prove useful for research based on the distribution, frequency, and intensity of rainfall, i.e., for calculating extreme rainfall events. However, it has to be taken into consideration that the TRMM products are based on complex algorithms and have been derived from different sensors and sources [Climate Data Guide].
+
+After the TRMM satellite's fuel went low in 2014, it was decommissioned in April 2015 and re-entered earth's atmosphere in June 2015 [README]. Built on the success of the TRMM mission, NASA and JAXA launched its successor GPM (Global Precipitation Measurement) in 2014 [GPM Website].
+
+As data is only available starting from 2014, GPM is currently unsuitable for long-term precipitation research. However, the updated algorithm developed for GPM will be applied to existing TRMM data with reprocessed data back to 1998 expected to be available in 2018 [TRMM to GPM].

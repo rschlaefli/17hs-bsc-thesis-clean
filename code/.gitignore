@@ -1,0 +1,12 @@
+.ipynb_checkpoints
+.idea
+.vscode
+archive/data
+**/__pycache__
+**/*.out
+**/*.log
+**/*.err
+*.nfs*
+
+00_CACHE
+00_DATA

@@ -1,0 +1,1804 @@
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 50, 'patience': 0, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.01), 'lr_plateau': True, 'learning_rate': 0.1}
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv_lst_m2d_1 (ConvLSTM2D)  (None, 72, 140, 140, 32)  207104    
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 72, 140, 140, 32)  128       
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 72, 140, 140, 32)  0         
+_________________________________________________________________
+conv_lst_m2d_2 (ConvLSTM2D)  (None, 72, 140, 140, 16)  76864     
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 72, 140, 140, 16)  64        
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 72, 140, 140, 16)  0         
+_________________________________________________________________
+conv_lst_m2d_3 (ConvLSTM2D)  (None, 140, 140, 8)       6944      
+_________________________________________________________________
+batch_normalization_3 (Batch (None, 140, 140, 8)       32        
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 140, 140, 8)       0         
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 35, 35, 8)         0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 9800)              0         
+_________________________________________________________________
+batch_normalization_4 (Batch (None, 9800)              39200     
+_________________________________________________________________
+dense_1 (Dense)              (None, 1024)              10036224  
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 1024)              4096      
+_________________________________________________________________
+dropout_4 (Dropout)          (None, 1024)              0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 512)               524800    
+_________________________________________________________________
+batch_normalization_6 (Batch (None, 512)               2048      
+_________________________________________________________________
+dropout_5 (Dropout)          (None, 512)               0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 256)               131328    
+_________________________________________________________________
+batch_normalization_7 (Batch (None, 256)               1024      
+_________________________________________________________________
+dropout_6 (Dropout)          (None, 256)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 1)                 257       
+=================================================================
+Total params: 11,030,113
+Trainable params: 11,006,817
+Non-trainable params: 23,296
+_________________________________________________________________
+None
+
+
+Train on 15 samples, validate on 2 samples
+Epoch 1/50
+
+ 1/15 [=>............................] - ETA: 11:54 - loss: 80.6814 - mean_squared_error: 49.0000 - mean_absolute_error: 7.0000
+ 2/15 [===>..........................] - ETA: 10:43 - loss: 5145.1112 - mean_squared_error: 94.7462 - mean_absolute_error: 9.4265
+ 3/15 [=====>........................] - ETA: 9:46 - loss: 3439.9443 - mean_squared_error: 63.5258 - mean_absolute_error: 6.6315 
+ 4/15 [=======>......................] - ETA: 8:55 - loss: 2584.4858 - mean_squared_error: 51.9723 - mean_absolute_error: 6.0138
+ 5/15 [=========>....................] - ETA: 8:04 - loss: 2074.9238 - mean_squared_error: 48.8996 - mean_absolute_error: 6.0212
+ 6/15 [===========>..................] - ETA: 7:15 - loss: 1741.5473 - mean_squared_error: 53.1920 - mean_absolute_error: 6.4577
+ 7/15 [=============>................] - ETA: 6:26 - loss: 1558.6744 - mean_squared_error: 111.5123 - mean_absolute_error: 8.6039
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 1378.3449 - mean_squared_error: 112.0779 - mean_absolute_error: 8.8749
+ 9/15 [=================>............] - ETA: 4:49 - loss: 1225.6157 - mean_squared_error: 100.0450 - mean_absolute_error: 8.1049
+10/15 [===================>..........] - ETA: 4:00 - loss: 1107.2701 - mean_squared_error: 94.2564 - mean_absolute_error: 7.9437 
+11/15 [=====================>........] - ETA: 3:12 - loss: 1169.1635 - mean_squared_error: 248.2420 - mean_absolute_error: 11.0657
+12/15 [=======================>......] - ETA: 2:24 - loss: 1094.7086 - mean_squared_error: 250.5305 - mean_absolute_error: 11.5273
+13/15 [=========================>....] - ETA: 1:36 - loss: 1061.7836 - mean_squared_error: 282.5422 - mean_absolute_error: 12.6267
+14/15 [===========================>..] - ETA: 48s - loss: 998.9144 - mean_squared_error: 275.3330 - mean_absolute_error: 12.6874  Epoch 00001: val_loss improved from inf to 96.41289, saving model to 00_CACHE/lstm_v4_20_best.h5
+Epoch 00001: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 756s 50s/step - loss: 941.6684 - mean_squared_error: 266.3256 - mean_absolute_error: 12.6310 - val_loss: 96.4129 - val_mean_squared_error: 96.4073 - val_mean_absolute_error: 7.5000
+Epoch 2/50
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 8.1955 - mean_squared_error: 8.1899 - mean_absolute_error: 2.8618
+ 2/15 [===>..........................] - ETA: 10:20 - loss: 12.8133 - mean_squared_error: 12.8024 - mean_absolute_error: 3.5175
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 14.6992 - mean_squared_error: 14.6753 - mean_absolute_error: 3.7756 
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 12.2822 - mean_squared_error: 12.2300 - mean_absolute_error: 3.3848
+ 5/15 [=========>....................] - ETA: 7:57 - loss: 56.1074 - mean_squared_error: 56.0051 - mean_absolute_error: 5.7483
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 151.5258 - mean_squared_error: 151.3423 - mean_absolute_error: 8.9670
+ 7/15 [=============>................] - ETA: 6:22 - loss: 143.9962 - mean_squared_error: 143.6536 - mean_absolute_error: 9.0967
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 126.5010 - mean_squared_error: 125.7868 - mean_absolute_error: 8.0656
+ 9/15 [=================>............] - ETA: 4:46 - loss: 124.1060 - mean_squared_error: 122.7299 - mean_absolute_error: 8.2709
+10/15 [===================>..........] - ETA: 3:59 - loss: 113.3369 - mean_squared_error: 110.8233 - mean_absolute_error: 7.6353
+11/15 [=====================>........] - ETA: 3:11 - loss: 171.9289 - mean_squared_error: 167.3362 - mean_absolute_error: 9.4015
+12/15 [=======================>......] - ETA: 2:23 - loss: 176.5695 - mean_squared_error: 169.4116 - mean_absolute_error: 9.7735
+13/15 [=========================>....] - ETA: 1:35 - loss: 169.9140 - mean_squared_error: 160.2107 - mean_absolute_error: 9.5645
+14/15 [===========================>..] - ETA: 47s - loss: 210.9046 - mean_squared_error: 198.5965 - mean_absolute_error: 10.7679Epoch 00002: val_loss did not improve
+Epoch 00002: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 749s 50s/step - loss: 207.4952 - mean_squared_error: 189.8335 - mean_absolute_error: 10.5964 - val_loss: 701.9667 - val_mean_squared_error: 288.2829 - val_mean_absolute_error: 14.1481
+Epoch 3/50
+
+ 1/15 [=>............................] - ETA: 11:08 - loss: 420.2190 - mean_squared_error: 6.5353 - mean_absolute_error: 2.5564
+ 2/15 [===>..........................] - ETA: 10:20 - loss: 707.0094 - mean_squared_error: 69.2658 - mean_absolute_error: 7.0227
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 1106.2051 - mean_squared_error: 355.0879 - mean_absolute_error: 14.8292
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 1072.0167 - mean_squared_error: 275.7230 - mean_absolute_error: 12.6555
+ 5/15 [=========>....................] - ETA: 7:58 - loss: 1026.5180 - mean_squared_error: 224.7958 - mean_absolute_error: 11.0428
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 1006.8113 - mean_squared_error: 224.6862 - mean_absolute_error: 11.6975
+ 7/15 [=============>................] - ETA: 6:22 - loss: 918.1699 - mean_squared_error: 198.6402 - mean_absolute_error: 10.9563 
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 824.5946 - mean_squared_error: 182.9257 - mean_absolute_error: 10.6542
+ 9/15 [=================>............] - ETA: 4:47 - loss: 761.4228 - mean_squared_error: 187.3623 - mean_absolute_error: 11.1291
+10/15 [===================>..........] - ETA: 3:59 - loss: 698.7624 - mean_squared_error: 180.0542 - mean_absolute_error: 11.0852
+11/15 [=====================>........] - ETA: 3:11 - loss: 706.1513 - mean_squared_error: 232.6961 - mean_absolute_error: 12.5822
+12/15 [=======================>......] - ETA: 2:23 - loss: 651.7130 - mean_squared_error: 215.5726 - mean_absolute_error: 11.9684
+13/15 [=========================>....] - ETA: 1:35 - loss: 624.2785 - mean_squared_error: 219.1920 - mean_absolute_error: 12.2943
+14/15 [===========================>..] - ETA: 47s - loss: 597.3473 - mean_squared_error: 218.1151 - mean_absolute_error: 12.4367 Epoch 00003: val_loss did not improve
+Epoch 00003: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 749s 50s/step - loss: 648.3518 - mean_squared_error: 290.0162 - mean_absolute_error: 14.0081 - val_loss: 1095.4179 - val_mean_squared_error: 975.7168 - val_mean_absolute_error: 29.5664
+Epoch 4/50
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 136.1195 - mean_squared_error: 16.4184 - mean_absolute_error: 4.0520
+ 2/15 [===>..........................] - ETA: 10:20 - loss: 184.0569 - mean_squared_error: 9.0888 - mean_absolute_error: 2.6892 
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 495.6481 - mean_squared_error: 252.4573 - mean_absolute_error: 10.8555
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 627.8536 - mean_squared_error: 321.8093 - mean_absolute_error: 13.8963
+ 5/15 [=========>....................] - ETA: 7:57 - loss: 651.5310 - mean_squared_error: 298.4650 - mean_absolute_error: 13.9812
+ 6/15 [===========>..................] - ETA: 7:09 - loss: 697.6216 - mean_squared_error: 314.3565 - mean_absolute_error: 14.9585
+ 7/15 [=============>................] - ETA: 6:22 - loss: 685.6618 - mean_squared_error: 286.9514 - mean_absolute_error: 14.4028
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 661.5854 - mean_squared_error: 260.6580 - mean_absolute_error: 13.6965
+ 9/15 [=================>............] - ETA: 4:46 - loss: 711.9214 - mean_squared_error: 321.4150 - mean_absolute_error: 15.3320
+10/15 [===================>..........] - ETA: 3:59 - loss: 684.2880 - mean_squared_error: 312.7981 - mean_absolute_error: 15.3326
+11/15 [=====================>........] - ETA: 3:11 - loss: 634.5005 - mean_squared_error: 284.4078 - mean_absolute_error: 14.0033
+12/15 [=======================>......] - ETA: 2:23 - loss: 597.1276 - mean_squared_error: 266.9943 - mean_absolute_error: 13.5602
+13/15 [=========================>....] - ETA: 1:35 - loss: 567.1457 - mean_squared_error: 253.9546 - mean_absolute_error: 13.2766
+14/15 [===========================>..] - ETA: 47s - loss: 559.4873 - mean_squared_error: 259.4841 - mean_absolute_error: 13.6285 Epoch 00004: val_loss did not improve
+Epoch 00004: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 748s 50s/step - loss: 534.3386 - mean_squared_error: 243.1750 - mean_absolute_error: 12.9768 - val_loss: 1630.5876 - val_mean_squared_error: 1404.5176 - val_mean_absolute_error: 36.6259
+Epoch 5/50
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 776.1655 - mean_squared_error: 550.0955 - mean_absolute_error: 23.4541
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 545.7218 - mean_squared_error: 285.3269 - mean_absolute_error: 13.9941
+ 3/15 [=====>........................] - ETA: 9:32 - loss: 683.3342 - mean_squared_error: 391.4470 - mean_absolute_error: 17.5194 
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 750.0232 - mean_squared_error: 433.1576 - mean_absolute_error: 19.0466
+ 5/15 [=========>....................] - ETA: 7:57 - loss: 732.1126 - mean_squared_error: 398.2846 - mean_absolute_error: 18.4547
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 685.2997 - mean_squared_error: 342.5629 - mean_absolute_error: 16.7118
+ 7/15 [=============>................] - ETA: 6:22 - loss: 667.5707 - mean_squared_error: 323.3749 - mean_absolute_error: 16.3859
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 625.7855 - mean_squared_error: 286.5033 - mean_absolute_error: 15.0038
+ 9/15 [=================>............] - ETA: 4:46 - loss: 590.5240 - mean_squared_error: 260.6735 - mean_absolute_error: 14.1535
+10/15 [===================>..........] - ETA: 3:58 - loss: 553.3808 - mean_squared_error: 235.0582 - mean_absolute_error: 12.9508
+11/15 [=====================>........] - ETA: 3:10 - loss: 530.2960 - mean_squared_error: 223.4222 - mean_absolute_error: 12.7141
+12/15 [=======================>......] - ETA: 2:23 - loss: 505.7638 - mean_squared_error: 208.7861 - mean_absolute_error: 12.2307
+13/15 [=========================>....] - ETA: 1:35 - loss: 484.3712 - mean_squared_error: 194.8877 - mean_absolute_error: 11.6976
+14/15 [===========================>..] - ETA: 47s - loss: 472.8344 - mean_squared_error: 188.0561 - mean_absolute_error: 11.5737 Epoch 00005: val_loss did not improve
+Epoch 00005: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 747s 50s/step - loss: 529.9163 - mean_squared_error: 247.0773 - mean_absolute_error: 12.9863 - val_loss: 3542.4291 - val_mean_squared_error: 3253.3116 - val_mean_absolute_error: 56.2244
+Epoch 6/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 326.9707 - mean_squared_error: 37.8534 - mean_absolute_error: 6.1525
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 322.8336 - mean_squared_error: 19.9950 - mean_absolute_error: 3.8071
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 403.7004 - mean_squared_error: 90.8460 - mean_absolute_error: 7.6212 
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 394.2693 - mean_squared_error: 75.6235 - mean_absolute_error: 7.0842
+ 5/15 [=========>....................] - ETA: 7:58 - loss: 575.4820 - mean_squared_error: 255.2202 - mean_absolute_error: 11.9079
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 555.0646 - mean_squared_error: 236.8672 - mean_absolute_error: 11.9309
+ 7/15 [=============>................] - ETA: 6:22 - loss: 516.5548 - mean_squared_error: 203.2465 - mean_absolute_error: 10.4028
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 489.2953 - mean_squared_error: 182.5836 - mean_absolute_error: 9.8724 
+ 9/15 [=================>............] - ETA: 4:47 - loss: 474.8288 - mean_squared_error: 175.2457 - mean_absolute_error: 9.9750
+10/15 [===================>..........] - ETA: 3:59 - loss: 591.4922 - mean_squared_error: 298.5738 - mean_absolute_error: 12.7305
+11/15 [=====================>........] - ETA: 3:11 - loss: 563.4342 - mean_squared_error: 276.0088 - mean_absolute_error: 12.2183
+12/15 [=======================>......] - ETA: 2:23 - loss: 561.2601 - mean_squared_error: 277.7688 - mean_absolute_error: 12.6366
+13/15 [=========================>....] - ETA: 1:35 - loss: 626.5101 - mean_squared_error: 345.2977 - mean_absolute_error: 14.2795
+14/15 [===========================>..] - ETA: 47s - loss: 605.2994 - mean_squared_error: 324.8662 - mean_absolute_error: 13.8094 Epoch 00006: val_loss did not improve
+Epoch 00006: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 584.0227 - mean_squared_error: 303.2128 - mean_absolute_error: 12.9059 - val_loss: 33220.3604 - val_mean_squared_error: 32922.3232 - val_mean_absolute_error: 181.2713
+Epoch 7/50
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 903.6680 - mean_squared_error: 605.6346 - mean_absolute_error: 24.6096
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 1138.1336 - mean_squared_error: 837.0618 - mean_absolute_error: 28.6487
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 973.2354 - mean_squared_error: 671.2979 - mean_absolute_error: 25.2434  
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 1012.8523 - mean_squared_error: 712.0393 - mean_absolute_error: 26.1535
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 869.9148 - mean_squared_error: 571.8236 - mean_absolute_error: 21.5849 
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 776.2168 - mean_squared_error: 481.9060 - mean_absolute_error: 18.9349
+ 7/15 [=============>................] - ETA: 6:22 - loss: 783.2273 - mean_squared_error: 493.1522 - mean_absolute_error: 19.6124
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 871.3621 - mean_squared_error: 585.4228 - mean_absolute_error: 21.5472
+ 9/15 [=================>............] - ETA: 4:47 - loss: 846.1806 - mean_squared_error: 563.8264 - mean_absolute_error: 21.3503
+10/15 [===================>..........] - ETA: 3:59 - loss: 794.0904 - mean_squared_error: 514.4938 - mean_absolute_error: 20.0549
+11/15 [=====================>........] - ETA: 3:11 - loss: 751.6408 - mean_squared_error: 473.8539 - mean_absolute_error: 18.9784
+12/15 [=======================>......] - ETA: 2:23 - loss: 711.5529 - mean_squared_error: 434.6601 - mean_absolute_error: 17.5533
+13/15 [=========================>....] - ETA: 1:35 - loss: 678.5939 - mean_squared_error: 401.8308 - mean_absolute_error: 16.4190
+14/15 [===========================>..] - ETA: 47s - loss: 650.5115 - mean_squared_error: 373.3469 - mean_absolute_error: 15.3711 Epoch 00007: val_loss did not improve
+Epoch 00007: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 644.3705 - mean_squared_error: 366.5324 - mean_absolute_error: 15.4441 - val_loss: 13531.3965 - val_mean_squared_error: 13242.1519 - val_mean_absolute_error: 112.5190
+Epoch 8/50
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 1341.5212 - mean_squared_error: 1052.2788 - mean_absolute_error: 32.4388
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 786.1646 - mean_squared_error: 548.9486 - mean_absolute_error: 19.5965  
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 637.6460 - mean_squared_error: 440.3004 - mean_absolute_error: 18.0421 
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 513.1197 - mean_squared_error: 346.7123 - mean_absolute_error: 15.5618
+ 5/15 [=========>....................] - ETA: 7:57 - loss: 453.7478 - mean_squared_error: 311.5951 - mean_absolute_error: 15.0657
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 388.6843 - mean_squared_error: 265.7193 - mean_absolute_error: 13.5595
+ 7/15 [=============>................] - ETA: 6:22 - loss: 340.0938 - mean_squared_error: 232.4453 - mean_absolute_error: 12.4406
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 301.7822 - mean_squared_error: 206.4777 - mean_absolute_error: 11.5068
+ 9/15 [=================>............] - ETA: 4:46 - loss: 280.7635 - mean_squared_error: 195.5085 - mean_absolute_error: 11.3817
+10/15 [===================>..........] - ETA: 3:59 - loss: 270.3803 - mean_squared_error: 193.3953 - mean_absolute_error: 11.5640
+11/15 [=====================>........] - ETA: 3:11 - loss: 246.4142 - mean_squared_error: 176.3105 - mean_absolute_error: 10.7252
+12/15 [=======================>......] - ETA: 2:23 - loss: 225.9776 - mean_squared_error: 161.6638 - mean_absolute_error: 9.8933 
+13/15 [=========================>....] - ETA: 1:35 - loss: 229.7063 - mean_squared_error: 170.3177 - mean_absolute_error: 10.4059
+14/15 [===========================>..] - ETA: 47s - loss: 222.5391 - mean_squared_error: 167.3835 - mean_absolute_error: 10.4747 Epoch 00008: val_loss improved from 96.41289 to 56.28555, saving model to 00_CACHE/lstm_v4_20_best.h5
+Epoch 00008: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 752s 50s/step - loss: 215.2284 - mean_squared_error: 163.7464 - mean_absolute_error: 10.4845 - val_loss: 56.2855 - val_mean_squared_error: 56.2653 - val_mean_absolute_error: 7.5000
+Epoch 9/50
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 0.0493 - mean_squared_error: 0.0290 - mean_absolute_error: 0.1704
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 0.4505 - mean_squared_error: 0.4366 - mean_absolute_error: 0.5446
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 0.3319 - mean_squared_error: 0.3218 - mean_absolute_error: 0.4642 
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 120.3400 - mean_squared_error: 120.3323 - mean_absolute_error: 5.8275
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 230.4404 - mean_squared_error: 230.4342 - mean_absolute_error: 9.8421
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 234.7627 - mean_squared_error: 234.7575 - mean_absolute_error: 10.8704
+ 7/15 [=============>................] - ETA: 6:23 - loss: 205.4034 - mean_squared_error: 205.3989 - mean_absolute_error: 10.0900
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 196.7820 - mean_squared_error: 196.7781 - mean_absolute_error: 10.2888
+ 9/15 [=================>............] - ETA: 4:48 - loss: 175.8324 - mean_squared_error: 175.8289 - mean_absolute_error: 9.4645 
+10/15 [===================>..........] - ETA: 4:00 - loss: 192.8102 - mean_squared_error: 192.8071 - mean_absolute_error: 10.3771
+11/15 [=====================>........] - ETA: 3:12 - loss: 195.1808 - mean_squared_error: 195.1779 - mean_absolute_error: 10.7787
+12/15 [=======================>......] - ETA: 2:24 - loss: 188.4580 - mean_squared_error: 188.4554 - mean_absolute_error: 10.7722
+13/15 [=========================>....] - ETA: 1:36 - loss: 186.7369 - mean_squared_error: 186.7345 - mean_absolute_error: 10.9349
+14/15 [===========================>..] - ETA: 48s - loss: 180.8203 - mean_squared_error: 180.8180 - mean_absolute_error: 10.8820 Epoch 00009: val_loss did not improve
+Epoch 00009: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 753s 50s/step - loss: 170.0619 - mean_squared_error: 170.0599 - mean_absolute_error: 10.4505 - val_loss: 62.6285 - val_mean_squared_error: 62.6285 - val_mean_absolute_error: 7.5000
+Epoch 10/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 11.0571 - mean_squared_error: 11.0571 - mean_absolute_error: 3.3252
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 79.6811 - mean_squared_error: 79.6811 - mean_absolute_error: 7.7516
+ 3/15 [=====>........................] - ETA: 9:32 - loss: 123.3689 - mean_squared_error: 123.3689 - mean_absolute_error: 10.0068
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 137.8088 - mean_squared_error: 137.8088 - mean_absolute_error: 10.8697
+ 5/15 [=========>....................] - ETA: 7:58 - loss: 110.3447 - mean_squared_error: 110.3447 - mean_absolute_error: 8.8355 
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 97.9332 - mean_squared_error: 97.9332 - mean_absolute_error: 8.3612  
+ 7/15 [=============>................] - ETA: 6:23 - loss: 86.8152 - mean_squared_error: 86.8152 - mean_absolute_error: 7.8073
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 132.0828 - mean_squared_error: 132.0828 - mean_absolute_error: 9.4800
+ 9/15 [=================>............] - ETA: 4:47 - loss: 133.6777 - mean_squared_error: 133.6777 - mean_absolute_error: 9.7712
+10/15 [===================>..........] - ETA: 3:59 - loss: 126.5855 - mean_squared_error: 126.5855 - mean_absolute_error: 9.5863
+11/15 [=====================>........] - ETA: 3:11 - loss: 120.6417 - mean_squared_error: 120.6417 - mean_absolute_error: 9.4260
+12/15 [=======================>......] - ETA: 2:23 - loss: 114.4174 - mean_squared_error: 114.4174 - mean_absolute_error: 9.2054
+13/15 [=========================>....] - ETA: 1:35 - loss: 112.8651 - mean_squared_error: 112.8651 - mean_absolute_error: 9.2440
+14/15 [===========================>..] - ETA: 47s - loss: 132.5320 - mean_squared_error: 132.5320 - mean_absolute_error: 9.9911 Epoch 00010: val_loss did not improve
+Epoch 00010: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 752s 50s/step - loss: 124.2679 - mean_squared_error: 124.2679 - mean_absolute_error: 9.5202 - val_loss: 91.0216 - val_mean_squared_error: 91.0216 - val_mean_absolute_error: 7.5000
+Epoch 11/50
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 696.5552 - mean_squared_error: 696.5552 - mean_absolute_error: 26.3923
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 351.4657 - mean_squared_error: 351.4657 - mean_absolute_error: 14.4587
+ 3/15 [=====>........................] - ETA: 9:34 - loss: 272.6720 - mean_squared_error: 272.6720 - mean_absolute_error: 13.2151 
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 204.5831 - mean_squared_error: 204.5831 - mean_absolute_error: 10.0519
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 168.0321 - mean_squared_error: 168.0321 - mean_absolute_error: 8.9759 
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 142.3502 - mean_squared_error: 142.3502 - mean_absolute_error: 8.1022
+ 7/15 [=============>................] - ETA: 6:23 - loss: 125.4240 - mean_squared_error: 125.4240 - mean_absolute_error: 7.6427
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 116.2268 - mean_squared_error: 116.2268 - mean_absolute_error: 7.5874
+ 9/15 [=================>............] - ETA: 4:47 - loss: 114.2253 - mean_squared_error: 114.2253 - mean_absolute_error: 7.8455
+10/15 [===================>..........] - ETA: 3:59 - loss: 113.6656 - mean_squared_error: 113.6656 - mean_absolute_error: 8.1032
+11/15 [=====================>........] - ETA: 3:11 - loss: 148.7353 - mean_squared_error: 148.7353 - mean_absolute_error: 9.3982
+12/15 [=======================>......] - ETA: 2:23 - loss: 139.4657 - mean_squared_error: 139.4657 - mean_absolute_error: 9.1253
+13/15 [=========================>....] - ETA: 1:35 - loss: 166.6366 - mean_squared_error: 166.6366 - mean_absolute_error: 10.1308
+14/15 [===========================>..] - ETA: 47s - loss: 158.8011 - mean_squared_error: 158.8011 - mean_absolute_error: 9.9461  Epoch 00011: val_loss did not improve
+Epoch 00011: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 751s 50s/step - loss: 170.0063 - mean_squared_error: 170.0063 - mean_absolute_error: 10.4884 - val_loss: 81.6511 - val_mean_squared_error: 81.6511 - val_mean_absolute_error: 7.5000
+Epoch 12/50
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 267.5852 - mean_squared_error: 267.5852 - mean_absolute_error: 16.3580
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 185.1675 - mean_squared_error: 185.1675 - mean_absolute_error: 13.2473
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 334.9102 - mean_squared_error: 334.9102 - mean_absolute_error: 17.2273 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 361.9647 - mean_squared_error: 361.9647 - mean_absolute_error: 18.1831
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 307.1503 - mean_squared_error: 307.1503 - mean_absolute_error: 16.4215
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 256.4367 - mean_squared_error: 256.4367 - mean_absolute_error: 13.9669
+ 7/15 [=============>................] - ETA: 6:23 - loss: 239.8575 - mean_squared_error: 239.8575 - mean_absolute_error: 13.6642
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 265.8533 - mean_squared_error: 265.8533 - mean_absolute_error: 14.6014
+ 9/15 [=================>............] - ETA: 4:47 - loss: 262.6983 - mean_squared_error: 262.6983 - mean_absolute_error: 14.6912
+10/15 [===================>..........] - ETA: 3:59 - loss: 240.3216 - mean_squared_error: 240.3216 - mean_absolute_error: 13.8461
+11/15 [=====================>........] - ETA: 3:11 - loss: 220.4021 - mean_squared_error: 220.4021 - mean_absolute_error: 13.0060
+12/15 [=======================>......] - ETA: 2:23 - loss: 203.5840 - mean_squared_error: 203.5840 - mean_absolute_error: 12.2814
+13/15 [=========================>....] - ETA: 1:35 - loss: 199.0470 - mean_squared_error: 199.0470 - mean_absolute_error: 12.2617
+14/15 [===========================>..] - ETA: 47s - loss: 196.9870 - mean_squared_error: 196.9870 - mean_absolute_error: 12.3177 Epoch 00012: val_loss did not improve
+Epoch 00012: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 204.4645 - mean_squared_error: 204.4645 - mean_absolute_error: 12.6687 - val_loss: 68.2396 - val_mean_squared_error: 68.2396 - val_mean_absolute_error: 7.5000
+Epoch 13/50
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 17.2972 - mean_squared_error: 17.2972 - mean_absolute_error: 4.1590
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 182.6196 - mean_squared_error: 182.6196 - mean_absolute_error: 11.4061
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 128.0302 - mean_squared_error: 128.0289 - mean_absolute_error: 9.0512  
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 198.5244 - mean_squared_error: 198.4370 - mean_absolute_error: 11.8484
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 175.5931 - mean_squared_error: 171.2132 - mean_absolute_error: 11.0576
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 164.7702 - mean_squared_error: 155.5816 - mean_absolute_error: 10.6812
+ 7/15 [=============>................] - ETA: 6:23 - loss: 158.4565 - mean_squared_error: 149.7211 - mean_absolute_error: 10.6843
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 145.1938 - mean_squared_error: 137.4204 - mean_absolute_error: 10.2442
+ 9/15 [=================>............] - ETA: 4:47 - loss: 129.1035 - mean_squared_error: 122.1670 - mean_absolute_error: 9.1475 
+10/15 [===================>..........] - ETA: 3:59 - loss: 116.5767 - mean_squared_error: 110.3261 - mean_absolute_error: 8.4266
+11/15 [=====================>........] - ETA: 3:11 - loss: 135.5531 - mean_squared_error: 129.8678 - mean_absolute_error: 9.3001
+12/15 [=======================>......] - ETA: 2:23 - loss: 143.0245 - mean_squared_error: 137.8114 - mean_absolute_error: 9.7756
+13/15 [=========================>....] - ETA: 1:35 - loss: 132.0812 - mean_squared_error: 127.2681 - mean_absolute_error: 9.0902
+14/15 [===========================>..] - ETA: 47s - loss: 124.4475 - mean_squared_error: 119.9773 - mean_absolute_error: 8.7995 Epoch 00013: val_loss did not improve
+Epoch 00013: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 751s 50s/step - loss: 119.6607 - mean_squared_error: 115.4877 - mean_absolute_error: 8.6965 - val_loss: 88.3646 - val_mean_squared_error: 88.3461 - val_mean_absolute_error: 7.5000
+Epoch 14/50
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 20.4789 - mean_squared_error: 20.4603 - mean_absolute_error: 4.5233
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 21.1714 - mean_squared_error: 21.1466 - mean_absolute_error: 4.5979
+ 3/15 [=====>........................] - ETA: 9:34 - loss: 146.6461 - mean_squared_error: 146.6087 - mean_absolute_error: 9.7114
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 111.6386 - mean_squared_error: 111.5732 - mean_absolute_error: 7.9193
+ 5/15 [=========>....................] - ETA: 7:58 - loss: 120.1110 - mean_squared_error: 119.9765 - mean_absolute_error: 8.8140
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 100.3445 - mean_squared_error: 100.0280 - mean_absolute_error: 7.4341
+ 7/15 [=============>................] - ETA: 6:22 - loss: 90.9325 - mean_squared_error: 90.1822 - mean_absolute_error: 7.1688  
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 82.4834 - mean_squared_error: 81.0171 - mean_absolute_error: 6.7860
+ 9/15 [=================>............] - ETA: 4:47 - loss: 74.7626 - mean_squared_error: 72.4751 - mean_absolute_error: 6.2581
+10/15 [===================>..........] - ETA: 3:59 - loss: 199.1519 - mean_squared_error: 196.1482 - mean_absolute_error: 9.2506
+11/15 [=====================>........] - ETA: 3:11 - loss: 191.3552 - mean_squared_error: 188.0443 - mean_absolute_error: 9.3500
+12/15 [=======================>......] - ETA: 2:23 - loss: 178.4365 - mean_squared_error: 175.1404 - mean_absolute_error: 9.0510
+13/15 [=========================>....] - ETA: 1:35 - loss: 168.0633 - mean_squared_error: 164.9037 - mean_absolute_error: 8.8536
+14/15 [===========================>..] - ETA: 47s - loss: 160.1999 - mean_squared_error: 157.2043 - mean_absolute_error: 8.7610 Epoch 00014: val_loss did not improve
+Epoch 00014: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 159.3329 - mean_squared_error: 156.4969 - mean_absolute_error: 8.9841 - val_loss: 69.0684 - val_mean_squared_error: 68.5494 - val_mean_absolute_error: 7.4999
+Epoch 15/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 71.1313 - mean_squared_error: 70.6124 - mean_absolute_error: 8.4031
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 47.0422 - mean_squared_error: 46.6177 - mean_absolute_error: 6.5797
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 71.5405 - mean_squared_error: 71.1891 - mean_absolute_error: 8.0430 
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 61.0101 - mean_squared_error: 60.7155 - mean_absolute_error: 7.3854
+ 5/15 [=========>....................] - ETA: 7:58 - loss: 71.2766 - mean_squared_error: 71.0263 - mean_absolute_error: 8.0275
+ 6/15 [===========>..................] - ETA: 7:09 - loss: 59.6152 - mean_squared_error: 59.3997 - mean_absolute_error: 6.8771
+ 7/15 [=============>................] - ETA: 6:21 - loss: 51.8770 - mean_squared_error: 51.6891 - mean_absolute_error: 6.2274
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 45.8709 - mean_squared_error: 45.7049 - mean_absolute_error: 5.6932
+ 9/15 [=================>............] - ETA: 4:46 - loss: 55.3100 - mean_squared_error: 55.1618 - mean_absolute_error: 6.3314
+10/15 [===================>..........] - ETA: 3:59 - loss: 79.9078 - mean_squared_error: 79.7741 - mean_absolute_error: 7.4340
+11/15 [=====================>........] - ETA: 3:11 - loss: 94.7979 - mean_squared_error: 94.6762 - mean_absolute_error: 8.1774
+12/15 [=======================>......] - ETA: 2:23 - loss: 156.8395 - mean_squared_error: 156.7279 - mean_absolute_error: 9.9102
+13/15 [=========================>....] - ETA: 1:35 - loss: 148.0719 - mean_squared_error: 147.9689 - mean_absolute_error: 9.6514
+14/15 [===========================>..] - ETA: 47s - loss: 137.5277 - mean_squared_error: 137.4320 - mean_absolute_error: 9.0101 Epoch 00015: val_loss did not improve
+Epoch 00015: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 128.3622 - mean_squared_error: 128.2729 - mean_absolute_error: 8.4237 - val_loss: 72.6261 - val_mean_squared_error: 72.6261 - val_mean_absolute_error: 7.5000
+Epoch 16/50
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 190.1466 - mean_squared_error: 190.1466 - mean_absolute_error: 13.7894
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 382.6088 - mean_squared_error: 382.6088 - mean_absolute_error: 18.8850
+ 3/15 [=====>........................] - ETA: 9:34 - loss: 324.4041 - mean_squared_error: 324.4041 - mean_absolute_error: 17.3973 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 289.7213 - mean_squared_error: 289.7213 - mean_absolute_error: 16.4546
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 384.6528 - mean_squared_error: 384.6528 - mean_absolute_error: 18.6931
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 321.0685 - mean_squared_error: 321.0685 - mean_absolute_error: 15.8732
+ 7/15 [=============>................] - ETA: 6:23 - loss: 277.8008 - mean_squared_error: 277.8008 - mean_absolute_error: 14.2150
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 290.3298 - mean_squared_error: 290.3298 - mean_absolute_error: 14.8685
+ 9/15 [=================>............] - ETA: 4:47 - loss: 268.3985 - mean_squared_error: 268.3985 - mean_absolute_error: 14.2877
+10/15 [===================>..........] - ETA: 3:59 - loss: 248.2011 - mean_squared_error: 248.2011 - mean_absolute_error: 13.6739
+11/15 [=====================>........] - ETA: 3:11 - loss: 229.2785 - mean_squared_error: 229.2785 - mean_absolute_error: 13.0062
+12/15 [=======================>......] - ETA: 2:23 - loss: 295.9605 - mean_squared_error: 295.9605 - mean_absolute_error: 14.5961
+13/15 [=========================>....] - ETA: 1:35 - loss: 273.6739 - mean_squared_error: 273.6739 - mean_absolute_error: 13.6654
+14/15 [===========================>..] - ETA: 47s - loss: 272.0732 - mean_squared_error: 272.0732 - mean_absolute_error: 13.8215 Epoch 00016: val_loss did not improve
+Epoch 00016: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 749s 50s/step - loss: 254.0101 - mean_squared_error: 254.0101 - mean_absolute_error: 12.9708 - val_loss: 73.4977 - val_mean_squared_error: 73.4977 - val_mean_absolute_error: 7.5000
+Epoch 17/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 41.4453 - mean_squared_error: 41.4453 - mean_absolute_error: 6.4378
+ 2/15 [===>..........................] - ETA: 10:20 - loss: 136.5271 - mean_squared_error: 136.5271 - mean_absolute_error: 10.8282
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 97.5835 - mean_squared_error: 97.5835 - mean_absolute_error: 8.6982    
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 136.2336 - mean_squared_error: 136.2336 - mean_absolute_error: 10.4937
+ 5/15 [=========>....................] - ETA: 7:57 - loss: 110.1949 - mean_squared_error: 110.1949 - mean_absolute_error: 8.8865 
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 105.0273 - mean_squared_error: 105.0273 - mean_absolute_error: 8.8886
+ 7/15 [=============>................] - ETA: 6:22 - loss: 99.0624 - mean_squared_error: 99.0624 - mean_absolute_error: 8.7551  
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 112.3432 - mean_squared_error: 112.3432 - mean_absolute_error: 9.4518
+ 9/15 [=================>............] - ETA: 4:46 - loss: 102.7904 - mean_squared_error: 102.7904 - mean_absolute_error: 8.9722
+10/15 [===================>..........] - ETA: 3:58 - loss: 116.0696 - mean_squared_error: 116.0696 - mean_absolute_error: 9.6098
+11/15 [=====================>........] - ETA: 3:11 - loss: 114.8099 - mean_squared_error: 114.8099 - mean_absolute_error: 9.6553
+12/15 [=======================>......] - ETA: 2:23 - loss: 105.5465 - mean_squared_error: 105.5465 - mean_absolute_error: 9.0099
+13/15 [=========================>....] - ETA: 1:35 - loss: 115.7515 - mean_squared_error: 115.7515 - mean_absolute_error: 9.5040
+14/15 [===========================>..] - ETA: 47s - loss: 110.5261 - mean_squared_error: 110.5261 - mean_absolute_error: 9.2914 Epoch 00017: val_loss did not improve
+Epoch 00017: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 748s 50s/step - loss: 104.5220 - mean_squared_error: 104.5220 - mean_absolute_error: 8.9735 - val_loss: 71.8258 - val_mean_squared_error: 71.8258 - val_mean_absolute_error: 7.5000
+Epoch 18/50
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 514.4648 - mean_squared_error: 514.4648 - mean_absolute_error: 22.6818
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 562.5495 - mean_squared_error: 562.5495 - mean_absolute_error: 23.6964
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 394.0205 - mean_squared_error: 394.0205 - mean_absolute_error: 18.3134 
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 297.4550 - mean_squared_error: 297.4550 - mean_absolute_error: 14.4314
+ 5/15 [=========>....................] - ETA: 7:57 - loss: 274.3107 - mean_squared_error: 274.3107 - mean_absolute_error: 14.2413
+ 6/15 [===========>..................] - ETA: 7:09 - loss: 258.7662 - mean_squared_error: 258.7662 - mean_absolute_error: 14.1103
+ 7/15 [=============>................] - ETA: 6:22 - loss: 253.4429 - mean_squared_error: 253.4429 - mean_absolute_error: 14.2207
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 268.8285 - mean_squared_error: 268.8285 - mean_absolute_error: 14.8686
+ 9/15 [=================>............] - ETA: 4:46 - loss: 244.2078 - mean_squared_error: 244.2078 - mean_absolute_error: 13.9803
+10/15 [===================>..........] - ETA: 3:58 - loss: 224.1961 - mean_squared_error: 224.1961 - mean_absolute_error: 13.2462
+11/15 [=====================>........] - ETA: 3:11 - loss: 271.7377 - mean_squared_error: 271.7377 - mean_absolute_error: 14.5270
+12/15 [=======================>......] - ETA: 2:23 - loss: 250.8934 - mean_squared_error: 250.8934 - mean_absolute_error: 13.7037
+13/15 [=========================>....] - ETA: 1:35 - loss: 273.0748 - mean_squared_error: 273.0748 - mean_absolute_error: 14.4359
+14/15 [===========================>..] - ETA: 47s - loss: 285.7082 - mean_squared_error: 285.7082 - mean_absolute_error: 14.9199 Epoch 00018: val_loss did not improve
+Epoch 00018: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 748s 50s/step - loss: 271.6298 - mean_squared_error: 271.6298 - mean_absolute_error: 14.5008 - val_loss: 68.9323 - val_mean_squared_error: 68.9323 - val_mean_absolute_error: 7.5000
+Epoch 19/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 419.2738 - mean_squared_error: 419.2738 - mean_absolute_error: 20.4762
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 220.3920 - mean_squared_error: 220.3920 - mean_absolute_error: 12.5570
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 148.7647 - mean_squared_error: 148.7647 - mean_absolute_error: 9.1538  
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 121.6549 - mean_squared_error: 121.6549 - mean_absolute_error: 8.4529
+ 5/15 [=========>....................] - ETA: 7:58 - loss: 200.9041 - mean_squared_error: 200.9041 - mean_absolute_error: 11.3138
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 167.5164 - mean_squared_error: 167.5164 - mean_absolute_error: 9.5549 
+ 7/15 [=============>................] - ETA: 6:22 - loss: 164.1323 - mean_squared_error: 164.1323 - mean_absolute_error: 9.9031
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 148.5787 - mean_squared_error: 148.5787 - mean_absolute_error: 9.4529
+ 9/15 [=================>............] - ETA: 4:47 - loss: 163.2102 - mean_squared_error: 163.2102 - mean_absolute_error: 10.2627
+10/15 [===================>..........] - ETA: 3:59 - loss: 153.6596 - mean_squared_error: 153.6596 - mean_absolute_error: 10.0592
+11/15 [=====================>........] - ETA: 3:11 - loss: 141.3299 - mean_squared_error: 141.3299 - mean_absolute_error: 9.5308 
+12/15 [=======================>......] - ETA: 2:23 - loss: 150.7432 - mean_squared_error: 150.7432 - mean_absolute_error: 10.0654
+13/15 [=========================>....] - ETA: 1:35 - loss: 150.6520 - mean_squared_error: 150.6520 - mean_absolute_error: 10.2319
+14/15 [===========================>..] - ETA: 47s - loss: 141.7463 - mean_squared_error: 141.7463 - mean_absolute_error: 9.8651  Epoch 00019: val_loss did not improve
+Epoch 00019: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 136.9057 - mean_squared_error: 136.9057 - mean_absolute_error: 9.7617 - val_loss: 66.9230 - val_mean_squared_error: 66.9230 - val_mean_absolute_error: 7.5000
+Epoch 20/50
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 434.7858 - mean_squared_error: 434.7857 - mean_absolute_error: 20.8515
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 330.2307 - mean_squared_error: 330.2307 - mean_absolute_error: 17.9370
+ 3/15 [=====>........................] - ETA: 9:34 - loss: 256.5828 - mean_squared_error: 256.5828 - mean_absolute_error: 15.4427 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 237.5179 - mean_squared_error: 237.5179 - mean_absolute_error: 14.9391
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 190.8599 - mean_squared_error: 190.8598 - mean_absolute_error: 12.3625
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 256.4490 - mean_squared_error: 256.4490 - mean_absolute_error: 14.3311
+ 7/15 [=============>................] - ETA: 6:22 - loss: 251.3773 - mean_squared_error: 251.3773 - mean_absolute_error: 14.4073
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 222.2751 - mean_squared_error: 222.2751 - mean_absolute_error: 13.1449
+ 9/15 [=================>............] - ETA: 4:47 - loss: 294.9435 - mean_squared_error: 294.9435 - mean_absolute_error: 14.9735
+10/15 [===================>..........] - ETA: 3:59 - loss: 271.2324 - mean_squared_error: 271.2324 - mean_absolute_error: 14.2366
+11/15 [=====================>........] - ETA: 3:11 - loss: 252.2180 - mean_squared_error: 252.2180 - mean_absolute_error: 13.6586
+12/15 [=======================>......] - ETA: 2:23 - loss: 250.8653 - mean_squared_error: 250.8653 - mean_absolute_error: 13.8006
+13/15 [=========================>....] - ETA: 1:35 - loss: 231.8427 - mean_squared_error: 231.8427 - mean_absolute_error: 12.8844
+14/15 [===========================>..] - ETA: 47s - loss: 226.4548 - mean_squared_error: 226.4548 - mean_absolute_error: 12.8574 Epoch 00020: val_loss did not improve
+Epoch 00020: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 749s 50s/step - loss: 212.0861 - mean_squared_error: 212.0861 - mean_absolute_error: 12.2206 - val_loss: 67.1416 - val_mean_squared_error: 67.1416 - val_mean_absolute_error: 7.5000
+Epoch 21/50
+
+ 1/15 [=>............................] - ETA: 11:17 - loss: 381.9367 - mean_squared_error: 381.9367 - mean_absolute_error: 19.5432
+ 2/15 [===>..........................] - ETA: 10:25 - loss: 442.4877 - mean_squared_error: 442.4877 - mean_absolute_error: 20.9859
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 334.8067 - mean_squared_error: 334.8067 - mean_absolute_error: 17.6336 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 269.3421 - mean_squared_error: 269.3421 - mean_absolute_error: 15.3604
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 246.5879 - mean_squared_error: 246.5879 - mean_absolute_error: 14.7829
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 208.6678 - mean_squared_error: 208.6678 - mean_absolute_error: 13.0469
+ 7/15 [=============>................] - ETA: 6:23 - loss: 180.0135 - mean_squared_error: 180.0135 - mean_absolute_error: 11.5893
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 176.4451 - mean_squared_error: 176.4451 - mean_absolute_error: 11.6790
+ 9/15 [=================>............] - ETA: 4:47 - loss: 161.4008 - mean_squared_error: 161.4008 - mean_absolute_error: 11.0932
+10/15 [===================>..........] - ETA: 3:59 - loss: 222.1520 - mean_squared_error: 222.1520 - mean_absolute_error: 12.7568
+11/15 [=====================>........] - ETA: 3:11 - loss: 207.3560 - mean_squared_error: 207.3560 - mean_absolute_error: 12.2977
+12/15 [=======================>......] - ETA: 2:23 - loss: 194.8817 - mean_squared_error: 194.8817 - mean_absolute_error: 11.9057
+13/15 [=========================>....] - ETA: 1:35 - loss: 185.2375 - mean_squared_error: 185.2375 - mean_absolute_error: 11.6312
+14/15 [===========================>..] - ETA: 47s - loss: 175.4301 - mean_squared_error: 175.4301 - mean_absolute_error: 11.2950 Epoch 00021: val_loss did not improve
+Epoch 00021: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 166.5758 - mean_squared_error: 166.5758 - mean_absolute_error: 10.9772 - val_loss: 67.3213 - val_mean_squared_error: 67.3212 - val_mean_absolute_error: 7.5000
+Epoch 22/50
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 11.4331 - mean_squared_error: 11.4331 - mean_absolute_error: 3.3813
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 223.8566 - mean_squared_error: 223.8564 - mean_absolute_error: 12.1343
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 165.4126 - mean_squared_error: 165.4121 - mean_absolute_error: 10.4115 
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 124.2228 - mean_squared_error: 124.2224 - mean_absolute_error: 8.0106 
+ 5/15 [=========>....................] - ETA: 7:57 - loss: 132.7232 - mean_squared_error: 132.7228 - mean_absolute_error: 8.9909
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 119.6541 - mean_squared_error: 119.6536 - mean_absolute_error: 8.7207
+ 7/15 [=============>................] - ETA: 6:22 - loss: 106.5389 - mean_squared_error: 106.5385 - mean_absolute_error: 8.2287
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 144.0171 - mean_squared_error: 144.0167 - mean_absolute_error: 9.7200
+ 9/15 [=================>............] - ETA: 4:47 - loss: 143.4507 - mean_squared_error: 143.4503 - mean_absolute_error: 9.9496
+10/15 [===================>..........] - ETA: 3:59 - loss: 149.5584 - mean_squared_error: 149.5579 - mean_absolute_error: 10.3847
+11/15 [=====================>........] - ETA: 3:11 - loss: 154.6335 - mean_squared_error: 154.6330 - mean_absolute_error: 10.7435
+12/15 [=======================>......] - ETA: 2:23 - loss: 152.3054 - mean_squared_error: 152.3049 - mean_absolute_error: 10.7862
+13/15 [=========================>....] - ETA: 1:35 - loss: 143.3972 - mean_squared_error: 143.3968 - mean_absolute_error: 10.4212
+14/15 [===========================>..] - ETA: 47s - loss: 169.5444 - mean_squared_error: 169.5440 - mean_absolute_error: 11.2891 Epoch 00022: val_loss did not improve
+Epoch 00022: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 158.4190 - mean_squared_error: 158.4186 - mean_absolute_error: 10.6453 - val_loss: 67.2064 - val_mean_squared_error: 67.2063 - val_mean_absolute_error: 7.5000
+Epoch 23/50
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 309.0289 - mean_squared_error: 309.0288 - mean_absolute_error: 17.5792
+ 2/15 [===>..........................] - ETA: 10:25 - loss: 156.9444 - mean_squared_error: 156.9443 - mean_absolute_error: 9.8919 
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 105.5759 - mean_squared_error: 105.5759 - mean_absolute_error: 7.1562 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 83.2454 - mean_squared_error: 83.2453 - mean_absolute_error: 6.3751  
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 247.1484 - mean_squared_error: 247.1482 - mean_absolute_error: 11.1092
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 230.6895 - mean_squared_error: 230.6893 - mean_absolute_error: 11.2880
+ 7/15 [=============>................] - ETA: 6:23 - loss: 271.9468 - mean_squared_error: 271.9466 - mean_absolute_error: 12.9315
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 270.6305 - mean_squared_error: 270.6303 - mean_absolute_error: 13.3361
+ 9/15 [=================>............] - ETA: 4:47 - loss: 240.7827 - mean_squared_error: 240.7825 - mean_absolute_error: 12.0114
+10/15 [===================>..........] - ETA: 3:59 - loss: 279.5455 - mean_squared_error: 279.5453 - mean_absolute_error: 13.3171
+11/15 [=====================>........] - ETA: 3:11 - loss: 264.4961 - mean_squared_error: 264.4959 - mean_absolute_error: 13.0771
+12/15 [=======================>......] - ETA: 2:23 - loss: 251.3907 - mean_squared_error: 251.3905 - mean_absolute_error: 12.8503
+13/15 [=========================>....] - ETA: 1:35 - loss: 244.0033 - mean_squared_error: 244.0031 - mean_absolute_error: 12.8206
+14/15 [===========================>..] - ETA: 47s - loss: 228.0952 - mean_squared_error: 228.0949 - mean_absolute_error: 12.2344 Epoch 00023: val_loss did not improve
+Epoch 00023: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 217.4724 - mean_squared_error: 217.4721 - mean_absolute_error: 11.9715 - val_loss: 67.1691 - val_mean_squared_error: 67.1689 - val_mean_absolute_error: 7.5000
+Epoch 24/50
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 86.0816 - mean_squared_error: 86.0814 - mean_absolute_error: 9.2780
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 204.5393 - mean_squared_error: 204.5391 - mean_absolute_error: 13.6251
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 154.3287 - mean_squared_error: 154.3285 - mean_absolute_error: 11.5308 
+ 4/15 [=======>......................] - ETA: 8:45 - loss: 116.8446 - mean_squared_error: 116.8443 - mean_absolute_error: 9.1720 
+ 5/15 [=========>....................] - ETA: 7:57 - loss: 109.2833 - mean_squared_error: 109.2831 - mean_absolute_error: 9.1157
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 101.3050 - mean_squared_error: 101.3048 - mean_absolute_error: 8.9025
+ 7/15 [=============>................] - ETA: 6:22 - loss: 270.7127 - mean_squared_error: 270.7125 - mean_absolute_error: 12.7560
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 260.1294 - mean_squared_error: 260.1291 - mean_absolute_error: 12.8665
+ 9/15 [=================>............] - ETA: 4:47 - loss: 245.8032 - mean_squared_error: 245.8030 - mean_absolute_error: 12.7095
+10/15 [===================>..........] - ETA: 3:59 - loss: 251.8032 - mean_squared_error: 251.8030 - mean_absolute_error: 13.1873
+11/15 [=====================>........] - ETA: 3:11 - loss: 228.9129 - mean_squared_error: 228.9127 - mean_absolute_error: 11.9973
+12/15 [=======================>......] - ETA: 2:23 - loss: 211.9145 - mean_squared_error: 211.9143 - mean_absolute_error: 11.4136
+13/15 [=========================>....] - ETA: 1:35 - loss: 196.5470 - mean_squared_error: 196.5468 - mean_absolute_error: 10.8036
+14/15 [===========================>..] - ETA: 47s - loss: 182.8341 - mean_squared_error: 182.8338 - mean_absolute_error: 10.1846 Epoch 00024: val_loss did not improve
+Epoch 00024: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 749s 50s/step - loss: 174.3593 - mean_squared_error: 174.3591 - mean_absolute_error: 10.0032 - val_loss: 66.9322 - val_mean_squared_error: 66.9320 - val_mean_absolute_error: 7.5000
+Epoch 25/50
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 456.3794 - mean_squared_error: 456.3792 - mean_absolute_error: 21.3630
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 375.9632 - mean_squared_error: 375.9630 - mean_absolute_error: 19.2773
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 332.6760 - mean_squared_error: 332.6757 - mean_absolute_error: 18.0807 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 321.1572 - mean_squared_error: 321.1570 - mean_absolute_error: 17.7929
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 287.9875 - mean_squared_error: 287.9873 - mean_absolute_error: 16.7267
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 241.1991 - mean_squared_error: 241.1989 - mean_absolute_error: 14.3879
+ 7/15 [=============>................] - ETA: 6:23 - loss: 225.6467 - mean_squared_error: 225.6464 - mean_absolute_error: 13.9759
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 201.7183 - mean_squared_error: 201.7180 - mean_absolute_error: 12.9601
+ 9/15 [=================>............] - ETA: 4:47 - loss: 220.4718 - mean_squared_error: 220.4716 - mean_absolute_error: 13.6588
+10/15 [===================>..........] - ETA: 3:59 - loss: 228.9950 - mean_squared_error: 228.9948 - mean_absolute_error: 14.0414
+11/15 [=====================>........] - ETA: 3:11 - loss: 225.8531 - mean_squared_error: 225.8528 - mean_absolute_error: 14.0325
+12/15 [=======================>......] - ETA: 2:23 - loss: 209.4699 - mean_squared_error: 209.4696 - mean_absolute_error: 13.3139
+13/15 [=========================>....] - ETA: 1:35 - loss: 220.3418 - mean_squared_error: 220.3415 - mean_absolute_error: 13.7305
+14/15 [===========================>..] - ETA: 47s - loss: 212.7161 - mean_squared_error: 212.7158 - mean_absolute_error: 13.5110 Epoch 00025: val_loss did not improve
+Epoch 00025: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 200.9874 - mean_squared_error: 200.9871 - mean_absolute_error: 13.0146 - val_loss: 67.0489 - val_mean_squared_error: 67.0486 - val_mean_absolute_error: 7.5000
+Epoch 26/50
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 23.3712 - mean_squared_error: 23.3709 - mean_absolute_error: 4.8343
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 55.2536 - mean_squared_error: 55.2534 - mean_absolute_error: 7.0845
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 39.1773 - mean_squared_error: 39.1771 - mean_absolute_error: 5.6065 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 31.0842 - mean_squared_error: 31.0839 - mean_absolute_error: 4.8570
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 53.2305 - mean_squared_error: 53.2303 - mean_absolute_error: 6.2673
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 73.2117 - mean_squared_error: 73.2114 - mean_absolute_error: 7.4157
+ 7/15 [=============>................] - ETA: 6:23 - loss: 62.9732 - mean_squared_error: 62.9730 - mean_absolute_error: 6.5337
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 76.7747 - mean_squared_error: 76.7745 - mean_absolute_error: 7.3629
+ 9/15 [=================>............] - ETA: 4:47 - loss: 99.1556 - mean_squared_error: 99.1553 - mean_absolute_error: 8.3981
+10/15 [===================>..........] - ETA: 3:59 - loss: 196.4676 - mean_squared_error: 196.4674 - mean_absolute_error: 10.8328
+11/15 [=====================>........] - ETA: 3:11 - loss: 193.3835 - mean_squared_error: 193.3833 - mean_absolute_error: 11.0071
+12/15 [=======================>......] - ETA: 2:23 - loss: 202.3773 - mean_squared_error: 202.3770 - mean_absolute_error: 11.5363
+13/15 [=========================>....] - ETA: 1:35 - loss: 186.8308 - mean_squared_error: 186.8305 - mean_absolute_error: 10.6891
+14/15 [===========================>..] - ETA: 47s - loss: 173.9890 - mean_squared_error: 173.9887 - mean_absolute_error: 10.1152 Epoch 00026: val_loss did not improve
+Epoch 00026: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 751s 50s/step - loss: 164.1483 - mean_squared_error: 164.1481 - mean_absolute_error: 9.7832 - val_loss: 67.0102 - val_mean_squared_error: 67.0099 - val_mean_absolute_error: 7.5000
+Epoch 27/50
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 178.4024 - mean_squared_error: 178.4021 - mean_absolute_error: 13.3567
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 89.2251 - mean_squared_error: 89.2249 - mean_absolute_error: 6.7875   
+ 3/15 [=====>........................] - ETA: 9:34 - loss: 89.7402 - mean_squared_error: 89.7399 - mean_absolute_error: 7.7008 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 158.5758 - mean_squared_error: 158.5756 - mean_absolute_error: 10.5524
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 129.2066 - mean_squared_error: 129.2063 - mean_absolute_error: 9.1269 
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 123.8976 - mean_squared_error: 123.8973 - mean_absolute_error: 9.2502
+ 7/15 [=============>................] - ETA: 6:23 - loss: 129.8838 - mean_squared_error: 129.8835 - mean_absolute_error: 9.7682
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 116.6279 - mean_squared_error: 116.6276 - mean_absolute_error: 9.1575
+ 9/15 [=================>............] - ETA: 4:47 - loss: 103.6886 - mean_squared_error: 103.6883 - mean_absolute_error: 8.1863
+10/15 [===================>..........] - ETA: 3:59 - loss: 97.4379 - mean_squared_error: 97.4376 - mean_absolute_error: 8.0094  
+11/15 [=====================>........] - ETA: 3:11 - loss: 96.1477 - mean_squared_error: 96.1474 - mean_absolute_error: 8.1107
+12/15 [=======================>......] - ETA: 2:23 - loss: 94.0891 - mean_squared_error: 94.0888 - mean_absolute_error: 8.1392
+13/15 [=========================>....] - ETA: 1:35 - loss: 96.4954 - mean_squared_error: 96.4952 - mean_absolute_error: 8.3744
+14/15 [===========================>..] - ETA: 47s - loss: 89.7916 - mean_squared_error: 89.7913 - mean_absolute_error: 7.8923 Epoch 00027: val_loss did not improve
+Epoch 00027: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 752s 50s/step - loss: 91.4348 - mean_squared_error: 91.4345 - mean_absolute_error: 8.0793 - val_loss: 67.3568 - val_mean_squared_error: 67.3566 - val_mean_absolute_error: 7.5000
+Epoch 28/50
+
+ 1/15 [=>............................] - ETA: 11:14 - loss: 78.1721 - mean_squared_error: 78.1718 - mean_absolute_error: 8.8415
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 39.1966 - mean_squared_error: 39.1963 - mean_absolute_error: 4.6557
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 33.5527 - mean_squared_error: 33.5524 - mean_absolute_error: 4.6766 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 75.9881 - mean_squared_error: 75.9879 - mean_absolute_error: 7.0720
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 89.0833 - mean_squared_error: 89.0830 - mean_absolute_error: 8.0364
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 74.2957 - mean_squared_error: 74.2954 - mean_absolute_error: 6.7966
+ 7/15 [=============>................] - ETA: 6:24 - loss: 79.2415 - mean_squared_error: 79.2412 - mean_absolute_error: 7.3166
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 104.9937 - mean_squared_error: 104.9935 - mean_absolute_error: 8.5132
+ 9/15 [=================>............] - ETA: 4:48 - loss: 138.8075 - mean_squared_error: 138.8072 - mean_absolute_error: 9.8152
+10/15 [===================>..........] - ETA: 4:00 - loss: 125.4660 - mean_squared_error: 125.4657 - mean_absolute_error: 9.0659
+11/15 [=====================>........] - ETA: 3:12 - loss: 114.1196 - mean_squared_error: 114.1193 - mean_absolute_error: 8.3153
+12/15 [=======================>......] - ETA: 2:24 - loss: 107.7228 - mean_squared_error: 107.7226 - mean_absolute_error: 8.1317
+13/15 [=========================>....] - ETA: 1:36 - loss: 124.8123 - mean_squared_error: 124.8120 - mean_absolute_error: 8.9034
+14/15 [===========================>..] - ETA: 48s - loss: 118.9057 - mean_squared_error: 118.9054 - mean_absolute_error: 8.7310 Epoch 00028: val_loss did not improve
+Epoch 00028: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 754s 50s/step - loss: 111.4581 - mean_squared_error: 111.4579 - mean_absolute_error: 8.3277 - val_loss: 67.3893 - val_mean_squared_error: 67.3890 - val_mean_absolute_error: 7.5000
+Epoch 29/50
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 3.1492 - mean_squared_error: 3.1489 - mean_absolute_error: 1.7745
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 60.1841 - mean_squared_error: 60.1839 - mean_absolute_error: 6.3006
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 83.1563 - mean_squared_error: 83.1560 - mean_absolute_error: 7.9878 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 62.9759 - mean_squared_error: 62.9757 - mean_absolute_error: 6.3810
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 51.1041 - mean_squared_error: 51.1038 - mean_absolute_error: 5.4851
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 61.2873 - mean_squared_error: 61.2870 - mean_absolute_error: 6.3364
+ 7/15 [=============>................] - ETA: 6:24 - loss: 178.5802 - mean_squared_error: 178.5799 - mean_absolute_error: 9.6746
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 161.5833 - mean_squared_error: 161.5830 - mean_absolute_error: 9.2812
+ 9/15 [=================>............] - ETA: 4:48 - loss: 157.3691 - mean_squared_error: 157.3689 - mean_absolute_error: 9.4855
+10/15 [===================>..........] - ETA: 4:00 - loss: 159.6468 - mean_squared_error: 159.6466 - mean_absolute_error: 9.8791
+11/15 [=====================>........] - ETA: 3:11 - loss: 175.2461 - mean_squared_error: 175.2458 - mean_absolute_error: 10.6356
+12/15 [=======================>......] - ETA: 2:24 - loss: 171.1890 - mean_squared_error: 171.1887 - mean_absolute_error: 10.6868
+13/15 [=========================>....] - ETA: 1:35 - loss: 158.9695 - mean_squared_error: 158.9693 - mean_absolute_error: 10.1349
+14/15 [===========================>..] - ETA: 47s - loss: 148.0446 - mean_squared_error: 148.0443 - mean_absolute_error: 9.5862  Epoch 00029: val_loss did not improve
+Epoch 00029: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 751s 50s/step - loss: 149.0677 - mean_squared_error: 149.0675 - mean_absolute_error: 9.7993 - val_loss: 67.3807 - val_mean_squared_error: 67.3804 - val_mean_absolute_error: 7.5000
+Epoch 30/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 140.6645 - mean_squared_error: 140.6643 - mean_absolute_error: 11.8602
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 115.4444 - mean_squared_error: 115.4441 - mean_absolute_error: 10.6794
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 88.0642 - mean_squared_error: 88.0639 - mean_absolute_error: 9.0432    
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 224.2288 - mean_squared_error: 224.2285 - mean_absolute_error: 13.0709
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 237.2973 - mean_squared_error: 237.2970 - mean_absolute_error: 13.8601
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 214.5109 - mean_squared_error: 214.5106 - mean_absolute_error: 13.2216
+ 7/15 [=============>................] - ETA: 6:23 - loss: 183.9536 - mean_squared_error: 183.9534 - mean_absolute_error: 11.4443
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 239.0914 - mean_squared_error: 239.0912 - mean_absolute_error: 13.1389
+ 9/15 [=================>............] - ETA: 4:47 - loss: 212.7837 - mean_squared_error: 212.7835 - mean_absolute_error: 11.8483
+10/15 [===================>..........] - ETA: 4:00 - loss: 197.9746 - mean_squared_error: 197.9744 - mean_absolute_error: 11.4678
+11/15 [=====================>........] - ETA: 3:12 - loss: 180.2238 - mean_squared_error: 180.2235 - mean_absolute_error: 10.5751
+12/15 [=======================>......] - ETA: 2:24 - loss: 172.0015 - mean_squared_error: 172.0013 - mean_absolute_error: 10.4464
+13/15 [=========================>....] - ETA: 1:36 - loss: 158.7742 - mean_squared_error: 158.7739 - mean_absolute_error: 9.6593 
+14/15 [===========================>..] - ETA: 48s - loss: 157.4693 - mean_squared_error: 157.4690 - mean_absolute_error: 9.8161 Epoch 00030: val_loss did not improve
+Epoch 00030: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 753s 50s/step - loss: 188.2015 - mean_squared_error: 188.2013 - mean_absolute_error: 10.8196 - val_loss: 67.2652 - val_mean_squared_error: 67.2649 - val_mean_absolute_error: 7.5000
+Epoch 31/50
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 346.2235 - mean_squared_error: 346.2232 - mean_absolute_error: 18.6071
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 173.1195 - mean_squared_error: 173.1192 - mean_absolute_error: 9.3652 
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 161.1706 - mean_squared_error: 161.1704 - mean_absolute_error: 10.1489
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 120.8946 - mean_squared_error: 120.8944 - mean_absolute_error: 7.6760 
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 142.4786 - mean_squared_error: 142.4784 - mean_absolute_error: 9.1661
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 135.2350 - mean_squared_error: 135.2347 - mean_absolute_error: 9.2969
+ 7/15 [=============>................] - ETA: 6:23 - loss: 173.4034 - mean_squared_error: 173.4031 - mean_absolute_error: 10.8345
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 159.3442 - mean_squared_error: 159.3439 - mean_absolute_error: 10.4559
+ 9/15 [=================>............] - ETA: 4:48 - loss: 152.6680 - mean_squared_error: 152.6678 - mean_absolute_error: 10.4011
+10/15 [===================>..........] - ETA: 4:00 - loss: 159.8742 - mean_squared_error: 159.8739 - mean_absolute_error: 10.8601
+11/15 [=====================>........] - ETA: 3:12 - loss: 234.6169 - mean_squared_error: 234.6167 - mean_absolute_error: 12.7217
+12/15 [=======================>......] - ETA: 2:24 - loss: 217.3838 - mean_squared_error: 217.3835 - mean_absolute_error: 12.1011
+13/15 [=========================>....] - ETA: 1:36 - loss: 261.1668 - mean_squared_error: 261.1666 - mean_absolute_error: 13.3276
+14/15 [===========================>..] - ETA: 48s - loss: 273.4159 - mean_squared_error: 273.4156 - mean_absolute_error: 13.8614 Epoch 00031: val_loss did not improve
+Epoch 00031: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 752s 50s/step - loss: 297.7796 - mean_squared_error: 297.7793 - mean_absolute_error: 14.6223 - val_loss: 67.3843 - val_mean_squared_error: 67.3841 - val_mean_absolute_error: 7.5000
+Epoch 32/50
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 4.5348 - mean_squared_error: 4.5345 - mean_absolute_error: 2.1294
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 56.2866 - mean_squared_error: 56.2863 - mean_absolute_error: 6.2618
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 52.0603 - mean_squared_error: 52.0601 - mean_absolute_error: 6.3757 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 220.5448 - mean_squared_error: 220.5445 - mean_absolute_error: 11.5179
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 181.1374 - mean_squared_error: 181.1372 - mean_absolute_error: 10.1840
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 154.9582 - mean_squared_error: 154.9579 - mean_absolute_error: 9.3042 
+ 7/15 [=============>................] - ETA: 6:23 - loss: 149.7297 - mean_squared_error: 149.7294 - mean_absolute_error: 9.5292
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 144.7429 - mean_squared_error: 144.7427 - mean_absolute_error: 9.6481
+ 9/15 [=================>............] - ETA: 4:47 - loss: 175.0022 - mean_squared_error: 175.0019 - mean_absolute_error: 10.8452
+10/15 [===================>..........] - ETA: 3:59 - loss: 179.0252 - mean_squared_error: 179.0249 - mean_absolute_error: 11.2278
+11/15 [=====================>........] - ETA: 3:11 - loss: 209.2311 - mean_squared_error: 209.2309 - mean_absolute_error: 12.2627
+12/15 [=======================>......] - ETA: 2:23 - loss: 196.1376 - mean_squared_error: 196.1373 - mean_absolute_error: 11.8424
+13/15 [=========================>....] - ETA: 1:35 - loss: 184.2527 - mean_squared_error: 184.2525 - mean_absolute_error: 11.4278
+14/15 [===========================>..] - ETA: 47s - loss: 175.0128 - mean_squared_error: 175.0125 - mean_absolute_error: 11.1407 Epoch 00032: val_loss did not improve
+Epoch 00032: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 751s 50s/step - loss: 170.2713 - mean_squared_error: 170.2711 - mean_absolute_error: 11.0775 - val_loss: 67.6629 - val_mean_squared_error: 67.6627 - val_mean_absolute_error: 7.5000
+Epoch 33/50
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 4.6230 - mean_squared_error: 4.6227 - mean_absolute_error: 2.1501
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 2.4804 - mean_squared_error: 2.4801 - mean_absolute_error: 1.3655
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 68.5212 - mean_squared_error: 68.5210 - mean_absolute_error: 5.6315
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 55.3320 - mean_squared_error: 55.3317 - mean_absolute_error: 5.2162
+ 5/15 [=========>....................] - ETA: 7:58 - loss: 56.1842 - mean_squared_error: 56.1840 - mean_absolute_error: 5.7169
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 68.6606 - mean_squared_error: 68.6603 - mean_absolute_error: 6.6720
+ 7/15 [=============>................] - ETA: 6:23 - loss: 76.0614 - mean_squared_error: 76.0611 - mean_absolute_error: 7.2868
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 108.8662 - mean_squared_error: 108.8660 - mean_absolute_error: 8.6757
+ 9/15 [=================>............] - ETA: 4:47 - loss: 151.8773 - mean_squared_error: 151.8770 - mean_absolute_error: 10.1862
+10/15 [===================>..........] - ETA: 3:59 - loss: 136.7713 - mean_squared_error: 136.7710 - mean_absolute_error: 9.2580 
+11/15 [=====================>........] - ETA: 3:11 - loss: 147.5033 - mean_squared_error: 147.5031 - mean_absolute_error: 9.8676
+12/15 [=======================>......] - ETA: 2:23 - loss: 199.3177 - mean_squared_error: 199.3175 - mean_absolute_error: 11.3566
+13/15 [=========================>....] - ETA: 1:35 - loss: 184.0800 - mean_squared_error: 184.0798 - mean_absolute_error: 10.5682
+14/15 [===========================>..] - ETA: 47s - loss: 176.3943 - mean_squared_error: 176.3940 - mean_absolute_error: 10.4380 Epoch 00033: val_loss did not improve
+Epoch 00033: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 164.8239 - mean_squared_error: 164.8236 - mean_absolute_error: 9.8545 - val_loss: 67.6411 - val_mean_squared_error: 67.6408 - val_mean_absolute_error: 7.5000
+Epoch 34/50
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 66.7388 - mean_squared_error: 66.7385 - mean_absolute_error: 8.1694
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 81.4317 - mean_squared_error: 81.4314 - mean_absolute_error: 8.9868
+ 3/15 [=====>........................] - ETA: 9:34 - loss: 55.1103 - mean_squared_error: 55.1100 - mean_absolute_error: 6.5148 
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 45.2762 - mean_squared_error: 45.2759 - mean_absolute_error: 5.8790
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 65.2105 - mean_squared_error: 65.2103 - mean_absolute_error: 7.1111
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 136.4555 - mean_squared_error: 136.4552 - mean_absolute_error: 9.6253
+ 7/15 [=============>................] - ETA: 6:23 - loss: 123.8027 - mean_squared_error: 123.8024 - mean_absolute_error: 9.2388
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 145.9318 - mean_squared_error: 145.9316 - mean_absolute_error: 10.2521
+ 9/15 [=================>............] - ETA: 4:47 - loss: 129.8692 - mean_squared_error: 129.8690 - mean_absolute_error: 9.2429 
+10/15 [===================>..........] - ETA: 3:59 - loss: 125.3291 - mean_squared_error: 125.3288 - mean_absolute_error: 9.2377
+11/15 [=====================>........] - ETA: 3:11 - loss: 125.0730 - mean_squared_error: 125.0728 - mean_absolute_error: 9.4041
+12/15 [=======================>......] - ETA: 2:23 - loss: 141.3751 - mean_squared_error: 141.3749 - mean_absolute_error: 10.1128
+13/15 [=========================>....] - ETA: 1:35 - loss: 135.9557 - mean_squared_error: 135.9554 - mean_absolute_error: 9.9827 
+14/15 [===========================>..] - ETA: 47s - loss: 137.1349 - mean_squared_error: 137.1346 - mean_absolute_error: 10.1516Epoch 00034: val_loss did not improve
+Epoch 00034: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 751s 50s/step - loss: 128.0998 - mean_squared_error: 128.0995 - mean_absolute_error: 9.5594 - val_loss: 67.5579 - val_mean_squared_error: 67.5576 - val_mean_absolute_error: 7.5000
+Epoch 35/50
+
+ 1/15 [=>............................] - ETA: 11:15 - loss: 68.4359 - mean_squared_error: 68.4356 - mean_absolute_error: 8.2726
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 47.2848 - mean_squared_error: 47.2845 - mean_absolute_error: 6.6923
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 32.5887 - mean_squared_error: 32.5884 - mean_absolute_error: 5.0575 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 115.7136 - mean_squared_error: 115.7134 - mean_absolute_error: 8.5699
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 131.0479 - mean_squared_error: 131.0477 - mean_absolute_error: 9.6300
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 226.7062 - mean_squared_error: 226.7060 - mean_absolute_error: 12.4503
+ 7/15 [=============>................] - ETA: 6:24 - loss: 203.1795 - mean_squared_error: 203.1793 - mean_absolute_error: 11.7967
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 177.8455 - mean_squared_error: 177.8452 - mean_absolute_error: 10.4111
+ 9/15 [=================>............] - ETA: 4:48 - loss: 158.2796 - mean_squared_error: 158.2794 - mean_absolute_error: 9.4014 
+10/15 [===================>..........] - ETA: 4:00 - loss: 258.5948 - mean_squared_error: 258.5946 - mean_absolute_error: 11.8693
+11/15 [=====================>........] - ETA: 3:12 - loss: 236.7572 - mean_squared_error: 236.7569 - mean_absolute_error: 11.1800
+12/15 [=======================>......] - ETA: 2:24 - loss: 223.3217 - mean_squared_error: 223.3215 - mean_absolute_error: 10.9726
+13/15 [=========================>....] - ETA: 1:36 - loss: 208.7772 - mean_squared_error: 208.7770 - mean_absolute_error: 10.5787
+14/15 [===========================>..] - ETA: 48s - loss: 209.5173 - mean_squared_error: 209.5171 - mean_absolute_error: 10.8804 Epoch 00035: val_loss did not improve
+Epoch 00035: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 753s 50s/step - loss: 211.8572 - mean_squared_error: 211.8569 - mean_absolute_error: 11.1977 - val_loss: 67.8815 - val_mean_squared_error: 67.8813 - val_mean_absolute_error: 7.5000
+Epoch 36/50
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 674.2562 - mean_squared_error: 674.2559 - mean_absolute_error: 25.9664
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 438.2583 - mean_squared_error: 438.2580 - mean_absolute_error: 20.0941
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 298.0191 - mean_squared_error: 298.0189 - mean_absolute_error: 14.7921 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 229.4502 - mean_squared_error: 229.4500 - mean_absolute_error: 12.3123
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 250.1097 - mean_squared_error: 250.1094 - mean_absolute_error: 13.4981
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 238.4641 - mean_squared_error: 238.4638 - mean_absolute_error: 13.4859
+ 7/15 [=============>................] - ETA: 6:23 - loss: 205.2017 - mean_squared_error: 205.2015 - mean_absolute_error: 11.8983
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 189.1558 - mean_squared_error: 189.1555 - mean_absolute_error: 11.5067
+ 9/15 [=================>............] - ETA: 4:48 - loss: 221.8175 - mean_squared_error: 221.8172 - mean_absolute_error: 12.6703
+10/15 [===================>..........] - ETA: 3:59 - loss: 201.3618 - mean_squared_error: 201.3616 - mean_absolute_error: 11.8188
+11/15 [=====================>........] - ETA: 3:11 - loss: 187.3936 - mean_squared_error: 187.3933 - mean_absolute_error: 11.3723
+12/15 [=======================>......] - ETA: 2:23 - loss: 191.7601 - mean_squared_error: 191.7598 - mean_absolute_error: 11.7150
+13/15 [=========================>....] - ETA: 1:35 - loss: 177.1746 - mean_squared_error: 177.1743 - mean_absolute_error: 10.9266
+14/15 [===========================>..] - ETA: 47s - loss: 171.1052 - mean_squared_error: 171.1050 - mean_absolute_error: 10.8320 Epoch 00036: val_loss did not improve
+Epoch 00036: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 751s 50s/step - loss: 167.1995 - mean_squared_error: 167.1993 - mean_absolute_error: 10.8170 - val_loss: 68.0240 - val_mean_squared_error: 68.0238 - val_mean_absolute_error: 7.5000
+Epoch 37/50
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 94.3036 - mean_squared_error: 94.3033 - mean_absolute_error: 9.7110
+ 2/15 [===>..........................] - ETA: 10:27 - loss: 546.4884 - mean_squared_error: 546.4881 - mean_absolute_error: 20.6564
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 539.1874 - mean_squared_error: 539.1871 - mean_absolute_error: 21.4055 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 417.6511 - mean_squared_error: 417.6508 - mean_absolute_error: 17.8749
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 414.0970 - mean_squared_error: 414.0968 - mean_absolute_error: 18.2993
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 398.7945 - mean_squared_error: 398.7943 - mean_absolute_error: 18.2415
+ 7/15 [=============>................] - ETA: 6:24 - loss: 342.0638 - mean_squared_error: 342.0636 - mean_absolute_error: 15.8207
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 325.5340 - mean_squared_error: 325.5337 - mean_absolute_error: 15.6538
+ 9/15 [=================>............] - ETA: 4:48 - loss: 346.3482 - mean_squared_error: 346.3480 - mean_absolute_error: 16.4307
+10/15 [===================>..........] - ETA: 4:00 - loss: 311.9304 - mean_squared_error: 311.9302 - mean_absolute_error: 14.9350
+11/15 [=====================>........] - ETA: 3:12 - loss: 305.7498 - mean_squared_error: 305.7495 - mean_absolute_error: 14.9971
+12/15 [=======================>......] - ETA: 2:24 - loss: 289.3290 - mean_squared_error: 289.3287 - mean_absolute_error: 14.6162
+13/15 [=========================>....] - ETA: 1:36 - loss: 267.0813 - mean_squared_error: 267.0810 - mean_absolute_error: 13.5172
+14/15 [===========================>..] - ETA: 48s - loss: 293.0757 - mean_squared_error: 293.0754 - mean_absolute_error: 14.3459 Epoch 00037: val_loss did not improve
+Epoch 00037: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 752s 50s/step - loss: 298.9111 - mean_squared_error: 298.9109 - mean_absolute_error: 14.6901 - val_loss: 68.1188 - val_mean_squared_error: 68.1186 - val_mean_absolute_error: 7.5000
+Epoch 38/50
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 100.0520 - mean_squared_error: 100.0518 - mean_absolute_error: 10.0026
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 87.0479 - mean_squared_error: 87.0476 - mean_absolute_error: 9.3037   
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 83.8275 - mean_squared_error: 83.8272 - mean_absolute_error: 9.1348 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 194.3598 - mean_squared_error: 194.3596 - mean_absolute_error: 12.5845
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 163.0089 - mean_squared_error: 163.0087 - mean_absolute_error: 11.2941
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 136.4810 - mean_squared_error: 136.4807 - mean_absolute_error: 9.7384 
+ 7/15 [=============>................] - ETA: 6:23 - loss: 167.4623 - mean_squared_error: 167.4621 - mean_absolute_error: 11.0326
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 158.1108 - mean_squared_error: 158.1105 - mean_absolute_error: 10.8567
+ 9/15 [=================>............] - ETA: 4:47 - loss: 141.8417 - mean_squared_error: 141.8415 - mean_absolute_error: 10.0302
+10/15 [===================>..........] - ETA: 3:59 - loss: 142.3531 - mean_squared_error: 142.3529 - mean_absolute_error: 10.2395
+11/15 [=====================>........] - ETA: 3:11 - loss: 136.4412 - mean_squared_error: 136.4409 - mean_absolute_error: 10.1080
+12/15 [=======================>......] - ETA: 2:23 - loss: 128.0897 - mean_squared_error: 128.0894 - mean_absolute_error: 9.7672 
+13/15 [=========================>....] - ETA: 1:35 - loss: 152.0447 - mean_squared_error: 152.0444 - mean_absolute_error: 10.6285
+14/15 [===========================>..] - ETA: 47s - loss: 145.0716 - mean_squared_error: 145.0713 - mean_absolute_error: 10.3963 Epoch 00038: val_loss did not improve
+Epoch 00038: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 750s 50s/step - loss: 147.5399 - mean_squared_error: 147.5396 - mean_absolute_error: 10.6028 - val_loss: 67.9164 - val_mean_squared_error: 67.9161 - val_mean_absolute_error: 7.5000
+Epoch 39/50
+
+ 1/15 [=>............................] - ETA: 11:08 - loss: 113.1734 - mean_squared_error: 113.1732 - mean_absolute_error: 10.6383
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 56.5888 - mean_squared_error: 56.5885 - mean_absolute_error: 5.3504   
+ 3/15 [=====>........................] - ETA: 9:34 - loss: 294.8952 - mean_squared_error: 294.8950 - mean_absolute_error: 12.8256
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 232.3272 - mean_squared_error: 232.3269 - mean_absolute_error: 11.2892
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 187.0258 - mean_squared_error: 187.0255 - mean_absolute_error: 9.5138 
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 157.0329 - mean_squared_error: 157.0326 - mean_absolute_error: 8.3713> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 50, 'patience': 0, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.01), 'lr_plateau': (0.1, 5, 0.0001), 'learning_rate': 0.1}
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv_lst_m2d_1 (ConvLSTM2D)  (None, 72, 140, 140, 32)  207104    
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 72, 140, 140, 32)  128       
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 72, 140, 140, 32)  0         
+_________________________________________________________________
+conv_lst_m2d_2 (ConvLSTM2D)  (None, 72, 140, 140, 16)  76864     
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 72, 140, 140, 16)  64        
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 72, 140, 140, 16)  0         
+_________________________________________________________________
+conv_lst_m2d_3 (ConvLSTM2D)  (None, 140, 140, 8)       6944      
+_________________________________________________________________
+batch_normalization_3 (Batch (None, 140, 140, 8)       32        
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 140, 140, 8)       0         
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 35, 35, 8)         0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 9800)              0         
+_________________________________________________________________
+batch_normalization_4 (Batch (None, 9800)              39200     
+_________________________________________________________________
+dense_1 (Dense)              (None, 1024)              10036224  
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 1024)              4096      
+_________________________________________________________________
+dropout_4 (Dropout)          (None, 1024)              0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 512)               524800    
+_________________________________________________________________
+batch_normalization_6 (Batch (None, 512)               2048      
+_________________________________________________________________
+dropout_5 (Dropout)          (None, 512)               0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 256)               131328    
+_________________________________________________________________
+batch_normalization_7 (Batch (None, 256)               1024      
+_________________________________________________________________
+dropout_6 (Dropout)          (None, 256)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 1)                 257       
+=================================================================
+Total params: 11,030,113
+Trainable params: 11,006,817
+Non-trainable params: 23,296
+_________________________________________________________________
+None
+
+
+Train on 15 samples, validate on 2 samples
+Epoch 1/50
+
+ 1/15 [=>............................] - ETA: 11:52 - loss: 815.6756 - mean_squared_error: 784.0000 - mean_absolute_error: 28.0000
+ 2/15 [===>..........................] - ETA: 10:46 - loss: 5683.3554 - mean_squared_error: 632.9555 - mean_absolute_error: 24.9762
+ 3/15 [=====>........................] - ETA: 9:49 - loss: 3808.8443 - mean_squared_error: 432.4004 - mean_absolute_error: 18.5154 
+ 4/15 [=======>......................] - ETA: 8:55 - loss: 2926.2155 - mean_squared_error: 393.6831 - mean_absolute_error: 18.0514
+ 5/15 [=========>....................] - ETA: 8:04 - loss: 2342.4697 - mean_squared_error: 316.4304 - mean_absolute_error: 14.9859
+ 6/15 [===========>..................] - ETA: 7:14 - loss: 2044.7495 - mean_squared_error: 356.3816 - mean_absolute_error: 16.4187
+ 7/15 [=============>................] - ETA: 6:25 - loss: 1771.9156 - mean_squared_error: 324.7426 - mean_absolute_error: 15.7324
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 1638.7678 - mean_squared_error: 372.4914 - mean_absolute_error: 17.0889
+ 9/15 [=================>............] - ETA: 4:47 - loss: 1456.7003 - mean_squared_error: 331.1212 - mean_absolute_error: 15.2345
+10/15 [===================>..........] - ETA: 3:59 - loss: 1345.9237 - mean_squared_error: 332.9024 - mean_absolute_error: 15.5791
+11/15 [=====================>........] - ETA: 3:11 - loss: 1223.6388 - mean_squared_error: 302.7104 - mean_absolute_error: 14.2436
+12/15 [=======================>......] - ETA: 2:23 - loss: 1151.1095 - mean_squared_error: 306.9251 - mean_absolute_error: 14.6229
+13/15 [=========================>....] - ETA: 1:35 - loss: 1062.7427 - mean_squared_error: 283.4955 - mean_absolute_error: 13.6158
+14/15 [===========================>..] - ETA: 47s - loss: 994.7327 - mean_squared_error: 271.1459 - mean_absolute_error: 13.3944  Epoch 00001: val_loss improved from inf to 133.45632, saving model to 00_CACHE/lstm_v4_20_best.h5
+Epoch 00001: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 748s 50s/step - loss: 928.7998 - mean_squared_error: 253.4519 - mean_absolute_error: 12.6611 - val_loss: 133.4563 - val_mean_squared_error: 133.4507 - val_mean_absolute_error: 8.7864
+Epoch 2/50
+
+ 1/15 [=>............................] - ETA: 11:04 - loss: 181.8950 - mean_squared_error: 181.8894 - mean_absolute_error: 13.4866
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 116.2501 - mean_squared_error: 116.2392 - mean_absolute_error: 10.2996
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 94.7766 - mean_squared_error: 94.7528 - mean_absolute_error: 9.2650    
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 111.1975 - mean_squared_error: 111.1457 - mean_absolute_error: 10.1142
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 89.0834 - mean_squared_error: 88.9823 - mean_absolute_error: 8.2061   
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 75.3342 - mean_squared_error: 75.1525 - mean_absolute_error: 7.2467
+ 7/15 [=============>................] - ETA: 6:19 - loss: 64.7612 - mean_squared_error: 64.4197 - mean_absolute_error: 6.2334
+ 8/15 [===============>..............] - ETA: 5:31 - loss: 80.2944 - mean_squared_error: 79.5801 - mean_absolute_error: 7.1576
+ 9/15 [=================>............] - ETA: 4:44 - loss: 136.5464 - mean_squared_error: 135.1703 - mean_absolute_error: 9.0380
+10/15 [===================>..........] - ETA: 3:56 - loss: 134.4628 - mean_squared_error: 131.9479 - mean_absolute_error: 9.1488
+11/15 [=====================>........] - ETA: 3:09 - loss: 124.7511 - mean_squared_error: 120.1556 - mean_absolute_error: 8.4530
+12/15 [=======================>......] - ETA: 2:22 - loss: 173.1197 - mean_squared_error: 165.9654 - mean_absolute_error: 9.9054
+13/15 [=========================>....] - ETA: 1:34 - loss: 162.9126 - mean_squared_error: 153.2101 - mean_absolute_error: 9.1729
+14/15 [===========================>..] - ETA: 47s - loss: 164.2511 - mean_squared_error: 151.9367 - mean_absolute_error: 9.3488 Epoch 00002: val_loss did not improve
+Epoch 00002: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 741s 49s/step - loss: 227.5949 - mean_squared_error: 209.9213 - mean_absolute_error: 10.8564 - val_loss: 690.9561 - val_mean_squared_error: 277.2387 - val_mean_absolute_error: 13.2750
+Epoch 3/50
+
+ 1/15 [=>............................] - ETA: 11:03 - loss: 548.9006 - mean_squared_error: 135.1831 - mean_absolute_error: 11.6268
+ 2/15 [===>..........................] - ETA: 10:15 - loss: 903.8172 - mean_squared_error: 266.0904 - mean_absolute_error: 15.7758
+ 3/15 [=====>........................] - ETA: 9:26 - loss: 1023.5028 - mean_squared_error: 272.4489 - mean_absolute_error: 16.1462
+ 4/15 [=======>......................] - ETA: 8:40 - loss: 1052.9177 - mean_squared_error: 256.8394 - mean_absolute_error: 15.7326
+ 5/15 [=========>....................] - ETA: 7:53 - loss: 1011.0369 - mean_squared_error: 209.6689 - mean_absolute_error: 13.5023
+ 6/15 [===========>..................] - ETA: 7:06 - loss: 1004.4983 - mean_squared_error: 222.5324 - mean_absolute_error: 14.0747
+ 7/15 [=============>................] - ETA: 6:19 - loss: 921.8460 - mean_squared_error: 202.3682 - mean_absolute_error: 13.3528 
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 858.4616 - mean_squared_error: 216.8196 - mean_absolute_error: 13.9127
+ 9/15 [=================>............] - ETA: 4:44 - loss: 773.3122 - mean_squared_error: 199.2717 - mean_absolute_error: 13.2195
+10/15 [===================>..........] - ETA: 3:57 - loss: 769.1158 - mean_squared_error: 250.4243 - mean_absolute_error: 14.5636
+11/15 [=====================>........] - ETA: 3:09 - loss: 724.2328 - mean_squared_error: 250.7921 - mean_absolute_error: 14.6898
+12/15 [=======================>......] - ETA: 2:22 - loss: 672.6393 - mean_squared_error: 236.5126 - mean_absolute_error: 14.2084
+13/15 [=========================>....] - ETA: 1:34 - loss: 623.8533 - mean_squared_error: 218.7797 - mean_absolute_error: 13.3036
+14/15 [===========================>..] - ETA: 47s - loss: 585.9302 - mean_squared_error: 206.7087 - mean_absolute_error: 12.8574 Epoch 00003: val_loss did not improve
+Epoch 00003: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 586.9375 - mean_squared_error: 228.6094 - mean_absolute_error: 13.5425 - val_loss: 268.0217 - val_mean_squared_error: 148.2833 - val_mean_absolute_error: 10.8475
+Epoch 4/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 121.7734 - mean_squared_error: 2.0350 - mean_absolute_error: 1.4265
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 199.2952 - mean_squared_error: 24.2995 - mean_absolute_error: 4.1252
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 260.3979 - mean_squared_error: 17.1957 - mean_absolute_error: 3.3263 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 322.0012 - mean_squared_error: 15.9681 - mean_absolute_error: 3.3710
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 391.1040 - mean_squared_error: 38.0805 - mean_absolute_error: 4.9465
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 457.8533 - mean_squared_error: 74.6668 - mean_absolute_error: 6.7971
+ 7/15 [=============>................] - ETA: 6:20 - loss: 492.0034 - mean_squared_error: 93.3866 - mean_absolute_error: 7.8750
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 495.8458 - mean_squared_error: 94.9892 - mean_absolute_error: 8.1788
+ 9/15 [=================>............] - ETA: 4:45 - loss: 496.7018 - mean_squared_error: 106.2349 - mean_absolute_error: 8.8264
+10/15 [===================>..........] - ETA: 3:57 - loss: 474.5208 - mean_squared_error: 103.0516 - mean_absolute_error: 8.8063
+11/15 [=====================>........] - ETA: 3:10 - loss: 453.3883 - mean_squared_error: 103.3076 - mean_absolute_error: 8.9411
+12/15 [=======================>......] - ETA: 2:22 - loss: 485.0900 - mean_squared_error: 154.9644 - mean_absolute_error: 10.4371
+13/15 [=========================>....] - ETA: 1:35 - loss: 484.0767 - mean_squared_error: 170.8908 - mean_absolute_error: 11.0978
+14/15 [===========================>..] - ETA: 47s - loss: 470.6835 - mean_squared_error: 170.6836 - mean_absolute_error: 11.2309 Epoch 00004: val_loss did not improve
+Epoch 00004: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 745s 50s/step - loss: 482.6005 - mean_squared_error: 191.4390 - mean_absolute_error: 11.9458 - val_loss: 4708.4268 - val_mean_squared_error: 4482.3571 - val_mean_absolute_error: 66.6547
+Epoch 5/50
+
+ 1/15 [=>............................] - ETA: 10:59 - loss: 383.7292 - mean_squared_error: 157.6596 - mean_absolute_error: 12.5563
+ 2/15 [===>..........................] - ETA: 10:15 - loss: 351.3034 - mean_squared_error: 90.9204 - mean_absolute_error: 8.7368  
+ 3/15 [=====>........................] - ETA: 9:28 - loss: 548.7075 - mean_squared_error: 256.8461 - mean_absolute_error: 13.9123
+ 4/15 [=======>......................] - ETA: 8:40 - loss: 727.3026 - mean_squared_error: 410.4774 - mean_absolute_error: 17.8139
+ 5/15 [=========>....................] - ETA: 7:53 - loss: 690.5012 - mean_squared_error: 356.7252 - mean_absolute_error: 16.6321
+ 6/15 [===========>..................] - ETA: 7:06 - loss: 672.5743 - mean_squared_error: 329.8928 - mean_absolute_error: 16.1918
+ 7/15 [=============>................] - ETA: 6:19 - loss: 634.3039 - mean_squared_error: 290.1563 - mean_absolute_error: 14.9062
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 598.7531 - mean_squared_error: 259.5065 - mean_absolute_error: 13.8811
+ 9/15 [=================>............] - ETA: 4:44 - loss: 613.9109 - mean_squared_error: 284.0841 - mean_absolute_error: 14.7748
+10/15 [===================>..........] - ETA: 3:57 - loss: 656.2048 - mean_squared_error: 337.8976 - mean_absolute_error: 16.1648
+11/15 [=====================>........] - ETA: 3:09 - loss: 615.7603 - mean_squared_error: 308.8966 - mean_absolute_error: 15.0903
+12/15 [=======================>......] - ETA: 2:22 - loss: 587.3049 - mean_squared_error: 290.3343 - mean_absolute_error: 14.6063
+13/15 [=========================>....] - ETA: 1:34 - loss: 558.6855 - mean_squared_error: 269.2073 - mean_absolute_error: 13.7874
+14/15 [===========================>..] - ETA: 47s - loss: 537.7580 - mean_squared_error: 252.9843 - mean_absolute_error: 13.2659 Epoch 00005: val_loss did not improve
+Epoch 00005: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 742s 49s/step - loss: 543.7002 - mean_squared_error: 260.8661 - mean_absolute_error: 13.6660 - val_loss: 717.0123 - val_mean_squared_error: 427.9179 - val_mean_absolute_error: 16.5735
+Epoch 6/50
+
+ 1/15 [=>............................] - ETA: 11:01 - loss: 297.1218 - mean_squared_error: 8.0275 - mean_absolute_error: 2.8333
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 693.0131 - mean_squared_error: 390.2042 - mean_absolute_error: 15.3125
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 671.0250 - mean_squared_error: 358.2049 - mean_absolute_error: 15.9258 
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 606.8322 - mean_squared_error: 288.2222 - mean_absolute_error: 14.1562
+ 5/15 [=========>....................] - ETA: 7:53 - loss: 664.1404 - mean_squared_error: 343.9116 - mean_absolute_error: 16.0859
+ 6/15 [===========>..................] - ETA: 7:06 - loss: 614.2295 - mean_squared_error: 296.0594 - mean_absolute_error: 14.6610
+ 7/15 [=============>................] - ETA: 6:19 - loss: 567.1733 - mean_squared_error: 253.8853 - mean_absolute_error: 12.6975
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 580.0816 - mean_squared_error: 273.3839 - mean_absolute_error: 13.6410
+ 9/15 [=================>............] - ETA: 4:44 - loss: 613.5909 - mean_squared_error: 314.0171 - mean_absolute_error: 14.9343
+10/15 [===================>..........] - ETA: 3:57 - loss: 627.2046 - mean_squared_error: 334.2922 - mean_absolute_error: 15.7141
+11/15 [=====================>........] - ETA: 3:10 - loss: 682.2204 - mean_squared_error: 394.7990 - mean_absolute_error: 17.1601
+12/15 [=======================>......] - ETA: 2:22 - loss: 649.5426 - mean_squared_error: 366.0542 - mean_absolute_error: 16.3186
+13/15 [=========================>....] - ETA: 1:35 - loss: 697.7693 - mean_squared_error: 416.5597 - mean_absolute_error: 17.5232
+14/15 [===========================>..] - ETA: 47s - loss: 684.8570 - mean_squared_error: 404.4269 - mean_absolute_error: 17.3934 Epoch 00006: val_loss did not improve
+Epoch 00006: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 659.7552 - mean_squared_error: 378.9494 - mean_absolute_error: 16.5484 - val_loss: 726.2998 - val_mean_squared_error: 428.2863 - val_mean_absolute_error: 16.6889
+Epoch 7/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 662.7897 - mean_squared_error: 364.7761 - mean_absolute_error: 19.0991
+ 2/15 [===>..........................] - ETA: 10:15 - loss: 673.2285 - mean_squared_error: 372.1767 - mean_absolute_error: 19.2909
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 550.8824 - mean_squared_error: 248.9632 - mean_absolute_error: 13.3915 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 524.0417 - mean_squared_error: 223.2440 - mean_absolute_error: 13.0652
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 480.4042 - mean_squared_error: 182.3246 - mean_absolute_error: 11.3158
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 452.4383 - mean_squared_error: 158.1354 - mean_absolute_error: 10.4463
+ 7/15 [=============>................] - ETA: 6:20 - loss: 451.6409 - mean_squared_error: 161.5707 - mean_absolute_error: 10.8821
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 436.6128 - mean_squared_error: 150.6759 - mean_absolute_error: 10.6002
+ 9/15 [=================>............] - ETA: 4:44 - loss: 419.4219 - mean_squared_error: 137.0687 - mean_absolute_error: 10.0125
+10/15 [===================>..........] - ETA: 3:57 - loss: 403.2686 - mean_squared_error: 123.6721 - mean_absolute_error: 9.1874 
+11/15 [=====================>........] - ETA: 3:10 - loss: 392.1317 - mean_squared_error: 114.3447 - mean_absolute_error: 8.7695
+12/15 [=======================>......] - ETA: 2:22 - loss: 399.7816 - mean_squared_error: 122.8889 - mean_absolute_error: 9.2659
+13/15 [=========================>....] - ETA: 1:34 - loss: 390.4485 - mean_squared_error: 113.6860 - mean_absolute_error: 8.6919
+14/15 [===========================>..] - ETA: 47s - loss: 431.0730 - mean_squared_error: 153.9096 - mean_absolute_error: 9.9293 Epoch 00007: val_loss did not improve
+Epoch 00007: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 422.9231 - mean_squared_error: 145.0868 - mean_absolute_error: 9.5769 - val_loss: 471.7296 - val_mean_squared_error: 182.4959 - val_mean_absolute_error: 13.4196
+Epoch 8/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 313.5670 - mean_squared_error: 24.3333 - mean_absolute_error: 4.9329
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 338.0952 - mean_squared_error: 100.8864 - mean_absolute_error: 9.1268
+ 3/15 [=====>........................] - ETA: 9:32 - loss: 291.9428 - mean_squared_error: 94.6033 - mean_absolute_error: 9.1037  
+ 4/15 [=======>......................] - ETA: 8:44 - loss: 239.8317 - mean_squared_error: 73.4295 - mean_absolute_error: 7.6147
+ 5/15 [=========>....................] - ETA: 7:57 - loss: 214.2430 - mean_squared_error: 72.0948 - mean_absolute_error: 7.7258
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 237.2543 - mean_squared_error: 114.2932 - mean_absolute_error: 9.4441
+ 7/15 [=============>................] - ETA: 6:20 - loss: 205.6210 - mean_squared_error: 97.9760 - mean_absolute_error: 8.1335 
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 183.3824 - mean_squared_error: 88.0809 - mean_absolute_error: 7.6591
+ 9/15 [=================>............] - ETA: 4:45 - loss: 262.5419 - mean_squared_error: 177.2897 - mean_absolute_error: 10.1246
+10/15 [===================>..........] - ETA: 3:57 - loss: 250.8419 - mean_squared_error: 173.8594 - mean_absolute_error: 10.3079
+11/15 [=====================>........] - ETA: 3:10 - loss: 256.2878 - mean_squared_error: 186.1864 - mean_absolute_error: 10.9700
+12/15 [=======================>......] - ETA: 2:22 - loss: 252.8642 - mean_squared_error: 188.5526 - mean_absolute_error: 11.2766
+13/15 [=========================>....] - ETA: 1:35 - loss: 303.4346 - mean_squared_error: 244.0479 - mean_absolute_error: 12.7296
+14/15 [===========================>..] - ETA: 47s - loss: 281.8549 - mean_squared_error: 226.7011 - mean_absolute_error: 11.8984 Epoch 00008: val_loss improved from 133.45632 to 57.59125, saving model to 00_CACHE/lstm_v4_20_best.h5
+Epoch 00008: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 746s 50s/step - loss: 270.5083 - mean_squared_error: 219.0280 - mean_absolute_error: 11.8094 - val_loss: 57.5913 - val_mean_squared_error: 57.5710 - val_mean_absolute_error: 7.5000
+Epoch 9/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 574.5826 - mean_squared_error: 574.5623 - mean_absolute_error: 23.9700
+ 2/15 [===>..........................] - ETA: 10:18 - loss: 343.1347 - mean_squared_error: 343.1209 - mean_absolute_error: 17.2689
+ 3/15 [=====>........................] - ETA: 9:31 - loss: 230.1480 - mean_squared_error: 230.1379 - mean_absolute_error: 12.1935 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 238.0299 - mean_squared_error: 238.0221 - mean_absolute_error: 13.1892
+ 5/15 [=========>....................] - ETA: 7:56 - loss: 412.8742 - mean_squared_error: 412.8680 - mean_absolute_error: 17.2214
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 414.5055 - mean_squared_error: 414.5003 - mean_absolute_error: 17.7777
+ 7/15 [=============>................] - ETA: 6:21 - loss: 375.6225 - mean_squared_error: 375.6180 - mean_absolute_error: 16.9423
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 340.3166 - mean_squared_error: 340.3127 - mean_absolute_error: 16.0311
+ 9/15 [=================>............] - ETA: 4:45 - loss: 357.0767 - mean_squared_error: 357.0732 - mean_absolute_error: 16.7123
+10/15 [===================>..........] - ETA: 3:58 - loss: 341.3839 - mean_squared_error: 341.3807 - mean_absolute_error: 16.4558
+11/15 [=====================>........] - ETA: 3:10 - loss: 311.7526 - mean_squared_error: 311.7497 - mean_absolute_error: 15.3170
+12/15 [=======================>......] - ETA: 2:23 - loss: 308.9174 - mean_squared_error: 308.9148 - mean_absolute_error: 15.4294
+13/15 [=========================>....] - ETA: 1:35 - loss: 289.6824 - mean_squared_error: 289.6800 - mean_absolute_error: 14.8327
+14/15 [===========================>..] - ETA: 47s - loss: 280.4337 - mean_squared_error: 280.4314 - mean_absolute_error: 14.6773 Epoch 00009: val_loss did not improve
+Epoch 00009: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 747s 50s/step - loss: 271.4463 - mean_squared_error: 271.4442 - mean_absolute_error: 14.5033 - val_loss: 72.6783 - val_mean_squared_error: 72.6783 - val_mean_absolute_error: 7.5000
+Epoch 10/50
+
+ 1/15 [=>............................] - ETA: 11:06 - loss: 399.4987 - mean_squared_error: 399.4987 - mean_absolute_error: 19.9875
+ 2/15 [===>..........................] - ETA: 10:18 - loss: 211.6965 - mean_squared_error: 211.6965 - mean_absolute_error: 12.4378
+ 3/15 [=====>........................] - ETA: 9:31 - loss: 141.7858 - mean_squared_error: 141.7858 - mean_absolute_error: 8.7591  
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 116.1838 - mean_squared_error: 116.1838 - mean_absolute_error: 8.1381
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 94.5649 - mean_squared_error: 94.5649 - mean_absolute_error: 7.0793  
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 126.7791 - mean_squared_error: 126.7791 - mean_absolute_error: 8.7271
+ 7/15 [=============>................] - ETA: 6:20 - loss: 179.8926 - mean_squared_error: 179.8926 - mean_absolute_error: 10.6702
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 158.3267 - mean_squared_error: 158.3267 - mean_absolute_error: 9.6757 
+ 9/15 [=================>............] - ETA: 4:45 - loss: 189.3220 - mean_squared_error: 189.3220 - mean_absolute_error: 10.9241
+10/15 [===================>..........] - ETA: 3:57 - loss: 172.6937 - mean_squared_error: 172.6937 - mean_absolute_error: 10.3117
+11/15 [=====================>........] - ETA: 3:10 - loss: 192.6090 - mean_squared_error: 192.6090 - mean_absolute_error: 11.1736
+12/15 [=======================>......] - ETA: 2:22 - loss: 210.3802 - mean_squared_error: 210.3802 - mean_absolute_error: 11.9213
+13/15 [=========================>....] - ETA: 1:35 - loss: 201.2620 - mean_squared_error: 201.2620 - mean_absolute_error: 11.7415
+14/15 [===========================>..] - ETA: 47s - loss: 192.0863 - mean_squared_error: 192.0863 - mean_absolute_error: 11.5123 Epoch 00010: val_loss did not improve
+Epoch 00010: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 745s 50s/step - loss: 180.2208 - mean_squared_error: 180.2208 - mean_absolute_error: 10.9951 - val_loss: 96.7466 - val_mean_squared_error: 96.7466 - val_mean_absolute_error: 7.5000
+Epoch 11/50
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 137.5948 - mean_squared_error: 137.5948 - mean_absolute_error: 11.7301
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 141.9280 - mean_squared_error: 141.9280 - mean_absolute_error: 11.9120
+ 3/15 [=====>........................] - ETA: 9:32 - loss: 99.5375 - mean_squared_error: 99.5375 - mean_absolute_error: 9.2218    
+ 4/15 [=======>......................] - ETA: 8:44 - loss: 107.1817 - mean_squared_error: 107.1817 - mean_absolute_error: 9.7680
+ 5/15 [=========>....................] - ETA: 7:56 - loss: 138.2387 - mean_squared_error: 138.2387 - mean_absolute_error: 11.0546
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 116.8582 - mean_squared_error: 116.8582 - mean_absolute_error: 9.7380 
+ 7/15 [=============>................] - ETA: 6:21 - loss: 103.7787 - mean_squared_error: 103.7787 - mean_absolute_error: 9.0655
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 100.3566 - mean_squared_error: 100.3566 - mean_absolute_error: 9.0249
+ 9/15 [=================>............] - ETA: 4:45 - loss: 118.1016 - mean_squared_error: 118.1016 - mean_absolute_error: 9.8139
+10/15 [===================>..........] - ETA: 3:58 - loss: 106.4811 - mean_squared_error: 106.4811 - mean_absolute_error: 8.9703
+11/15 [=====================>........] - ETA: 3:10 - loss: 98.2388 - mean_squared_error: 98.2388 - mean_absolute_error: 8.5163  
+12/15 [=======================>......] - ETA: 2:22 - loss: 124.3563 - mean_squared_error: 124.3563 - mean_absolute_error: 9.4974
+13/15 [=========================>....] - ETA: 1:35 - loss: 132.3498 - mean_squared_error: 132.3498 - mean_absolute_error: 9.9290
+14/15 [===========================>..] - ETA: 47s - loss: 127.0818 - mean_squared_error: 127.0818 - mean_absolute_error: 9.7666 Epoch 00011: val_loss did not improve
+Epoch 00011: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 745s 50s/step - loss: 123.3438 - mean_squared_error: 123.3438 - mean_absolute_error: 9.6773 - val_loss: 68.0845 - val_mean_squared_error: 68.0845 - val_mean_absolute_error: 7.5000
+Epoch 12/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 211.3974 - mean_squared_error: 211.3974 - mean_absolute_error: 14.5395
+ 2/15 [===>..........................] - ETA: 10:20 - loss: 185.6067 - mean_squared_error: 185.6067 - mean_absolute_error: 13.5907
+ 3/15 [=====>........................] - ETA: 9:32 - loss: 168.9921 - mean_squared_error: 168.9921 - mean_absolute_error: 12.9444 
+ 4/15 [=======>......................] - ETA: 8:44 - loss: 128.8272 - mean_squared_error: 128.8272 - mean_absolute_error: 10.4299
+ 5/15 [=========>....................] - ETA: 7:56 - loss: 103.3048 - mean_squared_error: 103.3048 - mean_absolute_error: 8.5644 
+ 6/15 [===========>..................] - ETA: 7:09 - loss: 107.2418 - mean_squared_error: 107.2418 - mean_absolute_error: 9.0147
+ 7/15 [=============>................] - ETA: 6:21 - loss: 129.0465 - mean_squared_error: 129.0465 - mean_absolute_error: 10.0298
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 236.5451 - mean_squared_error: 236.5451 - mean_absolute_error: 12.7072
+ 9/15 [=================>............] - ETA: 4:45 - loss: 225.6527 - mean_squared_error: 225.6527 - mean_absolute_error: 12.6030
+10/15 [===================>..........] - ETA: 3:58 - loss: 203.0927 - mean_squared_error: 203.0927 - mean_absolute_error: 11.3658
+11/15 [=====================>........] - ETA: 3:10 - loss: 242.5291 - mean_squared_error: 242.5291 - mean_absolute_error: 12.6268
+12/15 [=======================>......] - ETA: 2:22 - loss: 224.6904 - mean_squared_error: 224.6904 - mean_absolute_error: 12.0191
+13/15 [=========================>....] - ETA: 1:35 - loss: 208.7087 - mean_squared_error: 208.7087 - mean_absolute_error: 11.4111
+14/15 [===========================>..] - ETA: 47s - loss: 202.5658 - mean_squared_error: 202.5658 - mean_absolute_error: 11.3872 Epoch 00012: val_loss did not improve
+Epoch 00012: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 745s 50s/step - loss: 191.6271 - mean_squared_error: 191.6271 - mean_absolute_error: 11.0417 - val_loss: 87.0211 - val_mean_squared_error: 87.0211 - val_mean_absolute_error: 7.5000
+Epoch 13/50
+
+ 1/15 [=>............................] - ETA: 11:03 - loss: 117.1133 - mean_squared_error: 117.1133 - mean_absolute_error: 10.8219
+ 2/15 [===>..........................] - ETA: 10:15 - loss: 251.0251 - mean_squared_error: 251.0251 - mean_absolute_error: 15.2208
+ 3/15 [=====>........................] - ETA: 9:28 - loss: 181.1422 - mean_squared_error: 181.1409 - mean_absolute_error: 12.2913 
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 203.5007 - mean_squared_error: 203.4133 - mean_absolute_error: 13.3281
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 203.7320 - mean_squared_error: 199.3510 - mean_absolute_error: 13.3688
+ 6/15 [===========>..................] - ETA: 7:06 - loss: 178.0009 - mean_squared_error: 168.8122 - mean_absolute_error: 11.8098
+ 7/15 [=============>................] - ETA: 6:19 - loss: 158.5503 - mean_squared_error: 149.8148 - mean_absolute_error: 10.9778
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 144.9573 - mean_squared_error: 137.1840 - mean_absolute_error: 10.4785
+ 9/15 [=================>............] - ETA: 4:44 - loss: 137.8186 - mean_squared_error: 130.8821 - mean_absolute_error: 10.3109
+10/15 [===================>..........] - ETA: 3:57 - loss: 127.2678 - mean_squared_error: 121.0172 - mean_absolute_error: 9.8476 
+11/15 [=====================>........] - ETA: 3:09 - loss: 116.0964 - mean_squared_error: 110.4111 - mean_absolute_error: 9.1420
+12/15 [=======================>......] - ETA: 2:22 - loss: 185.5973 - mean_squared_error: 180.3842 - mean_absolute_error: 10.9488
+13/15 [=========================>....] - ETA: 1:35 - loss: 179.9084 - mean_squared_error: 175.0953 - mean_absolute_error: 10.9193
+14/15 [===========================>..] - ETA: 47s - loss: 179.6805 - mean_squared_error: 175.2104 - mean_absolute_error: 11.0888 Epoch 00013: val_loss did not improve
+Epoch 00013: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 179.0561 - mean_squared_error: 174.8830 - mean_absolute_error: 11.2196 - val_loss: 69.7013 - val_mean_squared_error: 69.6827 - val_mean_absolute_error: 7.5000
+Epoch 14/50
+
+ 1/15 [=>............................] - ETA: 11:08 - loss: 213.3571 - mean_squared_error: 213.3385 - mean_absolute_error: 14.6061
+ 2/15 [===>..........................] - ETA: 10:18 - loss: 106.8219 - mean_squared_error: 106.7971 - mean_absolute_error: 7.5559 
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 71.4753 - mean_squared_error: 71.4379 - mean_absolute_error: 5.3200   
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 144.2634 - mean_squared_error: 144.1980 - mean_absolute_error: 8.7497
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 137.5688 - mean_squared_error: 137.4342 - mean_absolute_error: 9.1010
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 120.0958 - mean_squared_error: 119.7793 - mean_absolute_error: 8.5196
+ 7/15 [=============>................] - ETA: 6:19 - loss: 121.0578 - mean_squared_error: 120.3073 - mean_absolute_error: 8.8900
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 106.8521 - mean_squared_error: 105.3857 - mean_absolute_error: 7.8995
+ 9/15 [=================>............] - ETA: 4:44 - loss: 95.9644 - mean_squared_error: 93.6767 - mean_absolute_error: 7.0297  
+10/15 [===================>..........] - ETA: 3:57 - loss: 119.8682 - mean_squared_error: 116.8644 - mean_absolute_error: 8.1311
+11/15 [=====================>........] - ETA: 3:10 - loss: 159.4078 - mean_squared_error: 156.0968 - mean_absolute_error: 9.5208
+12/15 [=======================>......] - ETA: 2:22 - loss: 148.8604 - mean_squared_error: 145.5643 - mean_absolute_error: 9.1816
+13/15 [=========================>....] - ETA: 1:35 - loss: 195.4057 - mean_squared_error: 192.2460 - mean_absolute_error: 10.5854
+14/15 [===========================>..] - ETA: 47s - loss: 206.8180 - mean_squared_error: 203.8224 - mean_absolute_error: 11.1738 Epoch 00014: val_loss did not improve
+Epoch 00014: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 200.1502 - mean_squared_error: 197.3143 - mean_absolute_error: 11.1159 - val_loss: 61.4185 - val_mean_squared_error: 60.8996 - val_mean_absolute_error: 7.5001
+Epoch 15/50
+
+ 1/15 [=>............................] - ETA: 11:04 - loss: 29.3999 - mean_squared_error: 28.8810 - mean_absolute_error: 5.3741
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 226.1727 - mean_squared_error: 225.7482 - mean_absolute_error: 12.9659
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 224.3469 - mean_squared_error: 223.9955 - mean_absolute_error: 13.5935 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 199.0522 - mean_squared_error: 198.7577 - mean_absolute_error: 12.9683
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 232.5144 - mean_squared_error: 232.2641 - mean_absolute_error: 14.2024
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 196.9766 - mean_squared_error: 196.7611 - mean_absolute_error: 12.5665
+ 7/15 [=============>................] - ETA: 6:20 - loss: 172.8355 - mean_squared_error: 172.6475 - mean_absolute_error: 11.5267
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 155.9139 - mean_squared_error: 155.7479 - mean_absolute_error: 10.8509
+ 9/15 [=================>............] - ETA: 4:45 - loss: 158.4264 - mean_squared_error: 158.2781 - mean_absolute_error: 11.1298
+10/15 [===================>..........] - ETA: 3:57 - loss: 142.6129 - mean_squared_error: 142.4791 - mean_absolute_error: 10.0705
+11/15 [=====================>........] - ETA: 3:09 - loss: 135.5612 - mean_squared_error: 135.4395 - mean_absolute_error: 9.8882 
+12/15 [=======================>......] - ETA: 2:22 - loss: 128.3145 - mean_squared_error: 128.2029 - mean_absolute_error: 9.6451
+13/15 [=========================>....] - ETA: 1:35 - loss: 132.3444 - mean_squared_error: 132.2413 - mean_absolute_error: 9.9372
+14/15 [===========================>..] - ETA: 47s - loss: 132.3856 - mean_squared_error: 132.2899 - mean_absolute_error: 10.0509Epoch 00015: val_loss did not improve
+Epoch 00015: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 123.6073 - mean_squared_error: 123.5180 - mean_absolute_error: 9.4371 - val_loss: 60.7019 - val_mean_squared_error: 60.7019 - val_mean_absolute_error: 7.5000
+Epoch 16/50
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 203.2778 - mean_squared_error: 203.2778 - mean_absolute_error: 14.2576
+ 2/15 [===>..........................] - ETA: 10:20 - loss: 492.6902 - mean_squared_error: 492.6902 - mean_absolute_error: 21.1118
+ 3/15 [=====>........................] - ETA: 9:32 - loss: 445.6488 - mean_squared_error: 445.6488 - mean_absolute_error: 20.3246 
+ 4/15 [=======>......................] - ETA: 8:44 - loss: 336.5778 - mean_squared_error: 336.5778 - mean_absolute_error: 16.0085
+ 5/15 [=========>....................] - ETA: 7:56 - loss: 306.3663 - mean_squared_error: 306.3663 - mean_absolute_error: 15.5309
+ 6/15 [===========>..................] - ETA: 7:09 - loss: 263.6464 - mean_squared_error: 263.6464 - mean_absolute_error: 14.1215
+ 7/15 [=============>................] - ETA: 6:21 - loss: 254.8686 - mean_squared_error: 254.8686 - mean_absolute_error: 14.1355
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 240.7877 - mean_squared_error: 240.7877 - mean_absolute_error: 13.8593
+ 9/15 [=================>............] - ETA: 4:46 - loss: 219.1489 - mean_squared_error: 219.1489 - mean_absolute_error: 13.0733
+10/15 [===================>..........] - ETA: 3:58 - loss: 225.0039 - mean_squared_error: 225.0039 - mean_absolute_error: 13.4324
+11/15 [=====================>........] - ETA: 3:10 - loss: 204.5618 - mean_squared_error: 204.5618 - mean_absolute_error: 12.2454
+12/15 [=======================>......] - ETA: 2:22 - loss: 187.9321 - mean_squared_error: 187.9321 - mean_absolute_error: 11.4114
+13/15 [=========================>....] - ETA: 1:35 - loss: 179.7710 - mean_squared_error: 179.7710 - mean_absolute_error: 11.2295
+14/15 [===========================>..] - ETA: 47s - loss: 167.2760 - mean_squared_error: 167.2760 - mean_absolute_error: 10.5846 Epoch 00016: val_loss did not improve
+Epoch 00016: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 745s 50s/step - loss: 157.1022 - mean_squared_error: 157.1022 - mean_absolute_error: 10.1342 - val_loss: 59.9859 - val_mean_squared_error: 59.9859 - val_mean_absolute_error: 7.5000
+Epoch 17/50
+
+ 1/15 [=>............................] - ETA: 11:02 - loss: 64.2976 - mean_squared_error: 64.2976 - mean_absolute_error: 8.0186
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 262.7265 - mean_squared_error: 262.7265 - mean_absolute_error: 14.7466
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 300.8290 - mean_squared_error: 300.8290 - mean_absolute_error: 16.3035 
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 249.6956 - mean_squared_error: 249.6956 - mean_absolute_error: 14.6809
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 294.1757 - mean_squared_error: 294.1757 - mean_absolute_error: 16.0903
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 447.2863 - mean_squared_error: 447.2863 - mean_absolute_error: 19.2129
+ 7/15 [=============>................] - ETA: 6:19 - loss: 407.3631 - mean_squared_error: 407.3631 - mean_absolute_error: 18.3188
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 367.1568 - mean_squared_error: 367.1568 - mean_absolute_error: 17.1862
+ 9/15 [=================>............] - ETA: 4:44 - loss: 336.2319 - mean_squared_error: 336.2319 - mean_absolute_error: 16.3239
+10/15 [===================>..........] - ETA: 3:57 - loss: 315.5244 - mean_squared_error: 315.5244 - mean_absolute_error: 15.8280
+11/15 [=====================>........] - ETA: 3:09 - loss: 327.0764 - mean_squared_error: 327.0764 - mean_absolute_error: 16.3016
+12/15 [=======================>......] - ETA: 2:22 - loss: 300.6099 - mean_squared_error: 300.6099 - mean_absolute_error: 15.1997
+13/15 [=========================>....] - ETA: 1:34 - loss: 278.0520 - mean_squared_error: 278.0520 - mean_absolute_error: 14.2391
+14/15 [===========================>..] - ETA: 47s - loss: 283.6858 - mean_squared_error: 283.6858 - mean_absolute_error: 14.5715 Epoch 00017: val_loss did not improve
+Epoch 00017: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 265.2663 - mean_squared_error: 265.2663 - mean_absolute_error: 13.7814 - val_loss: 60.7622 - val_mean_squared_error: 60.7622 - val_mean_absolute_error: 7.5000
+Epoch 18/50
+
+ 1/15 [=>............................] - ETA: 11:00 - loss: 129.3301 - mean_squared_error: 129.3301 - mean_absolute_error: 11.3723
+ 2/15 [===>..........................] - ETA: 10:13 - loss: 100.5438 - mean_squared_error: 100.5438 - mean_absolute_error: 9.9217 
+ 3/15 [=====>........................] - ETA: 9:26 - loss: 174.5974 - mean_squared_error: 174.5974 - mean_absolute_error: 12.6024
+ 4/15 [=======>......................] - ETA: 8:40 - loss: 133.8176 - mean_squared_error: 133.8176 - mean_absolute_error: 10.2988
+ 5/15 [=========>....................] - ETA: 7:52 - loss: 115.4602 - mean_squared_error: 115.4602 - mean_absolute_error: 9.5357 
+ 6/15 [===========>..................] - ETA: 7:05 - loss: 100.7337 - mean_squared_error: 100.7337 - mean_absolute_error: 8.8140
+ 7/15 [=============>................] - ETA: 6:18 - loss: 99.0811 - mean_squared_error: 99.0811 - mean_absolute_error: 8.9039  
+ 8/15 [===============>..............] - ETA: 5:31 - loss: 92.3309 - mean_squared_error: 92.3309 - mean_absolute_error: 8.6301
+ 9/15 [=================>............] - ETA: 4:44 - loss: 83.3133 - mean_squared_error: 83.3133 - mean_absolute_error: 8.0426
+10/15 [===================>..........] - ETA: 3:57 - loss: 130.4635 - mean_squared_error: 130.4635 - mean_absolute_error: 9.5938
+11/15 [=====================>........] - ETA: 3:09 - loss: 119.0927 - mean_squared_error: 119.0927 - mean_absolute_error: 8.9326
+12/15 [=======================>......] - ETA: 2:22 - loss: 126.0489 - mean_squared_error: 126.0489 - mean_absolute_error: 9.3743
+13/15 [=========================>....] - ETA: 1:34 - loss: 121.6304 - mean_squared_error: 121.6304 - mean_absolute_error: 9.2903
+14/15 [===========================>..] - ETA: 47s - loss: 134.6592 - mean_squared_error: 134.6592 - mean_absolute_error: 9.8722 Epoch 00018: val_loss did not improve
+Epoch 00018: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 132.1310 - mean_squared_error: 132.1310 - mean_absolute_error: 9.8697 - val_loss: 60.6989 - val_mean_squared_error: 60.6989 - val_mean_absolute_error: 7.5000
+Epoch 19/50
+
+ 1/15 [=>............................] - ETA: 11:02 - loss: 89.9973 - mean_squared_error: 89.9973 - mean_absolute_error: 9.4867
+ 2/15 [===>..........................] - ETA: 10:16 - loss: 52.2882 - mean_squared_error: 52.2882 - mean_absolute_error: 6.6525
+ 3/15 [=====>........................] - ETA: 9:28 - loss: 51.8373 - mean_squared_error: 51.8373 - mean_absolute_error: 6.8140 
+ 4/15 [=======>......................] - ETA: 8:40 - loss: 39.9969 - mean_squared_error: 39.9969 - mean_absolute_error: 5.6393
+ 5/15 [=========>....................] - ETA: 7:53 - loss: 305.6018 - mean_squared_error: 305.6018 - mean_absolute_error: 11.9088
+ 6/15 [===========>..................] - ETA: 7:06 - loss: 337.9455 - mean_squared_error: 337.9455 - mean_absolute_error: 13.6496
+ 7/15 [=============>................] - ETA: 6:19 - loss: 289.7522 - mean_squared_error: 289.7522 - mean_absolute_error: 11.8096
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 255.5591 - mean_squared_error: 255.5591 - mean_absolute_error: 10.8366
+ 9/15 [=================>............] - ETA: 4:44 - loss: 229.9495 - mean_squared_error: 229.9495 - mean_absolute_error: 10.1889
+10/15 [===================>..........] - ETA: 3:57 - loss: 207.8811 - mean_squared_error: 207.8811 - mean_absolute_error: 9.4744 
+11/15 [=====================>........] - ETA: 3:09 - loss: 223.1597 - mean_squared_error: 223.1597 - mean_absolute_error: 10.3758
+12/15 [=======================>......] - ETA: 2:22 - loss: 227.5134 - mean_squared_error: 227.5134 - mean_absolute_error: 10.8941
+13/15 [=========================>....] - ETA: 1:34 - loss: 210.2326 - mean_squared_error: 210.2326 - mean_absolute_error: 10.1862
+14/15 [===========================>..] - ETA: 47s - loss: 214.3033 - mean_squared_error: 214.3033 - mean_absolute_error: 10.6263 Epoch 00019: val_loss did not improve
+Epoch 00019: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 742s 49s/step - loss: 217.9969 - mean_squared_error: 217.9969 - mean_absolute_error: 11.0127 - val_loss: 61.4353 - val_mean_squared_error: 61.4353 - val_mean_absolute_error: 7.5000
+Epoch 20/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 287.9807 - mean_squared_error: 287.9806 - mean_absolute_error: 16.9700
+ 2/15 [===>..........................] - ETA: 10:18 - loss: 206.5289 - mean_squared_error: 206.5289 - mean_absolute_error: 14.0769
+ 3/15 [=====>........................] - ETA: 9:31 - loss: 138.5221 - mean_squared_error: 138.5221 - mean_absolute_error: 9.9125  
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 165.0011 - mean_squared_error: 165.0011 - mean_absolute_error: 11.3430
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 133.9994 - mean_squared_error: 133.9994 - mean_absolute_error: 9.7067 
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 130.3251 - mean_squared_error: 130.3251 - mean_absolute_error: 9.8524
+ 7/15 [=============>................] - ETA: 6:19 - loss: 112.4340 - mean_squared_error: 112.4340 - mean_absolute_error: 8.7671
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 98.6798 - mean_squared_error: 98.6798 - mean_absolute_error: 7.8649  
+ 9/15 [=================>............] - ETA: 4:44 - loss: 95.8351 - mean_squared_error: 95.8351 - mean_absolute_error: 7.9408
+10/15 [===================>..........] - ETA: 3:57 - loss: 158.6854 - mean_squared_error: 158.6854 - mean_absolute_error: 9.8381
+11/15 [=====================>........] - ETA: 3:09 - loss: 144.9485 - mean_squared_error: 144.9485 - mean_absolute_error: 9.1940
+12/15 [=======================>......] - ETA: 2:22 - loss: 140.1592 - mean_squared_error: 140.1592 - mean_absolute_error: 9.2073
+13/15 [=========================>....] - ETA: 1:34 - loss: 139.8950 - mean_squared_error: 139.8950 - mean_absolute_error: 9.3985
+14/15 [===========================>..] - ETA: 47s - loss: 130.9742 - mean_squared_error: 130.9742 - mean_absolute_error: 9.0038 Epoch 00020: val_loss did not improve
+Epoch 00020: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 153.7568 - mean_squared_error: 153.7568 - mean_absolute_error: 9.8530 - val_loss: 61.4365 - val_mean_squared_error: 61.4365 - val_mean_absolute_error: 7.5000
+Epoch 21/50
+
+ 1/15 [=>............................] - ETA: 11:03 - loss: 5.2578 - mean_squared_error: 5.2578 - mean_absolute_error: 2.2930
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 112.2358 - mean_squared_error: 112.2358 - mean_absolute_error: 8.5494
+ 3/15 [=====>........................] - ETA: 9:28 - loss: 81.3102 - mean_squared_error: 81.3102 - mean_absolute_error: 7.1700   
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 85.3326 - mean_squared_error: 85.3326 - mean_absolute_error: 7.8448
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 124.3835 - mean_squared_error: 124.3835 - mean_absolute_error: 9.6260
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 127.4530 - mean_squared_error: 127.4530 - mean_absolute_error: 10.0133
+ 7/15 [=============>................] - ETA: 6:19 - loss: 143.6732 - mean_squared_error: 143.6732 - mean_absolute_error: 10.8006
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 129.4411 - mean_squared_error: 129.4411 - mean_absolute_error: 10.1330
+ 9/15 [=================>............] - ETA: 4:44 - loss: 115.0633 - mean_squared_error: 115.0633 - mean_absolute_error: 9.0297 
+10/15 [===================>..........] - ETA: 3:57 - loss: 158.6560 - mean_squared_error: 158.6560 - mean_absolute_error: 10.4740
+11/15 [=====================>........] - ETA: 3:09 - loss: 173.5367 - mean_squared_error: 173.5367 - mean_absolute_error: 11.1540
+12/15 [=======================>......] - ETA: 2:22 - loss: 201.0570 - mean_squared_error: 201.0570 - mean_absolute_error: 12.0949
+13/15 [=========================>....] - ETA: 1:34 - loss: 186.4518 - mean_squared_error: 186.4518 - mean_absolute_error: 11.4219
+14/15 [===========================>..] - ETA: 47s - loss: 173.2515 - mean_squared_error: 173.2515 - mean_absolute_error: 10.6977 Epoch 00021: val_loss did not improve
+Epoch 00021: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 742s 49s/step - loss: 177.8483 - mean_squared_error: 177.8483 - mean_absolute_error: 11.0221 - val_loss: 61.4259 - val_mean_squared_error: 61.4258 - val_mean_absolute_error: 7.5000
+Epoch 22/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 324.4072 - mean_squared_error: 324.4072 - mean_absolute_error: 18.0113
+ 2/15 [===>..........................] - ETA: 10:15 - loss: 354.9939 - mean_squared_error: 354.9936 - mean_absolute_error: 18.8238
+ 3/15 [=====>........................] - ETA: 9:28 - loss: 277.5944 - mean_squared_error: 277.5940 - mean_absolute_error: 16.2429 
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 215.5847 - mean_squared_error: 215.5842 - mean_absolute_error: 13.5413
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 238.1530 - mean_squared_error: 238.1525 - mean_absolute_error: 14.4575
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 201.5247 - mean_squared_error: 201.5243 - mean_absolute_error: 12.7626
+ 7/15 [=============>................] - ETA: 6:19 - loss: 228.5369 - mean_squared_error: 228.5365 - mean_absolute_error: 13.7627
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 214.5899 - mean_squared_error: 214.5895 - mean_absolute_error: 13.3942
+ 9/15 [=================>............] - ETA: 4:44 - loss: 196.9608 - mean_squared_error: 196.9604 - mean_absolute_error: 12.7369
+10/15 [===================>..........] - ETA: 3:57 - loss: 178.3283 - mean_squared_error: 178.3278 - mean_absolute_error: 11.7894
+11/15 [=====================>........] - ETA: 3:09 - loss: 210.9684 - mean_squared_error: 210.9680 - mean_absolute_error: 12.8250
+12/15 [=======================>......] - ETA: 2:22 - loss: 193.5309 - mean_squared_error: 193.5305 - mean_absolute_error: 11.8655
+13/15 [=========================>....] - ETA: 1:34 - loss: 181.0123 - mean_squared_error: 181.0118 - mean_absolute_error: 11.3796
+14/15 [===========================>..] - ETA: 47s - loss: 168.8970 - mean_squared_error: 168.8966 - mean_absolute_error: 10.8079 Epoch 00022: val_loss did not improve
+Epoch 00022: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 162.3425 - mean_squared_error: 162.3421 - mean_absolute_error: 10.6474 - val_loss: 61.4693 - val_mean_squared_error: 61.4693 - val_mean_absolute_error: 7.5000
+Epoch 23/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 15.2093 - mean_squared_error: 15.2093 - mean_absolute_error: 3.8999
+ 2/15 [===>..........................] - ETA: 10:18 - loss: 138.5664 - mean_squared_error: 138.5664 - mean_absolute_error: 10.0420
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 92.8818 - mean_squared_error: 92.8817 - mean_absolute_error: 7.1046    
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 107.9921 - mean_squared_error: 107.9919 - mean_absolute_error: 8.4240
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 98.3412 - mean_squared_error: 98.3410 - mean_absolute_error: 8.2850  
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 96.8623 - mean_squared_error: 96.8621 - mean_absolute_error: 8.4806
+ 7/15 [=============>................] - ETA: 6:20 - loss: 90.1453 - mean_squared_error: 90.1450 - mean_absolute_error: 8.2777
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 125.3862 - mean_squared_error: 125.3860 - mean_absolute_error: 9.6541
+ 9/15 [=================>............] - ETA: 4:45 - loss: 159.5975 - mean_squared_error: 159.5973 - mean_absolute_error: 10.8943
+10/15 [===================>..........] - ETA: 3:57 - loss: 143.6378 - mean_squared_error: 143.6376 - mean_absolute_error: 9.8052 
+11/15 [=====================>........] - ETA: 3:10 - loss: 158.8375 - mean_squared_error: 158.8373 - mean_absolute_error: 10.5166
+12/15 [=======================>......] - ETA: 2:22 - loss: 164.7867 - mean_squared_error: 164.7865 - mean_absolute_error: 10.9046
+13/15 [=========================>....] - ETA: 1:34 - loss: 154.6197 - mean_squared_error: 154.6195 - mean_absolute_error: 10.5051
+14/15 [===========================>..] - ETA: 47s - loss: 160.0855 - mean_squared_error: 160.0853 - mean_absolute_error: 10.8407 Epoch 00023: val_loss did not improve
+Epoch 00023: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 149.4248 - mean_squared_error: 149.4245 - mean_absolute_error: 10.1458 - val_loss: 61.6454 - val_mean_squared_error: 61.6452 - val_mean_absolute_error: 7.5000
+Epoch 24/50
+
+ 1/15 [=>............................] - ETA: 11:00 - loss: 15.6765 - mean_squared_error: 15.6763 - mean_absolute_error: 3.9593
+ 2/15 [===>..........................] - ETA: 10:13 - loss: 127.3238 - mean_squared_error: 127.3236 - mean_absolute_error: 9.7090
+ 3/15 [=====>........................] - ETA: 9:27 - loss: 211.4473 - mean_squared_error: 211.4471 - mean_absolute_error: 12.9679
+ 4/15 [=======>......................] - ETA: 8:40 - loss: 159.1863 - mean_squared_error: 159.1861 - mean_absolute_error: 10.1135
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 129.6139 - mean_squared_error: 129.6136 - mean_absolute_error: 8.7638 
+ 6/15 [===========>..................] - ETA: 7:06 - loss: 110.0146 - mean_squared_error: 110.0144 - mean_absolute_error: 7.8810
+ 7/15 [=============>................] - ETA: 6:19 - loss: 138.7970 - mean_squared_error: 138.7968 - mean_absolute_error: 9.2764
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 132.4508 - mean_squared_error: 132.4505 - mean_absolute_error: 9.2896
+ 9/15 [=================>............] - ETA: 4:44 - loss: 121.4526 - mean_squared_error: 121.4524 - mean_absolute_error: 8.9002
+10/15 [===================>..........] - ETA: 3:57 - loss: 145.9520 - mean_squared_error: 145.9517 - mean_absolute_error: 9.9245
+11/15 [=====================>........] - ETA: 3:09 - loss: 146.3215 - mean_squared_error: 146.3213 - mean_absolute_error: 10.1357
+12/15 [=======================>......] - ETA: 2:22 - loss: 141.7370 - mean_squared_error: 141.7368 - mean_absolute_error: 10.0874
+13/15 [=========================>....] - ETA: 1:35 - loss: 130.8344 - mean_squared_error: 130.8341 - mean_absolute_error: 9.3151 
+14/15 [===========================>..] - ETA: 47s - loss: 130.5888 - mean_squared_error: 130.5886 - mean_absolute_error: 9.4559 Epoch 00024: val_loss did not improve
+Epoch 00024: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 134.4470 - mean_squared_error: 134.4468 - mean_absolute_error: 9.7407 - val_loss: 61.7984 - val_mean_squared_error: 61.7981 - val_mean_absolute_error: 7.5000
+Epoch 25/50
+
+ 1/15 [=>............................] - ETA: 11:04 - loss: 529.2206 - mean_squared_error: 529.2204 - mean_absolute_error: 23.0048
+ 2/15 [===>..........................] - ETA: 10:16 - loss: 296.6870 - mean_squared_error: 296.6867 - mean_absolute_error: 15.5072
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 267.6627 - mean_squared_error: 267.6625 - mean_absolute_error: 15.1641 
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 230.9742 - mean_squared_error: 230.9740 - mean_absolute_error: 14.1221
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 210.1535 - mean_squared_error: 210.1532 - mean_absolute_error: 13.5504
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 187.6232 - mean_squared_error: 187.6229 - mean_absolute_error: 12.7351
+ 7/15 [=============>................] - ETA: 6:19 - loss: 171.1692 - mean_squared_error: 171.1689 - mean_absolute_error: 12.1317
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 163.0598 - mean_squared_error: 163.0595 - mean_absolute_error: 11.9040
+ 9/15 [=================>............] - ETA: 4:44 - loss: 149.0021 - mean_squared_error: 149.0019 - mean_absolute_error: 11.2530
+10/15 [===================>..........] - ETA: 3:57 - loss: 218.6692 - mean_squared_error: 218.6689 - mean_absolute_error: 13.0357
+11/15 [=====================>........] - ETA: 3:09 - loss: 198.8285 - mean_squared_error: 198.8282 - mean_absolute_error: 11.9096
+12/15 [=======================>......] - ETA: 2:22 - loss: 209.5046 - mean_squared_error: 209.5043 - mean_absolute_error: 12.4240
+13/15 [=========================>....] - ETA: 1:34 - loss: 193.7734 - mean_squared_error: 193.7732 - mean_absolute_error: 11.6403
+14/15 [===========================>..] - ETA: 47s - loss: 188.9899 - mean_squared_error: 188.9896 - mean_absolute_error: 11.6132 Epoch 00025: val_loss did not improve
+Epoch 00025: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 215.0184 - mean_squared_error: 215.0181 - mean_absolute_error: 12.4437 - val_loss: 61.8127 - val_mean_squared_error: 61.8125 - val_mean_absolute_error: 7.5000
+Epoch 26/50
+
+ 1/15 [=>............................] - ETA: 11:06 - loss: 73.3627 - mean_squared_error: 73.3624 - mean_absolute_error: 8.5652
+ 2/15 [===>..........................] - ETA: 10:18 - loss: 38.8400 - mean_squared_error: 38.8398 - mean_absolute_error: 5.3215
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 83.9189 - mean_squared_error: 83.9186 - mean_absolute_error: 7.9456 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 80.6740 - mean_squared_error: 80.6737 - mean_absolute_error: 8.0648
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 250.0449 - mean_squared_error: 250.0447 - mean_absolute_error: 12.5429
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 212.5871 - mean_squared_error: 212.5868 - mean_absolute_error: 11.2907
+ 7/15 [=============>................] - ETA: 6:19 - loss: 203.8514 - mean_squared_error: 203.8512 - mean_absolute_error: 11.4358
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 178.6366 - mean_squared_error: 178.6363 - mean_absolute_error: 10.1888
+ 9/15 [=================>............] - ETA: 4:44 - loss: 176.1050 - mean_squared_error: 176.1047 - mean_absolute_error: 10.4439
+10/15 [===================>..........] - ETA: 3:57 - loss: 160.0707 - mean_squared_error: 160.0705 - mean_absolute_error: 9.7965 
+11/15 [=====================>........] - ETA: 3:09 - loss: 158.4160 - mean_squared_error: 158.4157 - mean_absolute_error: 9.9887
+12/15 [=======================>......] - ETA: 2:22 - loss: 154.2432 - mean_squared_error: 154.2430 - mean_absolute_error: 10.0237
+13/15 [=========================>....] - ETA: 1:34 - loss: 149.8518 - mean_squared_error: 149.8515 - mean_absolute_error: 10.0109
+14/15 [===========================>..] - ETA: 47s - loss: 149.1354 - mean_squared_error: 149.1352 - mean_absolute_error: 10.1404 Epoch 00026: val_loss did not improve
+Epoch 00026: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 139.2041 - mean_squared_error: 139.2039 - mean_absolute_error: 9.4915 - val_loss: 61.9488 - val_mean_squared_error: 61.9486 - val_mean_absolute_error: 7.5000
+Epoch 27/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 52.3864 - mean_squared_error: 52.3861 - mean_absolute_error: 7.2378
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 69.1040 - mean_squared_error: 69.1037 - mean_absolute_error: 8.2509
+ 3/15 [=====>........................] - ETA: 9:31 - loss: 58.8048 - mean_squared_error: 58.8045 - mean_absolute_error: 7.5610 
+ 4/15 [=======>......................] - ETA: 8:44 - loss: 54.2573 - mean_squared_error: 54.2570 - mean_absolute_error: 7.2640
+ 5/15 [=========>....................] - ETA: 7:56 - loss: 51.7299 - mean_squared_error: 51.7296 - mean_absolute_error: 7.1014
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 43.4608 - mean_squared_error: 43.4605 - mean_absolute_error: 6.1603
+ 7/15 [=============>................] - ETA: 6:20 - loss: 37.3560 - mean_squared_error: 37.3557 - mean_absolute_error: 5.4020
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 34.0542 - mean_squared_error: 34.0540 - mean_absolute_error: 5.1402
+ 9/15 [=================>............] - ETA: 4:45 - loss: 36.8400 - mean_squared_error: 36.8397 - mean_absolute_error: 5.4235
+10/15 [===================>..........] - ETA: 3:57 - loss: 33.3656 - mean_squared_error: 33.3653 - mean_absolute_error: 5.0259
+11/15 [=====================>........] - ETA: 3:10 - loss: 54.2427 - mean_squared_error: 54.2425 - mean_absolute_error: 6.0433
+12/15 [=======================>......] - ETA: 2:22 - loss: 50.9811 - mean_squared_error: 50.9809 - mean_absolute_error: 5.8636
+13/15 [=========================>....] - ETA: 1:35 - loss: 47.1186 - mean_squared_error: 47.1184 - mean_absolute_error: 5.4800
+14/15 [===========================>..] - ETA: 47s - loss: 48.0781 - mean_squared_error: 48.0779 - mean_absolute_error: 5.6443 Epoch 00027: val_loss did not improve
+Epoch 00027: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 745s 50s/step - loss: 46.1713 - mean_squared_error: 46.1710 - mean_absolute_error: 5.5623 - val_loss: 62.1278 - val_mean_squared_error: 62.1276 - val_mean_absolute_error: 7.5000
+Epoch 28/50
+
+ 1/15 [=>............................] - ETA: 11:04 - loss: 46.3064 - mean_squared_error: 46.3062 - mean_absolute_error: 6.8049
+ 2/15 [===>..........................] - ETA: 10:16 - loss: 53.2138 - mean_squared_error: 53.2135 - mean_absolute_error: 7.2793
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 74.1129 - mean_squared_error: 74.1126 - mean_absolute_error: 8.4416 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 57.4402 - mean_squared_error: 57.4399 - mean_absolute_error: 7.0123
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 67.1157 - mean_squared_error: 67.1154 - mean_absolute_error: 7.6672
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 62.4245 - mean_squared_error: 62.4242 - mean_absolute_error: 7.4297
+ 7/15 [=============>................] - ETA: 6:20 - loss: 53.6999 - mean_squared_error: 53.6997 - mean_absolute_error: 6.5345
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 64.6433 - mean_squared_error: 64.6430 - mean_absolute_error: 7.2033
+ 9/15 [=================>............] - ETA: 4:45 - loss: 68.5587 - mean_squared_error: 68.5584 - mean_absolute_error: 7.5133
+10/15 [===================>..........] - ETA: 3:57 - loss: 111.9597 - mean_squared_error: 111.9594 - mean_absolute_error: 9.0038
+11/15 [=====================>........] - ETA: 3:10 - loss: 124.7177 - mean_squared_error: 124.7175 - mean_absolute_error: 9.6293
+12/15 [=======================>......] - ETA: 2:22 - loss: 116.2122 - mean_squared_error: 116.2119 - mean_absolute_error: 9.2234
+13/15 [=========================>....] - ETA: 1:35 - loss: 107.3052 - mean_squared_error: 107.3049 - mean_absolute_error: 8.5639
+14/15 [===========================>..] - ETA: 47s - loss: 99.8477 - mean_squared_error: 99.8474 - mean_absolute_error: 8.0738   Epoch 00028: val_loss did not improve
+Epoch 00028: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 148.6446 - mean_squared_error: 148.6444 - mean_absolute_error: 9.4583 - val_loss: 62.2168 - val_mean_squared_error: 62.2165 - val_mean_absolute_error: 7.5000
+Epoch 29/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 100.1068 - mean_squared_error: 100.1065 - mean_absolute_error: 10.0053
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 60.9696 - mean_squared_error: 60.9693 - mean_absolute_error: 7.3389   
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 81.6788 - mean_squared_error: 81.6786 - mean_absolute_error: 8.5909 
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 135.1745 - mean_squared_error: 135.1742 - mean_absolute_error: 10.7419
+ 5/15 [=========>....................] - ETA: 7:58 - loss: 131.3672 - mean_squared_error: 131.3670 - mean_absolute_error: 10.7489
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 115.2737 - mean_squared_error: 115.2735 - mean_absolute_error: 9.9407 
+ 7/15 [=============>................] - ETA: 6:22 - loss: 99.2816 - mean_squared_error: 99.2813 - mean_absolute_error: 8.7812  
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 101.6428 - mean_squared_error: 101.6425 - mean_absolute_error: 9.0424
+ 9/15 [=================>............] - ETA: 4:46 - loss: 126.3472 - mean_squared_error: 126.3469 - mean_absolute_error: 10.0376
+10/15 [===================>..........] - ETA: 3:58 - loss: 115.1236 - mean_squared_error: 115.1233 - mean_absolute_error: 9.4095 
+11/15 [=====================>........] - ETA: 3:10 - loss: 106.4749 - mean_squared_error: 106.4746 - mean_absolute_error: 8.9605
+12/15 [=======================>......] - ETA: 2:23 - loss: 131.6772 - mean_squared_error: 131.6770 - mean_absolute_error: 9.8989
+13/15 [=========================>....] - ETA: 1:35 - loss: 125.9405 - mean_squared_error: 125.9402 - mean_absolute_error: 9.7187
+14/15 [===========================>..] - ETA: 47s - loss: 119.4028 - mean_squared_error: 119.4025 - mean_absolute_error: 9.4435 Epoch 00029: val_loss did not improve
+Epoch 00029: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 748s 50s/step - loss: 176.1491 - mean_squared_error: 176.1489 - mean_absolute_error: 10.8909 - val_loss: 62.4618 - val_mean_squared_error: 62.4615 - val_mean_absolute_error: 7.5000
+Epoch 30/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 453.1496 - mean_squared_error: 453.1493 - mean_absolute_error: 21.2873
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 238.2633 - mean_squared_error: 238.2630 - mean_absolute_error: 13.0611
+ 3/15 [=====>........................] - ETA: 9:31 - loss: 217.0350 - mean_squared_error: 217.0348 - mean_absolute_error: 13.1117 
+ 4/15 [=======>......................] - ETA: 8:44 - loss: 194.8590 - mean_squared_error: 194.8587 - mean_absolute_error: 12.6658
+ 5/15 [=========>....................] - ETA: 7:56 - loss: 211.4620 - mean_squared_error: 211.4618 - mean_absolute_error: 13.4666
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 210.3684 - mean_squared_error: 210.3681 - mean_absolute_error: 13.6079
+ 7/15 [=============>................] - ETA: 6:20 - loss: 208.6435 - mean_squared_error: 208.6432 - mean_absolute_error: 13.6756
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 223.1450 - mean_squared_error: 223.1447 - mean_absolute_error: 14.2184
+ 9/15 [=================>............] - ETA: 4:45 - loss: 199.1294 - mean_squared_error: 199.1292 - mean_absolute_error: 12.9326
+10/15 [===================>..........] - ETA: 3:58 - loss: 265.7325 - mean_squared_error: 265.7323 - mean_absolute_error: 14.5807
+11/15 [=====================>........] - ETA: 3:10 - loss: 241.6060 - mean_squared_error: 241.6057 - mean_absolute_error: 13.3082
+12/15 [=======================>......] - ETA: 2:22 - loss: 288.7198 - mean_squared_error: 288.7195 - mean_absolute_error: 14.5665
+13/15 [=========================>....] - ETA: 1:35 - loss: 273.1279 - mean_squared_error: 273.1276 - mean_absolute_error: 14.1595
+14/15 [===========================>..] - ETA: 47s - loss: 276.1369 - mean_squared_error: 276.1366 - mean_absolute_error: 14.4163 Epoch 00030: val_loss did not improve
+Epoch 00030: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 746s 50s/step - loss: 270.1452 - mean_squared_error: 270.1449 - mean_absolute_error: 14.3651 - val_loss: 62.4533 - val_mean_squared_error: 62.4531 - val_mean_absolute_error: 7.5000
+Epoch 31/50
+
+ 1/15 [=>............................] - ETA: 11:04 - loss: 474.1738 - mean_squared_error: 474.1735 - mean_absolute_error: 21.7755
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 412.9962 - mean_squared_error: 412.9960 - mean_absolute_error: 20.2662
+ 3/15 [=====>........................] - ETA: 9:31 - loss: 308.4179 - mean_squared_error: 308.4176 - mean_absolute_error: 16.8318 
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 290.6162 - mean_squared_error: 290.6159 - mean_absolute_error: 16.4742
+ 5/15 [=========>....................] - ETA: 7:56 - loss: 233.3667 - mean_squared_error: 233.3664 - mean_absolute_error: 13.5974
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 226.4920 - mean_squared_error: 226.4917 - mean_absolute_error: 13.6413
+ 7/15 [=============>................] - ETA: 6:20 - loss: 252.2175 - mean_squared_error: 252.2172 - mean_absolute_error: 14.5730
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 246.1775 - mean_squared_error: 246.1772 - mean_absolute_error: 14.5363
+ 9/15 [=================>............] - ETA: 4:45 - loss: 218.9705 - mean_squared_error: 218.9703 - mean_absolute_error: 13.0486
+10/15 [===================>..........] - ETA: 3:58 - loss: 223.1108 - mean_squared_error: 223.1106 - mean_absolute_error: 13.3573
+11/15 [=====================>........] - ETA: 3:10 - loss: 203.1919 - mean_squared_error: 203.1916 - mean_absolute_error: 12.3249
+12/15 [=======================>......] - ETA: 2:22 - loss: 197.0791 - mean_squared_error: 197.0789 - mean_absolute_error: 12.2474
+13/15 [=========================>....] - ETA: 1:35 - loss: 190.2402 - mean_squared_error: 190.2399 - mean_absolute_error: 12.1053
+14/15 [===========================>..] - ETA: 47s - loss: 177.0744 - mean_squared_error: 177.0742 - mean_absolute_error: 11.4144 Epoch 00031: val_loss did not improve
+Epoch 00031: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 746s 50s/step - loss: 176.9675 - mean_squared_error: 176.9672 - mean_absolute_error: 11.5366 - val_loss: 62.7281 - val_mean_squared_error: 62.7278 - val_mean_absolute_error: 7.5000
+Epoch 32/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 627.8519 - mean_squared_error: 627.8517 - mean_absolute_error: 25.0570
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 410.7039 - mean_squared_error: 410.7037 - mean_absolute_error: 19.4847
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 300.7113 - mean_squared_error: 300.7110 - mean_absolute_error: 15.9847 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 228.1573 - mean_squared_error: 228.1571 - mean_absolute_error: 12.7984
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 210.3417 - mean_squared_error: 210.3414 - mean_absolute_error: 12.5974
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 192.5104 - mean_squared_error: 192.5101 - mean_absolute_error: 12.1922
+ 7/15 [=============>................] - ETA: 6:20 - loss: 188.4392 - mean_squared_error: 188.4389 - mean_absolute_error: 12.2800
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 168.2966 - mean_squared_error: 168.2963 - mean_absolute_error: 11.3981
+ 9/15 [=================>............] - ETA: 4:45 - loss: 149.7092 - mean_squared_error: 149.7089 - mean_absolute_error: 10.2433
+10/15 [===================>..........] - ETA: 3:57 - loss: 147.9318 - mean_squared_error: 147.9316 - mean_absolute_error: 10.3676
+11/15 [=====================>........] - ETA: 3:10 - loss: 135.8032 - mean_squared_error: 135.8030 - mean_absolute_error: 9.7715 
+12/15 [=======================>......] - ETA: 2:22 - loss: 136.6451 - mean_squared_error: 136.6448 - mean_absolute_error: 9.9638
+13/15 [=========================>....] - ETA: 1:35 - loss: 126.4481 - mean_squared_error: 126.4479 - mean_absolute_error: 9.3528
+14/15 [===========================>..] - ETA: 47s - loss: 122.0003 - mean_squared_error: 122.0001 - mean_absolute_error: 9.2570 Epoch 00032: val_loss did not improve
+Epoch 00032: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 745s 50s/step - loss: 119.6879 - mean_squared_error: 119.6876 - mean_absolute_error: 9.2628 - val_loss: 62.8306 - val_mean_squared_error: 62.8304 - val_mean_absolute_error: 7.5000
+Epoch 33/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 712.1188 - mean_squared_error: 712.1185 - mean_absolute_error: 26.6855
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 356.0596 - mean_squared_error: 356.0594 - mean_absolute_error: 13.3506
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 275.3877 - mean_squared_error: 275.3874 - mean_absolute_error: 12.4601 
+ 4/15 [=======>......................] - ETA: 8:44 - loss: 207.9830 - mean_squared_error: 207.9827 - mean_absolute_error: 9.9455 
+ 5/15 [=========>....................] - ETA: 7:56 - loss: 226.8177 - mean_squared_error: 226.8175 - mean_absolute_error: 11.4330
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 194.7270 - mean_squared_error: 194.7267 - mean_absolute_error: 10.5032
+ 7/15 [=============>................] - ETA: 6:21 - loss: 166.9125 - mean_squared_error: 166.9122 - mean_absolute_error: 9.0253 
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 174.5716 - mean_squared_error: 174.5713 - mean_absolute_error: 9.7854
+ 9/15 [=================>............] - ETA: 4:45 - loss: 160.8687 - mean_squared_error: 160.8684 - mean_absolute_error: 9.4935
+10/15 [===================>..........] - ETA: 3:57 - loss: 144.7818 - mean_squared_error: 144.7816 - mean_absolute_error: 8.5444
+11/15 [=====================>........] - ETA: 3:10 - loss: 192.1053 - mean_squared_error: 192.1051 - mean_absolute_error: 10.1126
+12/15 [=======================>......] - ETA: 2:22 - loss: 179.8017 - mean_squared_error: 179.8015 - mean_absolute_error: 9.8256 
+13/15 [=========================>....] - ETA: 1:35 - loss: 169.0666 - mean_squared_error: 169.0663 - mean_absolute_error: 9.5577
+14/15 [===========================>..] - ETA: 47s - loss: 163.1945 - mean_squared_error: 163.1943 - mean_absolute_error: 9.5407 Epoch 00033: val_loss did not improve
+Epoch 00033: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 169.6567 - mean_squared_error: 169.6565 - mean_absolute_error: 9.9799 - val_loss: 62.9541 - val_mean_squared_error: 62.9538 - val_mean_absolute_error: 7.5000
+Epoch 34/50
+
+ 1/15 [=>............................] - ETA: 11:04 - loss: 217.7371 - mean_squared_error: 217.7368 - mean_absolute_error: 14.7559
+ 2/15 [===>..........................] - ETA: 10:16 - loss: 110.1374 - mean_squared_error: 110.1372 - mean_absolute_error: 8.1744 
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 172.6303 - mean_squared_error: 172.6301 - mean_absolute_error: 11.2001
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 129.4971 - mean_squared_error: 129.4968 - mean_absolute_error: 8.4780 
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 115.7783 - mean_squared_error: 115.7781 - mean_absolute_error: 8.3432
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 203.7183 - mean_squared_error: 203.7180 - mean_absolute_error: 11.1803
+ 7/15 [=============>................] - ETA: 6:19 - loss: 180.0153 - mean_squared_error: 180.0151 - mean_absolute_error: 10.4614
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 206.7054 - mean_squared_error: 206.7051 - mean_absolute_error: 11.6334
+ 9/15 [=================>............] - ETA: 4:44 - loss: 188.4768 - mean_squared_error: 188.4766 - mean_absolute_error: 11.0664
+10/15 [===================>..........] - ETA: 3:57 - loss: 174.9921 - mean_squared_error: 174.9919 - mean_absolute_error: 10.6921
+11/15 [=====================>........] - ETA: 3:09 - loss: 173.6239 - mean_squared_error: 173.6236 - mean_absolute_error: 10.8698
+12/15 [=======================>......] - ETA: 2:22 - loss: 161.2208 - mean_squared_error: 161.2205 - mean_absolute_error: 10.3789
+13/15 [=========================>....] - ETA: 1:34 - loss: 158.6100 - mean_squared_error: 158.6098 - mean_absolute_error: 10.4483
+14/15 [===========================>..] - ETA: 47s - loss: 160.3673 - mean_squared_error: 160.3670 - mean_absolute_error: 10.6688 Epoch 00034: val_loss did not improve
+Epoch 00034: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 156.6574 - mean_squared_error: 156.6571 - mean_absolute_error: 10.6398 - val_loss: 63.0341 - val_mean_squared_error: 63.0338 - val_mean_absolute_error: 7.5000
+Epoch 35/50
+
+ 1/15 [=>............................] - ETA: 11:04 - loss: 227.0150 - mean_squared_error: 227.0148 - mean_absolute_error: 15.0670
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 126.8797 - mean_squared_error: 126.8794 - mean_absolute_error: 10.1192
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 157.2566 - mean_squared_error: 157.2563 - mean_absolute_error: 11.6679 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 136.7753 - mean_squared_error: 136.7751 - mean_absolute_error: 10.9208
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 123.0767 - mean_squared_error: 123.0764 - mean_absolute_error: 10.3893
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 120.0750 - mean_squared_error: 120.0747 - mean_absolute_error: 10.3661
+ 7/15 [=============>................] - ETA: 6:19 - loss: 114.3710 - mean_squared_error: 114.3708 - mean_absolute_error: 10.1641
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 101.2608 - mean_squared_error: 101.2605 - mean_absolute_error: 9.2787 
+ 9/15 [=================>............] - ETA: 4:45 - loss: 93.9102 - mean_squared_error: 93.9099 - mean_absolute_error: 8.9060  
+10/15 [===================>..........] - ETA: 3:57 - loss: 88.0972 - mean_squared_error: 88.0969 - mean_absolute_error: 8.6136
+11/15 [=====================>........] - ETA: 3:09 - loss: 129.7792 - mean_squared_error: 129.7789 - mean_absolute_error: 9.9559
+12/15 [=======================>......] - ETA: 2:22 - loss: 119.4381 - mean_squared_error: 119.4379 - mean_absolute_error: 9.3250
+13/15 [=========================>....] - ETA: 1:34 - loss: 113.4182 - mean_squared_error: 113.4179 - mean_absolute_error: 9.1013
+14/15 [===========================>..] - ETA: 47s - loss: 155.1667 - mean_squared_error: 155.1664 - mean_absolute_error: 10.3382Epoch 00035: val_loss did not improve
+Epoch 00035: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 152.2684 - mean_squared_error: 152.2682 - mean_absolute_error: 10.3536 - val_loss: 62.9119 - val_mean_squared_error: 62.9117 - val_mean_absolute_error: 7.5000
+Epoch 36/50
+
+ 1/15 [=>............................] - ETA: 11:06 - loss: 110.2500 - mean_squared_error: 110.2497 - mean_absolute_error: 10.5000
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 55.1342 - mean_squared_error: 55.1339 - mean_absolute_error: 5.3173   
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 36.7958 - mean_squared_error: 36.7955 - mean_absolute_error: 3.6597 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 31.0073 - mean_squared_error: 31.0071 - mean_absolute_error: 3.6682
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 38.3887 - mean_squared_error: 38.3885 - mean_absolute_error: 4.5827
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 35.6829 - mean_squared_error: 35.6826 - mean_absolute_error: 4.6034
+ 7/15 [=============>................] - ETA: 6:20 - loss: 35.1648 - mean_squared_error: 35.1645 - mean_absolute_error: 4.7546
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 34.3570 - mean_squared_error: 34.3567 - mean_absolute_error: 4.8300
+ 9/15 [=================>............] - ETA: 4:45 - loss: 34.1759 - mean_squared_error: 34.1757 - mean_absolute_error: 4.9289
+10/15 [===================>..........] - ETA: 3:57 - loss: 31.3299 - mean_squared_error: 31.3297 - mean_absolute_error: 4.6751
+11/15 [=====================>........] - ETA: 3:10 - loss: 47.4754 - mean_squared_error: 47.4752 - mean_absolute_error: 5.5641
+12/15 [=======================>......] - ETA: 2:22 - loss: 103.1439 - mean_squared_error: 103.1436 - mean_absolute_error: 7.3295
+13/15 [=========================>....] - ETA: 1:35 - loss: 95.2128 - mean_squared_error: 95.2126 - mean_absolute_error: 6.7811  
+14/15 [===========================>..] - ETA: 47s - loss: 150.4959 - mean_squared_error: 150.4956 - mean_absolute_error: 8.4026Epoch 00036: val_loss did not improve
+Epoch 00036: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 178.1403 - mean_squared_error: 178.1401 - mean_absolute_error: 9.4273 - val_loss: 62.9428 - val_mean_squared_error: 62.9425 - val_mean_absolute_error: 7.5000
+Epoch 37/50
+
+ 1/15 [=>............................] - ETA: 11:02 - loss: 560.3715 - mean_squared_error: 560.3713 - mean_absolute_error: 23.6722
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 454.5361 - mean_squared_error: 454.5358 - mean_absolute_error: 21.1728
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 318.7855 - mean_squared_error: 318.7853 - mean_absolute_error: 16.4073 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 292.8539 - mean_squared_error: 292.8536 - mean_absolute_error: 15.9717
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 238.5393 - mean_squared_error: 238.5391 - mean_absolute_error: 13.7000
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 207.6404 - mean_squared_error: 207.6401 - mean_absolute_error: 12.6317
+ 7/15 [=============>................] - ETA: 6:19 - loss: 191.6751 - mean_squared_error: 191.6749 - mean_absolute_error: 12.2260
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 167.9994 - mean_squared_error: 167.9992 - mean_absolute_error: 10.8861
+ 9/15 [=================>............] - ETA: 4:44 - loss: 156.2748 - mean_squared_error: 156.2746 - mean_absolute_error: 10.5548
+10/15 [===================>..........] - ETA: 3:57 - loss: 156.3870 - mean_squared_error: 156.3868 - mean_absolute_error: 10.7539
+11/15 [=====================>........] - ETA: 3:09 - loss: 142.6570 - mean_squared_error: 142.6567 - mean_absolute_error: 9.9866 
+12/15 [=======================>......] - ETA: 2:22 - loss: 147.4192 - mean_squared_error: 147.4189 - mean_absolute_error: 10.3323
+13/15 [=========================>....] - ETA: 1:35 - loss: 139.0075 - mean_squared_error: 139.0072 - mean_absolute_error: 10.0121
+14/15 [===========================>..] - ETA: 47s - loss: 139.9767 - mean_squared_error: 139.9764 - mean_absolute_error: 10.1793 Epoch 00037: val_loss did not improve
+Epoch 00037: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 130.8376 - mean_squared_error: 130.8373 - mean_absolute_error: 9.6140 - val_loss: 62.9071 - val_mean_squared_error: 62.9069 - val_mean_absolute_error: 7.5000
+Epoch 38/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 27.2372 - mean_squared_error: 27.2369 - mean_absolute_error: 5.2189
+ 2/15 [===>..........................] - ETA: 10:16 - loss: 13.6509 - mean_squared_error: 13.6506 - mean_absolute_error: 2.7362
+ 3/15 [=====>........................] - ETA: 9:28 - loss: 27.1067 - mean_squared_error: 27.1065 - mean_absolute_error: 4.2741 
+ 4/15 [=======>......................] - ETA: 8:40 - loss: 54.3657 - mean_squared_error: 54.3655 - mean_absolute_error: 6.1225
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 44.1824 - mean_squared_error: 44.1821 - mean_absolute_error: 5.2694
+ 6/15 [===========>..................] - ETA: 7:06 - loss: 101.7414 - mean_squared_error: 101.7412 - mean_absolute_error: 7.6807
+ 7/15 [=============>................] - ETA: 6:19 - loss: 92.1730 - mean_squared_error: 92.1727 - mean_absolute_error: 7.4257  
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 89.8948 - mean_squared_error: 89.8946 - mean_absolute_error: 7.5724
+ 9/15 [=================>............] - ETA: 4:44 - loss: 127.7606 - mean_squared_error: 127.7603 - mean_absolute_error: 9.0369
+10/15 [===================>..........] - ETA: 3:57 - loss: 144.5333 - mean_squared_error: 144.5331 - mean_absolute_error: 9.8522
+11/15 [=====================>........] - ETA: 3:09 - loss: 140.6052 - mean_squared_error: 140.6049 - mean_absolute_error: 9.8716
+12/15 [=======================>......] - ETA: 2:22 - loss: 146.5650 - mean_squared_error: 146.5648 - mean_absolute_error: 10.2627
+13/15 [=========================>....] - ETA: 1:34 - loss: 158.0974 - mean_squared_error: 158.0971 - mean_absolute_error: 10.7978
+14/15 [===========================>..] - ETA: 47s - loss: 147.1871 - mean_squared_error: 147.1869 - mean_absolute_error: 10.1918 Epoch 00038: val_loss did not improve
+Epoch 00038: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 146.8593 - mean_squared_error: 146.8591 - mean_absolute_error: 10.3075 - val_loss: 62.9395 - val_mean_squared_error: 62.9393 - val_mean_absolute_error: 7.5000
+Epoch 39/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 159.3810 - mean_squared_error: 159.3807 - mean_absolute_error: 12.6246
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 163.8141 - mean_squared_error: 163.8138 - mean_absolute_error: 12.7978
+ 3/15 [=====>........................] - ETA: 9:31 - loss: 148.9971 - mean_squared_error: 148.9968 - mean_absolute_error: 12.1736 
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 118.1943 - mean_squared_error: 118.1940 - mean_absolute_error: 10.3997
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 143.0695 - mean_squared_error: 143.0692 - mean_absolute_error: 11.4347
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 187.8256 - mean_squared_error: 187.8254 - mean_absolute_error: 12.9103
+ 7/15 [=============>................] - ETA: 6:20 - loss: 229.4353 - mean_squared_error: 229.4350 - mean_absolute_error: 14.1928
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 200.9637 - mean_squared_error: 200.9634 - mean_absolute_error: 12.5799
+ 9/15 [=================>............] - ETA: 4:45 - loss: 194.2878 - mean_squared_error: 194.2876 - mean_absolute_error: 12.5009
+10/15 [===================>..........] - ETA: 3:57 - loss: 181.2959 - mean_squared_error: 181.2956 - mean_absolute_error: 12.0531
+11/15 [=====================>........] - ETA: 3:10 - loss: 190.0919 - mean_squared_error: 190.0916 - mean_absolute_error: 12.4733
+12/15 [=======================>......] - ETA: 2:22 - loss: 204.0896 - mean_squared_error: 204.0893 - mean_absolute_error: 13.0107
+13/15 [=========================>....] - ETA: 1:35 - loss: 199.5108 - mean_squared_error: 199.5105 - mean_absolute_error: 12.9348
+14/15 [===========================>..] - ETA: 47s - loss: 188.1488 - mean_squared_error: 188.1486 - mean_absolute_error: 12.4651 Epoch 00039: val_loss did not improve
+Epoch 00039: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 214.3377 - mean_squared_error: 214.3375 - mean_absolute_error: 13.2410 - val_loss: 63.1704 - val_mean_squared_error: 63.1701 - val_mean_absolute_error: 7.5000
+Epoch 40/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 171.8081 - mean_squared_error: 171.8079 - mean_absolute_error: 13.1076
+ 2/15 [===>..........................] - ETA: 10:18 - loss: 152.3498 - mean_squared_error: 152.3495 - mean_absolute_error: 12.3177
+ 3/15 [=====>........................] - ETA: 9:31 - loss: 105.7884 - mean_squared_error: 105.7881 - mean_absolute_error: 9.3981  
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 114.5215 - mean_squared_error: 114.5213 - mean_absolute_error: 10.0142
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 107.6682 - mean_squared_error: 107.6679 - mean_absolute_error: 9.8031 
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 112.6848 - mean_squared_error: 112.6845 - mean_absolute_error: 10.1255
+ 7/15 [=============>................] - ETA: 6:20 - loss: 99.5572 - mean_squared_error: 99.5569 - mean_absolute_error: 9.3304   
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 144.0276 - mean_squared_error: 144.0273 - mean_absolute_error: 10.8313
+ 9/15 [=================>............] - ETA: 4:45 - loss: 140.7974 - mean_squared_error: 140.7971 - mean_absolute_error: 10.8192
+10/15 [===================>..........] - ETA: 3:57 - loss: 137.2241 - mean_squared_error: 137.2238 - mean_absolute_error: 10.7623
+11/15 [=====================>........] - ETA: 3:10 - loss: 125.3457 - mean_squared_error: 125.3454 - mean_absolute_error: 10.0167
+12/15 [=======================>......] - ETA: 2:22 - loss: 142.2317 - mean_squared_error: 142.2314 - mean_absolute_error: 10.6912
+13/15 [=========================>....] - ETA: 1:34 - loss: 131.7009 - mean_squared_error: 131.7007 - mean_absolute_error: 10.0464
+14/15 [===========================>..] - ETA: 47s - loss: 126.1073 - mean_squared_error: 126.1071 - mean_absolute_error: 9.8507  Epoch 00040: val_loss did not improve
+Epoch 00040: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 118.1148 - mean_squared_error: 118.1146 - mean_absolute_error: 9.3603 - val_loss: 63.1823 - val_mean_squared_error: 63.1821 - val_mean_absolute_error: 7.5000
+Epoch 41/50
+
+ 1/15 [=>............................] - ETA: 11:07 - loss: 230.0265 - mean_squared_error: 230.0262 - mean_absolute_error: 15.1666
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 384.8076 - mean_squared_error: 384.8074 - mean_absolute_error: 19.1978
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 264.7314 - mean_squared_error: 264.7312 - mean_absolute_error: 14.4511 
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 198.7707 - mean_squared_error: 198.7704 - mean_absolute_error: 11.0739
+ 5/15 [=========>....................] - ETA: 7:53 - loss: 167.2982 - mean_squared_error: 167.2979 - mean_absolute_error: 10.1461
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 155.5593 - mean_squared_error: 155.5590 - mean_absolute_error: 10.0954
+ 7/15 [=============>................] - ETA: 6:19 - loss: 159.8108 - mean_squared_error: 159.8106 - mean_absolute_error: 10.5980
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 151.9855 - mean_squared_error: 151.9852 - mean_absolute_error: 10.5057
+ 9/15 [=================>............] - ETA: 4:44 - loss: 138.6484 - mean_squared_error: 138.6481 - mean_absolute_error: 9.9664 
+10/15 [===================>..........] - ETA: 3:57 - loss: 124.8518 - mean_squared_error: 124.8515 - mean_absolute_error: 9.0524
+11/15 [=====================>........] - ETA: 3:09 - loss: 114.6876 - mean_squared_error: 114.6873 - mean_absolute_error: 8.5578
+12/15 [=======================>......] - ETA: 2:22 - loss: 124.6305 - mean_squared_error: 124.6302 - mean_absolute_error: 9.1194
+13/15 [=========================>....] - ETA: 1:34 - loss: 135.1722 - mean_squared_error: 135.1719 - mean_absolute_error: 9.6622
+14/15 [===========================>..] - ETA: 47s - loss: 153.3412 - mean_squared_error: 153.3410 - mean_absolute_error: 10.3818Epoch 00041: val_loss did not improve
+Epoch 00041: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 143.2350 - mean_squared_error: 143.2347 - mean_absolute_error: 9.7778 - val_loss: 63.3420 - val_mean_squared_error: 63.3418 - val_mean_absolute_error: 7.5000
+Epoch 42/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 147.9174 - mean_squared_error: 147.9171 - mean_absolute_error: 12.1621
+ 2/15 [===>..........................] - ETA: 10:15 - loss: 291.6030 - mean_squared_error: 291.6028 - mean_absolute_error: 16.5128
+ 3/15 [=====>........................] - ETA: 9:28 - loss: 194.4551 - mean_squared_error: 194.4549 - mean_absolute_error: 11.1415 
+ 4/15 [=======>......................] - ETA: 8:42 - loss: 157.3122 - mean_squared_error: 157.3119 - mean_absolute_error: 10.0496
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 128.7978 - mean_squared_error: 128.7975 - mean_absolute_error: 8.8075 
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 114.2755 - mean_squared_error: 114.2752 - mean_absolute_error: 8.4154
+ 7/15 [=============>................] - ETA: 6:19 - loss: 112.7985 - mean_squared_error: 112.7983 - mean_absolute_error: 8.6696
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 99.1537 - mean_squared_error: 99.1534 - mean_absolute_error: 7.8244  
+ 9/15 [=================>............] - ETA: 4:44 - loss: 100.5917 - mean_squared_error: 100.5915 - mean_absolute_error: 8.1314
+10/15 [===================>..........] - ETA: 3:57 - loss: 114.6049 - mean_squared_error: 114.6046 - mean_absolute_error: 8.8698
+11/15 [=====================>........] - ETA: 3:09 - loss: 109.6670 - mean_squared_error: 109.6667 - mean_absolute_error: 8.7693
+12/15 [=======================>......] - ETA: 2:22 - loss: 174.7703 - mean_squared_error: 174.7700 - mean_absolute_error: 10.5259
+13/15 [=========================>....] - ETA: 1:34 - loss: 161.4097 - mean_squared_error: 161.4095 - mean_absolute_error: 9.7962 
+14/15 [===========================>..] - ETA: 47s - loss: 161.6131 - mean_squared_error: 161.6129 - mean_absolute_error: 10.0119Epoch 00042: val_loss did not improve
+Epoch 00042: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 155.1092 - mean_squared_error: 155.1089 - mean_absolute_error: 9.8780 - val_loss: 63.2875 - val_mean_squared_error: 63.2873 - val_mean_absolute_error: 7.5000
+Epoch 43/50
+
+ 1/15 [=>............................] - ETA: 11:03 - loss: 110.0112 - mean_squared_error: 110.0109 - mean_absolute_error: 10.4886
+ 2/15 [===>..........................] - ETA: 10:15 - loss: 484.7994 - mean_squared_error: 484.7992 - mean_absolute_error: 19.9037
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 329.6930 - mean_squared_error: 329.6928 - mean_absolute_error: 14.7403 
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 287.6220 - mean_squared_error: 287.6217 - mean_absolute_error: 14.2314
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 253.9021 - mean_squared_error: 253.9018 - mean_absolute_error: 13.5671
+ 6/15 [===========>..................] - ETA: 7:06 - loss: 355.0918 - mean_squared_error: 355.0915 - mean_absolute_error: 16.1965
+ 7/15 [=============>................] - ETA: 6:19 - loss: 311.5524 - mean_squared_error: 311.5521 - mean_absolute_error: 14.8960
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 274.1282 - mean_squared_error: 274.1280 - mean_absolute_error: 13.4699
+ 9/15 [=================>............] - ETA: 4:44 - loss: 246.7901 - mean_squared_error: 246.7898 - mean_absolute_error: 12.5621
+10/15 [===================>..........] - ETA: 3:57 - loss: 222.7252 - mean_squared_error: 222.7249 - mean_absolute_error: 11.5537
+11/15 [=====================>........] - ETA: 3:09 - loss: 233.9279 - mean_squared_error: 233.9277 - mean_absolute_error: 12.1942
+12/15 [=======================>......] - ETA: 2:22 - loss: 217.3209 - mean_squared_error: 217.3206 - mean_absolute_error: 11.6685
+13/15 [=========================>....] - ETA: 1:34 - loss: 200.8109 - mean_squared_error: 200.8106 - mean_absolute_error: 10.8971
+14/15 [===========================>..] - ETA: 47s - loss: 196.2376 - mean_squared_error: 196.2374 - mean_absolute_error: 10.9542 Epoch 00043: val_loss did not improve
+Epoch 00043: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 186.7433 - mean_squared_error: 186.7431 - mean_absolute_error: 10.7130 - val_loss: 63.3785 - val_mean_squared_error: 63.3782 - val_mean_absolute_error: 7.5000
+Epoch 44/50
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 342.6221 - mean_squared_error: 342.6219 - mean_absolute_error: 18.5100
+ 2/15 [===>..........................] - ETA: 10:18 - loss: 199.7502 - mean_squared_error: 199.7500 - mean_absolute_error: 13.0259
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 146.8053 - mean_squared_error: 146.8050 - mean_absolute_error: 10.8161 
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 170.2829 - mean_squared_error: 170.2827 - mean_absolute_error: 11.9908
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 198.5200 - mean_squared_error: 198.5197 - mean_absolute_error: 13.1224
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 167.1379 - mean_squared_error: 167.1376 - mean_absolute_error: 11.4683
+ 7/15 [=============>................] - ETA: 6:20 - loss: 179.6356 - mean_squared_error: 179.6354 - mean_absolute_error: 12.1095
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 161.6386 - mean_squared_error: 161.6383 - mean_absolute_error: 11.3423
+ 9/15 [=================>............] - ETA: 4:45 - loss: 163.5199 - mean_squared_error: 163.5196 - mean_absolute_error: 11.5668
+10/15 [===================>..........] - ETA: 3:57 - loss: 159.9343 - mean_squared_error: 159.9341 - mean_absolute_error: 11.5400
+11/15 [=====================>........] - ETA: 3:10 - loss: 154.6673 - mean_squared_error: 154.6670 - mean_absolute_error: 11.4090
+12/15 [=======================>......] - ETA: 2:22 - loss: 143.8601 - mean_squared_error: 143.8598 - mean_absolute_error: 10.8748
+13/15 [=========================>....] - ETA: 1:35 - loss: 146.8984 - mean_squared_error: 146.8982 - mean_absolute_error: 11.0799
+14/15 [===========================>..] - ETA: 47s - loss: 180.3516 - mean_squared_error: 180.3513 - mean_absolute_error: 12.0602 Epoch 00044: val_loss did not improve
+Epoch 00044: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 170.7248 - mean_squared_error: 170.7245 - mean_absolute_error: 11.6559 - val_loss: 63.3543 - val_mean_squared_error: 63.3540 - val_mean_absolute_error: 7.5000
+Epoch 45/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 312.9195 - mean_squared_error: 312.9193 - mean_absolute_error: 17.6895
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 168.5574 - mean_squared_error: 168.5571 - mean_absolute_error: 11.3042
+ 3/15 [=====>........................] - ETA: 9:29 - loss: 115.6633 - mean_squared_error: 115.6630 - mean_absolute_error: 8.5836  
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 126.8962 - mean_squared_error: 126.8960 - mean_absolute_error: 9.6058
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 170.8113 - mean_squared_error: 170.8111 - mean_absolute_error: 11.4074
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 147.8492 - mean_squared_error: 147.8490 - mean_absolute_error: 10.4642
+ 7/15 [=============>................] - ETA: 6:19 - loss: 133.6722 - mean_squared_error: 133.6719 - mean_absolute_error: 9.9653 
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 144.4809 - mean_squared_error: 144.4807 - mean_absolute_error: 10.5743
+ 9/15 [=================>............] - ETA: 4:44 - loss: 128.6923 - mean_squared_error: 128.6920 - mean_absolute_error: 9.5709 
+10/15 [===================>..........] - ETA: 3:57 - loss: 124.3651 - mean_squared_error: 124.3648 - mean_absolute_error: 9.5380
+11/15 [=====================>........] - ETA: 3:09 - loss: 113.6531 - mean_squared_error: 113.6528 - mean_absolute_error: 8.9033
+12/15 [=======================>......] - ETA: 2:22 - loss: 117.3537 - mean_squared_error: 117.3535 - mean_absolute_error: 9.2090
+13/15 [=========================>....] - ETA: 1:35 - loss: 108.3393 - mean_squared_error: 108.3390 - mean_absolute_error: 8.5320
+14/15 [===========================>..] - ETA: 47s - loss: 107.8618 - mean_squared_error: 107.8615 - mean_absolute_error: 8.6427 Epoch 00045: val_loss did not improve
+Epoch 00045: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 744s 50s/step - loss: 107.8449 - mean_squared_error: 107.8446 - mean_absolute_error: 8.7581 - val_loss: 63.3803 - val_mean_squared_error: 63.3800 - val_mean_absolute_error: 7.5000
+Epoch 46/50
+
+ 1/15 [=>............................] - ETA: 11:02 - loss: 8.8593 - mean_squared_error: 8.8590 - mean_absolute_error: 2.9764
+ 2/15 [===>..........................] - ETA: 10:16 - loss: 222.7574 - mean_squared_error: 222.7572 - mean_absolute_error: 11.9364
+ 3/15 [=====>........................] - ETA: 9:28 - loss: 148.6316 - mean_squared_error: 148.6313 - mean_absolute_error: 8.1629  
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 176.7471 - mean_squared_error: 176.7469 - mean_absolute_error: 10.1618
+ 5/15 [=========>....................] - ETA: 7:53 - loss: 142.8885 - mean_squared_error: 142.8883 - mean_absolute_error: 8.6755 
+ 6/15 [===========>..................] - ETA: 7:06 - loss: 170.0031 - mean_squared_error: 170.0028 - mean_absolute_error: 10.1430
+ 7/15 [=============>................] - ETA: 6:19 - loss: 155.5127 - mean_squared_error: 155.5125 - mean_absolute_error: 9.8770 
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 171.0112 - mean_squared_error: 171.0110 - mean_absolute_error: 10.7321
+ 9/15 [=================>............] - ETA: 4:44 - loss: 153.5848 - mean_squared_error: 153.5845 - mean_absolute_error: 9.9580 
+10/15 [===================>..........] - ETA: 3:57 - loss: 138.3664 - mean_squared_error: 138.3662 - mean_absolute_error: 9.0805
+11/15 [=====================>........] - ETA: 3:09 - loss: 125.7975 - mean_squared_error: 125.7972 - mean_absolute_error: 8.2848
+12/15 [=======================>......] - ETA: 2:22 - loss: 117.5098 - mean_squared_error: 117.5095 - mean_absolute_error: 8.0222
+13/15 [=========================>....] - ETA: 1:34 - loss: 113.7215 - mean_squared_error: 113.7212 - mean_absolute_error: 8.0406
+14/15 [===========================>..] - ETA: 47s - loss: 106.3408 - mean_squared_error: 106.3406 - mean_absolute_error: 7.6966 Epoch 00046: val_loss did not improve
+Epoch 00046: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 743s 50s/step - loss: 99.9653 - mean_squared_error: 99.9651 - mean_absolute_error: 7.4016 - val_loss: 63.3908 - val_mean_squared_error: 63.3906 - val_mean_absolute_error: 7.5000
+Epoch 47/50
+
+ 1/15 [=>............................] - ETA: 11:02 - loss: 67.4186 - mean_squared_error: 67.4183 - mean_absolute_error: 8.2109
+ 2/15 [===>..........................] - ETA: 10:14 - loss: 37.3541 - mean_squared_error: 37.3538 - mean_absolute_error: 5.4554
+ 3/15 [=====>........................] - ETA: 9:28 - loss: 114.7616 - mean_squared_error: 114.7613 - mean_absolute_error: 9.1098
+ 4/15 [=======>......................] - ETA: 8:41 - loss: 103.1563 - mean_squared_error: 103.1560 - mean_absolute_error: 8.8991
+ 5/15 [=========>....................] - ETA: 7:54 - loss: 257.6642 - mean_squared_error: 257.6640 - mean_absolute_error: 13.0377
+ 6/15 [===========>..................] - ETA: 7:07 - loss: 232.9689 - mean_squared_error: 232.9687 - mean_absolute_error: 12.6087
+ 7/15 [=============>................] - ETA: 6:20 - loss: 202.3758 - mean_squared_error: 202.3755 - mean_absolute_error: 11.4272
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 215.7008 - mean_squared_error: 215.7005 - mean_absolute_error: 12.1960
+ 9/15 [=================>............] - ETA: 4:45 - loss: 199.6766 - mean_squared_error: 199.6763 - mean_absolute_error: 11.7803
+10/15 [===================>..........] - ETA: 3:57 - loss: 180.4032 - mean_squared_error: 180.4029 - mean_absolute_error: 10.8657
+11/15 [=====================>........] - ETA: 3:10 - loss: 173.8107 - mean_squared_error: 173.8104 - mean_absolute_error: 10.8222
+12/15 [=======================>......] - ETA: 2:22 - loss: 159.3535 - mean_squared_error: 159.3532 - mean_absolute_error: 9.9678 
+13/15 [=========================>....] - ETA: 1:35 - loss: 156.0781 - mean_squared_error: 156.0778 - mean_absolute_error: 10.0323
+14/15 [===========================>..] - ETA: 47s - loss: 149.5457 - mean_squared_error: 149.5454 - mean_absolute_error: 9.8899  Epoch 00047: val_loss did not improve
+Epoch 00047: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 745s 50s/step - loss: 141.7019 - mean_squared_error: 141.7017 - mean_absolute_error: 9.6070 - val_loss: 63.3995 - val_mean_squared_error: 63.3992 - val_mean_absolute_error: 7.5000
+Epoch 48/50
+
+ 1/15 [=>............................] - ETA: 11:02 - loss: 15.0325 - mean_squared_error: 15.0322 - mean_absolute_error: 3.8771
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 31.0722 - mean_squared_error: 31.0720 - mean_absolute_error: 5.3705
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 34.0248 - mean_squared_error: 34.0246 - mean_absolute_error: 5.6866 
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 194.5432 - mean_squared_error: 194.5429 - mean_absolute_error: 10.7655
+ 5/15 [=========>....................] - ETA: 7:56 - loss: 157.2379 - mean_squared_error: 157.2376 - mean_absolute_error: 9.1786 
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 132.1496 - mean_squared_error: 132.1493 - mean_absolute_error: 8.0805
+ 7/15 [=============>................] - ETA: 6:20 - loss: 122.8549 - mean_squared_error: 122.8546 - mean_absolute_error: 8.0962
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 109.4440 - mean_squared_error: 109.4438 - mean_absolute_error: 7.5774
+ 9/15 [=================>............] - ETA: 4:45 - loss: 123.3396 - mean_squared_error: 123.3393 - mean_absolute_error: 8.4370
+10/15 [===================>..........] - ETA: 3:57 - loss: 114.7335 - mean_squared_error: 114.7332 - mean_absolute_error: 8.2039
+11/15 [=====================>........] - ETA: 3:10 - loss: 128.7143 - mean_squared_error: 128.7141 - mean_absolute_error: 8.9477
+12/15 [=======================>......] - ETA: 2:22 - loss: 137.3754 - mean_squared_error: 137.3751 - mean_absolute_error: 9.4732
+13/15 [=========================>....] - ETA: 1:35 - loss: 152.7899 - mean_squared_error: 152.7896 - mean_absolute_error: 10.1582
+14/15 [===========================>..] - ETA: 47s - loss: 160.8335 - mean_squared_error: 160.8332 - mean_absolute_error: 10.5962 Epoch 00048: val_loss did not improve
+Epoch 00048: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 746s 50s/step - loss: 150.3299 - mean_squared_error: 150.3296 - mean_absolute_error: 10.0106 - val_loss: 63.7700 - val_mean_squared_error: 63.7697 - val_mean_absolute_error: 7.5000
+Epoch 49/50
+
+ 1/15 [=>............................] - ETA: 11:05 - loss: 66.5137 - mean_squared_error: 66.5134 - mean_absolute_error: 8.1556
+ 2/15 [===>..........................] - ETA: 10:17 - loss: 250.4659 - mean_squared_error: 250.4656 - mean_absolute_error: 14.4991
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 174.2822 - mean_squared_error: 174.2820 - mean_absolute_error: 11.2265 
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 179.6963 - mean_squared_error: 179.6960 - mean_absolute_error: 11.9193
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 146.8118 - mean_squared_error: 146.8116 - mean_absolute_error: 10.3171
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 122.3618 - mean_squared_error: 122.3615 - mean_absolute_error: 8.6532 
+ 7/15 [=============>................] - ETA: 6:20 - loss: 117.9335 - mean_squared_error: 117.9332 - mean_absolute_error: 8.7825
+ 8/15 [===============>..............] - ETA: 5:32 - loss: 122.8285 - mean_squared_error: 122.8282 - mean_absolute_error: 9.2514
+ 9/15 [=================>............] - ETA: 4:45 - loss: 123.2767 - mean_squared_error: 123.2764 - mean_absolute_error: 9.4750
+10/15 [===================>..........] - ETA: 3:57 - loss: 112.1902 - mean_squared_error: 112.1899 - mean_absolute_error: 8.8798
+11/15 [=====================>........] - ETA: 3:10 - loss: 111.6657 - mean_squared_error: 111.6654 - mean_absolute_error: 9.0103
+12/15 [=======================>......] - ETA: 2:22 - loss: 105.5777 - mean_squared_error: 105.5774 - mean_absolute_error: 8.7773
+13/15 [=========================>....] - ETA: 1:35 - loss: 99.1547 - mean_squared_error: 99.1545 - mean_absolute_error: 8.4635  
+14/15 [===========================>..] - ETA: 47s - loss: 100.5348 - mean_squared_error: 100.5345 - mean_absolute_error: 8.6365Epoch 00049: val_loss did not improve
+Epoch 00049: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 745s 50s/step - loss: 93.8476 - mean_squared_error: 93.8473 - mean_absolute_error: 8.0925 - val_loss: 63.5923 - val_mean_squared_error: 63.5921 - val_mean_absolute_error: 7.5000
+Epoch 50/50
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 508.1909 - mean_squared_error: 508.1906 - mean_absolute_error: 22.5431
+ 2/15 [===>..........................] - ETA: 10:18 - loss: 262.7100 - mean_squared_error: 262.7097 - mean_absolute_error: 13.3469
+ 3/15 [=====>........................] - ETA: 9:30 - loss: 175.1401 - mean_squared_error: 175.1398 - mean_absolute_error: 8.8997  
+ 4/15 [=======>......................] - ETA: 8:43 - loss: 165.5269 - mean_squared_error: 165.5267 - mean_absolute_error: 9.5976
+ 5/15 [=========>....................] - ETA: 7:55 - loss: 134.4667 - mean_squared_error: 134.4664 - mean_absolute_error: 8.3176
+ 6/15 [===========>..................] - ETA: 7:08 - loss: 140.8068 - mean_squared_error: 140.8066 - mean_absolute_error: 9.1204
+ 7/15 [=============>................] - ETA: 6:20 - loss: 156.7550 - mean_squared_error: 156.7547 - mean_absolute_error: 10.0872
+ 8/15 [===============>..............] - ETA: 5:33 - loss: 140.7826 - mean_squared_error: 140.7823 - mean_absolute_error: 9.4992 
+ 9/15 [=================>............] - ETA: 4:45 - loss: 129.5053 - mean_squared_error: 129.5050 - mean_absolute_error: 9.1402
+10/15 [===================>..........] - ETA: 3:58 - loss: 127.9154 - mean_squared_error: 127.9151 - mean_absolute_error: 9.2920
+11/15 [=====================>........] - ETA: 3:10 - loss: 117.5261 - mean_squared_error: 117.5258 - mean_absolute_error: 8.7829
+12/15 [=======================>......] - ETA: 2:22 - loss: 110.9388 - mean_squared_error: 110.9385 - mean_absolute_error: 8.5680
+13/15 [=========================>....] - ETA: 1:35 - loss: 102.5995 - mean_squared_error: 102.5992 - mean_absolute_error: 8.0312
+14/15 [===========================>..] - ETA: 47s - loss: 95.3314 - mean_squared_error: 95.3311 - mean_absolute_error: 7.5232   Epoch 00050: val_loss did not improve
+Epoch 00050: saving model to 00_CACHE/lstm_v4_20_latest.h5
+
+15/15 [==============================] - 747s 50s/step - loss: 95.6011 - mean_squared_error: 95.6008 - mean_absolute_error: 7.6862 - val_loss: 63.4633 - val_mean_squared_error: 63.4631 - val_mean_absolute_error: 7.5000
+> Evaluating model
+{'epochs': 50, 'patience': 0, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.01), 'lr_plateau': (0.1, 5, 0.0001), 'learning_rate': 0.1}
+
+2/2 [==============================] - 30s 15s/step
+[116.43476104736328, 116.43449401855469, 10.685714721679688]

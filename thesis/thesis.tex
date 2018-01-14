@@ -1,0 +1,77 @@
+\documentclass{ddis-thesis}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{program}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage[capitalise]{cleveref}
+\usepackage{subfig}
+\usepackage{tabularx}
+\usepackage{pdflscape}
+\usepackage{scrhack}
+\usepackage{breakcites}
+\usepackage{natbib}
+\usepackage{microtype}
+\usepackage{todo}
+\usepackage[bottom=2cm, includefoot]{geometry}
+
+\usepackage{fancyvrb}
+\DefineVerbatimEnvironment{code}{Verbatim}{fontsize=\small}
+\DefineVerbatimEnvironment{example}{Verbatim}{fontsize=\small}
+
+\usepackage{fancyhdr}% fancyhdr related command; details in its documentation
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\rightmark}
+
+\usepackage{graphicx}
+\author{Roland Schläfli}
+\title{Analysis of Weather Data using Graph-based and Neural Network Methods}
+\begin{document}
+
+% *************** Front matter ***************
+\frontmatter
+\input{00_title/title.tex}
+
+\input{00_acknowledgements/acknowledgements.tex}
+\input{00_abstract/zusammenfassung.tex}
+\input{00_abstract/abstract.tex}
+
+\tableofcontents
+
+% *************** Main matter ***************
+\mainmatter
+
+% extend vertical spacing of tabular environments
+\renewcommand{\arraystretch}{1.25}
+
+\input{01_introduction/introduction.tex}
+\input{02_ism_overview/ism_overview.tex}
+\input{03_part1/part1.tex}
+\input{04_part2/part2.tex}
+\input{05_conclusion/conclusion.tex}
+
+% *************** Bibliography ***************
+\bibliographystyle{apalike}
+\bibliography{99_references/thesisbib}
+
+% *************** Appendixes ***************
+\appendix
+\input{99_appendix/appendix.tex}
+
+% *************** Back matter ***************
+\backmatter
+
+\normalfont
+\clearpage
+\listoffigures
+
+\clearpage
+\listoftables
+
+
+\end{document}

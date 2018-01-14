@@ -1,0 +1,110 @@
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'batch_size': 2, 'conv_kernel_regularizer': ('L2', 0.02), 'conv_recurrent_regularizer': ('L2', 0.02), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+>> Eager evaluation: best
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'batch_size': 2, 'conv_kernel_regularizer': ('L2', 0.02), 'conv_recurrent_regularizer': ('L2', 0.02), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+
+2/2 [==============================] - 61s 30s/step
+[680.52569580078125, 622.34375, 24.900871276855469]
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'batch_size': 2, 'conv_kernel_regularizer': ('L2', 0.02), 'conv_recurrent_regularizer': ('L2', 0.02), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+>> Eager evaluation: latest
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'batch_size': 2, 'conv_kernel_regularizer': ('L2', 0.02), 'conv_recurrent_regularizer': ('L2', 0.02), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+
+2/2 [==============================] - 35s 18s/step
+[1202.388916015625, 1144.16845703125, 33.757583618164062]
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'batch_size': 2, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+>> Eager evaluation: best
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'batch_size': 2, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+
+2/2 [==============================] - 59s 30s/step
+[544.43487548828125, 488.63900756835938, 22.068763732910156]
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'batch_size': 2, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+>> Eager evaluation: latest
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'batch_size': 2, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+
+2/2 [==============================] - 61s 31s/step
+[975.91473388671875, 917.2978515625, 30.262895584106445]
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.005), 'lr_plateau': True}
+>> Eager evaluation: best
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.005), 'lr_plateau': True}
+
+2/2 [==============================] - 61s 30s/step
+[125.64276123046875, 125.62872314453125, 11.111801147460938]
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.005), 'lr_plateau': True}
+>> Eager evaluation: latest
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.005), 'lr_plateau': True}
+
+2/2 [==============================] - 61s 31s/step
+[125.64276123046875, 125.62872314453125, 11.111801147460938]
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.02), 'conv_recurrent_regularizer': ('L2', 0.02), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+>> Eager evaluation: best
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.02), 'conv_recurrent_regularizer': ('L2', 0.02), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+
+2/2 [==============================] - 48s 24s/step
+[141.24600219726562, 141.19107055664062, 11.794502258300781]
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.02), 'conv_recurrent_regularizer': ('L2', 0.02), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+>> Eager evaluation: latest
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.02), 'conv_recurrent_regularizer': ('L2', 0.02), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+
+2/2 [==============================] - 61s 31s/step
+[151.46559143066406, 151.41065979003906, 12.213653564453125]
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+>> Eager evaluation: best
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+
+2/2 [==============================] - 61s 31s/step
+[128.73490905761719, 128.68072509765625, 11.243728637695312]
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+>> Eager evaluation: best
+> Evaluating model
+{'epochs': 150, 'patience': 50, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.02), 'lr_plateau': True}
+
+2/2 [==============================] - 48s 24s/step
+[128.73490905761719, 128.68072509765625, 11.243728637695312]

@@ -1,0 +1,1036 @@
+> Loading Dataset
+> Loading from cache...
+> Train-Test Split
+> Training Model
+> Training config {'epochs': 100, 'patience': 25, 'conv_kernel_regularizer': ('L2', 0.01), 'conv_recurrent_regularizer': ('L2', 0.01), 'dense_kernel_regularizer': ('L2', 0.01)}
+ep-100_bat-1_opt-rmsprop_lr-None_dpt-0.6_dptR-None_dptC-0.4_ls-mean_squared_error_flt-[32, 16, 8]_krn-[7, 5, 3]_pool-[0, 0, 0, 4]_pad-same_pat-25_norm-True_dnsNod-[1024, 512, 256]_dnsAct-relu_recAct-hard_sigmoidcnvAct-tanh_splt-0.1_dnsReg-('L2', 0.01)_convReg-('L2', 0.01)_convRecReg-('L2', 0.01)
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv_lst_m2d_1 (ConvLSTM2D)  (None, 72, 140, 140, 32)  207104    
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 72, 140, 140, 32)  128       
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 72, 140, 140, 32)  0         
+_________________________________________________________________
+conv_lst_m2d_2 (ConvLSTM2D)  (None, 72, 140, 140, 16)  76864     
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 72, 140, 140, 16)  64        
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 72, 140, 140, 16)  0         
+_________________________________________________________________
+conv_lst_m2d_3 (ConvLSTM2D)  (None, 140, 140, 8)       6944      
+_________________________________________________________________
+batch_normalization_3 (Batch (None, 140, 140, 8)       32        
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 140, 140, 8)       0         
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 35, 35, 8)         0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 9800)              0         
+_________________________________________________________________
+batch_normalization_4 (Batch (None, 9800)              39200     
+_________________________________________________________________
+dense_1 (Dense)              (None, 1024)              10036224  
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 1024)              4096      
+_________________________________________________________________
+dropout_4 (Dropout)          (None, 1024)              0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 512)               524800    
+_________________________________________________________________
+batch_normalization_6 (Batch (None, 512)               2048      
+_________________________________________________________________
+dropout_5 (Dropout)          (None, 512)               0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 256)               131328    
+_________________________________________________________________
+batch_normalization_7 (Batch (None, 256)               1024      
+_________________________________________________________________
+dropout_6 (Dropout)          (None, 256)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 1)                 257       
+=================================================================
+Total params: 11,030,113
+Trainable params: 11,006,817
+Non-trainable params: 23,296
+_________________________________________________________________
+None
+
+
+Train on 15 samples, validate on 2 samples
+Epoch 1/100
+
+ 1/15 [=>............................] - ETA: 11:47 - loss: 256.6606 - mean_squared_error: 225.0000 - mean_absolute_error: 15.0000
+ 2/15 [===>..........................] - ETA: 10:38 - loss: 451.9214 - mean_squared_error: 424.3675 - mean_absolute_error: 19.9873
+ 3/15 [=====>........................] - ETA: 9:43 - loss: 372.4058 - mean_squared_error: 347.6878 - mean_absolute_error: 17.9716 
+ 4/15 [=======>......................] - ETA: 8:52 - loss: 372.9700 - mean_squared_error: 350.4061 - mean_absolute_error: 18.2126
+ 5/15 [=========>....................] - ETA: 8:02 - loss: 456.9120 - mean_squared_error: 436.0767 - mean_absolute_error: 20.1514
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 521.6957 - mean_squared_error: 502.2964 - mean_absolute_error: 21.6042
+ 7/15 [=============>................] - ETA: 6:24 - loss: 584.7180 - mean_squared_error: 566.5403 - mean_absolute_error: 22.9257
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 524.8913 - mean_squared_error: 507.7712 - mean_absolute_error: 21.2872
+ 9/15 [=================>............] - ETA: 4:48 - loss: 483.0653 - mean_squared_error: 466.8731 - mean_absolute_error: 20.2352
+10/15 [===================>..........] - ETA: 4:00 - loss: 440.2107 - mean_squared_error: 424.8415 - mean_absolute_error: 18.8940
+11/15 [=====================>........] - ETA: 3:11 - loss: 413.4502 - mean_squared_error: 398.8174 - mean_absolute_error: 18.2465
+12/15 [=======================>......] - ETA: 2:23 - loss: 379.6049 - mean_squared_error: 365.6358 - mean_absolute_error: 16.7925
+13/15 [=========================>....] - ETA: 1:35 - loss: 351.1289 - mean_squared_error: 337.7618 - mean_absolute_error: 15.6400
+14/15 [===========================>..] - ETA: 47s - loss: 327.0037 - mean_squared_error: 314.1857 - mean_absolute_error: 14.7210 
+15/15 [==============================] - 750s 50s/step - loss: 331.6252 - mean_squared_error: 319.3101 - mean_absolute_error: 15.0579 - val_loss: 394.2264 - val_mean_squared_error: 389.3193 - val_mean_absolute_error: 18.2503
+Epoch 2/100
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 950.4823 - mean_squared_error: 945.5753 - mean_absolute_error: 30.7502
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 545.8510 - mean_squared_error: 541.1074 - mean_absolute_error: 21.2197
+ 3/15 [=====>........................] - ETA: 9:34 - loss: 367.7279 - mean_squared_error: 363.1369 - mean_absolute_error: 15.0407 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 482.9735 - mean_squared_error: 478.5252 - mean_absolute_error: 18.4599
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 424.5004 - mean_squared_error: 420.1863 - mean_absolute_error: 17.5016
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 361.8221 - mean_squared_error: 357.6348 - mean_absolute_error: 15.7012
+ 7/15 [=============>................] - ETA: 6:22 - loss: 360.5355 - mean_squared_error: 356.4683 - mean_absolute_error: 16.1287
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 332.7898 - mean_squared_error: 328.8366 - mean_absolute_error: 15.5672
+ 9/15 [=================>............] - ETA: 4:47 - loss: 296.1863 - mean_squared_error: 292.3416 - mean_absolute_error: 13.9062
+10/15 [===================>..........] - ETA: 3:59 - loss: 276.0725 - mean_squared_error: 272.3312 - mean_absolute_error: 13.4760
+11/15 [=====================>........] - ETA: 3:11 - loss: 306.1254 - mean_squared_error: 302.4828 - mean_absolute_error: 14.4851
+12/15 [=======================>......] - ETA: 2:23 - loss: 298.3927 - mean_squared_error: 294.8445 - mean_absolute_error: 14.4880
+13/15 [=========================>....] - ETA: 1:35 - loss: 275.8192 - mean_squared_error: 272.3615 - mean_absolute_error: 13.4967
+14/15 [===========================>..] - ETA: 47s - loss: 310.6142 - mean_squared_error: 307.2433 - mean_absolute_error: 14.5027 
+15/15 [==============================] - 749s 50s/step - loss: 315.3817 - mean_squared_error: 312.0942 - mean_absolute_error: 14.8355 - val_loss: 382.2723 - val_mean_squared_error: 380.2682 - val_mean_absolute_error: 18.0005
+Epoch 3/100
+
+ 1/15 [=>............................] - ETA: 11:06 - loss: 2.2586 - mean_squared_error: 0.2544 - mean_absolute_error: 0.5044
+ 2/15 [===>..........................] - ETA: 10:19 - loss: 467.7630 - mean_squared_error: 465.8134 - mean_absolute_error: 15.5114
+ 3/15 [=====>........................] - ETA: 9:33 - loss: 342.3250 - mean_squared_error: 340.4282 - mean_absolute_error: 13.4972 
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 257.6990 - mean_squared_error: 255.8534 - mean_absolute_error: 10.4877
+ 5/15 [=========>....................] - ETA: 7:58 - loss: 325.5698 - mean_squared_error: 323.7737 - mean_absolute_error: 13.2705
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 272.5591 - mean_squared_error: 270.8108 - mean_absolute_error: 11.4669
+ 7/15 [=============>................] - ETA: 6:22 - loss: 340.9007 - mean_squared_error: 339.1984 - mean_absolute_error: 13.7398
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 303.5586 - mean_squared_error: 301.9010 - mean_absolute_error: 12.8210
+ 9/15 [=================>............] - ETA: 4:47 - loss: 311.9524 - mean_squared_error: 310.3380 - mean_absolute_error: 13.5562
+10/15 [===================>..........] - ETA: 3:59 - loss: 293.9106 - mean_squared_error: 292.3378 - mean_absolute_error: 13.3422
+11/15 [=====================>........] - ETA: 3:11 - loss: 283.5590 - mean_squared_error: 282.0265 - mean_absolute_error: 13.3453
+12/15 [=======================>......] - ETA: 2:23 - loss: 277.3547 - mean_squared_error: 275.8611 - mean_absolute_error: 13.4351
+13/15 [=========================>....] - ETA: 1:35 - loss: 266.1844 - mean_squared_error: 264.7284 - mean_absolute_error: 13.2826
+14/15 [===========================>..] - ETA: 47s - loss: 304.5188 - mean_squared_error: 303.0992 - mean_absolute_error: 14.3565 
+15/15 [==============================] - 748s 50s/step - loss: 306.6316 - mean_squared_error: 305.2470 - mean_absolute_error: 14.6202 - val_loss: 372.0411 - val_mean_squared_error: 371.1987 - val_mean_absolute_error: 17.7468
+Epoch 4/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 0.8886 - mean_squared_error: 0.0462 - mean_absolute_error: 0.2149
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 3.4549 - mean_squared_error: 2.6361 - mean_absolute_error: 1.2505
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 44.5435 - mean_squared_error: 43.7477 - mean_absolute_error: 4.5749
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 117.0635 - mean_squared_error: 116.2899 - mean_absolute_error: 7.9995
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 167.6530 - mean_squared_error: 166.9007 - mean_absolute_error: 10.2433
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 263.6457 - mean_squared_error: 262.9140 - mean_absolute_error: 13.0790
+ 7/15 [=============>................] - ETA: 6:24 - loss: 226.2599 - mean_squared_error: 225.5480 - mean_absolute_error: 11.3767
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 202.9557 - mean_squared_error: 202.2629 - mean_absolute_error: 10.7379
+ 9/15 [=================>............] - ETA: 4:47 - loss: 194.2394 - mean_squared_error: 193.5649 - mean_absolute_error: 10.7820
+10/15 [===================>..........] - ETA: 3:59 - loss: 254.2599 - mean_squared_error: 253.6030 - mean_absolute_error: 12.5215
+11/15 [=====================>........] - ETA: 3:11 - loss: 283.8648 - mean_squared_error: 283.2248 - mean_absolute_error: 13.5715
+12/15 [=======================>......] - ETA: 2:23 - loss: 335.4526 - mean_squared_error: 334.8288 - mean_absolute_error: 14.9440
+13/15 [=========================>....] - ETA: 1:35 - loss: 322.6096 - mean_squared_error: 322.0013 - mean_absolute_error: 14.7917
+14/15 [===========================>..] - ETA: 47s - loss: 305.3957 - mean_squared_error: 304.8024 - mean_absolute_error: 14.3789 
+15/15 [==============================] - 750s 50s/step - loss: 298.2450 - mean_squared_error: 297.6660 - mean_absolute_error: 14.3578 - val_loss: 361.4672 - val_mean_squared_error: 361.1082 - val_mean_absolute_error: 17.4602
+Epoch 5/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 119.5168 - mean_squared_error: 119.1578 - mean_absolute_error: 10.9159
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 120.8862 - mean_squared_error: 120.5364 - mean_absolute_error: 10.9787
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 186.8483 - mean_squared_error: 186.5074 - mean_absolute_error: 13.2675 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 281.8038 - mean_squared_error: 281.4715 - mean_absolute_error: 15.9003
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 262.7040 - mean_squared_error: 262.3798 - mean_absolute_error: 15.4479
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 231.9893 - mean_squared_error: 231.6728 - mean_absolute_error: 14.3465
+ 7/15 [=============>................] - ETA: 6:23 - loss: 301.0502 - mean_squared_error: 300.7410 - mean_absolute_error: 16.1174
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 263.4644 - mean_squared_error: 263.1623 - mean_absolute_error: 14.1444
+ 9/15 [=================>............] - ETA: 4:48 - loss: 332.1766 - mean_squared_error: 331.8812 - mean_absolute_error: 15.8719
+10/15 [===================>..........] - ETA: 4:00 - loss: 315.9113 - mean_squared_error: 315.6224 - mean_absolute_error: 15.5859
+11/15 [=====================>........] - ETA: 3:11 - loss: 357.8210 - mean_squared_error: 357.5384 - mean_absolute_error: 16.7026
+12/15 [=======================>......] - ETA: 2:23 - loss: 330.6200 - mean_squared_error: 330.3434 - mean_absolute_error: 15.7761
+13/15 [=========================>....] - ETA: 1:35 - loss: 305.2556 - mean_squared_error: 304.9847 - mean_absolute_error: 14.6260
+14/15 [===========================>..] - ETA: 47s - loss: 309.0260 - mean_squared_error: 308.7604 - mean_absolute_error: 14.9325 
+15/15 [==============================] - 750s 50s/step - loss: 288.6098 - mean_squared_error: 288.3494 - mean_absolute_error: 14.0444 - val_loss: 350.6969 - val_mean_squared_error: 350.5159 - val_mean_absolute_error: 17.1542
+Epoch 6/100
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 114.1595 - mean_squared_error: 113.9784 - mean_absolute_error: 10.6761
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 410.1205 - mean_squared_error: 409.9429 - mean_absolute_error: 18.6225
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 284.2984 - mean_squared_error: 284.1241 - mean_absolute_error: 14.3149 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 352.2342 - mean_squared_error: 352.0630 - mean_absolute_error: 16.6304
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 318.9421 - mean_squared_error: 318.7738 - mean_absolute_error: 16.0292
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 265.8447 - mean_squared_error: 265.6792 - mean_absolute_error: 13.4333
+ 7/15 [=============>................] - ETA: 6:23 - loss: 271.6679 - mean_squared_error: 271.5051 - mean_absolute_error: 14.0151
+ 8/15 [===============>..............] - ETA: 5:34 - loss: 281.3958 - mean_squared_error: 281.2357 - mean_absolute_error: 14.5996
+ 9/15 [=================>............] - ETA: 4:47 - loss: 257.8607 - mean_squared_error: 257.7031 - mean_absolute_error: 13.9033
+10/15 [===================>..........] - ETA: 3:59 - loss: 319.5074 - mean_squared_error: 319.3521 - mean_absolute_error: 15.4697
+11/15 [=====================>........] - ETA: 3:11 - loss: 290.4888 - mean_squared_error: 290.3357 - mean_absolute_error: 14.1010
+12/15 [=======================>......] - ETA: 2:23 - loss: 266.4445 - mean_squared_error: 266.2935 - mean_absolute_error: 13.0386
+13/15 [=========================>....] - ETA: 1:35 - loss: 303.0623 - mean_squared_error: 302.9133 - mean_absolute_error: 14.1315
+14/15 [===========================>..] - ETA: 47s - loss: 288.9782 - mean_squared_error: 288.8310 - mean_absolute_error: 13.8567 
+15/15 [==============================] - 749s 50s/step - loss: 279.9748 - mean_squared_error: 279.8295 - mean_absolute_error: 13.7597 - val_loss: 339.1958 - val_mean_squared_error: 339.0791 - val_mean_absolute_error: 16.8175
+Epoch 7/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 861.8641 - mean_squared_error: 861.7474 - mean_absolute_error: 29.3555
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 431.0385 - mean_squared_error: 430.9230 - mean_absolute_error: 14.8348
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 321.7503 - mean_squared_error: 321.6359 - mean_absolute_error: 13.2739 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 325.2603 - mean_squared_error: 325.1468 - mean_absolute_error: 14.5358
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 260.3601 - mean_squared_error: 260.2475 - mean_absolute_error: 11.7899
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 343.0359 - mean_squared_error: 342.9241 - mean_absolute_error: 14.4084
+ 7/15 [=============>................] - ETA: 6:23 - loss: 294.2142 - mean_squared_error: 294.1032 - mean_absolute_error: 12.5051
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 266.0659 - mean_squared_error: 265.9556 - mean_absolute_error: 11.9797
+ 9/15 [=================>............] - ETA: 4:47 - loss: 255.7564 - mean_squared_error: 255.6467 - mean_absolute_error: 12.1108
+10/15 [===================>..........] - ETA: 3:59 - loss: 284.6719 - mean_squared_error: 284.5629 - mean_absolute_error: 13.2338
+11/15 [=====================>........] - ETA: 3:11 - loss: 271.6038 - mean_squared_error: 271.4956 - mean_absolute_error: 13.1096
+12/15 [=======================>......] - ETA: 2:23 - loss: 251.1505 - mean_squared_error: 251.0431 - mean_absolute_error: 12.4425
+13/15 [=========================>....] - ETA: 1:35 - loss: 283.7842 - mean_squared_error: 283.6775 - mean_absolute_error: 13.4844
+14/15 [===========================>..] - ETA: 47s - loss: 284.2730 - mean_squared_error: 284.1670 - mean_absolute_error: 13.7387 
+15/15 [==============================] - 749s 50s/step - loss: 271.9303 - mean_squared_error: 271.8250 - mean_absolute_error: 13.4862 - val_loss: 327.2536 - val_mean_squared_error: 327.1590 - val_mean_absolute_error: 16.4593
+Epoch 8/100
+
+ 1/15 [=>............................] - ETA: 11:14 - loss: 163.3339 - mean_squared_error: 163.2393 - mean_absolute_error: 12.7765
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 222.3464 - mean_squared_error: 222.2522 - mean_absolute_error: 14.7737
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 371.7696 - mean_squared_error: 371.6758 - mean_absolute_error: 18.4806 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 294.4391 - mean_squared_error: 294.3476 - mean_absolute_error: 15.8347
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 235.6859 - mean_squared_error: 235.5968 - mean_absolute_error: 12.8219
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 248.0548 - mean_squared_error: 247.9676 - mean_absolute_error: 13.6185
+ 7/15 [=============>................] - ETA: 6:24 - loss: 226.2926 - mean_squared_error: 226.2067 - mean_absolute_error: 13.0701
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 198.0159 - mean_squared_error: 197.9311 - mean_absolute_error: 11.4423
+ 9/15 [=================>............] - ETA: 4:48 - loss: 268.8510 - mean_squared_error: 268.7671 - mean_absolute_error: 13.3825
+10/15 [===================>..........] - ETA: 4:00 - loss: 294.1131 - mean_squared_error: 294.0301 - mean_absolute_error: 14.3276
+11/15 [=====================>........] - ETA: 3:12 - loss: 269.2696 - mean_squared_error: 269.1873 - mean_absolute_error: 13.4393
+12/15 [=======================>......] - ETA: 2:24 - loss: 305.2059 - mean_squared_error: 305.1243 - mean_absolute_error: 14.5249
+13/15 [=========================>....] - ETA: 1:36 - loss: 288.9894 - mean_squared_error: 288.9085 - mean_absolute_error: 14.1546
+14/15 [===========================>..] - ETA: 48s - loss: 277.4401 - mean_squared_error: 277.3597 - mean_absolute_error: 13.9493 
+15/15 [==============================] - 751s 50s/step - loss: 259.0589 - mean_squared_error: 258.9790 - mean_absolute_error: 13.1049 - val_loss: 314.5816 - val_mean_squared_error: 314.5095 - val_mean_absolute_error: 16.0705
+Epoch 9/100
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 281.6642 - mean_squared_error: 281.5920 - mean_absolute_error: 16.7807
+ 2/15 [===>..........................] - ETA: 10:27 - loss: 169.9145 - mean_squared_error: 169.8425 - mean_absolute_error: 12.2013
+ 3/15 [=====>........................] - ETA: 9:38 - loss: 215.3254 - mean_squared_error: 215.2535 - mean_absolute_error: 13.9659 
+ 4/15 [=======>......................] - ETA: 8:50 - loss: 184.5527 - mean_squared_error: 184.4809 - mean_absolute_error: 12.8744
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 147.6599 - mean_squared_error: 147.5882 - mean_absolute_error: 10.3258
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 209.0865 - mean_squared_error: 209.0149 - mean_absolute_error: 12.3913
+ 7/15 [=============>................] - ETA: 6:25 - loss: 179.7596 - mean_squared_error: 179.6884 - mean_absolute_error: 10.8970
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 244.3771 - mean_squared_error: 244.3063 - mean_absolute_error: 12.8341
+ 9/15 [=================>............] - ETA: 4:48 - loss: 290.0077 - mean_squared_error: 289.9375 - mean_absolute_error: 14.2517
+10/15 [===================>..........] - ETA: 4:00 - loss: 269.6611 - mean_squared_error: 269.5917 - mean_absolute_error: 13.7565
+11/15 [=====================>........] - ETA: 3:12 - loss: 317.8814 - mean_squared_error: 317.8127 - mean_absolute_error: 15.0772
+12/15 [=======================>......] - ETA: 2:24 - loss: 292.9621 - mean_squared_error: 292.8940 - mean_absolute_error: 14.1820
+13/15 [=========================>....] - ETA: 1:36 - loss: 281.1021 - mean_squared_error: 281.0347 - mean_absolute_error: 13.9971
+14/15 [===========================>..] - ETA: 48s - loss: 271.2965 - mean_squared_error: 271.2296 - mean_absolute_error: 13.8537 
+15/15 [==============================] - 753s 50s/step - loss: 253.2559 - mean_squared_error: 253.1895 - mean_absolute_error: 12.9830 - val_loss: 302.2731 - val_mean_squared_error: 302.2134 - val_mean_absolute_error: 15.6832
+Epoch 10/100
+
+ 1/15 [=>............................] - ETA: 11:14 - loss: 80.0441 - mean_squared_error: 79.9844 - mean_absolute_error: 8.9434
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 49.0748 - mean_squared_error: 49.0151 - mean_absolute_error: 6.5957
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 32.7433 - mean_squared_error: 32.6836 - mean_absolute_error: 4.4452 
+ 4/15 [=======>......................] - ETA: 8:49 - loss: 59.0770 - mean_squared_error: 59.0174 - mean_absolute_error: 6.2709
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 47.4574 - mean_squared_error: 47.3979 - mean_absolute_error: 5.2085
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 40.1289 - mean_squared_error: 40.0696 - mean_absolute_error: 4.6490
+ 7/15 [=============>................] - ETA: 6:24 - loss: 74.7749 - mean_squared_error: 74.7159 - mean_absolute_error: 6.3864
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 97.9695 - mean_squared_error: 97.9109 - mean_absolute_error: 7.6047
+ 9/15 [=================>............] - ETA: 4:48 - loss: 100.2960 - mean_squared_error: 100.2377 - mean_absolute_error: 7.9711
+10/15 [===================>..........] - ETA: 4:00 - loss: 157.1174 - mean_squared_error: 157.0596 - mean_absolute_error: 9.7594
+11/15 [=====================>........] - ETA: 3:12 - loss: 185.6362 - mean_squared_error: 185.5788 - mean_absolute_error: 10.8447
+12/15 [=======================>......] - ETA: 2:24 - loss: 221.1181 - mean_squared_error: 221.0611 - mean_absolute_error: 12.0014
+13/15 [=========================>....] - ETA: 1:36 - loss: 262.7106 - mean_squared_error: 262.6539 - mean_absolute_error: 13.2013
+14/15 [===========================>..] - ETA: 48s - loss: 249.2485 - mean_squared_error: 249.1922 - mean_absolute_error: 12.8736 
+15/15 [==============================] - 752s 50s/step - loss: 235.7518 - mean_squared_error: 235.6959 - mean_absolute_error: 12.4712 - val_loss: 288.0988 - val_mean_squared_error: 288.0472 - val_mean_absolute_error: 15.2249
+Epoch 11/100
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 282.7693 - mean_squared_error: 282.7177 - mean_absolute_error: 16.8142
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 272.6015 - mean_squared_error: 272.5499 - mean_absolute_error: 16.5062
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 225.1671 - mean_squared_error: 225.1157 - mean_absolute_error: 14.8083 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 168.9057 - mean_squared_error: 168.8544 - mean_absolute_error: 11.1726
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 255.9162 - mean_squared_error: 255.8650 - mean_absolute_error: 13.8530
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 221.6484 - mean_squared_error: 221.5976 - mean_absolute_error: 12.7257
+ 7/15 [=============>................] - ETA: 6:23 - loss: 190.3417 - mean_squared_error: 190.2911 - mean_absolute_error: 11.1315
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 175.8084 - mean_squared_error: 175.7581 - mean_absolute_error: 10.8155
+ 9/15 [=================>............] - ETA: 4:47 - loss: 168.2601 - mean_squared_error: 168.2101 - mean_absolute_error: 10.7676
+10/15 [===================>..........] - ETA: 3:59 - loss: 159.1062 - mean_squared_error: 159.0565 - mean_absolute_error: 10.5665
+11/15 [=====================>........] - ETA: 3:12 - loss: 204.9729 - mean_squared_error: 204.9234 - mean_absolute_error: 11.9477
+12/15 [=======================>......] - ETA: 2:23 - loss: 250.7169 - mean_squared_error: 250.6677 - mean_absolute_error: 13.2401
+13/15 [=========================>....] - ETA: 1:35 - loss: 267.4246 - mean_squared_error: 267.3757 - mean_absolute_error: 13.8855
+14/15 [===========================>..] - ETA: 47s - loss: 249.0924 - mean_squared_error: 249.0437 - mean_absolute_error: 13.1277 
+15/15 [==============================] - 750s 50s/step - loss: 233.0471 - mean_squared_error: 232.9987 - mean_absolute_error: 12.4453 - val_loss: 275.7422 - val_mean_squared_error: 275.6970 - val_mean_absolute_error: 14.8137
+Epoch 12/100
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 2.1429 - mean_squared_error: 2.0978 - mean_absolute_error: 1.4484
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 4.5490 - mean_squared_error: 4.5040 - mean_absolute_error: 2.0385
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 6.4486 - mean_squared_error: 6.4037 - mean_absolute_error: 2.4238 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 41.2359 - mean_squared_error: 41.1912 - mean_absolute_error: 4.8340
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 79.3227 - mean_squared_error: 79.2782 - mean_absolute_error: 6.9110
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 78.6530 - mean_squared_error: 78.6087 - mean_absolute_error: 7.2051
+ 7/15 [=============>................] - ETA: 6:24 - loss: 67.4865 - mean_squared_error: 67.4424 - mean_absolute_error: 6.2710
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 91.9304 - mean_squared_error: 91.8865 - mean_absolute_error: 7.5143
+ 9/15 [=================>............] - ETA: 4:48 - loss: 93.6605 - mean_squared_error: 93.6168 - mean_absolute_error: 7.8312
+10/15 [===================>..........] - ETA: 4:00 - loss: 90.5665 - mean_squared_error: 90.5230 - mean_absolute_error: 7.8398
+11/15 [=====================>........] - ETA: 3:12 - loss: 122.3979 - mean_squared_error: 122.3546 - mean_absolute_error: 9.0354
+12/15 [=======================>......] - ETA: 2:24 - loss: 165.2377 - mean_squared_error: 165.1946 - mean_absolute_error: 10.3848
+13/15 [=========================>....] - ETA: 1:36 - loss: 211.3225 - mean_squared_error: 211.2795 - mean_absolute_error: 11.7126
+14/15 [===========================>..] - ETA: 48s - loss: 237.1464 - mean_squared_error: 237.1035 - mean_absolute_error: 12.5855 
+15/15 [==============================] - 751s 50s/step - loss: 223.5873 - mean_squared_error: 223.5446 - mean_absolute_error: 12.1336 - val_loss: 262.1931 - val_mean_squared_error: 262.1527 - val_mean_absolute_error: 14.3493
+Epoch 13/100
+
+ 1/15 [=>............................] - ETA: 11:19 - loss: 268.8654 - mean_squared_error: 268.8250 - mean_absolute_error: 16.3959
+ 2/15 [===>..........................] - ETA: 10:27 - loss: 164.3528 - mean_squared_error: 164.3126 - mean_absolute_error: 12.0645
+ 3/15 [=====>........................] - ETA: 9:39 - loss: 112.5985 - mean_squared_error: 112.5584 - mean_absolute_error: 9.0458  
+ 4/15 [=======>......................] - ETA: 8:50 - loss: 265.7923 - mean_squared_error: 265.7524 - mean_absolute_error: 13.5173
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 213.1659 - mean_squared_error: 213.1262 - mean_absolute_error: 11.1377
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 179.3448 - mean_squared_error: 179.3052 - mean_absolute_error: 9.8137 
+ 7/15 [=============>................] - ETA: 6:24 - loss: 184.2659 - mean_squared_error: 184.2264 - mean_absolute_error: 10.5004
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 165.0795 - mean_squared_error: 165.0402 - mean_absolute_error: 9.8808 
+ 9/15 [=================>............] - ETA: 4:48 - loss: 156.9019 - mean_squared_error: 156.8627 - mean_absolute_error: 9.8455
+10/15 [===================>..........] - ETA: 4:00 - loss: 181.1954 - mean_squared_error: 181.1564 - mean_absolute_error: 10.8604
+11/15 [=====================>........] - ETA: 3:12 - loss: 213.2248 - mean_squared_error: 213.1859 - mean_absolute_error: 11.9728
+12/15 [=======================>......] - ETA: 2:24 - loss: 245.9168 - mean_squared_error: 245.8780 - mean_absolute_error: 13.0257
+13/15 [=========================>....] - ETA: 1:35 - loss: 235.8557 - mean_squared_error: 235.8170 - mean_absolute_error: 12.8489
+14/15 [===========================>..] - ETA: 47s - loss: 219.6437 - mean_squared_error: 219.6051 - mean_absolute_error: 12.1436 
+15/15 [==============================] - 751s 50s/step - loss: 208.2360 - mean_squared_error: 208.1976 - mean_absolute_error: 11.7983 - val_loss: 249.4832 - val_mean_squared_error: 249.4465 - val_mean_absolute_error: 13.8995
+Epoch 14/100
+
+ 1/15 [=>............................] - ETA: 11:14 - loss: 110.0766 - mean_squared_error: 110.0399 - mean_absolute_error: 10.4900
+ 2/15 [===>..........................] - ETA: 10:25 - loss: 57.8311 - mean_squared_error: 57.7945 - mean_absolute_error: 6.4228   
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 39.6496 - mean_squared_error: 39.6131 - mean_absolute_error: 4.8828 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 172.0215 - mean_squared_error: 171.9852 - mean_absolute_error: 9.6261
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 153.8406 - mean_squared_error: 153.8044 - mean_absolute_error: 9.5018
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 166.0930 - mean_squared_error: 166.0569 - mean_absolute_error: 10.4310
+ 7/15 [=============>................] - ETA: 6:24 - loss: 148.3715 - mean_squared_error: 148.3355 - mean_absolute_error: 9.8668 
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 155.3088 - mean_squared_error: 155.2729 - mean_absolute_error: 10.4180
+ 9/15 [=================>............] - ETA: 4:48 - loss: 139.5804 - mean_squared_error: 139.5446 - mean_absolute_error: 9.6720 
+10/15 [===================>..........] - ETA: 4:00 - loss: 130.7426 - mean_squared_error: 130.7069 - mean_absolute_error: 9.4201
+11/15 [=====================>........] - ETA: 3:12 - loss: 181.1738 - mean_squared_error: 181.1382 - mean_absolute_error: 10.9439
+12/15 [=======================>......] - ETA: 2:24 - loss: 168.9272 - mean_squared_error: 168.8917 - mean_absolute_error: 10.5191
+13/15 [=========================>....] - ETA: 1:36 - loss: 156.0536 - mean_squared_error: 156.0182 - mean_absolute_error: 9.8052 
+14/15 [===========================>..] - ETA: 48s - loss: 174.2290 - mean_squared_error: 174.1936 - mean_absolute_error: 10.5520
+15/15 [==============================] - 751s 50s/step - loss: 200.0493 - mean_squared_error: 200.0140 - mean_absolute_error: 11.4283 - val_loss: 236.3570 - val_mean_squared_error: 236.3230 - val_mean_absolute_error: 13.4191
+Epoch 15/100
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 402.8047 - mean_squared_error: 402.7708 - mean_absolute_error: 20.0691
+ 2/15 [===>..........................] - ETA: 10:25 - loss: 489.3937 - mean_squared_error: 489.3599 - mean_absolute_error: 22.0340
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 334.7732 - mean_squared_error: 334.7394 - mean_absolute_error: 16.3726 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 306.5603 - mean_squared_error: 306.5266 - mean_absolute_error: 16.0034
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 247.1633 - mean_squared_error: 247.1296 - mean_absolute_error: 13.4205
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 317.9553 - mean_squared_error: 317.9218 - mean_absolute_error: 15.5039
+ 7/15 [=============>................] - ETA: 6:24 - loss: 283.6939 - mean_squared_error: 283.6604 - mean_absolute_error: 14.5515
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 259.6632 - mean_squared_error: 259.6298 - mean_absolute_error: 13.9277
+ 9/15 [=================>............] - ETA: 4:48 - loss: 232.3489 - mean_squared_error: 232.3155 - mean_absolute_error: 12.7929
+10/15 [===================>..........] - ETA: 4:00 - loss: 212.5387 - mean_squared_error: 212.5054 - mean_absolute_error: 12.0986
+11/15 [=====================>........] - ETA: 3:12 - loss: 193.5799 - mean_squared_error: 193.5467 - mean_absolute_error: 11.1796
+12/15 [=======================>......] - ETA: 2:24 - loss: 179.9618 - mean_squared_error: 179.9286 - mean_absolute_error: 10.7054
+13/15 [=========================>....] - ETA: 1:36 - loss: 205.0052 - mean_squared_error: 204.9721 - mean_absolute_error: 11.6114
+14/15 [===========================>..] - ETA: 48s - loss: 203.3658 - mean_squared_error: 203.3327 - mean_absolute_error: 11.7457 
+15/15 [==============================] - 753s 50s/step - loss: 190.0736 - mean_squared_error: 190.0406 - mean_absolute_error: 11.0951 - val_loss: 224.3717 - val_mean_squared_error: 224.3396 - val_mean_absolute_error: 12.9649
+Epoch 16/100
+
+ 1/15 [=>............................] - ETA: 11:06 - loss: 521.9460 - mean_squared_error: 521.9141 - mean_absolute_error: 22.8454
+ 2/15 [===>..........................] - ETA: 10:21 - loss: 269.9291 - mean_squared_error: 269.8972 - mean_absolute_error: 13.5370
+ 3/15 [=====>........................] - ETA: 9:34 - loss: 205.4179 - mean_squared_error: 205.3860 - mean_absolute_error: 11.9375 
+ 4/15 [=======>......................] - ETA: 8:46 - loss: 167.1730 - mean_squared_error: 167.1412 - mean_absolute_error: 10.7630
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 151.6449 - mean_squared_error: 151.6131 - mean_absolute_error: 10.5025
+ 6/15 [===========>..................] - ETA: 7:10 - loss: 157.3605 - mean_squared_error: 157.3288 - mean_absolute_error: 11.0245
+ 7/15 [=============>................] - ETA: 6:23 - loss: 223.6929 - mean_squared_error: 223.6612 - mean_absolute_error: 13.0114
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 197.9859 - mean_squared_error: 197.9543 - mean_absolute_error: 11.9154
+ 9/15 [=================>............] - ETA: 4:47 - loss: 177.9295 - mean_squared_error: 177.8979 - mean_absolute_error: 11.0556
+10/15 [===================>..........] - ETA: 3:59 - loss: 195.5201 - mean_squared_error: 195.4886 - mean_absolute_error: 11.8310
+11/15 [=====================>........] - ETA: 3:11 - loss: 194.3483 - mean_squared_error: 194.3168 - mean_absolute_error: 11.9839
+12/15 [=======================>......] - ETA: 2:23 - loss: 178.9688 - mean_squared_error: 178.9374 - mean_absolute_error: 11.2456
+13/15 [=========================>....] - ETA: 1:35 - loss: 204.6006 - mean_squared_error: 204.5693 - mean_absolute_error: 12.1214
+14/15 [===========================>..] - ETA: 47s - loss: 192.4225 - mean_squared_error: 192.3911 - mean_absolute_error: 11.6726 
+15/15 [==============================] - 751s 50s/step - loss: 179.6026 - mean_squared_error: 179.5713 - mean_absolute_error: 10.9149 - val_loss: 211.8460 - val_mean_squared_error: 211.8154 - val_mean_absolute_error: 12.4726
+Epoch 17/100
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 63.8666 - mean_squared_error: 63.8360 - mean_absolute_error: 7.9897
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 205.8437 - mean_squared_error: 205.8132 - mean_absolute_error: 13.3194
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 142.7373 - mean_squared_error: 142.7068 - mean_absolute_error: 10.2334 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 233.9890 - mean_squared_error: 233.9585 - mean_absolute_error: 13.3082
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 187.2928 - mean_squared_error: 187.2623 - mean_absolute_error: 10.7847
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 187.2772 - mean_squared_error: 187.2467 - mean_absolute_error: 11.2674
+ 7/15 [=============>................] - ETA: 6:23 - loss: 162.2482 - mean_squared_error: 162.2178 - mean_absolute_error: 10.1536
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 150.2467 - mean_squared_error: 150.2164 - mean_absolute_error: 9.9015 
+ 9/15 [=================>............] - ETA: 4:47 - loss: 135.8824 - mean_squared_error: 135.8520 - mean_absolute_error: 9.3097
+10/15 [===================>..........] - ETA: 3:59 - loss: 139.5341 - mean_squared_error: 139.5038 - mean_absolute_error: 9.6916
+11/15 [=====================>........] - ETA: 3:11 - loss: 179.7632 - mean_squared_error: 179.7330 - mean_absolute_error: 11.0038
+12/15 [=======================>......] - ETA: 2:23 - loss: 167.5805 - mean_squared_error: 167.5503 - mean_absolute_error: 10.5694
+13/15 [=========================>....] - ETA: 1:35 - loss: 156.9898 - mean_squared_error: 156.9596 - mean_absolute_error: 10.1768
+14/15 [===========================>..] - ETA: 47s - loss: 183.2230 - mean_squared_error: 183.1929 - mean_absolute_error: 11.0853 
+15/15 [==============================] - 751s 50s/step - loss: 173.7628 - mean_squared_error: 173.7327 - mean_absolute_error: 10.7747 - val_loss: 200.0048 - val_mean_squared_error: 199.9752 - val_mean_absolute_error: 11.9885
+Epoch 18/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 354.6205 - mean_squared_error: 354.5909 - mean_absolute_error: 18.8306
+ 2/15 [===>..........................] - ETA: 10:22 - loss: 193.0670 - mean_squared_error: 193.0374 - mean_absolute_error: 12.2208
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 326.5062 - mean_squared_error: 326.4767 - mean_absolute_error: 16.2668 
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 284.5114 - mean_squared_error: 284.4819 - mean_absolute_error: 15.3475
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 232.8229 - mean_squared_error: 232.7934 - mean_absolute_error: 13.2986
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 194.0240 - mean_squared_error: 193.9945 - mean_absolute_error: 11.0829
+ 7/15 [=============>................] - ETA: 6:23 - loss: 173.1039 - mean_squared_error: 173.0744 - mean_absolute_error: 10.4847
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 153.1498 - mean_squared_error: 153.1204 - mean_absolute_error: 9.6324 
+ 9/15 [=================>............] - ETA: 4:48 - loss: 144.2057 - mean_squared_error: 144.1763 - mean_absolute_error: 9.5091
+10/15 [===================>..........] - ETA: 4:00 - loss: 146.3774 - mean_squared_error: 146.3481 - mean_absolute_error: 9.8461
+11/15 [=====================>........] - ETA: 3:12 - loss: 183.3407 - mean_squared_error: 183.3114 - mean_absolute_error: 11.0887
+12/15 [=======================>......] - ETA: 2:24 - loss: 169.5031 - mean_squared_error: 169.4738 - mean_absolute_error: 10.5109
+13/15 [=========================>....] - ETA: 1:36 - loss: 158.0172 - mean_squared_error: 157.9879 - mean_absolute_error: 10.0477
+14/15 [===========================>..] - ETA: 48s - loss: 148.7700 - mean_squared_error: 148.7407 - mean_absolute_error: 9.7115  
+15/15 [==============================] - 751s 50s/step - loss: 170.4801 - mean_squared_error: 170.4509 - mean_absolute_error: 10.5161 - val_loss: 189.1784 - val_mean_squared_error: 189.1495 - val_mean_absolute_error: 11.5282
+Epoch 19/100
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 449.4913 - mean_squared_error: 449.4624 - mean_absolute_error: 21.2005
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 235.2421 - mean_squared_error: 235.2133 - mean_absolute_error: 12.8896
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 156.9180 - mean_squared_error: 156.8892 - mean_absolute_error: 8.7567  
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 195.4559 - mean_squared_error: 195.4271 - mean_absolute_error: 10.9766
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 275.8003 - mean_squared_error: 275.7716 - mean_absolute_error: 13.6686
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 233.5663 - mean_squared_error: 233.5375 - mean_absolute_error: 12.1787
+ 7/15 [=============>................] - ETA: 6:23 - loss: 201.3271 - mean_squared_error: 201.2984 - mean_absolute_error: 10.8395
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 184.3221 - mean_squared_error: 184.2933 - mean_absolute_error: 10.4944
+ 9/15 [=================>............] - ETA: 4:47 - loss: 167.4759 - mean_squared_error: 167.4472 - mean_absolute_error: 9.9635 
+10/15 [===================>..........] - ETA: 4:00 - loss: 153.3176 - mean_squared_error: 153.2889 - mean_absolute_error: 9.4757
+11/15 [=====================>........] - ETA: 3:12 - loss: 179.9725 - mean_squared_error: 179.9438 - mean_absolute_error: 10.5352
+12/15 [=======================>......] - ETA: 2:24 - loss: 176.9730 - mean_squared_error: 176.9443 - mean_absolute_error: 10.6571
+13/15 [=========================>....] - ETA: 1:36 - loss: 166.6020 - mean_squared_error: 166.5733 - mean_absolute_error: 10.3366
+14/15 [===========================>..] - ETA: 48s - loss: 156.9154 - mean_squared_error: 156.8867 - mean_absolute_error: 9.9957  
+15/15 [==============================] - 751s 50s/step - loss: 156.8258 - mean_squared_error: 156.7972 - mean_absolute_error: 10.1608 - val_loss: 178.6477 - val_mean_squared_error: 178.6193 - val_mean_absolute_error: 11.0621
+Epoch 20/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 47.2743 - mean_squared_error: 47.2459 - mean_absolute_error: 6.8736
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 23.9979 - mean_squared_error: 23.9695 - mean_absolute_error: 3.8530
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 31.3230 - mean_squared_error: 31.2947 - mean_absolute_error: 4.8281 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 135.1692 - mean_squared_error: 135.1409 - mean_absolute_error: 8.9048
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 219.3985 - mean_squared_error: 219.3702 - mean_absolute_error: 11.8410
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 185.7017 - mean_squared_error: 185.6734 - mean_absolute_error: 10.5585
+ 7/15 [=============>................] - ETA: 6:24 - loss: 165.1363 - mean_squared_error: 165.1080 - mean_absolute_error: 9.9728 
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 149.4921 - mean_squared_error: 149.4638 - mean_absolute_error: 9.5163
+ 9/15 [=================>............] - ETA: 4:48 - loss: 148.6987 - mean_squared_error: 148.6705 - mean_absolute_error: 9.7845
+10/15 [===================>..........] - ETA: 4:00 - loss: 135.3711 - mean_squared_error: 135.3428 - mean_absolute_error: 9.1984
+11/15 [=====================>........] - ETA: 3:12 - loss: 150.1535 - mean_squared_error: 150.1252 - mean_absolute_error: 9.9314
+12/15 [=======================>......] - ETA: 2:24 - loss: 148.5849 - mean_squared_error: 148.5567 - mean_absolute_error: 10.0587
+13/15 [=========================>....] - ETA: 1:36 - loss: 169.5957 - mean_squared_error: 169.5675 - mean_absolute_error: 10.8646
+14/15 [===========================>..] - ETA: 48s - loss: 158.5860 - mean_squared_error: 158.5578 - mean_absolute_error: 10.3691 
+15/15 [==============================] - 753s 50s/step - loss: 148.5349 - mean_squared_error: 148.5067 - mean_absolute_error: 9.8639 - val_loss: 168.5813 - val_mean_squared_error: 168.5533 - val_mean_absolute_error: 10.5973
+Epoch 21/100
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 54.8029 - mean_squared_error: 54.7749 - mean_absolute_error: 7.4010
+ 2/15 [===>..........................] - ETA: 10:25 - loss: 43.4103 - mean_squared_error: 43.3823 - mean_absolute_error: 6.5285
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 37.6929 - mean_squared_error: 37.6649 - mean_absolute_error: 6.0595 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 32.9036 - mean_squared_error: 32.8756 - mean_absolute_error: 5.6201
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 33.0582 - mean_squared_error: 33.0302 - mean_absolute_error: 5.6563
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 82.1564 - mean_squared_error: 82.1284 - mean_absolute_error: 7.7303
+ 7/15 [=============>................] - ETA: 6:23 - loss: 131.4861 - mean_squared_error: 131.4582 - mean_absolute_error: 9.5794
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 115.2407 - mean_squared_error: 115.2127 - mean_absolute_error: 8.5348
+ 9/15 [=================>............] - ETA: 4:47 - loss: 117.7438 - mean_squared_error: 117.7158 - mean_absolute_error: 8.8905
+10/15 [===================>..........] - ETA: 3:59 - loss: 143.5975 - mean_squared_error: 143.5695 - mean_absolute_error: 9.9412
+11/15 [=====================>........] - ETA: 3:11 - loss: 130.5719 - mean_squared_error: 130.5439 - mean_absolute_error: 9.0863
+12/15 [=======================>......] - ETA: 2:23 - loss: 123.3208 - mean_squared_error: 123.2929 - mean_absolute_error: 8.8789
+13/15 [=========================>....] - ETA: 1:35 - loss: 124.4394 - mean_squared_error: 124.4115 - mean_absolute_error: 9.0990
+14/15 [===========================>..] - ETA: 47s - loss: 116.7841 - mean_squared_error: 116.7562 - mean_absolute_error: 8.7456 
+15/15 [==============================] - 751s 50s/step - loss: 144.8700 - mean_squared_error: 144.8421 - mean_absolute_error: 9.7090 - val_loss: 158.8194 - val_mean_squared_error: 158.7917 - val_mean_absolute_error: 10.1263
+Epoch 22/100
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 467.3990 - mean_squared_error: 467.3712 - mean_absolute_error: 21.6188
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 235.2223 - mean_squared_error: 235.1946 - mean_absolute_error: 11.6780
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 249.8545 - mean_squared_error: 249.8267 - mean_absolute_error: 13.3540 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 193.7001 - mean_squared_error: 193.6723 - mean_absolute_error: 11.2707
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 155.7762 - mean_squared_error: 155.7484 - mean_absolute_error: 9.4192 
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 195.9943 - mean_squared_error: 195.9665 - mean_absolute_error: 11.1704
+ 7/15 [=============>................] - ETA: 6:24 - loss: 176.3598 - mean_squared_error: 176.3321 - mean_absolute_error: 10.6675
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 203.7691 - mean_squared_error: 203.7414 - mean_absolute_error: 11.8203
+ 9/15 [=================>............] - ETA: 4:48 - loss: 191.8152 - mean_squared_error: 191.7875 - mean_absolute_error: 11.5965
+10/15 [===================>..........] - ETA: 4:00 - loss: 184.8964 - mean_squared_error: 184.8687 - mean_absolute_error: 11.5441
+11/15 [=====================>........] - ETA: 3:12 - loss: 168.7393 - mean_squared_error: 168.7116 - mean_absolute_error: 10.7375
+12/15 [=======================>......] - ETA: 2:24 - loss: 154.6897 - mean_squared_error: 154.6620 - mean_absolute_error: 9.8712 
+13/15 [=========================>....] - ETA: 1:36 - loss: 144.7965 - mean_squared_error: 144.7688 - mean_absolute_error: 9.5045
+14/15 [===========================>..] - ETA: 48s - loss: 137.7646 - mean_squared_error: 137.7369 - mean_absolute_error: 9.3118 
+15/15 [==============================] - 752s 50s/step - loss: 130.7242 - mean_squared_error: 130.6965 - mean_absolute_error: 9.0689 - val_loss: 151.0342 - val_mean_squared_error: 151.0066 - val_mean_absolute_error: 9.7343
+Epoch 23/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 48.7289 - mean_squared_error: 48.7013 - mean_absolute_error: 6.9786
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 41.5374 - mean_squared_error: 41.5098 - mean_absolute_error: 6.4184
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 42.6685 - mean_squared_error: 42.6409 - mean_absolute_error: 6.5126 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 33.9721 - mean_squared_error: 33.9446 - mean_absolute_error: 5.5851
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 105.8933 - mean_squared_error: 105.8658 - mean_absolute_error: 8.4357
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 110.6072 - mean_squared_error: 110.5796 - mean_absolute_error: 8.9602
+ 7/15 [=============>................] - ETA: 6:24 - loss: 173.9486 - mean_squared_error: 173.9210 - mean_absolute_error: 11.0425
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 196.5195 - mean_squared_error: 196.4919 - mean_absolute_error: 12.0157
+ 9/15 [=================>............] - ETA: 4:48 - loss: 185.1312 - mean_squared_error: 185.1037 - mean_absolute_error: 11.7578
+10/15 [===================>..........] - ETA: 4:00 - loss: 170.3407 - mean_squared_error: 170.3131 - mean_absolute_error: 11.1920
+11/15 [=====================>........] - ETA: 3:12 - loss: 155.5146 - mean_squared_error: 155.4871 - mean_absolute_error: 10.4189
+12/15 [=======================>......] - ETA: 2:24 - loss: 142.5611 - mean_squared_error: 142.5335 - mean_absolute_error: 9.5682 
+13/15 [=========================>....] - ETA: 1:36 - loss: 154.4028 - mean_squared_error: 154.3753 - mean_absolute_error: 10.1567
+14/15 [===========================>..] - ETA: 48s - loss: 144.5870 - mean_squared_error: 144.5595 - mean_absolute_error: 9.7253  
+15/15 [==============================] - 752s 50s/step - loss: 139.8411 - mean_squared_error: 139.8136 - mean_absolute_error: 9.6480 - val_loss: 143.1730 - val_mean_squared_error: 143.1455 - val_mean_absolute_error: 9.3218
+Epoch 24/100
+
+ 1/15 [=>............................] - ETA: 11:14 - loss: 390.5090 - mean_squared_error: 390.4815 - mean_absolute_error: 19.7606
+ 2/15 [===>..........................] - ETA: 10:25 - loss: 198.0236 - mean_squared_error: 197.9961 - mean_absolute_error: 11.0540
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 142.4194 - mean_squared_error: 142.3919 - mean_absolute_error: 9.2308  
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 137.0386 - mean_squared_error: 137.0111 - mean_absolute_error: 9.6716
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 114.0864 - mean_squared_error: 114.0589 - mean_absolute_error: 8.6807
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 108.2433 - mean_squared_error: 108.2158 - mean_absolute_error: 8.7153
+ 7/15 [=============>................] - ETA: 6:24 - loss: 94.6148 - mean_squared_error: 94.5873 - mean_absolute_error: 7.9816  
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 133.0822 - mean_squared_error: 133.0547 - mean_absolute_error: 9.4912
+ 9/15 [=================>............] - ETA: 4:48 - loss: 144.6003 - mean_squared_error: 144.5728 - mean_absolute_error: 10.1461
+10/15 [===================>..........] - ETA: 4:00 - loss: 135.9151 - mean_squared_error: 135.8876 - mean_absolute_error: 9.8913 
+11/15 [=====================>........] - ETA: 3:12 - loss: 124.1493 - mean_squared_error: 124.1219 - mean_absolute_error: 9.2232
+12/15 [=======================>......] - ETA: 2:24 - loss: 118.6936 - mean_squared_error: 118.6661 - mean_absolute_error: 9.0928
+13/15 [=========================>....] - ETA: 1:36 - loss: 110.6750 - mean_squared_error: 110.6475 - mean_absolute_error: 8.6855
+14/15 [===========================>..] - ETA: 48s - loss: 105.9291 - mean_squared_error: 105.9016 - mean_absolute_error: 8.5400 
+15/15 [==============================] - 751s 50s/step - loss: 132.4977 - mean_squared_error: 132.4702 - mean_absolute_error: 9.4680 - val_loss: 135.4633 - val_mean_squared_error: 135.4359 - val_mean_absolute_error: 8.8986
+Epoch 25/100
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 77.3485 - mean_squared_error: 77.3211 - mean_absolute_error: 8.7932
+ 2/15 [===>..........................] - ETA: 10:25 - loss: 41.6431 - mean_squared_error: 41.6157 - mean_absolute_error: 5.6122
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 62.2965 - mean_squared_error: 62.2690 - mean_absolute_error: 7.1339 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 54.2839 - mean_squared_error: 54.2565 - mean_absolute_error: 6.7247
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 108.1941 - mean_squared_error: 108.1667 - mean_absolute_error: 8.9787
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 90.6130 - mean_squared_error: 90.5855 - mean_absolute_error: 7.7551  
+ 7/15 [=============>................] - ETA: 6:23 - loss: 78.7191 - mean_squared_error: 78.6917 - mean_absolute_error: 7.0339
+ 8/15 [===============>..............] - ETA: 5:35 - loss: 118.4555 - mean_squared_error: 118.4281 - mean_absolute_error: 8.6440
+ 9/15 [=================>............] - ETA: 4:48 - loss: 111.3538 - mean_squared_error: 111.3264 - mean_absolute_error: 8.5039
+10/15 [===================>..........] - ETA: 3:59 - loss: 100.8103 - mean_squared_error: 100.7829 - mean_absolute_error: 7.8962
+11/15 [=====================>........] - ETA: 3:11 - loss: 97.3304 - mean_squared_error: 97.3030 - mean_absolute_error: 7.8971  
+12/15 [=======================>......] - ETA: 2:23 - loss: 109.8693 - mean_squared_error: 109.8418 - mean_absolute_error: 8.5508
+13/15 [=========================>....] - ETA: 1:36 - loss: 102.9051 - mean_squared_error: 102.8777 - mean_absolute_error: 8.2310
+14/15 [===========================>..] - ETA: 48s - loss: 126.4494 - mean_squared_error: 126.4220 - mean_absolute_error: 9.1285 
+15/15 [==============================] - 751s 50s/step - loss: 122.3838 - mean_squared_error: 122.3564 - mean_absolute_error: 9.0593 - val_loss: 128.3919 - val_mean_squared_error: 128.3645 - val_mean_absolute_error: 8.4920
+Epoch 26/100
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 251.4057 - mean_squared_error: 251.3783 - mean_absolute_error: 15.8549
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 165.3961 - mean_squared_error: 165.3687 - mean_absolute_error: 12.3816
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 110.4597 - mean_squared_error: 110.4323 - mean_absolute_error: 8.5037  
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 84.7211 - mean_squared_error: 84.6937 - mean_absolute_error: 7.0615  
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 68.8529 - mean_squared_error: 68.8255 - mean_absolute_error: 6.1119
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 58.3654 - mean_squared_error: 58.3380 - mean_absolute_error: 5.4981
+ 7/15 [=============>................] - ETA: 6:23 - loss: 51.1814 - mean_squared_error: 51.1540 - mean_absolute_error: 5.1180
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 53.6961 - mean_squared_error: 53.6687 - mean_absolute_error: 5.5335
+ 9/15 [=================>............] - ETA: 4:48 - loss: 93.3195 - mean_squared_error: 93.2921 - mean_absolute_error: 7.1693
+10/15 [===================>..........] - ETA: 4:00 - loss: 83.9943 - mean_squared_error: 83.9669 - mean_absolute_error: 6.4725
+11/15 [=====================>........] - ETA: 3:12 - loss: 106.4203 - mean_squared_error: 106.3929 - mean_absolute_error: 7.5372
+12/15 [=======================>......] - ETA: 2:24 - loss: 105.6213 - mean_squared_error: 105.5939 - mean_absolute_error: 7.7290
+13/15 [=========================>....] - ETA: 1:36 - loss: 123.2104 - mean_squared_error: 123.1830 - mean_absolute_error: 8.5408
+14/15 [===========================>..] - ETA: 48s - loss: 119.9952 - mean_squared_error: 119.9678 - mean_absolute_error: 8.5623 
+15/15 [==============================] - 753s 50s/step - loss: 118.3800 - mean_squared_error: 118.3526 - mean_absolute_error: 8.6438 - val_loss: 122.5974 - val_mean_squared_error: 122.5701 - val_mean_absolute_error: 8.1437
+Epoch 27/100
+
+ 1/15 [=>............................] - ETA: 11:14 - loss: 104.1435 - mean_squared_error: 104.1161 - mean_absolute_error: 10.2037
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 82.7821 - mean_squared_error: 82.7547 - mean_absolute_error: 9.0196   
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 58.1193 - mean_squared_error: 58.0919 - mean_absolute_error: 7.0000 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 57.7399 - mean_squared_error: 57.7125 - mean_absolute_error: 7.1304
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 56.4695 - mean_squared_error: 56.4421 - mean_absolute_error: 7.1376
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 50.5724 - mean_squared_error: 50.5450 - mean_absolute_error: 6.7129
+ 7/15 [=============>................] - ETA: 6:24 - loss: 85.0556 - mean_squared_error: 85.0282 - mean_absolute_error: 8.1947
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 121.1718 - mean_squared_error: 121.1444 - mean_absolute_error: 9.5876
+ 9/15 [=================>............] - ETA: 4:48 - loss: 107.7160 - mean_squared_error: 107.6886 - mean_absolute_error: 8.5452
+10/15 [===================>..........] - ETA: 4:00 - loss: 98.0197 - mean_squared_error: 97.9923 - mean_absolute_error: 8.0182  
+11/15 [=====================>........] - ETA: 3:12 - loss: 97.1536 - mean_squared_error: 97.1262 - mean_absolute_error: 8.1443
+12/15 [=======================>......] - ETA: 2:24 - loss: 122.1916 - mean_squared_error: 122.1642 - mean_absolute_error: 9.1272
+13/15 [=========================>....] - ETA: 1:36 - loss: 129.1381 - mean_squared_error: 129.1108 - mean_absolute_error: 9.5464
+14/15 [===========================>..] - ETA: 48s - loss: 120.8751 - mean_squared_error: 120.8477 - mean_absolute_error: 9.1263 
+15/15 [==============================] - 753s 50s/step - loss: 112.9594 - mean_squared_error: 112.9320 - mean_absolute_error: 8.6147 - val_loss: 116.5789 - val_mean_squared_error: 116.5515 - val_mean_absolute_error: 7.7654
+Epoch 28/100
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 14.4913 - mean_squared_error: 14.4639 - mean_absolute_error: 3.8031
+ 2/15 [===>..........................] - ETA: 10:25 - loss: 52.0089 - mean_squared_error: 51.9815 - mean_absolute_error: 6.6318
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 63.7226 - mean_squared_error: 63.6953 - mean_absolute_error: 7.5325 
+ 4/15 [=======>......................] - ETA: 8:49 - loss: 153.9977 - mean_squared_error: 153.9703 - mean_absolute_error: 10.8020
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 132.7747 - mean_squared_error: 132.7473 - mean_absolute_error: 10.0252
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 116.8577 - mean_squared_error: 116.8304 - mean_absolute_error: 9.3715 
+ 7/15 [=============>................] - ETA: 6:25 - loss: 143.5092 - mean_squared_error: 143.4818 - mean_absolute_error: 10.5210
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 150.7251 - mean_squared_error: 150.6977 - mean_absolute_error: 10.9790
+ 9/15 [=================>............] - ETA: 4:49 - loss: 141.5794 - mean_squared_error: 141.5520 - mean_absolute_error: 10.6779
+10/15 [===================>..........] - ETA: 4:00 - loss: 127.4500 - mean_squared_error: 127.4226 - mean_absolute_error: 9.6610 
+11/15 [=====================>........] - ETA: 3:12 - loss: 118.3448 - mean_squared_error: 118.3174 - mean_absolute_error: 9.2574
+12/15 [=======================>......] - ETA: 2:24 - loss: 114.5106 - mean_squared_error: 114.4832 - mean_absolute_error: 9.1946
+13/15 [=========================>....] - ETA: 1:36 - loss: 105.7462 - mean_squared_error: 105.7188 - mean_absolute_error: 8.5441
+14/15 [===========================>..] - ETA: 48s - loss: 98.5047 - mean_squared_error: 98.4773 - mean_absolute_error: 8.0826   
+15/15 [==============================] - 754s 50s/step - loss: 113.1758 - mean_squared_error: 113.1484 - mean_absolute_error: 8.7336 - val_loss: 111.7278 - val_mean_squared_error: 111.7005 - val_mean_absolute_error: 7.5000
+Epoch 29/100
+
+ 1/15 [=>............................] - ETA: 11:17 - loss: 5.3055 - mean_squared_error: 5.2781 - mean_absolute_error: 2.2974
+ 2/15 [===>..........................] - ETA: 10:28 - loss: 8.4681 - mean_squared_error: 8.4407 - mean_absolute_error: 2.8519
+ 3/15 [=====>........................] - ETA: 9:39 - loss: 5.6571 - mean_squared_error: 5.6297 - mean_absolute_error: 1.9302 
+ 4/15 [=======>......................] - ETA: 8:51 - loss: 20.8800 - mean_squared_error: 20.8527 - mean_absolute_error: 3.4867
+ 5/15 [=========>....................] - ETA: 8:03 - loss: 111.7885 - mean_squared_error: 111.7612 - mean_absolute_error: 7.1501
+ 6/15 [===========>..................] - ETA: 7:14 - loss: 105.2334 - mean_squared_error: 105.2060 - mean_absolute_error: 7.3768
+ 7/15 [=============>................] - ETA: 6:26 - loss: 90.2442 - mean_squared_error: 90.2168 - mean_absolute_error: 6.3988  
+ 8/15 [===============>..............] - ETA: 5:38 - loss: 115.9208 - mean_squared_error: 115.8934 - mean_absolute_error: 7.7482
+ 9/15 [=================>............] - ETA: 4:50 - loss: 136.1628 - mean_squared_error: 136.1355 - mean_absolute_error: 8.8056
+10/15 [===================>..........] - ETA: 4:01 - loss: 124.3618 - mean_squared_error: 124.3344 - mean_absolute_error: 8.3508
+11/15 [=====================>........] - ETA: 3:13 - loss: 118.4431 - mean_squared_error: 118.4157 - mean_absolute_error: 8.2912
+12/15 [=======================>......] - ETA: 2:24 - loss: 114.1064 - mean_squared_error: 114.0791 - mean_absolute_error: 8.2792
+13/15 [=========================>....] - ETA: 1:36 - loss: 112.9448 - mean_squared_error: 112.9174 - mean_absolute_error: 8.4076
+14/15 [===========================>..] - ETA: 48s - loss: 105.5089 - mean_squared_error: 105.4815 - mean_absolute_error: 8.0192 
+15/15 [==============================] - 756s 50s/step - loss: 111.9599 - mean_squared_error: 111.9326 - mean_absolute_error: 8.4326 - val_loss: 107.3163 - val_mean_squared_error: 107.2890 - val_mean_absolute_error: 7.5000
+Epoch 30/100
+
+ 1/15 [=>............................] - ETA: 11:15 - loss: 364.3110 - mean_squared_error: 364.2836 - mean_absolute_error: 19.0862
+ 2/15 [===>..........................] - ETA: 10:27 - loss: 334.1941 - mean_squared_error: 334.1667 - mean_absolute_error: 18.2616
+ 3/15 [=====>........................] - ETA: 9:39 - loss: 231.4169 - mean_squared_error: 231.3895 - mean_absolute_error: 13.8687 
+ 4/15 [=======>......................] - ETA: 8:50 - loss: 194.4340 - mean_squared_error: 194.4066 - mean_absolute_error: 12.6854
+ 5/15 [=========>....................] - ETA: 8:02 - loss: 170.0942 - mean_squared_error: 170.0668 - mean_absolute_error: 11.8537
+ 6/15 [===========>..................] - ETA: 7:14 - loss: 171.6578 - mean_squared_error: 171.6305 - mean_absolute_error: 12.1107
+ 7/15 [=============>................] - ETA: 6:26 - loss: 147.1448 - mean_squared_error: 147.1175 - mean_absolute_error: 10.4090
+ 8/15 [===============>..............] - ETA: 5:38 - loss: 129.2746 - mean_squared_error: 129.2472 - mean_absolute_error: 9.3627 
+ 9/15 [=================>............] - ETA: 4:49 - loss: 129.1720 - mean_squared_error: 129.1446 - mean_absolute_error: 9.5811
+10/15 [===================>..........] - ETA: 4:01 - loss: 116.5404 - mean_squared_error: 116.5130 - mean_absolute_error: 8.7911
+11/15 [=====================>........] - ETA: 3:12 - loss: 136.7025 - mean_squared_error: 136.6752 - mean_absolute_error: 9.6640
+12/15 [=======================>......] - ETA: 2:24 - loss: 125.3306 - mean_squared_error: 125.3033 - mean_absolute_error: 8.8971
+13/15 [=========================>....] - ETA: 1:36 - loss: 118.5724 - mean_squared_error: 118.5450 - mean_absolute_error: 8.6834
+14/15 [===========================>..] - ETA: 48s - loss: 111.4934 - mean_squared_error: 111.4660 - mean_absolute_error: 8.3781 
+15/15 [==============================] - 755s 50s/step - loss: 108.7768 - mean_squared_error: 108.7494 - mean_absolute_error: 8.3802 - val_loss: 103.5990 - val_mean_squared_error: 103.5716 - val_mean_absolute_error: 7.5000
+Epoch 31/100
+
+ 1/15 [=>............................] - ETA: 11:17 - loss: 133.7629 - mean_squared_error: 133.7356 - mean_absolute_error: 11.5644
+ 2/15 [===>..........................] - ETA: 10:27 - loss: 66.9916 - mean_squared_error: 66.9643 - mean_absolute_error: 6.0019   
+ 3/15 [=====>........................] - ETA: 9:40 - loss: 44.6974 - mean_squared_error: 44.6700 - mean_absolute_error: 4.0964 
+ 4/15 [=======>......................] - ETA: 8:50 - loss: 33.5632 - mean_squared_error: 33.5358 - mean_absolute_error: 3.1635
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 90.3346 - mean_squared_error: 90.3072 - mean_absolute_error: 6.0939
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 76.2918 - mean_squared_error: 76.2645 - mean_absolute_error: 5.4883
+ 7/15 [=============>................] - ETA: 6:25 - loss: 68.1905 - mean_squared_error: 68.1631 - mean_absolute_error: 5.3359
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 98.3738 - mean_squared_error: 98.3464 - mean_absolute_error: 6.8685
+ 9/15 [=================>............] - ETA: 4:49 - loss: 110.6088 - mean_squared_error: 110.5814 - mean_absolute_error: 7.7096
+10/15 [===================>..........] - ETA: 4:01 - loss: 107.2615 - mean_squared_error: 107.2341 - mean_absolute_error: 7.8167
+11/15 [=====================>........] - ETA: 3:12 - loss: 104.3924 - mean_squared_error: 104.3650 - mean_absolute_error: 7.8969
+12/15 [=======================>......] - ETA: 2:24 - loss: 128.2172 - mean_squared_error: 128.1898 - mean_absolute_error: 8.8851
+13/15 [=========================>....] - ETA: 1:36 - loss: 119.6889 - mean_squared_error: 119.6615 - mean_absolute_error: 8.5218
+14/15 [===========================>..] - ETA: 48s - loss: 114.1073 - mean_squared_error: 114.0799 - mean_absolute_error: 8.3734 
+15/15 [==============================] - 755s 50s/step - loss: 111.5715 - mean_squared_error: 111.5441 - mean_absolute_error: 8.3965 - val_loss: 99.6487 - val_mean_squared_error: 99.6213 - val_mean_absolute_error: 7.5000
+Epoch 32/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 310.4333 - mean_squared_error: 310.4059 - mean_absolute_error: 17.6183
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 155.3533 - mean_squared_error: 155.3260 - mean_absolute_error: 9.0572 
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 210.4996 - mean_squared_error: 210.4722 - mean_absolute_error: 12.0081
+ 4/15 [=======>......................] - ETA: 8:49 - loss: 158.3789 - mean_squared_error: 158.3515 - mean_absolute_error: 9.3587 
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 126.8605 - mean_squared_error: 126.8331 - mean_absolute_error: 7.6612
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 127.1056 - mean_squared_error: 127.0782 - mean_absolute_error: 8.2722
+ 7/15 [=============>................] - ETA: 6:25 - loss: 148.1263 - mean_squared_error: 148.0990 - mean_absolute_error: 9.4562
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 135.5256 - mean_squared_error: 135.4982 - mean_absolute_error: 9.1338
+ 9/15 [=================>............] - ETA: 4:49 - loss: 127.8212 - mean_squared_error: 127.7938 - mean_absolute_error: 9.0226
+10/15 [===================>..........] - ETA: 4:01 - loss: 136.6245 - mean_squared_error: 136.5972 - mean_absolute_error: 9.5895
+11/15 [=====================>........] - ETA: 3:12 - loss: 124.4426 - mean_squared_error: 124.4153 - mean_absolute_error: 8.8642
+12/15 [=======================>......] - ETA: 2:24 - loss: 116.7481 - mean_squared_error: 116.7207 - mean_absolute_error: 8.5975
+13/15 [=========================>....] - ETA: 1:36 - loss: 118.2691 - mean_squared_error: 118.2417 - mean_absolute_error: 8.8349
+14/15 [===========================>..] - ETA: 48s - loss: 116.3150 - mean_squared_error: 116.2876 - mean_absolute_error: 8.8848 
+15/15 [==============================] - 754s 50s/step - loss: 108.5764 - mean_squared_error: 108.5490 - mean_absolute_error: 8.3229 - val_loss: 97.2371 - val_mean_squared_error: 97.2097 - val_mean_absolute_error: 7.5001
+Epoch 33/100
+
+ 1/15 [=>............................] - ETA: 11:15 - loss: 4.0653 - mean_squared_error: 4.0380 - mean_absolute_error: 2.0095
+ 2/15 [===>..........................] - ETA: 10:27 - loss: 185.5196 - mean_squared_error: 185.4923 - mean_absolute_error: 10.5827
+ 3/15 [=====>........................] - ETA: 9:38 - loss: 219.3426 - mean_squared_error: 219.3152 - mean_absolute_error: 12.7017 
+ 4/15 [=======>......................] - ETA: 8:50 - loss: 172.1344 - mean_squared_error: 172.1070 - mean_absolute_error: 10.9066
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 138.6836 - mean_squared_error: 138.6562 - mean_absolute_error: 9.1659 
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 127.9318 - mean_squared_error: 127.9044 - mean_absolute_error: 9.0733
+ 7/15 [=============>................] - ETA: 6:24 - loss: 132.0315 - mean_squared_error: 132.0042 - mean_absolute_error: 9.5649
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 129.0301 - mean_squared_error: 129.0027 - mean_absolute_error: 9.6683
+ 9/15 [=================>............] - ETA: 4:48 - loss: 119.5915 - mean_squared_error: 119.5642 - mean_absolute_error: 9.3315
+10/15 [===================>..........] - ETA: 4:00 - loss: 134.5456 - mean_squared_error: 134.5182 - mean_absolute_error: 10.0388
+11/15 [=====================>........] - ETA: 3:12 - loss: 131.6930 - mean_squared_error: 131.6656 - mean_absolute_error: 10.0494
+12/15 [=======================>......] - ETA: 2:24 - loss: 121.1649 - mean_squared_error: 121.1375 - mean_absolute_error: 9.4043 
+13/15 [=========================>....] - ETA: 1:36 - loss: 123.3161 - mean_squared_error: 123.2888 - mean_absolute_error: 9.6202
+14/15 [===========================>..] - ETA: 48s - loss: 115.8049 - mean_squared_error: 115.7775 - mean_absolute_error: 9.2372 
+15/15 [==============================] - 753s 50s/step - loss: 108.0962 - mean_squared_error: 108.0688 - mean_absolute_error: 8.6469 - val_loss: 95.1276 - val_mean_squared_error: 95.1002 - val_mean_absolute_error: 7.4999
+Epoch 34/100
+
+ 1/15 [=>............................] - ETA: 11:14 - loss: 202.5426 - mean_squared_error: 202.5153 - mean_absolute_error: 14.2308
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 113.3331 - mean_squared_error: 113.3057 - mean_absolute_error: 9.5698 
+ 3/15 [=====>........................] - ETA: 9:39 - loss: 103.0598 - mean_squared_error: 103.0324 - mean_absolute_error: 9.4072 
+ 4/15 [=======>......................] - ETA: 8:51 - loss: 92.8100 - mean_squared_error: 92.7826 - mean_absolute_error: 9.0245  
+ 5/15 [=========>....................] - ETA: 8:02 - loss: 74.2593 - mean_squared_error: 74.2319 - mean_absolute_error: 7.2536
+ 6/15 [===========>..................] - ETA: 7:14 - loss: 81.7568 - mean_squared_error: 81.7294 - mean_absolute_error: 7.8645
+ 7/15 [=============>................] - ETA: 6:26 - loss: 74.2379 - mean_squared_error: 74.2105 - mean_absolute_error: 7.5116
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 78.6792 - mean_squared_error: 78.6518 - mean_absolute_error: 7.8821
+ 9/15 [=================>............] - ETA: 4:49 - loss: 71.3078 - mean_squared_error: 71.2804 - mean_absolute_error: 7.3961
+10/15 [===================>..........] - ETA: 4:00 - loss: 64.5219 - mean_squared_error: 64.4945 - mean_absolute_error: 6.8415
+11/15 [=====================>........] - ETA: 3:12 - loss: 73.5167 - mean_squared_error: 73.4893 - mean_absolute_error: 7.3817
+12/15 [=======================>......] - ETA: 2:24 - loss: 67.4706 - mean_squared_error: 67.4432 - mean_absolute_error: 6.8472
+13/15 [=========================>....] - ETA: 1:36 - loss: 82.0466 - mean_squared_error: 82.0192 - mean_absolute_error: 7.5535
+14/15 [===========================>..] - ETA: 48s - loss: 76.3410 - mean_squared_error: 76.3136 - mean_absolute_error: 7.1185 
+15/15 [==============================] - 753s 50s/step - loss: 94.6041 - mean_squared_error: 94.5767 - mean_absolute_error: 7.8916 - val_loss: 92.0127 - val_mean_squared_error: 91.9854 - val_mean_absolute_error: 7.5001
+Epoch 35/100
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 15.9730 - mean_squared_error: 15.9457 - mean_absolute_error: 3.9932
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 138.4198 - mean_squared_error: 138.3924 - mean_absolute_error: 10.0719
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 126.9266 - mean_squared_error: 126.8993 - mean_absolute_error: 10.1125 
+ 4/15 [=======>......................] - ETA: 8:49 - loss: 177.3996 - mean_squared_error: 177.3722 - mean_absolute_error: 12.1175
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 142.2586 - mean_squared_error: 142.2312 - mean_absolute_error: 9.9523 
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 160.9602 - mean_squared_error: 160.9328 - mean_absolute_error: 10.9521
+ 7/15 [=============>................] - ETA: 6:24 - loss: 153.6132 - mean_squared_error: 153.5859 - mean_absolute_error: 10.8824
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 141.6753 - mean_squared_error: 141.6479 - mean_absolute_error: 10.4748
+ 9/15 [=================>............] - ETA: 4:48 - loss: 126.0260 - mean_squared_error: 125.9987 - mean_absolute_error: 9.4105 
+10/15 [===================>..........] - ETA: 4:00 - loss: 115.7014 - mean_squared_error: 115.6740 - mean_absolute_error: 8.9465
+11/15 [=====================>........] - ETA: 3:12 - loss: 113.3756 - mean_squared_error: 113.3482 - mean_absolute_error: 8.9960
+12/15 [=======================>......] - ETA: 2:24 - loss: 103.9308 - mean_squared_error: 103.9034 - mean_absolute_error: 8.2549
+13/15 [=========================>....] - ETA: 1:36 - loss: 96.5945 - mean_squared_error: 96.5671 - mean_absolute_error: 7.8446  
+14/15 [===========================>..] - ETA: 48s - loss: 96.7109 - mean_squared_error: 96.6835 - mean_absolute_error: 7.9921 
+15/15 [==============================] - 753s 50s/step - loss: 100.0823 - mean_squared_error: 100.0550 - mean_absolute_error: 8.2683 - val_loss: 89.2801 - val_mean_squared_error: 89.2528 - val_mean_absolute_error: 7.4999
+Epoch 36/100
+
+ 1/15 [=>............................] - ETA: 11:15 - loss: 126.6758 - mean_squared_error: 126.6484 - mean_absolute_error: 11.2538
+ 2/15 [===>..........................] - ETA: 10:27 - loss: 104.7822 - mean_squared_error: 104.7548 - mean_absolute_error: 10.1783
+ 3/15 [=====>........................] - ETA: 9:40 - loss: 122.6898 - mean_squared_error: 122.6624 - mean_absolute_error: 10.9818 
+ 4/15 [=======>......................] - ETA: 8:52 - loss: 124.8132 - mean_squared_error: 124.7858 - mean_absolute_error: 11.0994
+ 5/15 [=========>....................] - ETA: 8:03 - loss: 99.8983 - mean_squared_error: 99.8709 - mean_absolute_error: 8.9715   
+ 6/15 [===========>..................] - ETA: 7:14 - loss: 92.1083 - mean_squared_error: 92.0810 - mean_absolute_error: 8.6911
+ 7/15 [=============>................] - ETA: 6:26 - loss: 112.9713 - mean_squared_error: 112.9439 - mean_absolute_error: 9.6540
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 135.6554 - mean_squared_error: 135.6281 - mean_absolute_error: 10.5921
+ 9/15 [=================>............] - ETA: 4:49 - loss: 153.3888 - mean_squared_error: 153.3614 - mean_absolute_error: 11.3243
+10/15 [===================>..........] - ETA: 4:01 - loss: 141.4488 - mean_squared_error: 141.4215 - mean_absolute_error: 10.7746
+11/15 [=====================>........] - ETA: 3:12 - loss: 144.2348 - mean_squared_error: 144.2074 - mean_absolute_error: 10.9876
+12/15 [=======================>......] - ETA: 2:24 - loss: 132.4656 - mean_squared_error: 132.4382 - mean_absolute_error: 10.2158
+13/15 [=========================>....] - ETA: 1:36 - loss: 122.4189 - mean_squared_error: 122.3915 - mean_absolute_error: 9.5340 
+14/15 [===========================>..] - ETA: 48s - loss: 113.7355 - mean_squared_error: 113.7081 - mean_absolute_error: 8.9179 
+15/15 [==============================] - 753s 50s/step - loss: 106.6563 - mean_squared_error: 106.6289 - mean_absolute_error: 8.5062 - val_loss: 87.1452 - val_mean_squared_error: 87.1178 - val_mean_absolute_error: 7.5004
+Epoch 37/100
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 5.1552 - mean_squared_error: 5.1279 - mean_absolute_error: 2.2645
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 49.4573 - mean_squared_error: 49.4300 - mean_absolute_error: 5.9730
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 67.9865 - mean_squared_error: 67.9592 - mean_absolute_error: 7.3979 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 51.9630 - mean_squared_error: 51.9357 - mean_absolute_error: 6.0400
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 42.6719 - mean_squared_error: 42.6446 - mean_absolute_error: 5.3002
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 60.8811 - mean_squared_error: 60.8537 - mean_absolute_error: 6.4709
+ 7/15 [=============>................] - ETA: 6:24 - loss: 72.2414 - mean_squared_error: 72.2141 - mean_absolute_error: 7.2391
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 96.3599 - mean_squared_error: 96.3325 - mean_absolute_error: 8.3697
+ 9/15 [=================>............] - ETA: 4:48 - loss: 107.2147 - mean_squared_error: 107.1873 - mean_absolute_error: 8.9874
+10/15 [===================>..........] - ETA: 4:00 - loss: 101.1149 - mean_squared_error: 101.0876 - mean_absolute_error: 8.7683
+11/15 [=====================>........] - ETA: 3:12 - loss: 91.9732 - mean_squared_error: 91.9458 - mean_absolute_error: 8.0373  
+12/15 [=======================>......] - ETA: 2:24 - loss: 92.1306 - mean_squared_error: 92.1032 - mean_absolute_error: 8.1747
+13/15 [=========================>....] - ETA: 1:36 - loss: 88.4829 - mean_squared_error: 88.4555 - mean_absolute_error: 8.0601
+14/15 [===========================>..] - ETA: 48s - loss: 102.1300 - mean_squared_error: 102.1026 - mean_absolute_error: 8.6786
+15/15 [==============================] - 752s 50s/step - loss: 95.3624 - mean_squared_error: 95.3350 - mean_absolute_error: 8.1512 - val_loss: 84.7759 - val_mean_squared_error: 84.7485 - val_mean_absolute_error: 7.4994
+Epoch 38/100
+
+ 1/15 [=>............................] - ETA: 11:10 - loss: 244.9858 - mean_squared_error: 244.9584 - mean_absolute_error: 15.6511
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 190.9963 - mean_squared_error: 190.9690 - mean_absolute_error: 13.6775
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 127.6913 - mean_squared_error: 127.6640 - mean_absolute_error: 9.4605  
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 111.3388 - mean_squared_error: 111.3115 - mean_absolute_error: 9.0679
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 112.0422 - mean_squared_error: 112.0149 - mean_absolute_error: 9.3975
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 98.9307 - mean_squared_error: 98.9033 - mean_absolute_error: 8.7937  
+ 7/15 [=============>................] - ETA: 6:24 - loss: 85.7054 - mean_squared_error: 85.6781 - mean_absolute_error: 7.8968
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 103.8350 - mean_squared_error: 103.8076 - mean_absolute_error: 8.8083
+ 9/15 [=================>............] - ETA: 4:48 - loss: 104.1362 - mean_squared_error: 104.1088 - mean_absolute_error: 8.9764
+10/15 [===================>..........] - ETA: 4:00 - loss: 122.6314 - mean_squared_error: 122.6040 - mean_absolute_error: 9.7789
+11/15 [=====================>........] - ETA: 3:11 - loss: 111.4919 - mean_squared_error: 111.4645 - mean_absolute_error: 8.9139
+12/15 [=======================>......] - ETA: 2:24 - loss: 102.5640 - mean_squared_error: 102.5366 - mean_absolute_error: 8.3445
+13/15 [=========================>....] - ETA: 1:36 - loss: 103.3617 - mean_squared_error: 103.3343 - mean_absolute_error: 8.5200
+14/15 [===========================>..] - ETA: 48s - loss: 96.7472 - mean_squared_error: 96.7198 - mean_absolute_error: 8.1454   
+15/15 [==============================] - 751s 50s/step - loss: 91.6067 - mean_squared_error: 91.5794 - mean_absolute_error: 7.8976 - val_loss: 82.5699 - val_mean_squared_error: 82.5426 - val_mean_absolute_error: 7.5007
+Epoch 39/100
+
+ 1/15 [=>............................] - ETA: 11:16 - loss: 180.0506 - mean_squared_error: 180.0233 - mean_absolute_error: 13.4173
+ 2/15 [===>..........................] - ETA: 10:28 - loss: 113.1577 - mean_squared_error: 113.1303 - mean_absolute_error: 10.1085
+ 3/15 [=====>........................] - ETA: 9:40 - loss: 124.5401 - mean_squared_error: 124.5128 - mean_absolute_error: 10.7843 
+ 4/15 [=======>......................] - ETA: 8:51 - loss: 121.6857 - mean_squared_error: 121.6584 - mean_absolute_error: 10.7469
+ 5/15 [=========>....................] - ETA: 8:02 - loss: 135.5896 - mean_squared_error: 135.5622 - mean_absolute_error: 11.3628
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 122.3088 - mean_squared_error: 122.2814 - mean_absolute_error: 10.7149
+ 7/15 [=============>................] - ETA: 6:25 - loss: 104.8591 - mean_squared_error: 104.8317 - mean_absolute_error: 9.2364 
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 130.3768 - mean_squared_error: 130.3494 - mean_absolute_error: 10.2790
+ 9/15 [=================>............] - ETA: 4:49 - loss: 130.2386 - mean_squared_error: 130.2112 - mean_absolute_error: 10.3994
+10/15 [===================>..........] - ETA: 4:00 - loss: 118.0904 - mean_squared_error: 118.0630 - mean_absolute_error: 9.6549 
+11/15 [=====================>........] - ETA: 3:12 - loss: 122.1235 - mean_squared_error: 122.0961 - mean_absolute_error: 9.9358
+12/15 [=======================>......] - ETA: 2:24 - loss: 113.2032 - mean_squared_error: 113.1758 - mean_absolute_error: 9.4311
+13/15 [=========================>....] - ETA: 1:36 - loss: 104.5061 - mean_squared_error: 104.4787 - mean_absolute_error: 8.7316
+14/15 [===========================>..] - ETA: 48s - loss: 98.9613 - mean_squared_error: 98.9339 - mean_absolute_error: 8.4780   
+15/15 [==============================] - 753s 50s/step - loss: 92.3659 - mean_squared_error: 92.3385 - mean_absolute_error: 7.9162 - val_loss: 80.8780 - val_mean_squared_error: 80.8507 - val_mean_absolute_error: 7.4991
+Epoch 40/100
+
+ 1/15 [=>............................] - ETA: 11:16 - loss: 1.3218 - mean_squared_error: 1.2944 - mean_absolute_error: 1.1377
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 41.2971 - mean_squared_error: 41.2697 - mean_absolute_error: 5.0757
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 101.8352 - mean_squared_error: 101.8078 - mean_absolute_error: 8.3602
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 76.4885 - mean_squared_error: 76.4612 - mean_absolute_error: 6.4324  
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 113.0297 - mean_squared_error: 113.0024 - mean_absolute_error: 8.3657
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 149.2447 - mean_squared_error: 149.2174 - mean_absolute_error: 10.0004
+ 7/15 [=============>................] - ETA: 6:24 - loss: 128.4082 - mean_squared_error: 128.3809 - mean_absolute_error: 8.8337 
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 124.1017 - mean_squared_error: 124.0744 - mean_absolute_error: 8.9409
+ 9/15 [=================>............] - ETA: 4:48 - loss: 130.1032 - mean_squared_error: 130.0759 - mean_absolute_error: 9.4303
+10/15 [===================>..........] - ETA: 4:00 - loss: 120.8999 - mean_squared_error: 120.8725 - mean_absolute_error: 9.1040
+11/15 [=====================>........] - ETA: 3:12 - loss: 112.1531 - mean_squared_error: 112.1258 - mean_absolute_error: 8.7278
+12/15 [=======================>......] - ETA: 2:24 - loss: 107.0694 - mean_squared_error: 107.0420 - mean_absolute_error: 8.5963
+13/15 [=========================>....] - ETA: 1:36 - loss: 98.9312 - mean_squared_error: 98.9038 - mean_absolute_error: 8.0209  
+14/15 [===========================>..] - ETA: 48s - loss: 98.8236 - mean_squared_error: 98.7963 - mean_absolute_error: 8.1529 
+15/15 [==============================] - 751s 50s/step - loss: 93.7175 - mean_squared_error: 93.6902 - mean_absolute_error: 7.9235 - val_loss: 79.4292 - val_mean_squared_error: 79.4019 - val_mean_absolute_error: 7.5018
+Epoch 41/100
+
+ 1/15 [=>............................] - ETA: 11:14 - loss: 32.9667 - mean_squared_error: 32.9393 - mean_absolute_error: 5.7393
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 100.5274 - mean_squared_error: 100.5000 - mean_absolute_error: 9.3516
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 125.8814 - mean_squared_error: 125.8541 - mean_absolute_error: 10.6636
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 99.8196 - mean_squared_error: 99.7923 - mean_absolute_error: 9.1598   
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 80.6650 - mean_squared_error: 80.6376 - mean_absolute_error: 7.7288
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 72.1715 - mean_squared_error: 72.1441 - mean_absolute_error: 7.3486
+ 7/15 [=============>................] - ETA: 6:24 - loss: 82.9633 - mean_squared_error: 82.9360 - mean_absolute_error: 8.0349
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 76.6237 - mean_squared_error: 76.5964 - mean_absolute_error: 7.7400
+ 9/15 [=================>............] - ETA: 4:48 - loss: 99.5453 - mean_squared_error: 99.5180 - mean_absolute_error: 8.7489
+10/15 [===================>..........] - ETA: 4:00 - loss: 89.6191 - mean_squared_error: 89.5917 - mean_absolute_error: 7.9245
+11/15 [=====================>........] - ETA: 3:12 - loss: 92.9473 - mean_squared_error: 92.9199 - mean_absolute_error: 8.2254
+12/15 [=======================>......] - ETA: 2:24 - loss: 105.1280 - mean_squared_error: 105.1007 - mean_absolute_error: 8.8285
+13/15 [=========================>....] - ETA: 1:36 - loss: 109.1228 - mean_squared_error: 109.0955 - mean_absolute_error: 9.1133
+14/15 [===========================>..] - ETA: 48s - loss: 101.5167 - mean_squared_error: 101.4893 - mean_absolute_error: 8.5777 
+15/15 [==============================] - 751s 50s/step - loss: 95.8435 - mean_squared_error: 95.8161 - mean_absolute_error: 8.2758 - val_loss: 78.6314 - val_mean_squared_error: 78.6040 - val_mean_absolute_error: 7.4984
+Epoch 42/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 288.9182 - mean_squared_error: 288.8908 - mean_absolute_error: 16.9968
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 262.6686 - mean_squared_error: 262.6412 - mean_absolute_error: 16.1859
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 175.3664 - mean_squared_error: 175.3391 - mean_absolute_error: 11.0763 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 131.8809 - mean_squared_error: 131.8536 - mean_absolute_error: 8.6027 
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 151.1353 - mean_squared_error: 151.1080 - mean_absolute_error: 9.9030
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 129.1535 - mean_squared_error: 129.1262 - mean_absolute_error: 8.9831
+ 7/15 [=============>................] - ETA: 6:24 - loss: 113.0509 - mean_squared_error: 113.0236 - mean_absolute_error: 8.2785
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 112.5355 - mean_squared_error: 112.5081 - mean_absolute_error: 8.5481
+ 9/15 [=================>............] - ETA: 4:48 - loss: 102.0076 - mean_squared_error: 101.9802 - mean_absolute_error: 8.0665
+10/15 [===================>..........] - ETA: 4:00 - loss: 105.3895 - mean_squared_error: 105.3621 - mean_absolute_error: 8.4252
+11/15 [=====================>........] - ETA: 3:12 - loss: 107.1463 - mean_squared_error: 107.1189 - mean_absolute_error: 8.6744
+12/15 [=======================>......] - ETA: 2:24 - loss: 102.6864 - mean_squared_error: 102.6590 - mean_absolute_error: 8.5616
+13/15 [=========================>....] - ETA: 1:36 - loss: 95.7486 - mean_squared_error: 95.7212 - mean_absolute_error: 8.1746  
+14/15 [===========================>..] - ETA: 48s - loss: 89.2851 - mean_squared_error: 89.2578 - mean_absolute_error: 7.7541 
+15/15 [==============================] - 751s 50s/step - loss: 92.0855 - mean_squared_error: 92.0581 - mean_absolute_error: 8.0010 - val_loss: 77.8316 - val_mean_squared_error: 77.8042 - val_mean_absolute_error: 7.5049
+Epoch 43/100
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 255.3581 - mean_squared_error: 255.3307 - mean_absolute_error: 15.9791
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 127.6954 - mean_squared_error: 127.6680 - mean_absolute_error: 8.0260 
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 85.5185 - mean_squared_error: 85.4911 - mean_absolute_error: 5.7061   
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 75.3029 - mean_squared_error: 75.2756 - mean_absolute_error: 5.9497
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 84.4738 - mean_squared_error: 84.4464 - mean_absolute_error: 6.9610
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 92.7595 - mean_squared_error: 92.7321 - mean_absolute_error: 7.7313
+ 7/15 [=============>................] - ETA: 6:24 - loss: 114.5008 - mean_squared_error: 114.4734 - mean_absolute_error: 8.8625
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 100.6468 - mean_squared_error: 100.6194 - mean_absolute_error: 7.9932
+ 9/15 [=================>............] - ETA: 4:48 - loss: 106.3843 - mean_squared_error: 106.3570 - mean_absolute_error: 8.4761
+10/15 [===================>..........] - ETA: 4:00 - loss: 96.2744 - mean_squared_error: 96.2470 - mean_absolute_error: 7.8578  
+11/15 [=====================>........] - ETA: 3:12 - loss: 92.0536 - mean_squared_error: 92.0262 - mean_absolute_error: 7.7851
+12/15 [=======================>......] - ETA: 2:24 - loss: 101.1176 - mean_squared_error: 101.0902 - mean_absolute_error: 8.3172
+13/15 [=========================>....] - ETA: 1:36 - loss: 94.6366 - mean_squared_error: 94.6093 - mean_absolute_error: 7.9931  
+14/15 [===========================>..] - ETA: 48s - loss: 88.3892 - mean_squared_error: 88.3618 - mean_absolute_error: 7.6131 
+15/15 [==============================] - 752s 50s/step - loss: 92.3692 - mean_squared_error: 92.3418 - mean_absolute_error: 7.9167 - val_loss: 76.8377 - val_mean_squared_error: 76.8103 - val_mean_absolute_error: 7.4970
+Epoch 44/100
+
+ 1/15 [=>............................] - ETA: 11:14 - loss: 197.4289 - mean_squared_error: 197.4016 - mean_absolute_error: 14.0500
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 271.8367 - mean_squared_error: 271.8094 - mean_absolute_error: 16.3284
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 181.4187 - mean_squared_error: 181.3914 - mean_absolute_error: 11.1340 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 151.6331 - mean_squared_error: 151.6058 - mean_absolute_error: 10.3230
+ 5/15 [=========>....................] - ETA: 7:59 - loss: 125.9441 - mean_squared_error: 125.9167 - mean_absolute_error: 9.2209 
+ 6/15 [===========>..................] - ETA: 7:11 - loss: 124.7589 - mean_squared_error: 124.7315 - mean_absolute_error: 9.5007
+ 7/15 [=============>................] - ETA: 6:23 - loss: 110.9295 - mean_squared_error: 110.9021 - mean_absolute_error: 8.8984
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 97.9384 - mean_squared_error: 97.9110 - mean_absolute_error: 8.1162  
+ 9/15 [=================>............] - ETA: 4:48 - loss: 107.3149 - mean_squared_error: 107.2875 - mean_absolute_error: 8.7146
+10/15 [===================>..........] - ETA: 4:00 - loss: 117.0776 - mean_squared_error: 117.0502 - mean_absolute_error: 9.2746
+11/15 [=====================>........] - ETA: 3:12 - loss: 123.7390 - mean_squared_error: 123.7116 - mean_absolute_error: 9.6856
+12/15 [=======================>......] - ETA: 2:24 - loss: 115.9191 - mean_squared_error: 115.8918 - mean_absolute_error: 9.3340
+13/15 [=========================>....] - ETA: 1:36 - loss: 116.6161 - mean_squared_error: 116.5887 - mean_absolute_error: 9.4758
+14/15 [===========================>..] - ETA: 48s - loss: 108.5729 - mean_squared_error: 108.5455 - mean_absolute_error: 8.9416 
+15/15 [==============================] - 752s 50s/step - loss: 101.3907 - mean_squared_error: 101.3634 - mean_absolute_error: 8.4056 - val_loss: 76.3134 - val_mean_squared_error: 76.2860 - val_mean_absolute_error: 7.5105
+Epoch 45/100
+
+ 1/15 [=>............................] - ETA: 11:09 - loss: 5.1528 - mean_squared_error: 5.1254 - mean_absolute_error: 2.2639
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 6.9772 - mean_squared_error: 6.9498 - mean_absolute_error: 2.6130
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 9.5825 - mean_squared_error: 9.5551 - mean_absolute_error: 3.0229 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 9.2598 - mean_squared_error: 9.2325 - mean_absolute_error: 2.9859
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 58.0473 - mean_squared_error: 58.0200 - mean_absolute_error: 5.5710
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 59.0449 - mean_squared_error: 59.0175 - mean_absolute_error: 5.9759
+ 7/15 [=============>................] - ETA: 6:25 - loss: 76.9369 - mean_squared_error: 76.9096 - mean_absolute_error: 7.0613
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 82.1383 - mean_squared_error: 82.1110 - mean_absolute_error: 7.5395
+ 9/15 [=================>............] - ETA: 4:48 - loss: 91.2830 - mean_squared_error: 91.2556 - mean_absolute_error: 8.1265
+10/15 [===================>..........] - ETA: 4:00 - loss: 86.2916 - mean_squared_error: 86.2642 - mean_absolute_error: 7.9568
+11/15 [=====================>........] - ETA: 3:12 - loss: 81.0484 - mean_squared_error: 81.0210 - mean_absolute_error: 7.7196
+12/15 [=======================>......] - ETA: 2:24 - loss: 89.5266 - mean_squared_error: 89.4992 - mean_absolute_error: 8.2028
+13/15 [=========================>....] - ETA: 1:36 - loss: 95.0836 - mean_squared_error: 95.0562 - mean_absolute_error: 8.5501
+14/15 [===========================>..] - ETA: 48s - loss: 95.6781 - mean_squared_error: 95.6507 - mean_absolute_error: 8.6657 
+15/15 [==============================] - 753s 50s/step - loss: 89.3286 - mean_squared_error: 89.3012 - mean_absolute_error: 8.1306 - val_loss: 75.0882 - val_mean_squared_error: 75.0609 - val_mean_absolute_error: 7.4916
+Epoch 46/100
+
+ 1/15 [=>............................] - ETA: 11:12 - loss: 2.2088 - mean_squared_error: 2.1814 - mean_absolute_error: 1.4769
+ 2/15 [===>..........................] - ETA: 10:23 - loss: 2.5821 - mean_squared_error: 2.5547 - mean_absolute_error: 1.5940
+ 3/15 [=====>........................] - ETA: 9:35 - loss: 10.7246 - mean_squared_error: 10.6972 - mean_absolute_error: 2.7942
+ 4/15 [=======>......................] - ETA: 8:47 - loss: 47.0041 - mean_squared_error: 46.9767 - mean_absolute_error: 5.2163
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 74.0727 - mean_squared_error: 74.0453 - mean_absolute_error: 6.8735
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 63.8861 - mean_squared_error: 63.8588 - mean_absolute_error: 6.3272
+ 7/15 [=============>................] - ETA: 6:24 - loss: 63.6464 - mean_squared_error: 63.6190 - mean_absolute_error: 6.5498
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 71.1463 - mean_squared_error: 71.1189 - mean_absolute_error: 7.1209
+ 9/15 [=================>............] - ETA: 4:48 - loss: 79.1291 - mean_squared_error: 79.1017 - mean_absolute_error: 7.6582
+10/15 [===================>..........] - ETA: 4:00 - loss: 104.7884 - mean_squared_error: 104.7610 - mean_absolute_error: 8.7246
+11/15 [=====================>........] - ETA: 3:12 - loss: 97.9357 - mean_squared_error: 97.9084 - mean_absolute_error: 8.4242  
+12/15 [=======================>......] - ETA: 2:24 - loss: 94.4418 - mean_squared_error: 94.4144 - mean_absolute_error: 8.3457
+13/15 [=========================>....] - ETA: 1:36 - loss: 101.1433 - mean_squared_error: 101.1159 - mean_absolute_error: 8.7401
+14/15 [===========================>..] - ETA: 48s - loss: 112.3579 - mean_squared_error: 112.3306 - mean_absolute_error: 9.2634 
+15/15 [==============================] - 752s 50s/step - loss: 105.1343 - mean_squared_error: 105.1070 - mean_absolute_error: 8.7788 - val_loss: 74.9762 - val_mean_squared_error: 74.9488 - val_mean_absolute_error: 7.5239
+Epoch 47/100
+
+ 1/15 [=>............................] - ETA: 11:15 - loss: 36.1566 - mean_squared_error: 36.1292 - mean_absolute_error: 6.0108
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 153.8140 - mean_squared_error: 153.7866 - mean_absolute_error: 11.2432
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 102.6196 - mean_squared_error: 102.5922 - mean_absolute_error: 7.6458  
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 87.7007 - mean_squared_error: 87.6733 - mean_absolute_error: 7.3721  
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 110.6079 - mean_squared_error: 110.5806 - mean_absolute_error: 8.7417
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 94.9755 - mean_squared_error: 94.9482 - mean_absolute_error: 7.9676  
+ 7/15 [=============>................] - ETA: 6:24 - loss: 103.1399 - mean_squared_error: 103.1125 - mean_absolute_error: 8.5912
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 117.7375 - mean_squared_error: 117.7101 - mean_absolute_error: 9.3709
+ 9/15 [=================>............] - ETA: 4:48 - loss: 105.9972 - mean_squared_error: 105.9698 - mean_absolute_error: 8.7153
+10/15 [===================>..........] - ETA: 4:00 - loss: 110.9618 - mean_squared_error: 110.9345 - mean_absolute_error: 9.0913
+11/15 [=====================>........] - ETA: 3:12 - loss: 102.2050 - mean_squared_error: 102.1777 - mean_absolute_error: 8.6123
+12/15 [=======================>......] - ETA: 2:24 - loss: 118.0634 - mean_squared_error: 118.0360 - mean_absolute_error: 9.3197
+13/15 [=========================>....] - ETA: 1:36 - loss: 115.5446 - mean_squared_error: 115.5172 - mean_absolute_error: 9.3133
+14/15 [===========================>..] - ETA: 48s - loss: 108.1436 - mean_squared_error: 108.1162 - mean_absolute_error: 8.8945 
+15/15 [==============================] - 752s 50s/step - loss: 101.4348 - mean_squared_error: 101.4075 - mean_absolute_error: 8.4839 - val_loss: 74.2119 - val_mean_squared_error: 74.1846 - val_mean_absolute_error: 7.4896
+Epoch 48/100
+
+ 1/15 [=>............................] - ETA: 11:16 - loss: 21.1942 - mean_squared_error: 21.1668 - mean_absolute_error: 4.6007
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 10.8302 - mean_squared_error: 10.8028 - mean_absolute_error: 2.6316
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 15.6026 - mean_squared_error: 15.5753 - mean_absolute_error: 3.4251 
+ 4/15 [=======>......................] - ETA: 8:49 - loss: 86.7886 - mean_squared_error: 86.7612 - mean_absolute_error: 6.9012
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 78.0871 - mean_squared_error: 78.0597 - mean_absolute_error: 6.8363
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 85.2424 - mean_squared_error: 85.2150 - mean_absolute_error: 7.5302
+ 7/15 [=============>................] - ETA: 6:25 - loss: 97.6030 - mean_squared_error: 97.5756 - mean_absolute_error: 8.3266
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 90.0512 - mean_squared_error: 90.0238 - mean_absolute_error: 8.0478
+ 9/15 [=================>............] - ETA: 4:48 - loss: 95.6678 - mean_squared_error: 95.6404 - mean_absolute_error: 8.4710
+10/15 [===================>..........] - ETA: 4:00 - loss: 86.1508 - mean_squared_error: 86.1235 - mean_absolute_error: 7.6925
+11/15 [=====================>........] - ETA: 3:12 - loss: 95.9821 - mean_squared_error: 95.9547 - mean_absolute_error: 8.2603
+12/15 [=======================>......] - ETA: 2:24 - loss: 88.3183 - mean_squared_error: 88.2909 - mean_absolute_error: 7.7383
+13/15 [=========================>....] - ETA: 1:36 - loss: 82.0270 - mean_squared_error: 81.9996 - mean_absolute_error: 7.3393
+14/15 [===========================>..] - ETA: 48s - loss: 84.3685 - mean_squared_error: 84.3411 - mean_absolute_error: 7.5803 
+15/15 [==============================] - 753s 50s/step - loss: 92.2237 - mean_squared_error: 92.1963 - mean_absolute_error: 8.0228 - val_loss: 74.4243 - val_mean_squared_error: 74.3969 - val_mean_absolute_error: 7.5423
+Epoch 49/100
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 305.2279 - mean_squared_error: 305.2005 - mean_absolute_error: 17.4700
+ 2/15 [===>..........................] - ETA: 10:28 - loss: 230.0104 - mean_squared_error: 229.9830 - mean_absolute_error: 14.9552
+ 3/15 [=====>........................] - ETA: 9:39 - loss: 212.4994 - mean_squared_error: 212.4720 - mean_absolute_error: 14.4105 
+ 4/15 [=======>......................] - ETA: 8:51 - loss: 160.6050 - mean_squared_error: 160.5777 - mean_absolute_error: 11.3610
+ 5/15 [=========>....................] - ETA: 8:03 - loss: 128.5415 - mean_squared_error: 128.5142 - mean_absolute_error: 9.1908 
+ 6/15 [===========>..................] - ETA: 7:14 - loss: 110.0208 - mean_squared_error: 109.9934 - mean_absolute_error: 8.3540
+ 7/15 [=============>................] - ETA: 6:25 - loss: 99.3957 - mean_squared_error: 99.3684 - mean_absolute_error: 8.0132  
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 103.6035 - mean_squared_error: 103.5761 - mean_absolute_error: 8.4533
+ 9/15 [=================>............] - ETA: 4:49 - loss: 96.1151 - mean_squared_error: 96.0877 - mean_absolute_error: 8.1824  
+10/15 [===================>..........] - ETA: 4:01 - loss: 108.1392 - mean_squared_error: 108.1118 - mean_absolute_error: 8.8349
+11/15 [=====================>........] - ETA: 3:12 - loss: 99.2552 - mean_squared_error: 99.2278 - mean_absolute_error: 8.3248  
+12/15 [=======================>......] - ETA: 2:24 - loss: 101.4169 - mean_squared_error: 101.3895 - mean_absolute_error: 8.5633
+13/15 [=========================>....] - ETA: 1:36 - loss: 105.8395 - mean_squared_error: 105.8121 - mean_absolute_error: 8.8742
+14/15 [===========================>..] - ETA: 48s - loss: 100.1974 - mean_squared_error: 100.1700 - mean_absolute_error: 8.6103 
+15/15 [==============================] - 754s 50s/step - loss: 93.9185 - mean_squared_error: 93.8911 - mean_absolute_error: 8.1994 - val_loss: 71.8944 - val_mean_squared_error: 71.8670 - val_mean_absolute_error: 7.4931
+Epoch 50/100
+
+ 1/15 [=>............................] - ETA: 11:16 - loss: 109.3056 - mean_squared_error: 109.2782 - mean_absolute_error: 10.4536
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 55.0279 - mean_squared_error: 55.0005 - mean_absolute_error: 5.6519   
+ 3/15 [=====>........................] - ETA: 9:39 - loss: 42.2319 - mean_squared_error: 42.2045 - mean_absolute_error: 5.1265 
+ 4/15 [=======>......................] - ETA: 8:50 - loss: 35.9154 - mean_squared_error: 35.8880 - mean_absolute_error: 4.8738
+ 5/15 [=========>....................] - ETA: 8:02 - loss: 55.0297 - mean_squared_error: 55.0023 - mean_absolute_error: 6.1922
+ 6/15 [===========>..................] - ETA: 7:15 - loss: 88.3374 - mean_squared_error: 88.3101 - mean_absolute_error: 7.8208
+ 7/15 [=============>................] - ETA: 6:27 - loss: 81.3567 - mean_squared_error: 81.3293 - mean_absolute_error: 7.6008
+ 8/15 [===============>..............] - ETA: 5:38 - loss: 92.3849 - mean_squared_error: 92.3575 - mean_absolute_error: 8.2783
+ 9/15 [=================>............] - ETA: 4:50 - loss: 104.9212 - mean_squared_error: 104.8938 - mean_absolute_error: 8.9501
+10/15 [===================>..........] - ETA: 4:02 - loss: 106.3284 - mean_squared_error: 106.3010 - mean_absolute_error: 9.1458
+11/15 [=====================>........] - ETA: 3:13 - loss: 96.9603 - mean_squared_error: 96.9329 - mean_absolute_error: 8.4783  
+12/15 [=======================>......] - ETA: 2:25 - loss: 89.5805 - mean_squared_error: 89.5531 - mean_absolute_error: 8.0129
+13/15 [=========================>....] - ETA: 1:36 - loss: 84.5872 - mean_squared_error: 84.5598 - mean_absolute_error: 7.7784
+14/15 [===========================>..] - ETA: 48s - loss: 78.5578 - mean_squared_error: 78.5305 - mean_absolute_error: 7.2504 
+15/15 [==============================] - 758s 51s/step - loss: 87.4219 - mean_squared_error: 87.3946 - mean_absolute_error: 7.7365 - val_loss: 72.7291 - val_mean_squared_error: 72.7018 - val_mean_absolute_error: 7.5628
+Epoch 51/100
+
+ 1/15 [=>............................] - ETA: 11:16 - loss: 62.6017 - mean_squared_error: 62.5743 - mean_absolute_error: 7.9104
+ 2/15 [===>..........................] - ETA: 10:28 - loss: 48.0175 - mean_squared_error: 47.9901 - mean_absolute_error: 6.8451
+ 3/15 [=====>........................] - ETA: 9:40 - loss: 34.2879 - mean_squared_error: 34.2605 - mean_absolute_error: 5.4327 
+ 4/15 [=======>......................] - ETA: 8:52 - loss: 58.5907 - mean_squared_error: 58.5633 - mean_absolute_error: 6.9411
+ 5/15 [=========>....................] - ETA: 8:03 - loss: 86.7074 - mean_squared_error: 86.6800 - mean_absolute_error: 8.3752
+ 6/15 [===========>..................] - ETA: 7:14 - loss: 104.7928 - mean_squared_error: 104.7655 - mean_absolute_error: 9.3079
+ 7/15 [=============>................] - ETA: 6:26 - loss: 117.9743 - mean_squared_error: 117.9469 - mean_absolute_error: 9.9835
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 119.7035 - mean_squared_error: 119.6762 - mean_absolute_error: 10.1705
+ 9/15 [=================>............] - ETA: 4:49 - loss: 106.6208 - mean_squared_error: 106.5935 - mean_absolute_error: 9.1949 
+10/15 [===================>..........] - ETA: 4:01 - loss: 106.8625 - mean_squared_error: 106.8351 - mean_absolute_error: 9.3195
+11/15 [=====================>........] - ETA: 3:13 - loss: 121.7785 - mean_squared_error: 121.7512 - mean_absolute_error: 9.9685
+12/15 [=======================>......] - ETA: 2:24 - loss: 114.1832 - mean_squared_error: 114.1559 - mean_absolute_error: 9.5989
+13/15 [=========================>....] - ETA: 1:36 - loss: 105.5100 - mean_squared_error: 105.4826 - mean_absolute_error: 8.9516
+14/15 [===========================>..] - ETA: 48s - loss: 98.0677 - mean_squared_error: 98.0403 - mean_absolute_error: 8.3934   
+15/15 [==============================] - 756s 50s/step - loss: 92.3575 - mean_squared_error: 92.3301 - mean_absolute_error: 8.0684 - val_loss: 70.1284 - val_mean_squared_error: 70.1011 - val_mean_absolute_error: 7.4953
+Epoch 52/100
+
+ 1/15 [=>............................] - ETA: 11:15 - loss: 49.1964 - mean_squared_error: 49.1690 - mean_absolute_error: 7.0121
+ 2/15 [===>..........................] - ETA: 10:29 - loss: 24.9144 - mean_squared_error: 24.8871 - mean_absolute_error: 3.8950
+ 3/15 [=====>........................] - ETA: 9:40 - loss: 75.3771 - mean_squared_error: 75.3497 - mean_absolute_error: 7.0223 
+ 4/15 [=======>......................] - ETA: 8:51 - loss: 94.1301 - mean_squared_error: 94.1027 - mean_absolute_error: 8.3323
+ 5/15 [=========>....................] - ETA: 8:03 - loss: 76.3135 - mean_squared_error: 76.2861 - mean_absolute_error: 7.1139
+ 6/15 [===========>..................] - ETA: 7:15 - loss: 99.7591 - mean_squared_error: 99.7318 - mean_absolute_error: 8.3832
+ 7/15 [=============>................] - ETA: 6:26 - loss: 86.0882 - mean_squared_error: 86.0608 - mean_absolute_error: 7.4725
+ 8/15 [===============>..............] - ETA: 5:38 - loss: 90.4849 - mean_squared_error: 90.4575 - mean_absolute_error: 7.9148
+ 9/15 [=================>............] - ETA: 4:49 - loss: 88.1562 - mean_squared_error: 88.1289 - mean_absolute_error: 7.9617
+10/15 [===================>..........] - ETA: 4:01 - loss: 79.7900 - mean_squared_error: 79.7626 - mean_absolute_error: 7.3768
+11/15 [=====================>........] - ETA: 3:13 - loss: 92.9300 - mean_squared_error: 92.9026 - mean_absolute_error: 8.0677
+12/15 [=======================>......] - ETA: 2:24 - loss: 99.1466 - mean_squared_error: 99.1192 - mean_absolute_error: 8.4740
+13/15 [=========================>....] - ETA: 1:36 - loss: 95.8142 - mean_squared_error: 95.7869 - mean_absolute_error: 8.3967
+14/15 [===========================>..] - ETA: 48s - loss: 89.8098 - mean_squared_error: 89.7825 - mean_absolute_error: 8.0415 
+15/15 [==============================] - 757s 50s/step - loss: 98.1955 - mean_squared_error: 98.1681 - mean_absolute_error: 8.4842 - val_loss: 71.3564 - val_mean_squared_error: 71.3291 - val_mean_absolute_error: 7.5931
+Epoch 53/100
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 137.8831 - mean_squared_error: 137.8558 - mean_absolute_error: 11.7412
+ 2/15 [===>..........................] - ETA: 10:27 - loss: 77.9173 - mean_squared_error: 77.8899 - mean_absolute_error: 7.9874   
+ 3/15 [=====>........................] - ETA: 9:38 - loss: 51.9910 - mean_squared_error: 51.9636 - mean_absolute_error: 5.4360 
+ 4/15 [=======>......................] - ETA: 8:49 - loss: 41.7875 - mean_squared_error: 41.7601 - mean_absolute_error: 4.9118
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 34.9013 - mean_squared_error: 34.8739 - mean_absolute_error: 4.4709
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 62.9698 - mean_squared_error: 62.9424 - mean_absolute_error: 6.1020
+ 7/15 [=============>................] - ETA: 6:25 - loss: 53.9780 - mean_squared_error: 53.9507 - mean_absolute_error: 5.2310
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 70.3131 - mean_squared_error: 70.2857 - mean_absolute_error: 6.2756
+ 9/15 [=================>............] - ETA: 4:49 - loss: 64.9658 - mean_squared_error: 64.9384 - mean_absolute_error: 6.1014
+10/15 [===================>..........] - ETA: 4:01 - loss: 79.3667 - mean_squared_error: 79.3394 - mean_absolute_error: 6.9367
+11/15 [=====================>........] - ETA: 3:12 - loss: 72.1734 - mean_squared_error: 72.1460 - mean_absolute_error: 6.3480
+12/15 [=======================>......] - ETA: 2:24 - loss: 81.0541 - mean_squared_error: 81.0267 - mean_absolute_error: 6.9331
+13/15 [=========================>....] - ETA: 1:36 - loss: 83.1223 - mean_squared_error: 83.0949 - mean_absolute_error: 7.1988
+14/15 [===========================>..] - ETA: 48s - loss: 91.5082 - mean_squared_error: 91.4809 - mean_absolute_error: 7.6960 
+15/15 [==============================] - 755s 50s/step - loss: 87.7308 - mean_squared_error: 87.7034 - mean_absolute_error: 7.5763 - val_loss: 68.0925 - val_mean_squared_error: 68.0651 - val_mean_absolute_error: 7.4948
+Epoch 54/100
+
+ 1/15 [=>............................] - ETA: 11:16 - loss: 21.1824 - mean_squared_error: 21.1550 - mean_absolute_error: 4.5995
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 64.7855 - mean_squared_error: 64.7581 - mean_absolute_error: 7.5046
+ 3/15 [=====>........................] - ETA: 9:37 - loss: 43.2023 - mean_squared_error: 43.1749 - mean_absolute_error: 5.0337 
+ 4/15 [=======>......................] - ETA: 8:49 - loss: 44.9929 - mean_squared_error: 44.9656 - mean_absolute_error: 5.5490
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 83.9356 - mean_squared_error: 83.9082 - mean_absolute_error: 7.5355
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 74.6770 - mean_squared_error: 74.6496 - mean_absolute_error: 7.1671
+ 7/15 [=============>................] - ETA: 6:25 - loss: 95.3820 - mean_squared_error: 95.3547 - mean_absolute_error: 8.2602
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 108.3615 - mean_squared_error: 108.3341 - mean_absolute_error: 8.9918
+ 9/15 [=================>............] - ETA: 4:49 - loss: 113.4231 - mean_squared_error: 113.3957 - mean_absolute_error: 9.3711
+10/15 [===================>..........] - ETA: 4:01 - loss: 115.1368 - mean_squared_error: 115.1094 - mean_absolute_error: 9.5765
+11/15 [=====================>........] - ETA: 3:12 - loss: 126.8043 - mean_squared_error: 126.7770 - mean_absolute_error: 10.1244
+12/15 [=======================>......] - ETA: 2:24 - loss: 117.1563 - mean_squared_error: 117.1289 - mean_absolute_error: 9.5570 
+13/15 [=========================>....] - ETA: 1:36 - loss: 110.9741 - mean_squared_error: 110.9467 - mean_absolute_error: 9.2883
+14/15 [===========================>..] - ETA: 48s - loss: 103.0605 - mean_squared_error: 103.0331 - mean_absolute_error: 8.6530 
+15/15 [==============================] - 754s 50s/step - loss: 97.2174 - mean_squared_error: 97.1900 - mean_absolute_error: 8.3377 - val_loss: 70.3251 - val_mean_squared_error: 70.2977 - val_mean_absolute_error: 7.6143
+Epoch 55/100
+
+ 1/15 [=>............................] - ETA: 11:16 - loss: 355.4062 - mean_squared_error: 355.3788 - mean_absolute_error: 18.8515
+ 2/15 [===>..........................] - ETA: 10:28 - loss: 181.9648 - mean_squared_error: 181.9374 - mean_absolute_error: 10.8831
+ 3/15 [=====>........................] - ETA: 9:38 - loss: 178.8888 - mean_squared_error: 178.8614 - mean_absolute_error: 11.6361 
+ 4/15 [=======>......................] - ETA: 8:49 - loss: 134.1858 - mean_squared_error: 134.1585 - mean_absolute_error: 8.7828 
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 124.9763 - mean_squared_error: 124.9489 - mean_absolute_error: 8.9036
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 126.5836 - mean_squared_error: 126.5562 - mean_absolute_error: 9.3532
+ 7/15 [=============>................] - ETA: 6:25 - loss: 111.6793 - mean_squared_error: 111.6519 - mean_absolute_error: 8.6905
+ 8/15 [===============>..............] - ETA: 5:37 - loss: 97.7478 - mean_squared_error: 97.7204 - mean_absolute_error: 7.6601  
+ 9/15 [=================>............] - ETA: 4:49 - loss: 89.6411 - mean_squared_error: 89.6137 - mean_absolute_error: 7.3619
+10/15 [===================>..........] - ETA: 4:00 - loss: 97.1525 - mean_squared_error: 97.1251 - mean_absolute_error: 7.9091
+11/15 [=====================>........] - ETA: 3:12 - loss: 100.3980 - mean_squared_error: 100.3706 - mean_absolute_error: 8.2379
+12/15 [=======================>......] - ETA: 2:24 - loss: 95.7538 - mean_squared_error: 95.7264 - mean_absolute_error: 8.1082  
+13/15 [=========================>....] - ETA: 1:36 - loss: 90.4040 - mean_squared_error: 90.3766 - mean_absolute_error: 7.8780
+14/15 [===========================>..] - ETA: 48s - loss: 95.5483 - mean_squared_error: 95.5210 - mean_absolute_error: 8.2256 
+15/15 [==============================] - 754s 50s/step - loss: 89.9871 - mean_squared_error: 89.9597 - mean_absolute_error: 7.9091 - val_loss: 66.8445 - val_mean_squared_error: 66.8171 - val_mean_absolute_error: 7.4917
+Epoch 56/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 138.0512 - mean_squared_error: 138.0238 - mean_absolute_error: 11.7484
+ 2/15 [===>..........................] - ETA: 10:24 - loss: 69.4773 - mean_squared_error: 69.4499 - mean_absolute_error: 6.3422   
+ 3/15 [=====>........................] - ETA: 9:36 - loss: 48.5325 - mean_squared_error: 48.5051 - mean_absolute_error: 5.0855 
+ 4/15 [=======>......................] - ETA: 8:48 - loss: 99.1943 - mean_squared_error: 99.1669 - mean_absolute_error: 7.7760
+ 5/15 [=========>....................] - ETA: 8:00 - loss: 79.4131 - mean_squared_error: 79.3858 - mean_absolute_error: 6.3231
+ 6/15 [===========>..................] - ETA: 7:12 - loss: 92.4061 - mean_squared_error: 92.3787 - mean_absolute_error: 7.3598
+ 7/15 [=============>................] - ETA: 6:24 - loss: 102.7378 - mean_squared_error: 102.7105 - mean_absolute_error: 8.1418
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 91.1633 - mean_squared_error: 91.1359 - mean_absolute_error: 7.5216  
+ 9/15 [=================>............] - ETA: 4:48 - loss: 106.0336 - mean_squared_error: 106.0062 - mean_absolute_error: 8.3524
+10/15 [===================>..........] - ETA: 4:00 - loss: 100.9697 - mean_squared_error: 100.9423 - mean_absolute_error: 8.2613
+11/15 [=====================>........] - ETA: 3:12 - loss: 102.8253 - mean_squared_error: 102.7980 - mean_absolute_error: 8.5117
+12/15 [=======================>......] - ETA: 2:24 - loss: 94.9107 - mean_squared_error: 94.8833 - mean_absolute_error: 8.0355  
+13/15 [=========================>....] - ETA: 1:36 - loss: 87.6742 - mean_squared_error: 87.6468 - mean_absolute_error: 7.4865
+14/15 [===========================>..] - ETA: 48s - loss: 98.1180 - mean_squared_error: 98.0906 - mean_absolute_error: 8.0441 
+15/15 [==============================] - 752s 50s/step - loss: 92.0190 - mean_squared_error: 91.9916 - mean_absolute_error: 7.6792 - val_loss: 69.7143 - val_mean_squared_error: 69.6870 - val_mean_absolute_error: 7.6380
+Epoch 57/100
+
+ 1/15 [=>............................] - ETA: 11:13 - loss: 16.9499 - mean_squared_error: 16.9225 - mean_absolute_error: 4.1137
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 8.8701 - mean_squared_error: 8.8428 - mean_absolute_error: 2.4936  
+ 3/15 [=====>........................] - ETA: 9:38 - loss: 24.6097 - mean_squared_error: 24.5823 - mean_absolute_error: 4.1582
+ 4/15 [=======>......................] - ETA: 8:49 - loss: 18.9449 - mean_squared_error: 18.9175 - mean_absolute_error: 3.4653
+ 5/15 [=========>....................] - ETA: 8:01 - loss: 85.4962 - mean_squared_error: 85.4688 - mean_absolute_error: 6.5229
+ 6/15 [===========>..................] - ETA: 7:13 - loss: 108.3272 - mean_squared_error: 108.2998 - mean_absolute_error: 7.9215
+ 7/15 [=============>................] - ETA: 6:25 - loss: 119.9164 - mean_squared_error: 119.8891 - mean_absolute_error: 8.7561
+ 8/15 [===============>..............] - ETA: 5:36 - loss: 123.8115 - mean_squared_error: 123.7842 - mean_absolute_error: 9.1978
+ 9/15 [=================>............] - ETA: 4:48 - loss: 112.4363 - mean_squared_error: 112.4089 - mean_absolute_error: 8.6899
+10/15 [===================>..........] - ETA: 4:00 - loss: 112.1133 - mean_squared_error: 112.0859 - mean_absolute_error: 8.8658
+11/15 [=====================>........] - ETA: 3:12 - loss: 114.1153 - mean_squared_error: 114.0879 - mean_absolute_error: 9.1126
+12/15 [=======================>......] - ETA: 2:24 - loss: 104.8773 - mean_squared_error: 104.8499 - mean_absolute_error: 8.5030
+13/15 [=========================>....] - ETA: 1:36 - loss: 111.2337 - mean_squared_error: 111.2063 - mean_absolute_error: 8.9022
+14/15 [===========================>..] - ETA: 48s - loss: 103.5334 - mean_squared_error: 103.5060 - mean_absolute_error: 8.3981 
+15/15 [==============================] - 753s 50s/step - loss: 98.3327 - mean_squared_error: 98.3053 - mean_absolute_error: 8.1748 - val_loss: 66.1559 - val_mean_squared_error: 66.1285 - val_mean_absolute_error: 7.4929
+Epoch 58/100
+
+ 1/15 [=>............................] - ETA: 11:11 - loss: 83.3680 - mean_squared_error: 83.3406 - mean_absolute_error: 9.1291
+ 2/15 [===>..........................] - ETA: 10:26 - loss: 49.5174 - mean_squared_error: 49.4900 - mean_absolute_error: 6.5419
+ 3/15 [=====>........................] - ETA: 9:39 - loss: 43.1217 - mean_squared_error: 43.0944 - mean_absolute_error: 6.1962 
+ 4/15 [=======>......................] - ETA: 8:50 - loss: 66.6243 - mean_squared_error: 66.5969 - mean_absolute_error: 7.5744

@@ -1,0 +1,2 @@
+epoch,loss,lr,mean_absolute_error,mean_squared_error,val_loss,val_mean_absolute_error,val_mean_squared_error
+0,155.04059752,0.1,4.90872572201,36.7727317985,18.7779837454,3.75557613373,18.7779837454
