@@ -1,6 +1,6 @@
-PWD d:/Bachelorarbeit/bsc-thesis/thesis
+PWD d:/Bachelorarbeit/bsc-thesis-clean/thesis
 INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt
-INPUT d:/Bachelorarbeit/bsc-thesis/thesis/thesis.tex
+INPUT d:/Bachelorarbeit/bsc-thesis-clean/thesis/thesis.tex
 OUTPUT thesis.log
 INPUT ddis-thesis.cls
 INPUT ddis-thesis.cls

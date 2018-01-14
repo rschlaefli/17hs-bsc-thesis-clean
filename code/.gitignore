@@ -9,4 +9,5 @@ archive/data
 *.nfs*
 
 00_CACHE
-00_DATA
+00_DATA/TRMM
+00_DATA/ERA
