@@ -5,7 +5,7 @@ MODEL="$1"
 MODEL_VERSION="${2:-1}"
 PATIENCE=${3:-50}
 EVALUATE=${4:-""}
-LOG_DIR=~/17hs-bsc-thesis/code/03_EVALUATION/logs/$MODEL
+LOG_DIR=~/17hs-bsc-thesis-clean/code/03_EVALUATION/logs/$MODEL
 
 echo "> Activating conda environment..."
 
@@ -16,7 +16,7 @@ echo "> Running configs..."
 
 # go through all possible configs
 # for i in {0..2}
-for i in {15..15}
+for i in {16..16}
 do
   # ensure the log dir for this version is existent
   mkdir -p $LOG_DIR
@@ -30,4 +30,4 @@ done
 echo "> Finished running configs. Shutdown..."
 
 # shutdown the machine after completion of all experiments
-# sudo shutdown
+sudo shutdown

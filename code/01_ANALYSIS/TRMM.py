@@ -74,7 +74,8 @@ class TRMM(Dataset):
                     timestamp=True,
                     version=None,
                     lat_slice=None,
-                    lon_slice=None):
+                    lon_slice=None,
+                    default_slice=False):
         """
         Load the entire TRMM dataset
 
@@ -128,6 +129,9 @@ class TRMM(Dataset):
             # restrict the geographic area to the slices provided
             if lat_slice is not None and lon_slice is not None:
                 df = df.loc[(lat_slice, lon_slice), :]
+
+            if default_slice:
+                df = df.loc[(slice(4.125, 40.625), slice(61.125, 97.625)), :]
 
             # if the data is to be aggregated, run the aggregation algorithm
             if aggregation_resolution is not None:
