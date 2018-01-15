@@ -16,7 +16,7 @@ echo "> Running configs..."
 
 # go through all possible configs
 # for i in {0..2}
-for i in {16..16}
+for i in {18..18}
 do
   # ensure the log dir for this version is existent
   mkdir -p $LOG_DIR

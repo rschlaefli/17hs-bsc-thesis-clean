@@ -1015,7 +1015,7 @@ onset_dates, onset_ts = ModelHelpers.load_onset_dates(version='v2', objective=Tr
 # generate a sequence of timestamps for train and validation
 # generate the timestamp of the 22nd of each test year
 prediction_ts = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], chain(TUNING['years_train'], TUNING['years_dev']), onset_dates=onset_dates, sequence_length=TUNING['prediction_sequence'], sequence_offset=TUNING['prediction_offset'], example_length=TUNING['prediction_example_length'])
-prediction_ts_test = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], TUNING['years_test'], fake_sequence=True)
+prediction_ts_test = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], TUNING['years_test'], fake_sequence=True, example_length=TUNING['prediction_example_length'])
 
 # setup a filter function
 # this later prevents any data after the prediction timestamp from being fed as input
@@ -1028,7 +1028,7 @@ features = []
 print("> Loading Dataset")
 for era_level in ['invariant', 'surface', 1000, 700, 200]:
     if era_level in TUNING['features']:
-        dataset = ERA.load_dataset_v2(TUNING['years'], invalidate=True, level=era_level, variables=TUNING['features'][era_level], filter_fun=filter_fun, aggregation_resolution=TUNING['aggregation_resolution'])
+        dataset = ERA.load_dataset_v2(TUNING['years'], invalidate=False, level=era_level, variables=TUNING['features'][era_level], filter_fun=filter_fun, aggregation_resolution=TUNING['aggregation_resolution'])
         features = features + [dataset[feature] for feature in TUNING['features'][era_level]]
 
 if 'trmm' in TUNING['features']:
