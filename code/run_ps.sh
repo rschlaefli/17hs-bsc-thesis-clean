@@ -16,7 +16,7 @@ echo "> Running configs..."
 
 # go through all possible configs
 # for i in {0..2}
-for i in {19..19}
+for i in {20..22}
 do
   # ensure the log dir for this version is existent
   mkdir -p $LOG_DIR
@@ -30,4 +30,4 @@ done
 echo "> Finished running configs. Shutdown..."
 
 # shutdown the machine after completion of all experiments
-# sudo shutdown
+sudo shutdown
