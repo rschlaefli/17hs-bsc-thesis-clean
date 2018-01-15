@@ -190,30 +190,20 @@ class TRMM(Dataset):
         return extracted
 
     @staticmethod
-    def calculate_time_lag(i, j, method='stolbova'):
+    def calculate_time_lag(i, j):
         """
         Calculate the time lag between two three-tuples
 
-        :i: Tuple like (l-1, l, l+1)
-        :j: Tuple like (m-1, m, m+1)
-        :method: Method to use for time lag calculation (stolbova or original paper)
+        :param i: Tuple like (l-1, l, l+1)
+        :param j: Tuple like (m-1, m, m+1)
 
         :return: Time lag (number)
         """
 
-        (i_prev, i_current, i_next) = i
-        (j_prev, j_current, j_next) = j
-
-        min_val = min(i_next - i_current, i_current - i_prev,
-                        j_next - j_current, j_current - j_prev)
-
-        if method == 'stolbova':
-            return 0.5 * min_val
-
-        return min_val
+        return 0.5 * min(i[2] - i[1], i[1] - i[0], j[2] - j[1], j[1] - j[0])
 
     @staticmethod
-    def sliding_window(iterable, window_size=3):
+    def sliding_window(iterable, window_size=3, padded=False):
         """
         Generate an iterator that serves as a sliding window of given size
 
@@ -227,10 +217,10 @@ class TRMM(Dataset):
         i = iter(iterable.index)
 
         # prepare an empty array for the window
-        win = []
+        win = [0] if padded else []
 
         # fill the window with prev, current and next elements
-        for e in range(0, window_size):
+        for e in range(0, window_size - (1 if padded else 0)):
             win.append(next(i))
 
         # yield the window
@@ -245,8 +235,11 @@ class TRMM(Dataset):
             # return a new window
             yield win
 
+        if padded:
+            yield win[1:] + [999999999999]
+
     @staticmethod
-    def calculate_synchronization(row1, row2, method='stolbova'):
+    def calculate_synchronization(row1, row2):
         """
         Calculate the number of synchronous events between two rows
 
@@ -264,8 +257,19 @@ class TRMM(Dataset):
             # calculate the max timestamp of row2 that could be synchronous
             earliest = i_current - 0.5 * min(i_current - i_prev, i_next - i_current)
 
+            # before_earliest = row2.index.get_loc(earliest, method='nearest') - 1
+            # after_current = row2.index.get_loc(i_next, method='nearest') + 2
+
+            # if before_earliest < 0:
+                # before_earliest = 0
+            # if after_current > len(row2.index) - 1:
+                # after_current = len(row2.index) - 1
+
+            # print(i_current, row2.index[before_earliest], row2.index[after_current])
+
             # pass through all events at the same or at a later time at the second location
             for j_prev, j_current, j_next in TRMM.sliding_window(row2, window_size=3):
+            # for j_prev, j_current, j_next in TRMM.sliding_window(row2.iloc[before_earliest:after_current], window_size=3):
                 # the following optimizations reduce runtime from ~0.3s to 0.02s
 
                 # calculate the difference
@@ -288,7 +292,7 @@ class TRMM(Dataset):
                     continue
 
                 # calculate the time lag based on the current state of the two sliding windows
-                time_lag = TRMM.calculate_time_lag((i_prev, i_current, i_next), (j_prev, j_current, j_next), method=method)
+                time_lag = TRMM.calculate_time_lag((i_prev, i_current, i_next), (j_prev, j_current, j_next))
 
                 # if the second event lies within the time lag, it is fully synchronous
                 if 0 < current_diff <= time_lag:
@@ -499,8 +503,7 @@ class TRMM(Dataset):
         Setup an asynchronous worker that performs the sync calculation
         """
 
-        sync_strength, sync_count = TRMM.calculate_sync_strength(
-            extreme_events.iloc[i], extreme_events.iloc[j])
+        sync_strength, sync_count = TRMM.calculate_sync_strength(extreme_events.iloc[i], extreme_events.iloc[j])
 
         result = i, j, sync_strength, sync_count
         q.put(result)

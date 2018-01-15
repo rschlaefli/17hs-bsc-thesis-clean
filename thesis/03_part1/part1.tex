@@ -71,7 +71,9 @@ where $Q_{ij} = 1$ means that the time series are completely synchronized, i.e.,
 \label{ssst:appl_climate_networks}
 While the work of \citet{QuianQuiroga.2002} focuses on the analysis of EEG\footnote{EEG: Electroencephalogram; A way of measuring brain activity.]} time series, their event synchronization approach is explicitly applicable to other domains. The works of \citet{Malik.2010} and \citet{Stolbova.2015} both expand upon simple event synchronization. For the purposes of our work, we focus on the approach using climate networks as found in \citet{Stolbova.2015}.
 
-Looking at the TRMM dataset as shown in \cref{fig:trmm_area}, each cell of its coordinate grid represents a separate precipitation time series. As the analysis of each monsoon season is performed seperately, one such coordinate grid per season needs to be extracted\footnote{The time series are then simply the respective months of each year, concatenated into a single series}. The time series in the resulting grids are not event based and thus cannot be directly used to calculate synchronization. They can, however, easily be transformed into event series by extracting only the days where extreme rainfall occurred. As per \citet{Stolbova.2015}, such days are generally defined as days with rainfall that exceeds the 90th percentile for the respective location.
+Looking at the TRMM dataset as shown in \cref{fig:trmm_area}, each cell of its coordinate grid represents a separate precipitation time series. As the analysis of each monsoon season is performed seperately, one such coordinate grid per season needs to be extracted\footnote{The time series are then simply the respective months of each year, concatenated into a single series.}.
+
+The time series in the resulting grids are not event based and thus cannot be directly used to calculate synchronization. They can, however, easily be transformed into event series by extracting only the days where extreme rainfall occurred. As per \citet{Stolbova.2015}, such days are generally defined as days with rainfall that exceeds the 90th percentile for the respective location.
 
 The resulting series of extreme events can be used to calculate the synchronicity of different locations (grid cells) in the TRMM dataset. Computing the synchronicity for all possible permutations of two such locations then results in a synchronization matrix as can be seen in \cref{fig:synchronization_matrix}.
 
@@ -82,7 +84,7 @@ The resulting series of extreme events can be used to calculate the synchronicit
   \label{fig:synchronization_matrix}
 \end{figure}
 
-Applying a numerical threshold to this synchronization matrix results in a matrix that contains only the most significantly synchronous values. Everything else is set to zero, including the diagonal of the matrix, as this would result in loops in the graph later on. Additionally, all elements above the threshold are set to one, yielding the adjacency matrix for an undirected, unweighted graph (\cref{fig:adjacency_matrix}). \citet{Stolbova.2015} uses the 95th percentile for the threshold applied, as this removes all but the most statistically significant values.
+Applying a numerical threshold to this synchronization matrix results in a matrix that contains only the most significantly synchronous values. Everything else is set to zero, including the diagonal of the matrix, as this would result in loops in the graph later on. Additionally, all elements above the threshold are set to one, yielding the adjacency matrix for an undirected, unweighted network (\cref{fig:adjacency_matrix}). \citet{Stolbova.2015} uses the 95th percentile for the threshold applied, as this removes all but the most statistically significant values.
 
 \begin{figure}[h]
   \centering
@@ -90,6 +92,8 @@ Applying a numerical threshold to this synchronization matrix results in a matri
   \caption{Exemplary adjacency matrix for TRMM at a 0.75\degree resolution. We only show the top left 15x15 section of our actual matrix, as its full dimensions are 2401x2401 for a 0.75\degree resolution.}
   \label{fig:adjacency_matrix}
 \end{figure}
+
+Based upon the adjacency matrix, a network can then be computed and analyzed. However, before we detail our implementation of it, the next section briefly describes the measures that we will be using for said network analysis.
 
 \subsection{Graph centrality}
 \label{sst:network_measures}
@@ -101,15 +105,76 @@ The \textit{degree} of a node in a network is quite simply defined as the amount
 
 Calculating the \textit{betweenness} or \textit{betweenness centrality} of a node is a more involved effort. A node has a high betweenness if a large portion of shortest paths in the network pass through the respective node. If the resulting betweenness is to be an exact measure, this basically necessitates the calculation of all shortest paths in the network, which gets increasingly complex with the size of the graph. There are, however, algorithms that achieve both accuracy and speed when calculating betweenness, one of the most popular being the approach proposed by \citet{Brandes.2001}\footnote{This algorithm is also used by the Python library \textit{networkx}, which we will be using for our calculations.}.
 
-The final measure that we will apply to climate networks, the \textit{PageRank} algorithm, was originally developed and published by the founders of Google, Larry Page and Sergey Brin, during their studies at Stanford University \citep{Page.1999}.
+The final measure that we will apply to climate networks, the \textit{PageRank} algorithm, was originally developed and published by the founders of Google (amongst others), Larry Page and Sergey Brin, during their studies at Stanford University \citep{Page.1999}.
+
+[TODO: finish page rank]
 
 \section{Implementation}
 \label{st:event_sync_implementation}
-Our implementation of the event synchronization and climate network computations is strongly based on the concepts and measures as described in \cref{sst:event_sync} and \cref{sst:building_climate_network}. As the algorithmic implementation is most certainly different, we shortly go over our approach to the problem in this section.
+Our implementation of the event synchronization and climate network computations is strongly based on the concepts and measures as described in \cref{sst:event_sync} and \cref{sst:building_climate_network}. As our algorithmic implementation is most certainly different than the one used in the original work \citep{Stolbova.2015}, we shortly go over our approach to the problem in this section.
 
 \subsection{Calculating event synchronization}
 \label{sst:event_sync_calculation}
-[TODO: describe extraction of extreme events (simple quantile)]
+Before we are able to calculate the synchronicity for any two locations, the precipitation time series need to be transformed into series of events. Assume that we have extracted pre-monsoon time series as shown in \cref{tab:example_rainfall_ts} from the TRMM dataset and now want to convert these into extreme event series.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ |c|c|ccccccc| }
+    \hline
+    Latitude & Longitude & 01.03.98 & ... & 29.05.98 & 30.05.98 & 31.05.98 & 01.03.99 & ...\\
+    \hline
+    13.375 & 67.375 & 0.0  & ... & 0.12 & 2.31  & 2.85  & 0.00 & ... \\
+    16.375 & 91.375 & 0.0  & ... & 0.09 & 34.80 & 49.49 & 0.00 & ... \\
+    34.375 & 67.375 & 0.52 & ... & 0.00 & 0.00  & 0.00  & 0.00 & ... \\
+    34.375 & 88.375 & 0.86 & ... & 2.01 & 51.85 & 68.72 & 0.29 & ... \\
+    \hline
+  \end{tabular}
+  \caption{Precipitation time series during pre-monsoon at 4 exemplary locations (TRMM, 0.75\degree).}
+  \label{tab:example_rainfall_ts}
+\end{table}
+
+We calculate the 90th percentile seperately for each row and apply the result as a threshold to the respective row. This yields event series where each value represents the date of an extreme event in the series. This would look as shown in \cref{tab:example_rainfall_events} if applied to the time series in \cref{tab:example_rainfall_ts}.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ |c|c|ccccccc| }
+    \hline
+    Latitude & Longitude & 1 & 2 & 3 & 4 & 5 & 6 & ... \\
+    \hline
+    13.375 & 67.375 & 07.04.98 & 31.05.98 & 08.05.99 & 12.05.99 & 13.05.99 & 15.05.99 & ... \\
+    16.375 & 91.375 & 17.05.98 & 18.05.98 & 19.05.98 & 30.04.99 & 01.05.99 & 05.05.99 & ... \\
+    34.375 & 67.375 & 03.03.98 & 29.03.98 & 02.04.98 & 03.04.98 & 09.04.98 & 22.04.98 & ... \\
+    34.375 & 88.375 & 18.03.98 & 30.03.98 & 31.03.98 & 01.04.98 & 05.04.98 & 19.04.98 & ... \\
+    \hline
+  \end{tabular}
+  \caption{First events in the pre-monsoon extreme event series at 4 exemplary locations (TRMM, 0.75\degree).}
+  \label{tab:example_rainfall_events}
+\end{table}
+
+With a matrix of extreme events as shown in excerpt in \cref{tab:example_rainfall_events}, we then calculate the event synchronization for all pairs of locations. \cref{tab:example_empty_sync} shows the state of a preliminary synchronization matrix before running any of the calculations. Locations are always perfectly synchronous to themselves, leading to a diagonal that will always be filled with ones.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ |cc|cccc| }
+    \hline
+     & Latitude & 13.375 & 16.375 & 34.375 & 34.375 \\
+    Latitude & Longitude & 67.375 & 91.375 & 67.375 & 88.375 \\
+    \hline
+    13.375 & 67.375 & 1 &   &   &   \\
+    16.375 & 91.375 &   & 1 &   &   \\
+    34.375 & 67.375 &   &   & 1 &   \\
+    34.375 & 88.375 &   &   &   & 1 \\
+    \hline
+  \end{tabular}
+  \caption{Empty synchronization matrix for 4 exemplary locations (TRMM, 0.75\degree).}
+  \label{tab:example_empty_sync}
+\end{table}
+
+To further fill in the values of the synchronization matrix in \cref{tab:example_empty_sync}, our algorithm only needs to perform calculations for one of the now empty halves of the matrix. This is due to the fact that, at least in our approach, the synchronization between two locations can be symmetrically applied to both their permutations. The original work on event synchronization by \citet{QuianQuiroga.2002} describes some asymmetrical measures, that were, however, not used in the work of \citet{Stolbova.2015}.
+
+Having explained the necessary setup of the event synchronization algorithm, we now go into the
+
+
 
 [TODO: describe our sliding window approach for event sync calculation]
 
