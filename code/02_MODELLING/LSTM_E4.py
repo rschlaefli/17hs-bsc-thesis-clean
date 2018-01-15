@@ -900,7 +900,7 @@ TUNINGS = [
         'years_dev': YEARS_DEV,
         'years_test': YEARS_TEST,
     },
-    { # 16
+    { # 17
         'aggregation_resolution': None,
         'config_build': {
             'batch_norm': True,
@@ -976,7 +976,7 @@ features = []
 print("> Loading Dataset")
 for era_level in ['invariant', 'surface', 1000, 700, 200]:
     if era_level in TUNING['features']:
-        dataset = ERA.load_dataset_v2(TUNING['years'], invalidate=False, level=era_level, variables=TUNING['features'][era_level], filter_fun=filter_fun, aggregation_resolution=TUNING['aggregation_resolution'])
+        dataset = ERA.load_dataset_v2(TUNING['years'], invalidate=True, level=era_level, variables=TUNING['features'][era_level], filter_fun=filter_fun, aggregation_resolution=TUNING['aggregation_resolution'])
         features = features + [dataset[feature] for feature in TUNING['features'][era_level]]
 
 if 'trmm' in TUNING['features']:

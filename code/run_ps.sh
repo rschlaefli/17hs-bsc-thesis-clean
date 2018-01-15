@@ -30,4 +30,4 @@ done
 echo "> Finished running configs. Shutdown..."
 
 # shutdown the machine after completion of all experiments
-sudo shutdown
+# sudo shutdown
