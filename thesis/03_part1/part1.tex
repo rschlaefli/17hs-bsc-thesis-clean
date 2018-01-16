@@ -220,13 +220,13 @@ We found that this naturally fits the description of a sliding window approach: 
         return num_sync_events
 
   \end{minted}
-  \caption{Pseudocode for a simplified event synchronization algorithm, applicable to any two series of events.}
+  \caption{Python pseudocode for a simplified event synchronization algorithm, applicable to any two series of events.}
   \label{lst:event_synchronization}
 \end{listing}
 
 The event synchronization algorithm as described in \cref{lst:event_synchronization} results in the number of synchronous events between \textit{location1} and \textit{location2} where the event in \textit{location2} leads the event in \textit{location1}. This is, however, only part of the full event synchronization calculation, as we also need the number of synchronous events where \textit{location1} leads \textit{location2}, i.e., we need to evaluate $calculate\_synchronization(location2, location1)$. This is the reason that simultaneous events only count as "half synchronous": they are counted in both these calculations and, in total, then result in one synchronous event.
 
-Calculating the strength of synchronization then boils down to a simple application of formula \eqref{eq:sync_strength} from \pageref{eq:sync_strength}. Our approach is shown in pseudocode in \cref{lst:sync_strength}.
+Calculating the strength of synchronization then boils down to a simple application of formula \eqref{eq:sync_strength} from \pageref{eq:sync_strength} and is further presented in \cref{lst:sync_strength}.
 
 \begin{listing}[H]
   \begin{minted}[mathescape,
@@ -250,7 +250,7 @@ Calculating the strength of synchronization then boils down to a simple applicat
         return sync_strength, loc1_sync + loc2_sync
 
   \end{minted}
-  \caption{Pseudocode for the calculation of the synchronization strength between any two series of events.}
+  \caption{Python pseudocode for the calculation of the synchronization strength between any two series of events.}
   \label{lst:sync_strength}
 \end{listing}
 
@@ -283,7 +283,7 @@ We then make use of \cref{lst:sync_strength} to fill in the missing values in a 
         return sync_matrix, count_matrix
 
   \end{minted}
-  \caption{Pseudocode for processing an entire event matrix.}
+  \caption{Python pseudocode for processing an entire event matrix.}
   \label{lst:sync_matrix}
 \end{listing}
 
@@ -338,7 +338,7 @@ The implementation as shown so far naively processes all possible combinations o
         return num_sync_events
 
   \end{minted}
-  \caption{Pseudocode for an improved version of the event synchronization algorithm, applicable to any two series of events.}
+  \caption{Python pseudocode for an improved version of the event synchronization algorithm, applicable to any two series of events.}
   \label{lst:event_synchronization_improved}
 \end{listing}
 
@@ -363,30 +363,41 @@ The creation of a climate network based on an adjacency network, as well as the 
     gobble=4,
     frame=lines,
     framesep=2mm]{python}
-    # source: 01_ANALYSIS/TRMM.py
-    # functions: generate_graph, calculate_centrality
 
     # build a graph from an adjacency matrix
     # using the networkx (nx) Python library
     graph = nx.from_numpy_matrix(adjacency_matrix)
 
-    # calculate the degree, betweenness and PageRank
-    # for all nodes in the graph
+    # calculate the degree, betweenness and PageRank for all nodes
+    # the weighted variant (simply leave the parameter for the unweighted variant)
     nodes_degree = graph.degree(weight='weight')
     nodes_betweenness = nx.betweenness_centrality(graph, normalized=False, weight='weight')
     nodes_pagerank = nx.pagerank_numpy(graph, weight='weight')
 
   \end{minted}
-  \caption{Simplified pseudocode for the creation of a climate network from an adjacency matrix and the calculation of network measures.}
+  \caption{Simplified Python pseudocode for the creation of a climate network from an adjacency matrix as well as the calculation of corresponding network measures.}
   \label{lst:climate_networks}
 \end{listing}
 
-The application of our event synchronization and climate network algorithms to the different periods of monsoon (pre-monsoon, monsoon and post-monsoon), as well as the analysis of the resulting networks,
-
-
+The results of applying the algorithms we have described in this section to the TRMM dataset, more specifically the pre-monsoon, monsoon and post-monsoon seasons as extracted from TRMM, are presented in the next section (\cref{st:event_sync_results}).
 
 \section{Results \& Evaluation}
 \label{st:event_sync_results}
+
+
+\subsection{Dataset}
+Our results are based on the TRMM dataset as introduced in \cref{sst:trmm_dataset}. We have extracted data for the years 1998-2016, which corresponds to all years that were fully available at the time. The area included in the dataset was restricted to an extended overview over the Indian subcontinent, more specifically the area between 4.125-40.625N, 61.125-97.625E.
+
+\subsection{Pre-monsoon season (MAM)}
+bls
+
+\subsection{Monsoon season (JJAS)}
+
+\subsection{Post-monsoon season (OND)}
+
+
+
+
 [TODO: describe the results that were obtained by our approach]
 
 [TODO: interpret the results, incorporating knowledge of impacting factors]
