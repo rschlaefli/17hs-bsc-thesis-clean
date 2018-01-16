@@ -1236,7 +1236,7 @@ TUNINGS = [
             'padding': 'same'
         },
         'config_fit': {
-            'batch_size': 60,
+            'batch_size': 30,
             'epochs': 300,
             'lr_plateau': (0.1, 50, 0.0001),
             'patience': PATIENCE,
