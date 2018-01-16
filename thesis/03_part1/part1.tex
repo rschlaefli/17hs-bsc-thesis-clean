@@ -61,7 +61,7 @@ Applying this to the full time series $i$ and $j$, the number of synchronous eve
 
 The same formula applies to the reversed situation, i.e. $c(j \mid i)$, with $s_i$ and $s_j$ being the number of events in the respective time series. Combining the results of $c(i\mid j)$ and $c(j \mid i)$ and normalizing them by the total numbers of events $s_i$ and $s_j$, the \textit{strength of synchronization} is defined as
 
-\begin{equation}
+\begin{equation} \label{eq:sync_strength}
   Q_{ij} = \frac{c(i \mid j) + c(j \mid i)}{\sqrt{(s_i - 2)(s_j - 2)}}
 \end{equation}
 
@@ -115,6 +115,8 @@ Our implementation of the event synchronization and climate network computations
 
 \subsection{Calculating event synchronization}
 \label{sst:event_sync_calculation}
+
+\subsubsection{Necessary preparations}
 Before we are able to calculate the synchronicity for any two locations, the precipitation time series need to be transformed into series of events. Assume that we have extracted pre-monsoon time series as shown in \cref{tab:example_rainfall_ts} from the TRMM dataset and now want to convert these into extreme event series.
 
 \begin{table}[h]
@@ -151,7 +153,7 @@ We calculate the 90th percentile seperately for each row and apply the result as
   \label{tab:example_rainfall_events}
 \end{table}
 
-With a matrix of extreme events as shown in excerpt in \cref{tab:example_rainfall_events}, we then calculate the event synchronization for all pairs of locations. \cref{tab:example_empty_sync} shows the state of a preliminary synchronization matrix before running any of the calculations. Locations are always perfectly synchronous to themselves, leading to a diagonal that will always be filled with ones.
+With a matrix of extreme events as shown in excerpt in \cref{tab:example_rainfall_events}, we then want to calculate the event synchronization for all pairs of locations. \cref{tab:example_empty_sync} shows the state of a preliminary synchronization matrix before running any of the calculations. Locations are always perfectly synchronous to themselves, leading to a diagonal that will always be filled with ones.
 
 \begin{table}[h]
   \centering
@@ -172,21 +174,215 @@ With a matrix of extreme events as shown in excerpt in \cref{tab:example_rainfal
 
 To further fill in the values of the synchronization matrix in \cref{tab:example_empty_sync}, our algorithm only needs to perform calculations for one of the now empty halves of the matrix. This is due to the fact that, at least in our approach, the synchronization between two locations can be symmetrically applied to both their permutations. The original work on event synchronization by \citet{QuianQuiroga.2002} describes some asymmetrical measures, that were, however, not used in the work of \citet{Stolbova.2015}.
 
-Having explained the necessary setup of the event synchronization algorithm, we now go into the
+Going forward, we use \textit{unix timestamps}\footnote{Unix timestamps measure the number of seconds (without leap seconds) that have elapsed since the 01.01.1970 at 00:00 UTC. For example, "01.03.1998 00:00" would be represented as 888710400.} to represent dates instead of the full representation shown in the examples of this section, as they are much easier to process using mathematical formulas (but less intuitive to visualize).
 
+\pagebreak
+\subsubsection{Synchronization of two locations}
+Having explained the necessary setup of the event synchronization algorithm, we now go over some of the concepts of our implementation. To calculate the synchronization between any two locations (i.e., \textit{location1} and \textit{location2}), we need to process both time series and compare each event in \textit{location1} to the appropriate events in \textit{location2}, taking the immediate neighbors of both locations into account.
 
+We found that this naturally fits the description of a sliding window approach: a sliding window of size three over the event series of a location always encompasses a current event, its predecessor and its successor and thus everything we need for the time lag calculation. Application of a sliding window to \textit{location1} and nesting another such window for \textit{location2} then leads us to a naive implementation of the event synchronization algorithm as shown in \cref{lst:event_synchronization}.
 
-[TODO: describe our sliding window approach for event sync calculation]
+\begin{listing}[H]
+  \begin{minted}[mathescape,
+    linenos,
+    numbersep=5pt,
+    gobble=4,
+    frame=lines,
+    framesep=2mm]{python}
 
-[TODO: ? describe parallelization and further possible optimizations?]
+    def calculate_synchronization(location1, location2):
+        # initialize the number of synchronous events for the two locations
+        num_sync_events = 0
 
-[TODO: ? go into runtime and O(x) of the algorithm?]
+        # iterate over all timesteps in location1 using a sliding window
+        for i_prev, i_current, i_next in sliding_window(location1, 3):
+
+            # iterate over all timesteps in location2 using a sliding window
+            for j_prev, j_current, j_next in sliding_window(location2, 3):
+
+                # calculate the time delta between the current events
+                current_diff = i_current - j_current
+
+                # check if the current events occur simultaneously
+                if current_diff == 0:
+                    num_sync_events += 0.5
+                    continue
+
+                # calculate the time lag based on the two sliding windows
+                time_lag = 0.5 * min(
+                    i_next - i_current, i_current - i_prev,
+                    j_next - j_current, j_current - j_prev)
+
+                # decide whether the events are synchronous
+                if 0 < current_diff <= time_lag:
+                    num_sync_events += 1.0
+
+        return num_sync_events
+
+  \end{minted}
+  \caption{Pseudocode for a simplified event synchronization algorithm, applicable to any two series of events.}
+  \label{lst:event_synchronization}
+\end{listing}
+
+The event synchronization algorithm as described in \cref{lst:event_synchronization} results in the number of synchronous events between \textit{location1} and \textit{location2} where the event in \textit{location2} leads the event in \textit{location1}. This is, however, only part of the full event synchronization calculation, as we also need the number of synchronous events where \textit{location1} leads \textit{location2}, i.e., we need to evaluate $calculate\_synchronization(location2, location1)$. This is the reason that simultaneous events only count as "half synchronous": they are counted in both these calculations and, in total, then result in one synchronous event.
+
+Calculating the strength of synchronization then boils down to a simple application of formula \eqref{eq:sync_strength} from \pageref{eq:sync_strength}. Our approach is shown in pseudocode in \cref{lst:sync_strength}.
+
+\begin{listing}[H]
+  \begin{minted}[mathescape,
+    linenos,
+    numbersep=5pt,
+    gobble=4,
+    frame=lines,
+    framesep=2mm]{python}
+
+    def calculate_sync_strength(loc1_events, loc2_events):
+        # calculate synchronized events between loc1 and loc2 (and reverse)
+        loc1_sync = calculate_synchronization(loc1_events, loc2_events)
+        loc2_sync = calculate_synchronization(loc2_events, loc1_events)
+
+        # calculate the strength of synchronization
+        sync_strength = (loc1_sync + loc2_sync) / \
+            math.sqrt((len(loc1_events) - 2) * (len(loc2_events) - 2))
+
+        # return the strength of synchronization
+        # and the total number of synchronous events
+        return sync_strength, loc1_sync + loc2_sync
+
+  \end{minted}
+  \caption{Pseudocode for the calculation of the synchronization strength between any two series of events.}
+  \label{lst:sync_strength}
+\end{listing}
+
+\subsubsection{Computing the values of the synchronization matrix}
+We then make use of \cref{lst:sync_strength} to fill in the missing values in a synchronization matrix like the one we have already prepared (see \cref{tab:example_empty_sync}). Firstly, the algorithm is applied to each empty cell in the upper half of the matrix, yielding a triangular matrix. Secondly, as the synchronization measure is symmetrical, the lower half of the matrix is filled by simply mirroring the upper half. This finally yields two matrices: one containing the synchronization strength, the other containing the count of synchronous events for all pairs of locations. The procedure is shown in detail in \cref{lst:sync_matrix}.
+
+\begin{listing}[H]
+  \begin{minted}[mathescape,
+    linenos,
+    numbersep=5pt,
+    gobble=4,
+    frame=lines,
+    framesep=2mm]{python}
+
+    def calculate_sync_matrix(event_matrix):
+        # calculate the sync strength for each permutation of grid cells
+        for i in range(0, sync_matrix.shape[0]):
+            # as the matrix is symmetrical, only calculate the upper half
+            for j in range(0, i + 1):
+                # calculate the synchronicity for the permutation of rows
+                sync_strength, count = calculate_sync_strength(
+                    event_matrix[i], event_matrix[j])
+
+                # save results in the respective matrices
+                sync_matrix[i, j] = sync_strength
+                sync_matrix[j, i] = sync_strength
+                count_matrix[i, j] = count
+                count_matrix[j, i] = count
+
+        return sync_matrix, count_matrix
+
+  \end{minted}
+  \caption{Pseudocode for processing an entire event matrix.}
+  \label{lst:sync_matrix}
+\end{listing}
+
+\subsubsection{Improvements for the event synchronization algorithm}
+The implementation as shown so far naively processes all possible combinations of events when calculating the event synchronization measure. Given $i$ events at \textit{location1} and $j$ events at \textit{location2}, the simple nested loop algorithm potentially calculates a time lag up to $i * j$ times. This results in a lot of wasted computation, because the actual portion of $j$ that can be synchronous tends to be very small.
+
+\begin{listing}[H]
+  \begin{minted}[mathescape,
+    linenos,
+    numbersep=5pt,
+    gobble=4,
+    frame=lines,
+    framesep=2mm]{python}
+
+    def calculate_synchronization(location1, location2):
+        # initialize the number of synchronous events for the two locations
+        num_sync_events = 0
+
+        # iterate over all timesteps in location1 using a sliding window
+        for i_prev, i_current, i_next in sliding_window(location1, 3):
+            # calculate the earliest timestamp of location2 that could be synchronous
+            earliest = i_current - 0.5 * min(i_current - i_prev, i_next - i_current)
+
+            # iterate over all timesteps in location2 using a sliding window
+            for j_prev, j_current, j_next in sliding_window(location2, 3):
+                # continue for timestamps that cannot possibly be synchronous
+                if j_current < earliest:
+                    continue
+
+                # calculate the time delta between the current events
+                current_diff = i_current - j_current
+
+                # if the difference gets negative, break
+                # the second pass will encompass these combinations
+                if current_diff < 0:
+                    break
+
+                # check if the current events occur simultaneously
+                if current_diff == 0:
+                    num_sync_events += 0.5
+                    continue
+
+                # calculate the time lag based on the two sliding windows
+                time_lag = 0.5 * min(
+                    i_next - i_current, i_current - i_prev,
+                    j_next - j_current, j_current - j_prev)
+
+                # decide whether the events are synchronous
+                if 0 < current_diff <= time_lag:
+                    num_sync_events += 1.0
+
+        return num_sync_events
+
+  \end{minted}
+  \caption{Pseudocode for an improved version of the event synchronization algorithm, applicable to any two series of events.}
+  \label{lst:event_synchronization_improved}
+\end{listing}
+
+However, we can define a range of events in $j$ for which we are sure that they cannot be synchronous and skip their evaluation (see an improved version of the algorithm in \cref{lst:event_synchronization_improved}). According to our implementation, this holds for two cases: firstly, if the event in $j$ occurs at a later time than the event in $i$, it can be safely skipped, as the reversed iteration of the algorithm will deal with it. Additionally, we can safely break the inner loop early, as further events in $j$ only occur even later. Secondly, an event in $j$ can  also be skipped if the event in $j$ occurs earlier than the time lag of the event in $i$.
+
+Notice that another (obvious) improvement would be to "simply filter" the \textit{location2} series such that it only contains the few events that need to be evaluated, after which no more breaking or skipping in the loop would be needed. However, upon evaluation of such an approach, it became clear that this is not necessarily faster. Adequately filtering the series $j$ necessitates some complex indexing and selection operations, which in turn depend on the existence of an index or hash table for $j$. Creating such indices can take more than a second for a single series, making the approach especially slow for large matrices.
 
 \subsection{Building climate networks}
 \label{sst:building_climate_network}
-[TODO: describe our approach to building the climate networks]
+Based on \cref{ssst:appl_climate_networks}, the next step after the computation of a full event synchronization matrix is the transformation of said matrix into an adjacency matrix, allowing the creation of a network and its analysis using various methods and libraries. This transformation is a simple thresholding of the matrix using a specified percentile.
 
-... Elements above the threshold can either be set to 1 or left at the value of the synchronization coefficient, depending on whether an unweighted or weighted network should be created. ...
+\citet{Stolbova.2015} uses the 95th percentile to threshold the adjacency matrix, leaving only the most statistically significant links in the network. However, we use an aggregated 0.75\degree resolution for our base dataset (instead of the full 0.25\degree resolution), meaning that there is already much less data available to analyze (but the data is also less sparse). We thus use a decreased threshold equal to the 90th percentile.
+
+We further expand upon the work of \citet{Stolbova.2015} by building weighted networks in addition to the unweighted networks that have already been explored. To build a weighted network, values above the threshold are left as is, leading to links that are weighted with their corresponding synchronization measure. Contrarily, all values above the threshold are uniformly set to one when building an unweighted network.
+
+The creation of a climate network based on an adjacency network, as well as the calculation of the degree, betweenness and PageRank for all nodes in the network, are a matter of a few lines of code as shown in \cref{lst:climate_networks}.
+
+\begin{listing}[H]
+  \begin{minted}[mathescape,
+    linenos,
+    numbersep=5pt,
+    gobble=4,
+    frame=lines,
+    framesep=2mm]{python}
+    # source: 01_ANALYSIS/TRMM.py
+    # functions: generate_graph, calculate_centrality
+
+    # build a graph from an adjacency matrix
+    # using the networkx (nx) Python library
+    graph = nx.from_numpy_matrix(adjacency_matrix)
+
+    # calculate the degree, betweenness and PageRank
+    # for all nodes in the graph
+    nodes_degree = graph.degree(weight='weight')
+    nodes_betweenness = nx.betweenness_centrality(graph, normalized=False, weight='weight')
+    nodes_pagerank = nx.pagerank_numpy(graph, weight='weight')
+
+  \end{minted}
+  \caption{Simplified pseudocode for the creation of a climate network from an adjacency matrix and the calculation of network measures.}
+  \label{lst:climate_networks}
+\end{listing}
+
+The application of our event synchronization and climate network algorithms to the different periods of monsoon (pre-monsoon, monsoon and post-monsoon), as well as the analysis of the resulting networks,
+
 
 
 \section{Results \& Evaluation}

@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+  \PYG{k}{def} \PYG{n+nf}{calculate\PYGZus{}sync\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{event\PYGZus{}matrix}\PYG{p}{):}
+    \PYG{c+c1}{\PYGZsh{} calculate the sync strength for each permutation of grid cells}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{sync\PYGZus{}matrix}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]):}
+
+      \PYG{c+c1}{\PYGZsh{} as the matrix is symmetrical, only calculate the upper half}
+      \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{l+m+mf}{0.}\PYG{o}{..}\PYG{p}{,}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{):}
+
+        \PYG{c+c1}{\PYGZsh{} calculate the synchronicity for the permutation of rows}
+        \PYG{n}{sync\PYGZus{}strength}\PYG{p}{,} \PYG{n}{count} \PYG{o}{=} \PYG{n}{calculate\PYGZus{}sync\PYGZus{}strength}\PYG{p}{(}
+          \PYG{n}{event\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n}{event\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])}
+
+        \PYG{c+c1}{\PYGZsh{} save results in the respective matrices}
+        \PYG{n}{sync\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sync\PYGZus{}strength}
+        \PYG{n}{sync\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{,} \PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sync\PYGZus{}strength}
+        \PYG{n}{count\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{count}
+        \PYG{n}{count\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{,} \PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{count}
+
+    \PYG{k}{return} \PYG{n}{sync\PYGZus{}matrix}\PYG{p}{,} \PYG{n}{count\PYGZus{}matrix}
+\end{Verbatim}

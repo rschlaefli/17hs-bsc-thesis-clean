@@ -1,0 +1,40 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{def} \PYG{n+nf}{calculate\PYGZus{}synchronization}\PYG{p}{(}\PYG{n}{location1}\PYG{p}{,} \PYG{n}{location2}\PYG{p}{):}
+    \PYG{c+c1}{\PYGZsh{} initialize the number of synchronous events for the two locations}
+    \PYG{n}{num\PYGZus{}sync\PYGZus{}events} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+    \PYG{c+c1}{\PYGZsh{} iterate over all timesteps in location1 using a sliding window}
+    \PYG{k}{for} \PYG{n}{i\PYGZus{}prev}\PYG{p}{,} \PYG{n}{i\PYGZus{}current}\PYG{p}{,} \PYG{n}{i\PYGZus{}next} \PYG{o+ow}{in} \PYG{n}{sliding\PYGZus{}window}\PYG{p}{(}\PYG{n}{location1}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{):}
+        \PYG{c+c1}{\PYGZsh{} calculate the earliest timestamp of location2 that could be synchronous}
+        \PYG{n}{earliest} \PYG{o}{=} \PYG{n}{i\PYGZus{}current} \PYG{o}{\PYGZhy{}} \PYG{l+m+mf}{0.5} \PYG{o}{*} \PYG{n+nb}{min}\PYG{p}{(}\PYG{n}{i\PYGZus{}current} \PYG{o}{\PYGZhy{}} \PYG{n}{i\PYGZus{}prev}\PYG{p}{,} \PYG{n}{i\PYGZus{}next} \PYG{o}{\PYGZhy{}} \PYG{n}{i\PYGZus{}current}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} iterate over all timesteps in location2 using a sliding window}
+        \PYG{k}{for} \PYG{n}{j\PYGZus{}prev}\PYG{p}{,} \PYG{n}{j\PYGZus{}current}\PYG{p}{,} \PYG{n}{j\PYGZus{}next} \PYG{o+ow}{in} \PYG{n}{sliding\PYGZus{}window}\PYG{p}{(}\PYG{n}{location2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{):}
+            \PYG{c+c1}{\PYGZsh{} continue for timestamps that cannot possibly be synchronous}
+            \PYG{k}{if} \PYG{n}{j\PYGZus{}current} \PYG{o}{\PYGZlt{}} \PYG{n}{earliest}\PYG{p}{:}
+                \PYG{k}{continue}
+
+            \PYG{c+c1}{\PYGZsh{} calculate the time delta between the current events}
+            \PYG{n}{current\PYGZus{}diff} \PYG{o}{=} \PYG{n}{i\PYGZus{}current} \PYG{o}{\PYGZhy{}} \PYG{n}{j\PYGZus{}current}
+
+            \PYG{c+c1}{\PYGZsh{} if the difference gets negative, break}
+            \PYG{c+c1}{\PYGZsh{} the second pass will encompass these combinations}
+            \PYG{k}{if} \PYG{n}{current\PYGZus{}diff} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+                \PYG{k}{break}
+
+            \PYG{c+c1}{\PYGZsh{} check if the current events occur simultaneously}
+            \PYG{k}{if} \PYG{n}{current\PYGZus{}diff} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+                \PYG{n}{num\PYGZus{}sync\PYGZus{}events} \PYG{o}{+=} \PYG{l+m+mf}{0.5}
+                \PYG{k}{continue}
+
+            \PYG{c+c1}{\PYGZsh{} calculate the time lag based on the two sliding windows}
+            \PYG{n}{time\PYGZus{}lag} \PYG{o}{=} \PYG{l+m+mf}{0.5} \PYG{o}{*} \PYG{n+nb}{min}\PYG{p}{(}
+                \PYG{n}{i\PYGZus{}next} \PYG{o}{\PYGZhy{}} \PYG{n}{i\PYGZus{}current}\PYG{p}{,} \PYG{n}{i\PYGZus{}current} \PYG{o}{\PYGZhy{}} \PYG{n}{i\PYGZus{}prev}\PYG{p}{,}
+                \PYG{n}{j\PYGZus{}next} \PYG{o}{\PYGZhy{}} \PYG{n}{j\PYGZus{}current}\PYG{p}{,} \PYG{n}{j\PYGZus{}current} \PYG{o}{\PYGZhy{}} \PYG{n}{j\PYGZus{}prev}\PYG{p}{)}
+
+            \PYG{c+c1}{\PYGZsh{} decide whether the events are synchronous}
+            \PYG{k}{if} \PYG{l+m+mi}{0} \PYG{o}{\PYGZlt{}} \PYG{n}{current\PYGZus{}diff} \PYG{o}{\PYGZlt{}=} \PYG{n}{time\PYGZus{}lag}\PYG{p}{:}
+                \PYG{n}{num\PYGZus{}sync\PYGZus{}events} \PYG{o}{+=} \PYG{l+m+mf}{1.0}
+
+    \PYG{k}{return} \PYG{n}{num\PYGZus{}sync\PYGZus{}events}
+\end{Verbatim}

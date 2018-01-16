@@ -163,33 +163,74 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifvtex.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifvtex.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.cfg
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/xcolor/xcolor.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/xcolor/xcolor.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-cfg/color.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics-cfg/color.cfg
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fancyvrb/fancyvrb.sty
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fancyvrb/fancyvrb.sty
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fancyhdr/fancyhdr.sty
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fancyhdr/fancyhdr.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphicx.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/minted/minted.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/minted/minted.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fvextra/fvextra.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/fvextra/fvextra.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ifthen.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ifthen.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/upquote/upquote.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/upquote/upquote.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/lineno/lineno.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/lineno/lineno.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/calc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/calc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/shellesc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/shellesc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/tools/shellesc.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/ifplatform/ifplatform.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/ifplatform/ifplatform.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/catchfile.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/catchfile.sty
+INPUT nul:.tex
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/xstring/xstring.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/xstring/xstring.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/generic/xstring/xstring.tex
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/framed/framed.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/framed/framed.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/float/float.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/float/float.sty
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/float.hak
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/float.hak
+INPUT thesis.aex
+INPUT thesis.aex
 INPUT thesis.aux
 INPUT thesis.aux
 OUTPUT thesis.aux
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/textcomp.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/textcomp.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.dfu
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1enc.dfu
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/context/base/supp-pdf.mkii
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/context/base/supp-pdf.mkii
-INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/pdftexcmds.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/epstopdf-base.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/epstopdf-base.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/grfext.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/grfext.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvdefinekeys.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvdefinekeys.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/latex/oberdiek/kvoptions.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/kvsetkeys.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
-INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/etexcmds.sty
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-cmr.cfg
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/microtype/mt-cmr.cfg
 INPUT 00_title/title.tex
@@ -252,6 +293,11 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/latex/jknappen/ursfs.fd
 INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1cmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/ts1cmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/jknappen/ec/tcrm1095.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/jknappen/ec/tcrm0800.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/jknappen/ec/tcrm0600.tfm
 OUTPUT thesis.toc
 INPUT 01_introduction/introduction.tex
 INPUT 01_introduction/introduction.tex
@@ -268,6 +314,8 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm10.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eurm5.tfm
 INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/tfm/public/rsfs/rsfs5.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/jknappen/ec/tcrm0900.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/jknappen/ec/tcrm0500.tfm
 INPUT 02_ism_overview/ism_overview.tex
 INPUT 02_ism_overview/ism_overview.tex
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
@@ -292,6 +340,46 @@ INPUT ./99_appendix/img/trmm_adjacency_example.png
 INPUT ./99_appendix/img/trmm_adjacency_example.png
 INPUT ./99_appendix/img/trmm_adjacency_example.png
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmti9.tfm
+OUTPUT thesis.pyg
+INPUT _minted-thesis/default-pyg-prefix.pygstyle
+INPUT _minted-thesis/default-pyg-prefix.pygstyle
+INPUT _minted-thesis/default-pyg-prefix.pygstyle
+INPUT _minted-thesis/default-pyg-prefix.pygstyle
+INPUT _minted-thesis/default.pygstyle
+INPUT _minted-thesis/default.pygstyle
+INPUT _minted-thesis/default.pygstyle
+INPUT _minted-thesis/default.pygstyle
+INPUT ./thesis.pyg
+INPUT _minted-thesis/F9CF875B73A128579A747CB7A97CE4FDFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/F9CF875B73A128579A747CB7A97CE4FDFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/F9CF875B73A128579A747CB7A97CE4FDFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/F9CF875B73A128579A747CB7A97CE4FDFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmtt9.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmitt10.tfm
+OUTPUT thesis.pyg
+INPUT ./thesis.pyg
+INPUT _minted-thesis/C162E766B5CEEBBCD873C2BCE5D79BB4FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C162E766B5CEEBBCD873C2BCE5D79BB4FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C162E766B5CEEBBCD873C2BCE5D79BB4FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C162E766B5CEEBBCD873C2BCE5D79BB4FAF12023780005D3C9033D251E403B9A.pygtex
+OUTPUT thesis.pyg
+INPUT ./thesis.pyg
+INPUT _minted-thesis/706100F4C842560615A58907E1700D3BFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/706100F4C842560615A58907E1700D3BFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/706100F4C842560615A58907E1700D3BFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/706100F4C842560615A58907E1700D3BFAF12023780005D3C9033D251E403B9A.pygtex
+OUTPUT thesis.pyg
+INPUT ./thesis.pyg
+INPUT _minted-thesis/E6DCE2385F0B37919D6BF60CE299189AFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/E6DCE2385F0B37919D6BF60CE299189AFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/E6DCE2385F0B37919D6BF60CE299189AFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/E6DCE2385F0B37919D6BF60CE299189AFAF12023780005D3C9033D251E403B9A.pygtex
+OUTPUT thesis.pyg
+INPUT ./thesis.pyg
+INPUT _minted-thesis/986D057117E68D2BCAB4EFFCE42E46E3FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/986D057117E68D2BCAB4EFFCE42E46E3FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/986D057117E68D2BCAB4EFFCE42E46E3FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/986D057117E68D2BCAB4EFFCE42E46E3FAF12023780005D3C9033D251E403B9A.pygtex
 INPUT 04_part2/part2.tex
 INPUT 04_part2/part2.tex
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/lstlang1.sty
@@ -413,11 +501,19 @@ OUTPUT thesis.lof
 INPUT thesis.lot
 INPUT thesis.lot
 OUTPUT thesis.lot
+INPUT thesis.lol
+INPUT thesis.lol
+OUTPUT thesis.lol
 INPUT thesis.aux
+INPUT thesis.pyg
+INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1095.pk
+INPUT C:/Users/Roland/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1095.pk
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb
@@ -452,3 +548,5 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{} source: 01\PYGZus{}ANALYSIS/TRMM.py}
+\PYG{c+c1}{\PYGZsh{} functions: generate\PYGZus{}graph, calculate\PYGZus{}centrality}
+
+\PYG{c+c1}{\PYGZsh{} build a graph from an adjacency matrix}
+\PYG{c+c1}{\PYGZsh{} using the networkx (nx) Python library}
+\PYG{n}{graph} \PYG{o}{=} \PYG{n}{nx}\PYG{o}{.}\PYG{n}{from\PYGZus{}numpy\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{adjacency\PYGZus{}matrix}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} calculate the degree, betweenness and PageRank}
+\PYG{c+c1}{\PYGZsh{} for all nodes in the graph}
+\PYG{n}{nodes\PYGZus{}degree} \PYG{o}{=} \PYG{n}{graph}\PYG{o}{.}\PYG{n}{degree}\PYG{p}{(}\PYG{n}{weight}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}weight\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{nodes\PYGZus{}betweenness} \PYG{o}{=} \PYG{n}{nx}\PYG{o}{.}\PYG{n}{betweenness\PYGZus{}centrality}\PYG{p}{(}\PYG{n}{graph}\PYG{p}{,} \PYG{n}{normalized}\PYG{o}{=}\PYG{n+nb+bp}{False}\PYG{p}{,} \PYG{n}{weight}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}weight\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{nodes\PYGZus{}pagerank} \PYG{o}{=} \PYG{n}{nx}\PYG{o}{.}\PYG{n}{pagerank\PYGZus{}numpy}\PYG{p}{(}\PYG{n}{graph}\PYG{p}{,} \PYG{n}{weight}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}weight\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}
