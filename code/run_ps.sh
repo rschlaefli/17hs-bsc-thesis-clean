@@ -15,7 +15,7 @@ source ~/anaconda3/bin/activate gru-minimal
 echo "> Running configs..."
 
 # go through all possible configs
-for i in {24..24}
+for i in {25..25}
 do
   # ensure the log dir for this version is existent
   mkdir -p $LOG_DIR
