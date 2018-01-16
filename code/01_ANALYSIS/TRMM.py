@@ -254,7 +254,7 @@ class TRMM(Dataset):
 
         # iterate over all windows of size three in the first row
         for i_prev, i_current, i_next in TRMM.sliding_window(row1, window_size=3):
-            # calculate the max timestamp of row2 that could be synchronous
+            # calculate the earliest timestamp of row2 that could be synchronous
             earliest = i_current - 0.5 * min(i_current - i_prev, i_next - i_current)
 
             # before_earliest = row2.index.get_loc(earliest, method='nearest') - 1
