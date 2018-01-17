@@ -13,7 +13,7 @@
 #SBATCH -e 00_LOGS/SYNC/error.log
 
 # params
-AGGREGATION=
+AGGREGATION=0.75
 LOG_DIR=00_LOGS/SYNC
 
 # activate conda environment
