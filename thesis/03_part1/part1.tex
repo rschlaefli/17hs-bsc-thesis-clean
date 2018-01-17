@@ -224,7 +224,7 @@ We found that this naturally fits the description of a sliding window approach: 
   \label{lst:event_synchronization}
 \end{listing}
 
-The event synchronization algorithm as described in \cref{lst:event_synchronization} results in the number of synchronous events between \textit{location1} and \textit{location2} where the event in \textit{location2} leads the event in \textit{location1}. This is, however, only part of the full event synchronization calculation, as we also need the number of synchronous events where \textit{location1} leads \textit{location2}, i.e., we need to evaluate $calculate\_synchronization(location2, location1)$. This is the reason that simultaneous events only count as "half synchronous": they are counted in both these calculations and, in total, then result in one synchronous event.
+The event synchronization algorithm as described in \cref{lst:event_synchronization} results in the number of synchronous events between \textit{location1} and \textit{location2} where the event in \textit{location2} leads the event in \textit{location1}. This is, however, only part of the full synchronization synchronization calculation, as we also need the number of synchronous events where \textit{location1} leads \textit{location2}, i.e., we need to evaluate $calculate\_synchronization(location2, location1)$. This is the reason that simultaneous events only count as "half synchronous": they are counted in both these calculations and, in total, then result in one synchronous event.
 
 Calculating the strength of synchronization then boils down to a simple application of formula \eqref{eq:sync_strength} from \pageref{eq:sync_strength} and is further presented in \cref{lst:sync_strength}.
 
@@ -246,8 +246,8 @@ Calculating the strength of synchronization then boils down to a simple applicat
             math.sqrt((len(loc1_events) - 2) * (len(loc2_events) - 2))
 
         # return the strength of synchronization
-        # and the total number of synchronous events
-        return sync_strength, loc1_sync + loc2_sync
+        # and the total and separate numbers of synchronous events
+        return sync_strength, loc1_sync + loc2_sync, loc1_sync, loc2_sync
 
   \end{minted}
   \caption{Python pseudocode for the calculation of the synchronization strength between any two series of events.}
@@ -255,7 +255,7 @@ Calculating the strength of synchronization then boils down to a simple applicat
 \end{listing}
 
 \subsubsection{Computing the values of the synchronization matrix}
-We then make use of \cref{lst:sync_strength} to fill in the missing values in a synchronization matrix like the one we have already prepared (see \cref{tab:example_empty_sync}). Firstly, the algorithm is applied to each empty cell in the upper half of the matrix, yielding a triangular matrix. Secondly, as the synchronization measure is symmetrical, the lower half of the matrix is filled by simply mirroring the upper half. This finally yields two matrices: one containing the synchronization strength, the other containing the count of synchronous events for all pairs of locations. The procedure is shown in detail in \cref{lst:sync_matrix}.
+We then make use of \cref{lst:sync_strength} to fill in the missing values in a synchronization matrix like the one we have already prepared (see \cref{tab:example_empty_sync}). Firstly, the algorithm is applied to each empty cell in the upper half of the matrix, yielding a triangular matrix. Secondly, as the synchronization strength measure is symmetrical, the lower half of the matrix is filled by simply mirroring the upper half. This yields two matrices: one containing the synchronization strength and one containing the total count of synchronous events for all pairs of locations. A third asymmetrical matrix seperately contains the number of events where $i$ leads $j$ as well as the number of events where $j$ leads $i$. The procedure is shown in detail in \cref{lst:sync_matrix}.
 
 \begin{listing}[H]
   \begin{minted}[mathescape,
@@ -279,8 +279,10 @@ We then make use of \cref{lst:sync_strength} to fill in the missing values in a 
                 sync_matrix[j, i] = sync_strength
                 count_matrix[i, j] = count
                 count_matrix[j, i] = count
+                directed_matrix[i, j] = i_leads
+                directed_matrix[j, i] = j_leads
 
-        return sync_matrix, count_matrix
+        return sync_matrix, count_matrix, directed_matrix
 
   \end{minted}
   \caption{Python pseudocode for processing an entire event matrix.}
@@ -304,8 +306,8 @@ The implementation as shown so far naively processes all possible combinations o
 
         # iterate over all timesteps in location1 using a sliding window
         for i_prev, i_current, i_next in sliding_window(location1, 3):
-            # calculate the earliest timestamp of location2 that could be synchronous
-            earliest = i_current - 0.5 * min(i_current - i_prev, i_next - i_current)
+            # calculate the last timestamp of location2 that could be synchronous
+            latest = i_current + 0.5 * min(i_current - i_prev, i_next - i_current)
 
             # iterate over all timesteps in location2 using a sliding window
             for j_prev, j_current, j_next in sliding_window(location2, 3):
@@ -313,18 +315,20 @@ The implementation as shown so far naively processes all possible combinations o
                 if j_current < earliest:
                     continue
 
-                # calculate the time delta between the current events
-                current_diff = i_current - j_current
-
-                # if the difference gets negative, break
+                # if the difference gets negative, continue
                 # the second pass will encompass these combinations
                 if current_diff < 0:
-                    break
+                    continue
 
-                # check if the current events occur simultaneously
+                # check if the events occur simultaneously
                 if current_diff == 0:
                     num_sync_events += 0.5
                     continue
+
+                # break for timestamps that cannot possibly be synchronous
+                # i.e. are much too late
+                if j_current > latest:
+                    break
 
                 # calculate the time lag based on the two sliding windows
                 time_lag = 0.5 * min(
@@ -342,7 +346,7 @@ The implementation as shown so far naively processes all possible combinations o
   \label{lst:event_synchronization_improved}
 \end{listing}
 
-However, we can define a range of events in $j$ for which we are sure that they cannot be synchronous and skip their evaluation (see an improved version of the algorithm in \cref{lst:event_synchronization_improved}). According to our implementation, this holds for two cases: firstly, if the event in $j$ occurs at a later time than the event in $i$, it can be safely skipped, as the reversed iteration of the algorithm will deal with it. Additionally, we can safely break the inner loop early, as further events in $j$ only occur even later. Secondly, an event in $j$ can  also be skipped if the event in $j$ occurs earlier than the time lag of the event in $i$.
+However, we can define a range of events in $j$ for which we are sure that they cannot be synchronous and skip their evaluation (see an improved version of the algorithm in \cref{lst:event_synchronization_improved}). According to our implementation, this holds for two cases: firstly, if the event in $j$ occurs at earlier than the event in $i$, it can be safely skipped, as the reversed iteration of the algorithm will deal with it. Secondly, an event in $j$ can also be skipped if the event in $j$ occurs later than the time lag of the event in $i$. Additionally, we can safely break the inner loop early, as further events in $j$ only occur even later.
 
 Notice that another (obvious) improvement would be to "simply filter" the \textit{location2} series such that it only contains the few events that need to be evaluated, after which no more breaking or skipping in the loop would be needed. However, upon evaluation of such an approach, it became clear that this is not necessarily faster. Adequately filtering the series $j$ necessitates some complex indexing and selection operations, which in turn depend on the existence of an index or hash table for $j$. Creating such indices can take more than a second for a single series, making the approach especially slow for large matrices.
 
@@ -350,7 +354,7 @@ Notice that another (obvious) improvement would be to "simply filter" the \texti
 \label{sst:building_climate_network}
 Based on \cref{ssst:appl_climate_networks}, the next step after the computation of a full event synchronization matrix is the transformation of said matrix into an adjacency matrix, allowing the creation of a network and its analysis using various methods and libraries. This transformation is a simple thresholding of the matrix using a specified percentile.
 
-\citet{Stolbova.2015} uses the 95th percentile to threshold the adjacency matrix, leaving only the most statistically significant links in the network. However, we use an aggregated 0.75\degree resolution for our base dataset (instead of the full 0.25\degree resolution), meaning that there is already much less data available to analyze (but the data is also less sparse). We thus use a decreased threshold equal to the 90th percentile.
+\citet{Stolbova.2015} uses the 95th percentile to threshold the adjacency matrix, leaving only the most statistically significant links in the network. However, we use an aggregated {0.75\degree} resolution for our base dataset (instead of the full {0.25\degree} resolution), meaning that there is already much less data available to analyze (but the data is also less sparse). We thus use a decreased threshold equal to the 90th percentile.
 
 We further expand upon the work of \citet{Stolbova.2015} by building weighted networks in addition to the unweighted networks that have already been explored. To build a weighted network, values above the threshold are left as is, leading to links that are weighted with their corresponding synchronization measure. Contrarily, all values above the threshold are uniformly set to one when building an unweighted network.
 
@@ -386,36 +390,46 @@ The results of applying the algorithms we have described in this section to the 
 
 
 \subsection{Dataset}
-Our results are based on the TRMM dataset as introduced in \cref{sst:trmm_dataset}. We have extracted data for the years 1998-2016, which corresponds to all years that were fully available at the time. The area included in the dataset was restricted to an extended overview over the Indian subcontinent, more specifically the area between 4.125-40.625N, 61.125-97.625E.
+Our results are based on the TRMM dataset as introduced in \cref{sst:trmm_dataset}. We have extracted data for the years 1998-2016, which corresponds to all years that were fully available at the time. The area included in the dataset was cropped to an extended overview over the Indian subcontinent, more specifically the area between 4.125-40.625N, 61.125-97.625E. Aggregation of the native {0.25\degree} resolution to a lower {0.75\degree} resolution then yields grid borders of 4.375-40.375N, 61.375-97.375E \footnote{The TRMM dataset needed to be aggregated to reduce the computational effort required for event synchronization and climate network calculations. Going from {0.25\degree} to {0.75\degree} resolution effectively reduced the size of event synchronization matrices from 21609x21609 to around 2401x2401 (81x).}.
 
 \subsection{Pre-monsoon season (MAM)}
-Application of our algorithms to the pre-monsoon season, namely the months of March, April and May,
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{{./99_appendix/img/event_sync_0.75-0.9_MAM}.png}
-  \caption{dsgsd}
-  \label{fig:asasd}
+  \caption{Weighted and unweighted degree, betweenness centrality and PageRank for the pre-monsoon season (MAM). Based on the TRMM dataset at {0.75\degree} resolution.}
+  \label{fig:results_mam}
 \end{figure}
 
-[TODO: describe the results that were obtained by our approach]
+The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We show the unweighted version, as also computed in \citet{Stolbova.2015}, as well as the version with weights applied to the edges in the network. To enable intercomparison with the work of \citet{Stolbova.2015}, which this part of our work is based on, we additionally assign the same identifier as she has used in her work to any areas we refer to.
+
+The degree is strongest over the Indian ocean, enframing the Indian subcontinent from both east and west. On the western side lies the Arabian Sea, over which an area of high degree extends from the far west up to the natural barrier of the Western Ghats mountain range (WG). A similar but smaller area over the Bay of Bengal to the east of the Indian subcontinent ranges from the Indian coast onto the lands of Myanmar (BoB). Further patches of significant degree can be found over the Tibetan Plateau (TP), over north-eastern India and Nepal at the brim of the Himalayas (Himalayas) and over areas of Pakistan and Afghanistan (NP, representing North-Pakistan).
+
+The patterns in the betweenness are much less clear and conclusive. There are, however, still spots that display significantly high betweenness, especially the area over Nepal (Himalayas). Additionally, smaller patches of high betweenness are sprinkled over the Tibetan Plateau (TP), to the north of Pakistan and over central India.
+
+Looking at the PageRank analysis of our climate networks, a similarity with the degree is immediately obvious. PageRank closely follows the stronger patterns we have seen when analyzing the degree. However, PageRank  also [TODO: updated PageRank]
+
+Comparison of the unweighted and weighted visualizations shows little difference. The main patterns are the same and differ only in the pronounciation of details.
 
 [TODO: interpret the results, incorporating knowledge of impacting factors]
+
+[TODO: compare with Stolbova]
 
 
 \subsection{Monsoon season (JJAS)}
-Analyzing the months of the primary monsoon season (June, July, August, September)
-
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{{./99_appendix/img/event_sync_0.75-0.9_JJAS}.png}
-  \caption{dsgsd}
-  \label{fig:asasssd}
+  \caption{Weighted and unweighted degree, betweenness centrality and PageRank for the primary monsoon season (JJAS). Based on the TRMM dataset at {0.75\degree} resolution.}
+  \label{fig:results_jjas}
 \end{figure}
 
-[TODO: describe the results that were obtained by our approach]
+Analyzing the months of the primary monsoon season (JJAS: June, July, August, September) as shown in \cref{fig:results_jjas} yields somewhat unexpected results: degree and betweenness both display a strong but relatively contained pattern over Northern Pakistan (NP). Further areas of significant degree are located on the Tibetan Plateau (TB) and over the Indian Ocean around the southern tip of India (Arabian Sea/WG, BoB).
 
 [TODO: interpret the results, incorporating knowledge of impacting factors]
+
+[TODO: compare with Stolbova]
+
 
 \subsection{Post-monsoon season (OND)}
 The last season of the ISM, the post-monsoon season or north-east monsoon, displays
@@ -423,18 +437,16 @@ The last season of the ISM, the post-monsoon season or north-east monsoon, displ
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{{./99_appendix/img/event_sync_0.75-0.9_OND}.png}
-  \caption{dsgsd}
-  \label{fig:asassd}
+  \caption{Weighted and unweighted degree, betweenness centrality and PageRank for the post-monsoon season (OND). Based on the TRMM dataset at {0.75\degree} resolution.}
+  \label{fig:results_ond}
 \end{figure}
 
 [TODO: describe the results that were obtained by our approach]
 
 [TODO: interpret the results, incorporating knowledge of impacting factors]
 
+[TODO: compare with Stolbova]
 
-\subsection{Differences with \citet{Stolbova.2015}}
-
-[TODO: compare the results with stolbova and try to explain differences]
 
 
 \section{Conclusion}

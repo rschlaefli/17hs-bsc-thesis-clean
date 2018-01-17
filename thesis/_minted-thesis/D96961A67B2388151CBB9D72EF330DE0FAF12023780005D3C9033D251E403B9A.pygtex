@@ -13,6 +13,8 @@
             \PYG{n}{sync\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{,} \PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sync\PYGZus{}strength}
             \PYG{n}{count\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{count}
             \PYG{n}{count\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{,} \PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{count}
+            \PYG{n}{directed\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i\PYGZus{}leads}
+            \PYG{n}{directed\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{j}\PYG{p}{,} \PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{j\PYGZus{}leads}
 
-    \PYG{k}{return} \PYG{n}{sync\PYGZus{}matrix}\PYG{p}{,} \PYG{n}{count\PYGZus{}matrix}
+    \PYG{k}{return} \PYG{n}{sync\PYGZus{}matrix}\PYG{p}{,} \PYG{n}{count\PYGZus{}matrix}\PYG{p}{,} \PYG{n}{directed\PYGZus{}matrix}
 \end{Verbatim}
