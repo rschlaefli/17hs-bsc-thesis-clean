@@ -56,8 +56,7 @@ def parallel_calculate_sync(extreme_events, i, j, q):
     Setup an asynchronous worker that performs the sync calculation
     """
 
-    sync_strength, sync_count = TRMM.calculate_sync_strength(
-            extreme_events.iloc[i], extreme_events.iloc[j])
+    sync_strength, sync_count = TRMM.calculate_sync_strength(extreme_events.iloc[i], extreme_events.iloc[j])
 
     result = i, j, sync_strength, sync_count
     q.put(result)
@@ -69,7 +68,7 @@ def parallel_log_results(q, df_shape, cache_id=None):
     """
 
     current_path = pathlib.Path(__file__).resolve().parent.parent
-    cache_path = current_path / f'00_CACHE/{df_shape}_{cache_id}_sync_2.txt'
+    cache_path = current_path / f'00_CACHE/{df_shape}_{cache_id}_sync_v2.txt'
     with open(cache_path, 'a') as handle:
         while 1:
             m = q.get()
@@ -80,7 +79,7 @@ def parallel_log_results(q, df_shape, cache_id=None):
                 break
 
             # append the calculation results to the log
-            handle.write(f'{m[0]};{m[1]};{m[2]};{m[3]};\n')
+            handle.write(f'{m[0]};{m[1]};{m[2]};{m[3]};{m[4]};{m[5]}\n')
             handle.flush()
 
 # main method to be executed by the process manager
@@ -105,8 +104,9 @@ def main():
 
     current_path = pathlib.Path(__file__).resolve().parent.parent
     df_shape = extreme_events.shape[0]
-    sync_path = current_path / f'00_CACHE/sync_range{df_shape}_{PERIOD_NAME}_2.pkl'
-    count_path = current_path / f'00_CACHE/count_range{df_shape}_{PERIOD_NAME}_2.pkl'
+    sync_path = current_path / f'00_CACHE/sync_range{df_shape}_{PERIOD_NAME}_v2.pkl'
+    count_path = current_path / f'00_CACHE/count_range{df_shape}_{PERIOD_NAME}_v2.pkl'
+    split_path = current_path / f'00_CACHE/split_range{df_shape}_{cache_id}_v2.pkl'
 
     # setup process manager, queue and pool
     manager = Manager()
@@ -129,6 +129,11 @@ def main():
         index=extreme_events.index,
         columns=extreme_events.index,
         dtype='int16')
+    split_matrix = pd.DataFrame(
+        -1,
+        index=extreme_events.index,
+        columns=extreme_events.index,
+        dtype='int16')
 
     # setup the sync calculation jobs
     # for each combination of i and j in one half (diagonal matrix)
@@ -138,7 +143,7 @@ def main():
     cache_time = 0
 
     # if the logfile already exists, parse it and look for the last line
-    log_path = current_path / f'00_CACHE/{df_shape}_{PERIOD_NAME}_sync_2.txt'
+    log_path = current_path / f'00_CACHE/{df_shape}_{PERIOD_NAME}_sync_v2.txt'
     if os.path.isfile(log_path):
         with open(log_path, 'r') as handle:
             lst = list(handle.readlines())
@@ -152,17 +157,21 @@ def main():
                     if item == 'killed\n':
                         continue
 
-                    i, j, sync, count, _ = item.split(';')
+                    i, j, sync, count, i_leads, j_leads = item.split(';')
 
                     i = int(i)
                     j = int(j)
                     sync = float(sync)
-                    count = float(count)
+                    count = int(count)
+                    i_leads = int(i_leads)
+                    j_leads = int(j_leads)
 
                     sync_matrix.iloc[i, j] = sync
                     sync_matrix.iloc[j, i] = sync
                     count_matrix.iloc[i, j] = count
                     count_matrix.iloc[j, i] = count
+                    split_matrix.iloc[i, j] = i_leads
+                    split_matrix.iloc[j, i] = j_leads
 
                 last_item = lst[len(lst)-2]
                 last_processed = last_item.split(';')[0]
@@ -195,13 +204,15 @@ def main():
 
             # for each job, wait for results and append them to the matrices
             for job in jobs:
-                i, j, sync, count = job.get()
+                i, j, sync, count, i_leads, j_leads = job.get()
 
                 # update the matrix with the results
                 sync_matrix.iloc[i, j] = sync
                 sync_matrix.iloc[j, i] = sync
                 count_matrix.iloc[i, j] = count
                 count_matrix.iloc[j, i] = count
+                split_matrix.iloc[i, j] = i_leads
+                split_matrix.iloc[j, i] = j_leads
 
     process_time = time.time() - cache_time
     print('> Finished processing jobs...')
@@ -209,6 +220,7 @@ def main():
     # save the results to cache
     sync_matrix.to_pickle(sync_path)
     count_matrix.to_pickle(count_path)
+    split_matrix.to_pickle(split_path)
 
     print('> Successfully saved matrices...')
 
@@ -220,29 +232,6 @@ def main():
     q.put('kill')
     pool.close()
 
-    # ----- finish parallel calculations -----
-    """
-    print(sync_matrix.info())
-    print(sync_matrix[:10][:10])
-    print(count_matrix.info())
-    print(count_matrix[:10][:10])
-
-    # generate a graph representation
-    graph = TRMM.generate_graph(sync_matrix, quantile=QUANTILE_GRAPH)
-    print(len(graph.edges))
-
-    # calculate centrality measures
-    degree, betweenness, pagerank = TRMM.calculate_centrality(graph)
-    print(degree.head(5))
-    print(betweenness.head(5))
-    print(pagerank.head(5))
-
-    # create visualizations
-    current_path = pathlib.Path(__file__).resolve().parent
-    Visualization.create_cartopy_vis(degree, vis_type='contour', filename=f'output/sync_{AGGREGATION_RESOLUTION}_{PERIOD_NAME}_deg.png')
-    Visualization.create_cartopy_vis(betweenness, vis_type='contour', filename=f'output/sync_{AGGREGATION_RESOLUTION}_{PERIOD_NAME}_bet.png')
-    Visualization.create_cartopy_vis(pagerank, vis_type='contour', filename=f'output/sync_{AGGREGATION_RESOLUTION}_{PERIOD_NAME}_pr.png')
-    """
 
 # only the main process will execute this
 if __name__ == '__main__':

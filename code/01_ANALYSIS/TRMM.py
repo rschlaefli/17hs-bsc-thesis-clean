@@ -190,19 +190,6 @@ class TRMM(Dataset):
         return extracted
 
     @staticmethod
-    def calculate_time_lag(i, j):
-        """
-        Calculate the time lag between two three-tuples
-
-        :param i: Tuple like (l-1, l, l+1)
-        :param j: Tuple like (m-1, m, m+1)
-
-        :return: Time lag (number)
-        """
-
-        return 0.5 * min(i[2] - i[1], i[1] - i[0], j[2] - j[1], j[1] - j[0])
-
-    @staticmethod
     def sliding_window(iterable, window_size=3, padded=False):
         """
         Generate an iterator that serves as a sliding window of given size
@@ -241,7 +228,7 @@ class TRMM(Dataset):
     @staticmethod
     def calculate_synchronization(row1, row2):
         """
-        Calculate the number of synchronous events between two rows
+        Calculate the number of synchronous events between two rows where row1 leads row2
 
         :param row1: First row
         :param row2: Second row
@@ -255,30 +242,18 @@ class TRMM(Dataset):
         # iterate over all windows of size three in the first row
         for i_prev, i_current, i_next in TRMM.sliding_window(row1, window_size=3):
             # calculate the earliest timestamp of row2 that could be synchronous
-            earliest = i_current - 0.5 * min(i_current - i_prev, i_next - i_current)
-
-            # before_earliest = row2.index.get_loc(earliest, method='nearest') - 1
-            # after_current = row2.index.get_loc(i_next, method='nearest') + 2
-
-            # if before_earliest < 0:
-                # before_earliest = 0
-            # if after_current > len(row2.index) - 1:
-                # after_current = len(row2.index) - 1
-
-            # print(i_current, row2.index[before_earliest], row2.index[after_current])
+            latest = i_current + 0.5 * min(i_current - i_prev, i_next - i_current)
 
             # pass through all events at the same or at a later time at the second location
             for j_prev, j_current, j_next in TRMM.sliding_window(row2, window_size=3):
-            # for j_prev, j_current, j_next in TRMM.sliding_window(row2.iloc[before_earliest:after_current], window_size=3):
-                # the following optimizations reduce runtime from ~0.3s to 0.02s
 
                 # calculate the difference
-                current_diff = i_current - j_current
+                current_diff = j_current - i_current
 
-                # if the difference gets negative, break
+                # if the difference gets negative, continue
                 # the second pass will encompass these combinations
                 if current_diff < 0:
-                    break
+                    continue
 
                 # if the events occur at the same time, they will be counted twice
                 # thus only add half the value
@@ -286,13 +261,15 @@ class TRMM(Dataset):
                     num_sync_events += 0.5
                     continue
 
-                # continue for timestamps that cannot possibly be synchronous
-                # i.e. are much too early
-                if j_current < earliest:
-                    continue
+                # break for timestamps that cannot possibly be synchronous
+                # i.e. are much too late
+                if j_current > latest:
+                    break
 
                 # calculate the time lag based on the current state of the two sliding windows
-                time_lag = TRMM.calculate_time_lag((i_prev, i_current, i_next), (j_prev, j_current, j_next))
+                time_lag = 0.5 * min(
+                    i_next - i_current, i_current - i_prev,
+                    j_next - j_current, j_current - j_prev)
 
                 # if the second event lies within the time lag, it is fully synchronous
                 if 0 < current_diff <= time_lag:
@@ -301,7 +278,7 @@ class TRMM(Dataset):
         return num_sync_events
 
     @staticmethod
-    def calculate_sync_strength(row1, row2):
+    def calculate_sync_strength(row1, row2, v2=False):
         """
         Calculate the synchronicity coefficient between two rows
 
@@ -324,10 +301,14 @@ class TRMM(Dataset):
         sync_strength = (row1_sync + row2_sync) / \
             math.sqrt((len(row1_events) - 2) * (len(row2_events) - 2))
 
+        if v2:
+            return sync_strength, row1_sync + row2_sync, row1_sync, row2_sync
+
         return sync_strength, row1_sync + row2_sync
 
+
     @staticmethod
-    def calculate_sync_matrix(df, cache_id, invalidate=False):
+    def calculate_sync_matrix(df, cache_id, invalidate=False, v2=False):
         """
         Calculate the synchronization matrix for all permutations of grid cells
 
@@ -340,13 +321,17 @@ class TRMM(Dataset):
         :return: Runtime for calculations
         """
         current_path = pathlib.Path(__file__).resolve().parent.parent
-        sync_path = current_path / f'00_CACHE/sync_range{str(df.shape[0])}_{cache_id}.pkl'
-        count_path = current_path / f'00_CACHE/count_range{str(df.shape[0])}_{cache_id}.pkl'
+        sync_path = current_path / f'00_CACHE/sync_range{str(df.shape[0])}_{cache_id}{"_v2" if v2 else ""}.pkl'
+        count_path = current_path / f'00_CACHE/count_range{str(df.shape[0])}_{cache_id}{"_v2" if v2 else ""}.pkl'
+        split_path = current_path / f'00_CACHE/split_range{str(df.shape[0])}_{cache_id}{"_v2" if v2 else ""}.pkl'
 
         # if the data has already been processed, use the cache
-        if not invalidate and os.path.isfile(sync_path) and os.path.isfile(
-                count_path):
+        if not invalidate and os.path.isfile(sync_path) and os.path.isfile(count_path):
             print('> Loading from cache...')
+
+            if v2:
+                return pd.read_pickle(sync_path), pd.read_pickle(count_path), pd.read_pickle(split_path), 0
+
             return pd.read_pickle(sync_path), pd.read_pickle(count_path), 0
 
         else:
@@ -358,6 +343,7 @@ class TRMM(Dataset):
             # initialize an empty matrix with rows and columns for the grid points
             sync_matrix = pd.DataFrame(index=df.index, columns=df.index, dtype='float32')
             count_matrix = pd.DataFrame(-1, index=df.index, columns=df.index, dtype='int16')
+            split_matrix = pd.DataFrame(-1, index=df.index, columns=df.index, dtype='int16')
 
             # calculate the sync strength for each permutation of grid cells
             for i in range(sync_matrix.shape[0]):
@@ -366,26 +352,32 @@ class TRMM(Dataset):
                 # as the matrix is symmetrical, only calculate the upper half
                 for j in range(i + 1):
                     # calculate the synchronicity for the permutation of rows
-                    sync_strength, count = TRMM.calculate_sync_strength(df.iloc[i], df.iloc[j])
+                    sync_strength, count, i_leads, j_leads = TRMM.calculate_sync_strength(df.iloc[i], df.iloc[j], v2=True)
 
                     # save results in the respective matrices
                     sync_matrix.iloc[i, j] = sync_strength
                     sync_matrix.iloc[j, i] = sync_strength
                     count_matrix.iloc[i, j] = count
                     count_matrix.iloc[j, i] = count
+                    split_matrix.iloc[i, j] = i_leads
+                    split_matrix.iloc[j, i] = j_leads
 
             # save the results to cache
             sync_matrix.to_pickle(sync_path)
             count_matrix.to_pickle(count_path)
+            split_matrix.to_pickle(split_path)
 
             # calculate the runtime
             end_time = time.time() - start_time
             print(f'\n> Successfully finished in {end_time:f}s')
 
+            if v2:
+                return sync_matrix, count_matrix, split_matrix, end_time
+
             return sync_matrix, count_matrix, end_time
 
     @staticmethod
-    def generate_graph(df, quantile=0.95, set_lte=0, set_ge=1):
+    def generate_graph(df, quantile=0.95, set_lte=0, set_ge=1, directed=False):
         """
         Generate a graph/network from a sync/count matrix
 
@@ -423,7 +415,7 @@ class TRMM(Dataset):
         np.fill_diagonal(adjacency_matrix.values, 0)
 
         # generate a networkx graph from the adjacency matrix
-        graph = nx.from_numpy_matrix(adjacency_matrix.values)
+        graph = nx.from_numpy_matrix(adjacency_matrix.values, create_using=nx.DiGraph() if directed else None)
 
         # add coordinates to each graph node
         for index in graph.nodes():
@@ -503,9 +495,9 @@ class TRMM(Dataset):
         Setup an asynchronous worker that performs the sync calculation
         """
 
-        sync_strength, sync_count = TRMM.calculate_sync_strength(extreme_events.iloc[i], extreme_events.iloc[j])
+        sync_strength, sync_count, i_leads, j_leads = TRMM.calculate_sync_strength(extreme_events.iloc[i], extreme_events.iloc[j], v2=True)
 
-        result = i, j, sync_strength, sync_count
+        result = i, j, sync_strength, sync_count, i_leads, j_leads
         q.put(result)
         return result
 
@@ -517,7 +509,7 @@ class TRMM(Dataset):
         """
 
         current_path = pathlib.Path(__file__).resolve().parent.parent
-        cache_path = current_path / f'00_CACHE/{df_shape}_{cache_id}_sync.txt'
+        cache_path = current_path / f'00_CACHE/{df_shape}_{cache_id}_sync_v2.txt'
         with open(cache_path, 'a') as handle:
             while 1:
                 m = q.get()
@@ -528,7 +520,7 @@ class TRMM(Dataset):
                     break
 
                 # append the calculation results to the log
-                handle.write(f'{m[0]};{m[1]};{m[2]};{m[3]};\n')
+                handle.write(f'{m[0]};{m[1]};{m[2]};{m[3]};{m[4]};{m[5]}\n')
                 handle.flush()
 
     @staticmethod
@@ -539,13 +531,13 @@ class TRMM(Dataset):
 
         current_path = pathlib.Path(__file__).resolve().parent.parent
         df_shape = extreme_events.shape[0]
-        sync_path = current_path / f'00_CACHE/sync_range{df_shape}_{cache_id}.pkl'
-        count_path = current_path / f'00_CACHE/count_range{df_shape}_{cache_id}.pkl'
-
+        sync_path = current_path / f'00_CACHE/sync_range{df_shape}_{cache_id}_v2.pkl'
+        count_path = current_path / f'00_CACHE/count_range{df_shape}_{cache_id}_v2.pkl'
+        split_path = current_path / f'00_CACHE/split_range{df_shape}_{cache_id}_v2.pkl'
         # if the data has already been processed, use the cache
-        if not invalidate and os.path.isfile(sync_path) and os.path.isfile(count_path):
+        if not invalidate and os.path.isfile(sync_path) and os.path.isfile(count_path) and os.path.isfile(split_path):
             print('> Loading from cache...')
-            return pd.read_pickle(sync_path), pd.read_pickle(count_path), 0
+            return pd.read_pickle(sync_path), pd.read_pickle(count_path), pd.read_pickle(split_path), 0
 
         # setup process manager, queue and pool
         manager = Manager()
@@ -568,6 +560,11 @@ class TRMM(Dataset):
             index=extreme_events.index,
             columns=extreme_events.index,
             dtype='int16')
+        split_matrix = pd.DataFrame(
+            -1,
+            index=extreme_events.index,
+            columns=extreme_events.index,
+            dtype='int16')
 
         # setup the sync calculation jobs
         # for each combination of i and j in one half (diagonal matrix)
@@ -577,7 +574,7 @@ class TRMM(Dataset):
         cache_time = 0
 
         # if the logfile already exists, parse it and look for the last line
-        log_path = current_path / f'00_CACHE/{df_shape}_{cache_id}_sync.txt'
+        log_path = current_path / f'00_CACHE/{df_shape}_{cache_id}_sync_v2.txt'
         if not invalidate and os.path.isfile(log_path):
             with open(log_path, 'r') as handle:
                 lst = list(handle.readlines())
@@ -591,17 +588,21 @@ class TRMM(Dataset):
                         if item == 'killed\n':
                             continue
 
-                        i, j, sync, count, _ = item.split(';')
+                        i, j, sync, count, i_leads, j_leads = item.split(';')
 
                         i = int(i)
                         j = int(j)
                         sync = float(sync)
-                        count = float(count)
+                        count = int(count)
+                        i_leads = int(i_leads)
+                        j_leads = int(j_leads)
 
                         sync_matrix.iloc[i, j] = sync
                         sync_matrix.iloc[j, i] = sync
                         count_matrix.iloc[i, j] = count
                         count_matrix.iloc[j, i] = count
+                        split_matrix.iloc[i, j] = i_leads
+                        split_matrix.iloc[j, i] = j_leads
 
                     last_item = lst[len(lst)-2]
                     last_processed = last_item.split(';')[0]
@@ -623,13 +624,15 @@ class TRMM(Dataset):
 
         # for each job, wait for results and append them to the matrices
         for job in jobs:
-            i, j, sync, count = job.get()
+            i, j, sync, count, i_leads, j_leads = job.get()
 
             # update the matrix with the results
             sync_matrix.iloc[i, j] = sync
             sync_matrix.iloc[j, i] = sync
             count_matrix.iloc[i, j] = count
             count_matrix.iloc[j, i] = count
+            split_matrix.iloc[i, j] = i_leads
+            split_matrix.iloc[j, i] = j_leads
 
         process_time = time.time() - setup_time
 
@@ -638,6 +641,7 @@ class TRMM(Dataset):
         # save the results to cache
         sync_matrix.to_pickle(sync_path)
         count_matrix.to_pickle(count_path)
+        split_matrix.to_pickle(split_path)
 
         print('> Successfully saved matrices...')
 
@@ -649,4 +653,4 @@ class TRMM(Dataset):
         q.put('kill')
         pool.close()
 
-        return sync_matrix, count_matrix, end_time
+        return sync_matrix, count_matrix, split_matrix, end_time
