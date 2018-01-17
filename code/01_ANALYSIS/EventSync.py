@@ -69,7 +69,7 @@ def parallel_log_results(q, df_shape, cache_id=None):
     """
 
     current_path = pathlib.Path(__file__).resolve().parent.parent
-    cache_path = current_path / f'00_CACHE/{df_shape}_{cache_id}_sync.txt'
+    cache_path = current_path / f'00_CACHE/{df_shape}_{cache_id}_sync_2.txt'
     with open(cache_path, 'a') as handle:
         while 1:
             m = q.get()
@@ -105,8 +105,8 @@ def main():
 
     current_path = pathlib.Path(__file__).resolve().parent.parent
     df_shape = extreme_events.shape[0]
-    sync_path = current_path / f'00_CACHE/sync_range{df_shape}_{PERIOD_NAME}.pkl'
-    count_path = current_path / f'00_CACHE/count_range{df_shape}_{PERIOD_NAME}.pkl'
+    sync_path = current_path / f'00_CACHE/sync_range{df_shape}_{PERIOD_NAME}_2.pkl'
+    count_path = current_path / f'00_CACHE/count_range{df_shape}_{PERIOD_NAME}_2.pkl'
 
     # setup process manager, queue and pool
     manager = Manager()
@@ -138,7 +138,7 @@ def main():
     cache_time = 0
 
     # if the logfile already exists, parse it and look for the last line
-    log_path = current_path / f'00_CACHE/{df_shape}_{PERIOD_NAME}_sync.txt'
+    log_path = current_path / f'00_CACHE/{df_shape}_{PERIOD_NAME}_sync_2.txt'
     if os.path.isfile(log_path):
         with open(log_path, 'r') as handle:
             lst = list(handle.readlines())
