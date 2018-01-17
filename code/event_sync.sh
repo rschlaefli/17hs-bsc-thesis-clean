@@ -28,7 +28,7 @@ echo "---- START $SLURM_JOB_ID ----" >> $LOG_DIR/$SLURM_ARRAY_TASK_ID/$SLURM_JOB
 echo "[$SLURM_ARRAY_TASK_ID] Calculating event synchronization #$SLURM_ARRAY_TASK_ID"
 
 # calculate synchronization
-~/anaconda3/envs/gru-minimal/bin/python ~/thesis/code/01_ANALYSIS/EventSync.py $SLURM_ARRAY_TASK_ID $AGGREGATION >> $LOG_DIR/$SLURM_ARRAY_TASK_ID/$SLURM_JOB_ID.out
+~/anaconda3/envs/gru-minimal/bin/python ~/17hs-bsc-thesis-clean/code/01_ANALYSIS/EventSync.py $SLURM_ARRAY_TASK_ID $AGGREGATION >> $LOG_DIR/$SLURM_ARRAY_TASK_ID/$SLURM_JOB_ID.out
 
 # end logs
 echo "[$SLURM_ARRAY_TASK_ID] Finished event synchronization $SLURM_ARRAY_TASK_ID"
