@@ -106,7 +106,7 @@ def main():
     df_shape = extreme_events.shape[0]
     sync_path = current_path / f'00_CACHE/sync_range{df_shape}_{PERIOD_NAME}_v2.pkl'
     count_path = current_path / f'00_CACHE/count_range{df_shape}_{PERIOD_NAME}_v2.pkl'
-    split_path = current_path / f'00_CACHE/split_range{df_shape}_{cache_id}_v2.pkl'
+    split_path = current_path / f'00_CACHE/split_range{df_shape}_{PERIOD_NAME}_v2.pkl'
 
     # setup process manager, queue and pool
     manager = Manager()
