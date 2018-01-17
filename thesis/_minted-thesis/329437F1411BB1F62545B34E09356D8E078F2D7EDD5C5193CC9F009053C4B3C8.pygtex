@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+  \PYG{k}{def} \PYG{n+nf}{calculate\PYGZus{}sync\PYGZus{}strength}\PYG{p}{(}\PYG{n}{location1}\PYG{p}{,} \PYG{n}{location2}\PYG{p}{):}
+    \PYG{c+c1}{\PYGZsh{} calculate synchronization between location1 and location2 and reverse}
+  \PYG{k}{def} \PYG{n+nf}{calculate\PYGZus{}sync\PYGZus{}strength}\PYG{p}{(}\PYG{n}{location1}\PYG{p}{,} \PYG{n}{location2}\PYG{p}{):}
+    \PYG{n}{loc1\PYGZus{}sync} \PYG{o}{=} \PYG{n}{TRMM}\PYG{o}{.}\PYG{n}{calculate\PYGZus{}synchronization}\PYG{p}{(}\PYG{n}{location1}\PYG{p}{,} \PYG{n}{row2\PYGZus{}events}\PYG{p}{)}
+    \PYG{n}{loc2\PYGZus{}sync} \PYG{o}{=} \PYG{n}{TRMM}\PYG{o}{.}\PYG{n}{calculate\PYGZus{}synchronization}\PYG{p}{(}\PYG{n}{row2\PYGZus{}events}\PYG{p}{,} \PYG{n}{location1}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} calculate the strength of synchronization}
+    \PYG{n}{sync\PYGZus{}strength} \PYG{o}{=} \PYG{p}{(}\PYG{n}{loc1\PYGZus{}sync} \PYG{o}{+} \PYG{n}{loc2\PYGZus{}sync}\PYG{p}{)} \PYG{o}{/} \PYGZbs{}
+        \PYG{n}{math}\PYG{o}{.}\PYG{n}{sqrt}\PYG{p}{((}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{row1\PYGZus{}events}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{o}{*} \PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{row2\PYGZus{}events}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2}\PYG{p}{))}
+
+    \PYG{c+c1}{\PYGZsh{} return the strength of synchronization and the number of synchronous events}
+    \PYG{k}{return} \PYG{n}{sync\PYGZus{}strength}\PYG{p}{,} \PYG{n}{row1\PYGZus{}sync} \PYG{o}{+} \PYG{n}{row2\PYGZus{}sync}
+\end{Verbatim}

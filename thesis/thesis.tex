@@ -16,6 +16,10 @@
 \usepackage{microtype}
 \usepackage{todo}
 \usepackage[bottom=2cm, includefoot]{geometry}
+\usepackage{graphicx}
+
+\usepackage{xcolor}
+\definecolor{VeryLightGrey}{RGB}{255,253,255}
 
 \usepackage{fancyvrb}
 \DefineVerbatimEnvironment{code}{Verbatim}{fontsize=\small}
@@ -28,7 +32,9 @@
 \fancyhead[RE]{\leftmark}
 \fancyhead[LO]{\rightmark}
 
-\usepackage{graphicx}
+\usepackage{minted}
+\setminted{fontsize=\footnotesize,baselinestretch=0.9,bgcolor=VeryLightGrey}
+
 \author{Roland Schläfli}
 \title{Analysis of Weather Data using Graph-based and Neural Network Methods}
 \begin{document}
@@ -73,5 +79,8 @@
 \clearpage
 \listoftables
 
+\clearpage
+\renewcommand\listoflistingscaption{List of source codes}
+\listoflistings
 
 \end{document}
