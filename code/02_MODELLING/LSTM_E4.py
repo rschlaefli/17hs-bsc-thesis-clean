@@ -9,9 +9,9 @@ from ModelERAv3 import ModelERAv3
 
 # --- CONSTANTS ---
 YEARS = range(1979, 2018)
-YEARS_TRAIN = range(1979, 2006)
-YEARS_DEV = range(2006, 2010)  # or none to use random validation data
-YEARS_TEST = range(2010, 2018)
+YEARS_TRAIN = range(1979, 2010)
+YEARS_DEV = range(2010, 2013)  # or none to use random validation data
+YEARS_TEST = range(2013, 2018)
 PREDICT_ON = '{}-05-22'
 
 # --- PARAMETERS ---
@@ -1503,9 +1503,9 @@ TUNINGS = [
         'prediction_offset': 1,
         'prediction_example_length': 60,
         'years': YEARS,
-        'years_train': YEARS_TRAIN,
-        'years_dev': YEARS_DEV,
-        'years_test': YEARS_TEST,
+        'years_train': range(1979, 2006),
+        'years_dev': range(2006, 2010),
+        'years_test': range(2010, 2018)
     }
 ]
 
