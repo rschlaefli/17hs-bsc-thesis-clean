@@ -1466,10 +1466,12 @@ TUNING = TUNINGS[INDEX]
 onset_dates, onset_ts = ModelHelpers.load_onset_dates(version='v2', objective=True if TUNING['objective_onsets'] else False)
 
 # prepare prediction timestamps
-# generate a sequence of timestamps for train and validation
-# generate the timestamp of the 22nd of each test year
+# generate a sequence of timestamps for train and validation (and, optionally, test)
 prediction_ts = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], chain(TUNING['years_train'], TUNING['years_dev']), onset_dates=onset_dates, sequence_length=TUNING['prediction_sequence'], sequence_offset=TUNING['prediction_offset'], example_length=TUNING['prediction_example_length'])
-prediction_ts_test = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], TUNING['years_test'], fake_sequence=True, example_length=TUNING['prediction_example_length'])
+prediction_ts_test = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], TUNING['years_test'], onset_dates=onset_dates, sequence_length=TUNING['prediction_sequence'], sequence_offset=TUNING['prediction_offset'], example_length=TUNING['prediction_example_length'])
+
+# generate the timestamp of the 22nd of each test year
+# prediction_ts_test = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], TUNING['years_test'], fake_sequence=True, example_length=TUNING['prediction_example_length'])
 
 # setup a filter function
 # this later prevents any data after the prediction timestamp from being fed as input
@@ -1486,7 +1488,7 @@ for era_level in ['invariant', 'surface', 1000, 700, 200]:
         features = features + [dataset[feature] for feature in TUNING['features'][era_level]]
 
 if 'trmm' in TUNING['features']:
-    features = features + TRMM.load_dataset(TUNING['years'], range(1, 6), invalidate=True, aggregation_resolution=0.75, version='v3', default_slice=True)
+    features = features + TRMM.load_dataset(range(1998, 2017), range(1, 6), invalidate=True, aggregation_resolution=0.75, version='v3', lon_slice=slice(61.125, 97.625), lat_slice=slice(4.125, 40.625))
 
 # train test split
 print("> Train-Test Split")
