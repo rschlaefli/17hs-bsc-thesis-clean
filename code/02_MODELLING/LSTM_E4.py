@@ -1486,7 +1486,7 @@ TUNINGS = [
             'padding': 'same'
         },
         'config_fit': {
-            'batch_size': 50,
+            'batch_size': 30,
             'epochs': 500,
             'lr_plateau': (0.1, 50, 0.00001),
             'patience': PATIENCE,
@@ -1499,7 +1499,7 @@ TUNINGS = [
         },
         'objective_onsets': True,
         'predict_on': PREDICT_ON,
-        'prediction_sequence': 28,
+        'prediction_sequence': 29,
         'prediction_offset': 1,
         'prediction_example_length': 60,
         'years': YEARS,
