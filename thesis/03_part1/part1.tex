@@ -393,15 +393,7 @@ The results of applying the algorithms we have described in this section to the 
 Our results are based on the TRMM dataset as introduced in \cref{sst:trmm_dataset}. We have extracted data for the years 1998-2016, which corresponds to all years that were fully available at the time. The area included in the dataset was cropped to an extended overview over the Indian subcontinent, more specifically the area between 4.125-40.625N, 61.125-97.625E. Aggregation of the native {0.25\degree} resolution to a lower {0.75\degree} resolution then yields grid borders of 4.375-40.375N, 61.375-97.375E \footnote{The TRMM dataset needed to be aggregated to reduce the computational effort required for event synchronization and climate network calculations. Going from {0.25\degree} to {0.75\degree} resolution effectively reduced the size of event synchronization matrices from 21609x21609 to around 2401x2401 (81x).}.
 
 \subsection{Pre-monsoon season (MAM)}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{{./99_appendix/img/event_sync_0.75-0.9_MAM}.png}
-  \caption{Weighted and unweighted degree, betweenness centrality and PageRank for the pre-monsoon season (MAM). Based on the TRMM dataset at {0.75\degree} resolution.}
-  \label{fig:results_mam}
-\end{figure}
-
-The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We show the unweighted version, as also computed in \citet{Stolbova.2015}, as well as the version with weights applied to the edges in the network. To enable intercomparison with the work of \citet{Stolbova.2015}, which this part of our work is based on, we additionally assign the same identifier as she has used in her work to any areas we refer to.
+The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We show the unweighted version, as also computed in \citet{Stolbova.2015}, as well as our extended version with weights applied to the edges in the network. To enable intercomparison with the work of \citet{Stolbova.2015}, which this part of our work is based on, we additionally assign the area identifiers used in her work to any areas we refer to.
 
 The degree is strongest over the Indian ocean, enframing the Indian subcontinent from both east and west. On the western side lies the Arabian Sea, over which an area of high degree extends from the far west up to the natural barrier of the Western Ghats mountain range (WG). A similar but smaller area over the Bay of Bengal to the east of the Indian subcontinent ranges from the Indian coast onto the lands of Myanmar (BoB). Further patches of significant degree can be found over the Tibetan Plateau (TP), over north-eastern India and Nepal at the brim of the Himalayas (Himalayas) and over areas of Pakistan and Afghanistan (NP, representing North-Pakistan).
 
@@ -411,20 +403,29 @@ Looking at the PageRank analysis of our climate networks, a similarity with the 
 
 Comparison of the unweighted and weighted visualizations shows little difference. The main patterns are the same and differ only in the pronounciation of details.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{{./99_appendix/img/event_sync_0.75-0.9_MAM}.png}
+  \caption{Weighted and unweighted degree, betweenness and PageRank for the pre-monsoon season (MAM). Based on the TRMM dataset at {0.75\degree} resolution.}
+  \label{fig:results_mam}
+\end{figure}
+
+
 [TODO: interpret the results, incorporating knowledge of impacting factors]
 
 [TODO: compare with Stolbova]
 
 
 \subsection{Monsoon season (JJAS)}
-\begin{figure}[H]
+Analyzing the months of the primary monsoon season (JJAS, June-September) as shown in \cref{fig:results_jjas} yields somewhat unexpected results: degree and betweenness both display a strong but compact pattern over Northern Pakistan (NP). Further areas of significant degree are located on the Tibetan Plateau (TB) and over the Indian Ocean around the southern tip of India (Arabian Sea/WG and BoB). High betweenness can be seen near the Western Ghats (WG) and Kerala as well as on the other side of the southern tip of India.
+
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{{./99_appendix/img/event_sync_0.75-0.9_JJAS}.png}
-  \caption{Weighted and unweighted degree, betweenness centrality and PageRank for the primary monsoon season (JJAS). Based on the TRMM dataset at {0.75\degree} resolution.}
+  \caption{Weighted and unweighted degree, betweenness and PageRank for the primary monsoon season (JJAS). Based on the TRMM dataset at {0.75\degree} resolution.}
   \label{fig:results_jjas}
 \end{figure}
 
-Analyzing the months of the primary monsoon season (JJAS: June, July, August, September) as shown in \cref{fig:results_jjas} yields somewhat unexpected results: degree and betweenness both display a strong but relatively contained pattern over Northern Pakistan (NP). Further areas of significant degree are located on the Tibetan Plateau (TB) and over the Indian Ocean around the southern tip of India (Arabian Sea/WG, BoB).
 
 [TODO: interpret the results, incorporating knowledge of impacting factors]
 
@@ -432,16 +433,20 @@ Analyzing the months of the primary monsoon season (JJAS: June, July, August, Se
 
 
 \subsection{Post-monsoon season (OND)}
-The last season of the ISM, the post-monsoon season or north-east monsoon, displays
+The post-monsoon season (OND, October-December) is typically also called the north-east monsoon. The reason for this is clearly identifiable based on the network measures this season exhibits. A single area of very high degree encompasses entire central and north-eastern India, starting over the Arabian Sea (WG) and ranging well into Bangladesh. The degree in this area is at its highest close to the Himalayas on the Nepali border. The area further extends over the Tibetan Plateau (TP), although with less strength.
 
-\begin{figure}[H]
+
+
+\begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{{./99_appendix/img/event_sync_0.75-0.9_OND}.png}
-  \caption{Weighted and unweighted degree, betweenness centrality and PageRank for the post-monsoon season (OND). Based on the TRMM dataset at {0.75\degree} resolution.}
+  \caption{Weighted and unweighted degree, betweenness and PageRank for the post-monsoon season (OND). Based on the TRMM dataset at {0.75\degree} resolution.}
   \label{fig:results_ond}
 \end{figure}
 
-[TODO: describe the results that were obtained by our approach]
+
+
+
 
 [TODO: interpret the results, incorporating knowledge of impacting factors]
 
