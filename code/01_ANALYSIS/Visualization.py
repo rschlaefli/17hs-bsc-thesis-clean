@@ -131,7 +131,7 @@ class Visualization:
         if ax is None:
             # setup a figure
             fig = plt.figure(figsize=(10, 10))
-            ax = plt.axes(projection=ccrs.LambertConformal())
+            ax = plt.axes(projection=ccrs.PlateCarree())
 
         # add natural features
         ax.add_feature(cfeature.BORDERS)

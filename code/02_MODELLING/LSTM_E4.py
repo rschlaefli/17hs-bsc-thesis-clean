@@ -9,9 +9,9 @@ from ModelERAv3 import ModelERAv3
 
 # --- CONSTANTS ---
 YEARS = range(1979, 2018)
-YEARS_TRAIN = range(1979, 2010)
-YEARS_DEV = range(2010, 2013)  # or none to use random validation data
-YEARS_TEST = range(2013, 2018)
+YEARS_TRAIN = range(1979, 2006)
+YEARS_DEV = range(2006, 2010)  # or none to use random validation data
+YEARS_TEST = range(2010, 2018)
 PREDICT_ON = '{}-05-22'
 
 # --- PARAMETERS ---
@@ -1407,7 +1407,7 @@ TUNINGS = [
         'years_dev': YEARS_DEV,
         'years_test': YEARS_TEST,
     },
-    { # 26
+    { # 27
         'aggregation_resolution': None,
         'config_build': {
             'batch_norm': True,
@@ -1451,6 +1451,56 @@ TUNINGS = [
         'predict_on': PREDICT_ON,
         'prediction_sequence': 24,
         'prediction_offset': 5,
+        'prediction_example_length': 60,
+        'years': YEARS,
+        'years_train': YEARS_TRAIN,
+        'years_dev': YEARS_DEV,
+        'years_test': YEARS_TEST,
+    },
+    { # 28
+        'aggregation_resolution': None,
+        'config_build': {
+            'batch_norm': True,
+            'conv_activation': 'relu',
+            'conv_dropout': [0.4, 0.4],
+            'conv_filters': [16, 16],
+            'conv_kernels': [3, 3],
+            'conv_pooling': [0, 0, 2],
+            'conv_strides': [1, 1],
+            'conv_kernel_regularizer': ('L2', 0.0005),
+            'conv_recurrent_regularizer': ('L2', 0.0005),
+            'dense_dropout': [0.8, 0.8],
+            'dense_nodes': [1024, 1024],
+            'dense_activation': 'relu',
+            'dense_kernel_regularizer': ('L2', 0.0005),
+            'learning_rate': 0.01,
+            'loss': 'mean_squared_error',
+            'lstm_filters': [16, 16],
+            'lstm_kernels': [3, 3],
+            'lstm_strides': [1, 1],
+            'lstm_activation': 'tanh',
+            'lstm_dropout': [0.4, 0.4],
+            'lstm_recurrent_dropout': [0.4, 0.4],
+            'lstm_recurrent_activation': 'hard_sigmoid',
+            'optimizer': 'adam',
+            'padding': 'same'
+        },
+        'config_fit': {
+            'batch_size': 50,
+            'epochs': 500,
+            'lr_plateau': (0.1, 50, 0.00001),
+            'patience': PATIENCE,
+            'tensorboard': True,
+            'validation_split': 0.1
+        },
+        'features': {
+            'surface': ['msl'],
+            1000: ['r', 't']
+        },
+        'objective_onsets': True,
+        'predict_on': PREDICT_ON,
+        'prediction_sequence': 28,
+        'prediction_offset': 1,
         'prediction_example_length': 60,
         'years': YEARS,
         'years_train': YEARS_TRAIN,
