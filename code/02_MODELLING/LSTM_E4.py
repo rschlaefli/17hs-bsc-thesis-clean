@@ -1608,6 +1608,57 @@ TUNINGS = [
         'years_dev': range(2006, 2010),
         'years_test': range(2010, 2018)
     },
+    { # 31
+        'aggregation_resolution': None,
+        'config_build': {
+            'batch_norm': True,
+            'conv_activation': 'relu',
+            'conv_dropout': [0.0, 0.0],
+            'conv_filters': [16, 16],
+            'conv_kernels': [3, 3],
+            'conv_pooling': [0, 0, 2],
+            'conv_strides': [1, 1],
+            'conv_kernel_regularizer': ('L2', 0.0015),
+            'conv_recurrent_regularizer': ('L2', 0.0015),
+            'dense_dropout': [0.75, 0.75],
+            'dense_nodes': [1024, 1024],
+            'dense_activation': 'relu',
+            'dense_kernel_regularizer': ('L2', 0.00075),
+            'learning_rate': 0.01,
+            'loss': 'mean_squared_error',
+            'lstm_filters': [16, 16, 16],
+            'lstm_kernels': [3, 3, 3],
+            'lstm_strides': [1, 1, 1],
+            'lstm_activation': 'tanh',
+            'lstm_dropout': [0.3, 0.3, 0.3],
+            'lstm_recurrent_dropout': [0.2, 0.2, 0.2],
+            'lstm_recurrent_activation': 'hard_sigmoid',
+            'optimizer': 'adam',
+            'padding': 'same'
+        },
+        'config_fit': {
+            'batch_size': 30,
+            'epochs': 500,
+            'lr_plateau': (0.1, 50, 0.00001),
+            'patience': PATIENCE,
+            'tensorboard': True,
+            'validation_split': 0.1
+        },
+        'features': {
+            'surface': ['msl'],
+            1000: ['r', 't'],
+            700: ['u', 'v']
+        },
+        'objective_onsets': False,
+        'predict_on': PREDICT_ON,
+        'prediction_sequence': 29,
+        'prediction_offset': 1,
+        'prediction_example_length': 60,
+        'years': YEARS,
+        'years_train': range(1979, 2006),
+        'years_dev': range(2006, 2010),
+        'years_test': range(2010, 2018)
+    },
 ]
 
 # get the tuning for the current index
