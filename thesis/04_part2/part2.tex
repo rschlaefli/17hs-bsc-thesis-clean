@@ -38,7 +38,7 @@ We generally assume that the reader is at least familiar with basic neural netwo
 \clearpage
 \section{Prediction of Monsoon Onset using Neural Networks}
 \label{st:nn_implementation}
-This section will walk through the different variations of neural network models we have evaluated during the creation of this work. The variations can differ in their network structure, in the data used to train the model or simply in the tuning of hyperparameters applied. \cref{tab:nn_overall_summary} summarizes their key characteristics. All of the models presented were built and trained using the latest Keras 2.0 and Tensorflow 1.3/1.4 libraries for Python.
+This section walks through the different variations of neural network models we have evaluated during the creation of this work. The variations can differ in their network structure, in the data used to train the model or simply in the tuning of hyperparameters applied. \cref{tab:nn_overall_summary} summarizes their key characteristics. All of the models presented were built and trained using the latest Keras 2.0 and Tensorflow 1.3/1.4 libraries for Python.
 
 Each model architecture is further associated a unique version identifier that we will use to refer to the specific architecture. The identifiers are based on the type of dataset used to train the model and the variation of the model architecture used (e.g., \textit{T1}: TRMM v1, \textit{E3}: ERA-Interim v3, \textit{TE1}: TRMM and ERA-Interim v1).
 
@@ -56,9 +56,7 @@ Each model architecture is further associated a unique version identifier that w
     E1 & Training on the ERA-Interim dataset and multiple features (temperature, relative humidity); Based on T4 \\
     E2 & Objective onset dates from \citep{Singh.2009}; Prediction on the 22th of May; Based on E1 \\
     E3 & Improved structuring of Python classes; Extraction of core model logic into base classes; Same functionality as E2; No experiments \\
-    E4 & Multiple examples per year with variable offset to the onset date; Additional input features: wind (U\&V) at 700hPa, mean sea-level pressure; Possibility for additional 2D-convolutions before ConvLSTM2D; Switch to the functional Keras API; Based on E3 \\
-    Ex & TODO: ? Binary classification for each offset to the onset date (does MoK occur in x days); Averaging possibilities over all offsets; Based on E4 \\
-    Ex & TODO: ? PageRank as calculated in \cref{st:event_sync_results} as an additional input after LSTM; Based on E4 \\
+    E4 & Multiple examples per year with variable offset to the onset date; Choice of additional input features; Possibility for additional 2D-convolutions before ConvLSTM2D; Switch to the functional Keras API; Based on E3 \\
     \hline
     ET1 & Combination of temperature and relative humidity from ERA-Interim and daily precipitation from TRMM; Based on E2 and T5 \\
     \hline
@@ -67,24 +65,10 @@ Each model architecture is further associated a unique version identifier that w
   \label{tab:nn_overall_summary}
 \end{table}
 
-
 \clearpage
 \subsection{T2: Naive classification models using TRMM}
 \label{sst:nn_t2}
-The first models we evaluated were classification networks based on the TRMM dataset (see \cref{sst:trmm_dataset}) at various spatial resolutions (ranging from a 0.25\degree x 0.25\degree resolution to an aggregated 2.5\degree x 2.5\degree resolution). This chapter briefly describes the structure of these first models. Important key information is summarized in \cref{tab:nn_t2_summary}, which will also be done so for the models we further present.
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{ |c|c|c| }
-    \hline
-    head1 & head2 & head3 \\
-    \hline
-    cell1 & cell2 & cell3 \\
-    \hline
-  \end{tabular}
-  \caption{TODO: summary table (validation years etc.)}
-  \label{tab:nn_t2_summary}
-\end{table}
+The first models we evaluated were classification networks based on the TRMM dataset (see \cref{sst:trmm_dataset}) at various spatial resolutions (ranging from a 0.25\degree x 0.25\degree resolution to an aggregated 2.5\degree x 2.5\degree resolution). This chapter briefly describes the structure of these first models.
 
 \subsubsection{Data preprocessing}
 \label{ssst:nn_t2_data}
@@ -136,19 +120,6 @@ A further disqualifying factor against the use of any such classification approa
 \subsection{T3 \& T4: First convolutional models using TRMM}
 \label{sst:nn_t3}
 The findings of the first naive classification suggested that the overall model architecture and the data input shape needed to be rethought. To be able to capture temporal as well as spatial relationships between different geographical locations in India, the input time series needed to be changed such that each timestep would contain daily data for the entire Indian subcontinent.
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{ |c|c|c| }
-    \hline
-    head1 & head2 & head3 \\
-    \hline
-    cell1 & cell2 & cell3 \\
-    \hline
-  \end{tabular}
-  \caption{TODO: summary table (validation years etc.)}
-  \label{tab:nn_t3_summary}
-\end{table}
 
 \subsubsection{Data preprocessing}
 \label{ssst:nn_t3_data}
@@ -215,19 +186,6 @@ Compared to the TRMM dataset, the ERA-Interim dataset brings with it several adv
 
 A disadvantage of using the ERA-Interim dataset might be that its spatial resolution is much lower than the one of the TRMM dataset (0.75\degree x 0.75\degree compared to 0.25\degree x 0.25\degree). When training with the ERA-Interim dataset, the input matrices in the sequence would thus be much smaller in the spatial dimensions (latitude and longitude), providing the models with less detailed data to train on. However, many more ERA-Interim features could be added as channels to the model inputs, giving the models the possibility to learn more complex patterns and relationships. The lower resolution of the ERA-Interim dataset further means that each input matrix is up to 9 times smaller than with TRMM, leading to lower overall computational effort and hardware requirements (i.e., memory capacity).
 
-\begin{table}[h]
-  \centering
-  \begin{tabular}{ |c|c|c| }
-    \hline
-    head1 & head2 & head3 \\
-    \hline
-    cell1 & cell2 & cell3 \\
-    \hline
-  \end{tabular}
-  \caption{TODO: summary table (validation years etc.)}
-  \label{tab:nn_e1_summary}
-\end{table}
-
 \subsubsection{Data preprocessing}
 \label{ssst:nn_e1_data}
 This first iteration of the ERA-based model (E1) made use of only two features from ERA-Interim: temperature and relative humidity each at a 1000hPa pressure level. [Stolbova] found this combination of features to be a reliable predictor of the monsoon onset date. While this finding should also apply to our problem, the approach used was based on statistical time-series analysis [TODO: oder so?] and as such might not directly transfer to the training of our neural network models.
@@ -264,19 +222,6 @@ After further analysis of onset distributions for different onset datasets, the 
 While it might be counterintuitive that the ISM onset would not follow a normal distribution (as many natural processes do), a more balanced distribution of labels can improve the performance of machine learning models. Many models work better if input data is preprocessed with stratification methods (i.e., classes are rebalanced), as the model might otherwise tend to predict the label that occurs most often in the training set.
 
 Building on these findings, we then created the E2, T5 and ET1 model versions, i.e., new models for both ERA-Interim and TRMM (as well as a combination of them) that were primarily a repetition of the best previous experiments with updated labels for the new onset dates.
-
-\begin{table}[h]
-  \centering
-  \begin{tabular}{ |c|c|c| }
-    \hline
-    head1 & head2 & head3 \\
-    \hline
-    cell1 & cell2 & cell3 \\
-    \hline
-  \end{tabular}
-  \caption{TODO: summary table (validation years etc.)}
-  \label{tab:nn_e2t5_summary}
-\end{table}
 
 \subsubsection{Data preprocessing}
 \label{ssst:nn_e2t5_data}

@@ -2,9 +2,9 @@
 \label{c:event_sync}
 During the primary monsoon season, floodings and landslides caused by extreme rainfall can lead to massive societal and environmental damage \citep{Stolbova.2015}. It is thus crucial to be able to analyze, detect and potentially predict such extreme rainfall events, especially as their proportion tends to further increase with global warming \citep{Stolbova.2015} [TODO: cite Goswami?].
 
-A way of analysis that \citet{Stolbova.2015} has proposed is the computation of climate networks based on different locations in India, followed by an analysis of the resulting networks using graph centrality measures. We strongly base this chapter on her work and thus summarize her approach in \cref{sst:event_sync}. We also explain the network measures that will be applied to the resulting climate networks (\cref{sst:network_measures}) and introduce the dataset that will be used as a basis for all calculations (TRMM, \cref{sst:trmm_dataset}).
+A way of analysis that \citet{Stolbova.2015} has proposed is the computation of climate networks based on different locations in India, followed by an analysis of the resulting networks using centrality measures. We strongly base this chapter on her work and thus summarize her approach in \cref{sst:event_sync}. We also explain the network measures that will be applied to the resulting climate networks (\cref{sst:network_measures}) and introduce the dataset that will be used as a basis for all calculations (TRMM, \cref{sst:trmm_dataset}).
 
-\cref{st:event_sync_implementation} then provides an overview of our approach to the creation of climate networks and explains where our approach differs from the work of \citep{Stolbova.2015}. Following up in \cref{st:event_sync_results}, we analyze and visualize the computed climate networks using graph centrality measures and try to interpret the results in contrast to the known factors of monsoon behavior. Concluding this chapter in \cref{st:event_sync_conclusion}, we elaborate the usefulness of our results and how they could be improved upon.
+\cref{st:event_sync_implementation} then provides an overview of our approach to the creation of climate networks and explains where our approach differs from the work of \citep{Stolbova.2015}. Following up in \cref{st:event_sync_results}, we analyze and visualize the computed climate networks using centrality measures and try to interpret the results in contrast to the known factors of monsoon behavior. Concluding this chapter in \cref{st:event_sync_conclusion}, we elaborate the usefulness of our results and how they could be improved upon.
 
 \section{Related Work}
 [TODO: need text here?]
@@ -103,7 +103,7 @@ The climate networks in \citet{Stolbova.2015} are analyzed using the \textit{deg
 
 The \textit{degree} of a node in a network is quite simply defined as the amount of links that are connected to the respective node. The same holds for vertices in graphs and their connected edges.
 
-Calculating the \textit{betweenness} or \textit{betweenness centrality} of a node is a more involved effort. A node has a high betweenness if a large portion of shortest paths in the network pass through the respective node. If the resulting betweenness is to be an exact measure, this basically necessitates the calculation of all shortest paths in the network, which gets increasingly complex with the size of the graph. There are, however, algorithms that achieve both accuracy and speed when calculating betweenness, one of the most popular being the approach proposed by \citet{Brandes.2001}\footnote{This algorithm is also used by the Python library \textit{networkx}, which we will be using for our calculations.}.
+Calculating the \textit{betweenness} or \textit{betweenness centrality} of a node is a more involved effort. A node has a high betweenness if a large portion of shortest paths in the network pass through the respective node. If the resulting betweenness is to be an exact measure, this basically necessitates the calculation of all shortest paths in the network, which gets increasingly complex with the size of the network. There are, however, algorithms that achieve both accuracy and speed when calculating betweenness, one of the most popular being the approach proposed by \citet{Brandes.2001}\footnote{This algorithm is also used by the Python library \textit{networkx}, which we will be using for our calculations.}.
 
 The final measure that we will apply to climate networks, the \textit{PageRank} algorithm, was originally developed and published by the founders of Google (amongst others), Larry Page and Sergey Brin, during their studies at Stanford University \citep{Page.1999}.
 
@@ -395,7 +395,7 @@ Our results are based on the TRMM dataset as introduced in \cref{sst:trmm_datase
 \subsection{Pre-monsoon season (MAM)}
 [TODO: PageRank analysis once updated version is evaluated]
 
-The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We show the unweighted version, as also computed in \citet{Stolbova.2015}, as well as our extended version with weights applied to the edges in the network. To enable intercomparison with the work of \citet{Stolbova.2015}, which this part of our work is based on, we additionally assign the area identifiers used in her work to any areas we refer to.
+The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We show the unweighted version, as also computed in \citet{Stolbova.2015}, as well as our extended version with weights applied to the links in the network. To enable an intercomparison with the work of \citet{Stolbova.2015}, which this part of our work is based on, we additionally assign the area identifiers used in her work to any areas we refer to.
 
 \begin{figure}[h]
   \centering
@@ -428,15 +428,15 @@ Analyzing the months of the primary monsoon season (JJAS, June-September) as sho
   \label{fig:results_jjas}
 \end{figure}
 
-High betweenness can be seen over Northern Pakistan (NP), near the Western Ghats (WG) and Kerala as well as on the other side of the southern tip of India. Having locations of high degree and high betweenness clustered over a region like Northern Pakistan suggests that even such a small region can be a great influence to many parts of the Indian subcontinent. We could reason that due to the natural barrier of the Himalayas, Northern Pakistan
+High betweenness can be seen over Northern Pakistan (NP), near the Western Ghats (WG) and Kerala as well as on the other side of the southern tip of India. Having locations of high degree and high betweenness clustered over a region like Northern Pakistan suggests that even such a small region can be a great influence to many parts of the Indian subcontinent. However, it is hard to reason where the region's importance stems from. Perhaps it serves as a pivot between the Tibetan Plateau, the Arabian Sea and central India and thus is part of many paths in the network.
 
-
+The regions of strong betweenness flanking the Western Ghats could be explained by the important role of the Kerala region in the overall onset of the monsoon season. Kerala is typically the first region of the Indian subcontinent that is reached by monsoonal rainfalls. Thus, it can be argued that extreme events in Kerala tend to lead events on the mainland and are most probably connected to many locations in India. Furthermore, the jet coming from the Arabian Sea are split into two streams due to the heights of the Western Ghats. Continuing into the mainland, these two streams could be a cause for the patterns of high betweenness on either side of the Western Ghats.
 
 \newpage
 \subsection{Post-monsoon season (OND)}
 [TODO: PageRank analysis once updated version is evaluated]
 
-The post-monsoon season (OND, October-December) is typically also called the north-east monsoon. The reason for this is also clearly identifiable based on the network measures as presented in \cref{fig:results_ond}:
+The post-monsoon season (OND, October-December) is typically also called the north-east monsoon. The unique characteristics of the north-east monsoon can be clearly identified based on the network measures as shown in \cref{fig:results_ond}.
 
 \begin{figure}[h]
   \centering
@@ -445,29 +445,28 @@ The post-monsoon season (OND, October-December) is typically also called the nor
   \label{fig:results_ond}
 \end{figure}
 
- A single area of very high degree encompasses entire central and north-eastern India, starting over the Arabian Sea (WG) and ranging well into Bangladesh. The degree in this area is at its highest close to the Himalayas on the Nepali border. The area further extends over the Tibetan Plateau (TP), although with less strength.
+ More specifically, a single area of very high degree encompasses entire central and north-eastern India, starting over the Arabian Sea (WG) and ranging well into Bangladesh. The degree in this area is at its highest over Nepal close to the Himalayas. The area further extends over the Tibetan Plateau (TP), although with less strength. Similarly, areas of high betweenness are located over Nepal, at the coast of the Arabian Sea, over North Pakistan (NP) and on the Tibetan Plateau (TP).
 
-
+[TODO: interpretation]
 
 \subsection{Intercomparison with \citet{Stolbova.2015}}
-So far, we have strongly based our climate network analysis on the work of \citet{Stolbova.2015}, additionally evaluating PageRank measures and weighted networks. This section shows the results as they have been presented in the referred work and intercompares them to the results we have obtained from our analysis. Next to giving an indication about the validity of our approach, this might also show new properties that have only recently developed, as we have had access to four additional years of the TRMM dataset.
+So far, we have strongly based our climate network analysis on the work of \citet{Stolbova.2015}, additionally evaluating PageRank measures and weighted networks. This section shows the results as they have been presented in the referred work and compares them to the results we have obtained from our analysis. Next to giving an indication about the validity of our approach, this might also show new properties that have only recently developed, as we have had access to four additional years of the TRMM dataset.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{./99_appendix/img/results_stolbova.png}
-  \caption{Degree and betweenness centrality as presented in \citet{Stolbova.2015}. Based on the TRMM dataset at {0.25\degree} resolution}
+  \caption{Degree and betweenness centrality as presented in \citet{Stolbova.2015}. Based on the years 1998-2012 from the TRMM dataset at {0.25\degree} resolution}.
   \label{fig:results_stolbova}
 \end{figure}
 
+The visualizations as shown in \cref{fig:results_stolbova} are obviously much more granular and detailed, as the full {0.25\degree} resolution was used for the climate network compoutations (and we have used a {0.75\degree} resolution). However, the general patterns seem to overlap well for the first two monsoon seasons. The main regions of interest during the pre-monsoon season are similarly located over the Arabian Sea, the Bay of Bengal, south of the Himalayas and on the Tibetan Plateau. The monsoon season shows the same strong clustering over North Pakistan and significant patterns at the southern tip of India as well as over the Arabian Sea.
 
+Comparing the results for the post-monsoon season, we find that the discrepancies are much more significant. While the most central locations are clustered around the Himalayas in both \cref{fig:results_ond} and \cref{fig:results_stolbova}, the area of high degree extends much farther to the west in our results. Additionally, the results as shown in \cref{fig:results_stolbova} seem to be more concentrated to the Himalaya region and extend far up on the Tibetan Plateau.
 
+We mainly attribute the observed discrepancies to one important factor: we have used a much lower resolution to be able to speed up computation of the synchronization matrix and climate networks. The full synchronization matrix for a {0.25\degree} resolution restricted to our area has a degree of 21609, making traversal of the matrix a computationally very complex effort (compared to the 2401 degree matrix using {0.75\degree} resolution). It is clearly visible that the higher resolution shows much more detail than our implementation. Furthermore, the choice of resolution might also have an impact on the general structure of a network, as a {0.25\degree} resolution results in a matrix that is much more sparse than it would be after aggregation.
 
-
-
-
-
-
+% Furthermore, due to the lower resolution in our synchronization matrix, our implementation also differs in the threshold applied to the synchronization matrix. While the threshold was set to the 95th percentile in \citet{Stolbova.2015}, we used a lower threshold to get a network with a more meaningful amount of links. More specifically, we set the threshold to the 90th percentile, still only leaving the 10\% most significantly synchronous links. Especially
 
 \section{Conclusion}
 \label{st:event_sync_conclusion}
-[TODO: conclude the chapter]
+[TODO: conclude this chapter (summary, main takeaways)]
