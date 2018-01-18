@@ -1659,6 +1659,108 @@ TUNINGS = [
         'years_dev': range(2006, 2010),
         'years_test': range(2010, 2018)
     },
+    { # 32
+        'aggregation_resolution': None,
+        'config_build': {
+            'batch_norm': True,
+            'conv_activation': 'relu',
+            'conv_dropout': [0.0, 0.0],
+            'conv_filters': [16, 16],
+            'conv_kernels': [3, 3],
+            'conv_pooling': [0, 0, 2],
+            'conv_strides': [1, 1],
+            'conv_kernel_regularizer': ('L2', 0.0015),
+            'conv_recurrent_regularizer': ('L2', 0.0015),
+            'dense_dropout': [0.75, 0.75],
+            'dense_nodes': [1024, 1024],
+            'dense_activation': 'relu',
+            'dense_kernel_regularizer': ('L2', 0.00075),
+            'learning_rate': 0.01,
+            'loss': 'mean_squared_error',
+            'lstm_filters': [16, 16, 16],
+            'lstm_kernels': [3, 3, 3],
+            'lstm_strides': [1, 1, 1],
+            'lstm_activation': 'tanh',
+            'lstm_dropout': [0.3, 0.3, 0.3],
+            'lstm_recurrent_dropout': [0.2, 0.2, 0.2],
+            'lstm_recurrent_activation': 'hard_sigmoid',
+            'optimizer': 'adam',
+            'padding': 'same'
+        },
+        'config_fit': {
+            'batch_size': 30,
+            'epochs': 500,
+            'lr_plateau': (0.1, 50, 0.00001),
+            'patience': PATIENCE,
+            'tensorboard': True,
+            'validation_split': 0.1
+        },
+        'features': {
+            'surface': ['msl'],
+            1000: ['r', 't'],
+            700: ['u', 'v']
+        },
+        'objective_onsets': True,
+        'predict_on': PREDICT_ON,
+        'prediction_sequence': 29,
+        'prediction_offset': 1,
+        'prediction_example_length': 60,
+        'years': YEARS,
+        'years_train': [1979, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2001, 2002, 2006, 2007, 2008, 2009, 2011, 2012, 2013],
+        'years_dev': [1980, 1990, 2000, 2010, 2016],
+        'years_test': [1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017]
+    },
+    { # 33
+        'aggregation_resolution': None,
+        'config_build': {
+            'batch_norm': True,
+            'conv_activation': 'relu',
+            'conv_dropout': [0.0, 0.0],
+            'conv_filters': [16, 16],
+            'conv_kernels': [3, 3],
+            'conv_pooling': [0, 0, 2],
+            'conv_strides': [1, 1],
+            'conv_kernel_regularizer': ('L2', 0.0015),
+            'conv_recurrent_regularizer': ('L2', 0.0015),
+            'dense_dropout': [0.75, 0.75],
+            'dense_nodes': [1024, 1024],
+            'dense_activation': 'relu',
+            'dense_kernel_regularizer': ('L2', 0.00075),
+            'learning_rate': 0.01,
+            'loss': 'mean_squared_error',
+            'lstm_filters': [16, 16, 16],
+            'lstm_kernels': [3, 3, 3],
+            'lstm_strides': [1, 1, 1],
+            'lstm_activation': 'tanh',
+            'lstm_dropout': [0.3, 0.3, 0.3],
+            'lstm_recurrent_dropout': [0.2, 0.2, 0.2],
+            'lstm_recurrent_activation': 'hard_sigmoid',
+            'optimizer': 'adam',
+            'padding': 'same'
+        },
+        'config_fit': {
+            'batch_size': 30,
+            'epochs': 500,
+            'lr_plateau': (0.1, 50, 0.00001),
+            'patience': PATIENCE,
+            'tensorboard': True,
+            'validation_split': 0.1
+        },
+        'features': {
+            'surface': ['msl'],
+            1000: ['r', 't'],
+            700: ['u', 'v']
+        },
+        'objective_onsets': False,
+        'predict_on': PREDICT_ON,
+        'prediction_sequence': 29,
+        'prediction_offset': 1,
+        'prediction_example_length': 60,
+        'years': YEARS,
+        'years_train': [1979, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2001, 2002, 2006, 2007, 2008, 2009, 2011, 2012, 2013],
+        'years_dev': [1980, 1990, 2000, 2010, 2016],
+        'years_test': [1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017]
+    },
 ]
 
 # get the tuning for the current index
@@ -1690,7 +1792,7 @@ for era_level in ['invariant', 'surface', 1000, 700, 200]:
         features = features + [dataset[feature] for feature in TUNING['features'][era_level]]
 
 if 'trmm' in TUNING['features']:
-    features = features + TRMM.load_dataset(range(1998, 2017), range(1, 6), invalidate=True, aggregation_resolution=0.75, version='v3', lon_slice=slice(61.125, 97.625), lat_slice=slice(4.125, 40.625))
+    features = features + TRMM.load_dataset(range(1998, 2017), range(1, 6), invalidate=False, aggregation_resolution=0.75, version='v3', lon_slice=slice(61.125, 97.625), lat_slice=slice(4.125, 40.625))
 
 # train test split
 print("> Train-Test Split")

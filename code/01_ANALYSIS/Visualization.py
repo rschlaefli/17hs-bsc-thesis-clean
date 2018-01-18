@@ -121,7 +121,7 @@ class Visualization:
         )
 
     @staticmethod
-    def create_cartopy_vis(df, ax=None, filename=None, title=None, cmap='afmhot', clabel=None, vis_type='mesh', no_cbar=False, log_norm=False, interpolation=None, gaussian_filtering=None, values_from='val', index_step=4):
+    def create_cartopy_vis(df, ax=None, filename=None, title=None, cmap='afmhot', clabel=None, vis_type='mesh', no_cbar=False, log_norm=False, interpolation=None, gaussian_filtering=None, values_from='val', index_step=20):
         """
         Create a cartopy/matplotlib visualization from a passed in coordinate grid dataframe.
         The axes are expected to be named as "lat" and "lon" such that the df can be pivoted appropriately.
@@ -178,19 +178,20 @@ class Visualization:
                 norm=colors.LogNorm() if log_norm else None,
                 transform=ccrs.PlateCarree())
 
-        # set ticks and labels
-        ax.xaxis.set_major_formatter(FormatStrFormatter('%g'))
-        ax.yaxis.set_major_formatter(FormatStrFormatter('%g'))
-        ax.set_ylabel('Latitude', size=15, labelpad=10)
-        ax.set_yticks(df_index[::index_step])
-
-        ax.set_xticks(df_cols[::index_step])
-        ax.set_xticklabels(df_cols[::index_step], rotation=90)
-        ax.set_xlabel('Longitude', size=15, labelpad=10)
+        # ax.set_ylabel('Latitude', size=20, labelpad=10, rotation=90)
+        ax.set_yticks([10.375, 22.375, 34.375])
+        ax.set_yticklabels([10.375, 22.375, 34.375], fontsize=12, rotation=90)
+        ax.set_xticks([67.375, 79.375, 91.375])
+        ax.set_xticklabels([67.375, 79.375, 91.375], fontsize=12, rotation=0)
+        # ax.set_xlabel('Longitude', size=20, labelpad=10)
 
         ax.set_xmargin(0)
         ax.set_ymargin(0)
         ax.autoscale_view()
+
+        # set ticks and labels
+        ax.xaxis.set_major_formatter(FormatStrFormatter('%g° E'))
+        ax.yaxis.set_major_formatter(FormatStrFormatter('%g° N'))
 
         if vis_type != 'barbs' and not no_cbar:
             # ensure the colorbar is of equal height as the grid ("magic" fraction)

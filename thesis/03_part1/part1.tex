@@ -393,15 +393,9 @@ The results of applying the algorithms we have described in this section to the 
 Our results are based on the TRMM dataset as introduced in \cref{sst:trmm_dataset}. We have extracted data for the years 1998-2016, which corresponds to all years that were fully available at the time. The area included in the dataset was cropped to an extended overview over the Indian subcontinent, more specifically the area between 4.125-40.625N, 61.125-97.625E. Aggregation of the native {0.25\degree} resolution to a lower {0.75\degree} resolution then yields grid borders of 4.375-40.375N, 61.375-97.375E \footnote{The TRMM dataset needed to be aggregated to reduce the computational effort required for event synchronization and climate network calculations. Going from {0.25\degree} to {0.75\degree} resolution effectively reduced the size of event synchronization matrices from 21609x21609 to around 2401x2401 (81x).}.
 
 \subsection{Pre-monsoon season (MAM)}
+[TODO: PageRank analysis once updated version is evaluated]
+
 The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We show the unweighted version, as also computed in \citet{Stolbova.2015}, as well as our extended version with weights applied to the edges in the network. To enable intercomparison with the work of \citet{Stolbova.2015}, which this part of our work is based on, we additionally assign the area identifiers used in her work to any areas we refer to.
-
-The degree is strongest over the Indian ocean, enframing the Indian subcontinent from both east and west. On the western side lies the Arabian Sea, over which an area of high degree extends from the far west up to the natural barrier of the Western Ghats mountain range (WG). A similar but smaller area over the Bay of Bengal to the east of the Indian subcontinent ranges from the Indian coast onto the lands of Myanmar (BoB). Further patches of significant degree can be found over the Tibetan Plateau (TP), over north-eastern India and Nepal at the brim of the Himalayas (Himalayas) and over areas of Pakistan and Afghanistan (NP, representing North-Pakistan).
-
-The patterns in the betweenness are much less clear and conclusive. There are, however, still spots that display significantly high betweenness, especially the area over Nepal (Himalayas). Additionally, smaller patches of high betweenness are sprinkled over the Tibetan Plateau (TP), to the north of Pakistan and over central India.
-
-Looking at the PageRank analysis of our climate networks, a similarity with the degree is immediately obvious. PageRank closely follows the stronger patterns we have seen when analyzing the degree. However, PageRank  also [TODO: updated PageRank]
-
-Comparison of the unweighted and weighted visualizations shows little difference. The main patterns are the same and differ only in the pronounciation of details.
 
 \begin{figure}[h]
   \centering
@@ -410,14 +404,22 @@ Comparison of the unweighted and weighted visualizations shows little difference
   \label{fig:results_mam}
 \end{figure}
 
+The degree is strongest over the Indian ocean, enframing the Indian subcontinent from both east and west. On the western side lies the Arabian Sea, over which an area of high degree extends from the far west up to the natural barrier of the Western Ghats mountain range (WG). A similar but smaller area over the Bay of Bengal to the east of the Indian subcontinent ranges from the Indian coast onto the lands of Myanmar (BoB). Further patches of significant degree can be found over the Tibetan Plateau (TP), over north-eastern India and Nepal at the brim of the Himalayas (Himalayas) and over areas of Pakistan and Afghanistan (NP, representing North-Pakistan).
 
-[TODO: interpret the results, incorporating knowledge of impacting factors]
+The patterns in the betweenness are much less clear and conclusive. There are, however, still spots that display significantly high betweenness, especially the area over Nepal (Himalayas). Additionally, smaller patches of high betweenness are sprinkled over the Tibetan Plateau (TP), to the north of Pakistan and over central India.
 
-[TODO: compare with Stolbova]
+During the pre-monsoon or "summer" season, rainfall in southern or central India is a rare occasion, as can be seen in \cref{apx:trmm_prec}. Temperatures during these hot summer months range around 30-40\degree Celsius (\cref{apx:era_t}), even causing drought-like conditions in some years. This coincides well with our findings that the most central parts of the network are located in big clusters over the Indian ocean: as the ocean temperatures are lower than the ones on the subcontinent, wind channels moisture away from the land and onto the ocean.
+
+However, the degree of a location does not (necessarily) represent the amount of rainfall but the overall connectedness of a location in the network, which is harder to reason about. A location can obtain high degree centrality simply because it is part of many large-scale events like thunderstorms that cause high or even extreme precipitation in a large area, which would certainly explain the clusters over the ocean.
+
+Furthermore, the significant degree and high betweenness at the brim of the Himalayas could be caused by its connectedness to either one or both clusters over the Indian ocean. As an area displaying high betweenness lies on a large portion of shortest paths in the network, a connection of the cluster over the Bay of Bengal to the Himalayas certainly makes sense. This would also be supported by the general importance of the Himalaya region as a "monsoon through" that serves as an entry point to the subcontinent for moisture from the Bay of Bengal (see \cref{c:ism_overview}).
 
 
+\newpage
 \subsection{Monsoon season (JJAS)}
-Analyzing the months of the primary monsoon season (JJAS, June-September) as shown in \cref{fig:results_jjas} yields somewhat unexpected results: degree and betweenness both display a strong but compact pattern over Northern Pakistan (NP). Further areas of significant degree are located on the Tibetan Plateau (TB) and over the Indian Ocean around the southern tip of India (Arabian Sea/WG and BoB). High betweenness can be seen near the Western Ghats (WG) and Kerala as well as on the other side of the southern tip of India.
+[TODO: PageRank analysis once updated version is evaluated]
+
+Analyzing the months of the primary monsoon season (JJAS, June-September) as shown in \cref{fig:results_jjas} yields somewhat unexpected results: degree and betweenness both display a strong but compact pattern over Northern Pakistan (NP). Further areas of significant degree are located on the Tibetan Plateau (TB) and over the Indian Ocean around the southern tip of India (Arabian Sea/WG and BoB).
 
 \begin{figure}[h]
   \centering
@@ -426,16 +428,15 @@ Analyzing the months of the primary monsoon season (JJAS, June-September) as sho
   \label{fig:results_jjas}
 \end{figure}
 
-
-[TODO: interpret the results, incorporating knowledge of impacting factors]
-
-[TODO: compare with Stolbova]
+High betweenness can be seen over Northern Pakistan (NP), near the Western Ghats (WG) and Kerala as well as on the other side of the southern tip of India. Having locations of high degree and high betweenness clustered over a region like Northern Pakistan suggests that even such a small region can be a great influence to many parts of the Indian subcontinent. We could reason that due to the natural barrier of the Himalayas, Northern Pakistan
 
 
+
+\newpage
 \subsection{Post-monsoon season (OND)}
-The post-monsoon season (OND, October-December) is typically also called the north-east monsoon. The reason for this is clearly identifiable based on the network measures this season exhibits. A single area of very high degree encompasses entire central and north-eastern India, starting over the Arabian Sea (WG) and ranging well into Bangladesh. The degree in this area is at its highest close to the Himalayas on the Nepali border. The area further extends over the Tibetan Plateau (TP), although with less strength.
+[TODO: PageRank analysis once updated version is evaluated]
 
-
+The post-monsoon season (OND, October-December) is typically also called the north-east monsoon. The reason for this is also clearly identifiable based on the network measures as presented in \cref{fig:results_ond}:
 
 \begin{figure}[h]
   \centering
@@ -444,13 +445,26 @@ The post-monsoon season (OND, October-December) is typically also called the nor
   \label{fig:results_ond}
 \end{figure}
 
+ A single area of very high degree encompasses entire central and north-eastern India, starting over the Arabian Sea (WG) and ranging well into Bangladesh. The degree in this area is at its highest close to the Himalayas on the Nepali border. The area further extends over the Tibetan Plateau (TP), although with less strength.
+
+
+
+\subsection{Intercomparison with \citet{Stolbova.2015}}
+So far, we have strongly based our climate network analysis on the work of \citet{Stolbova.2015}, additionally evaluating PageRank measures and weighted networks. This section shows the results as they have been presented in the referred work and intercompares them to the results we have obtained from our analysis. Next to giving an indication about the validity of our approach, this might also show new properties that have only recently developed, as we have had access to four additional years of the TRMM dataset.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{./99_appendix/img/results_stolbova.png}
+  \caption{Degree and betweenness centrality as presented in \citet{Stolbova.2015}. Based on the TRMM dataset at {0.25\degree} resolution}
+  \label{fig:results_stolbova}
+\end{figure}
 
 
 
 
-[TODO: interpret the results, incorporating knowledge of impacting factors]
 
-[TODO: compare with Stolbova]
+
+
 
 
 
