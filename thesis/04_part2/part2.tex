@@ -1,6 +1,8 @@
 \chapter{Part 2: Prediction of Monsoon Onset}
 \label{c:part2}
-[TODO: summary and structure of the chapter as for part 1]
+As we have already seen, the onset of the ISM plays a very important role in the daily lives of the Indian population as well as the Indian economy overall.
+
+[TODO: further intro]
 
 \section{Related Work}
 \subsection{Prediction of monsoon onset and variability}
@@ -57,8 +59,6 @@ Each model architecture is further associated a unique version identifier that w
     E2 & Objective onset dates from \citep{Singh.2009}; Prediction on the 22th of May; Based on E1 \\
     E3 & Improved structuring of Python classes; Extraction of core model logic into base classes; Same functionality as E2; No experiments \\
     E4 & Multiple examples per year with variable offset to the onset date; Choice of additional input features; Possibility for additional 2D-convolutions before ConvLSTM2D; Switch to the functional Keras API; Based on E3 \\
-    \hline
-    ET1 & Combination of temperature and relative humidity from ERA-Interim and daily precipitation from TRMM; Based on E2 and T5 \\
     \hline
   \end{tabularx}
   \caption{Overview of all neural network models that have been built \& evaluated}
@@ -215,13 +215,13 @@ The labels of the training, validation and test examples were all calculated usi
 
 
 \clearpage
-\subsection{E2, E3, T5 \& ET1: Convolutional models with objective onset dates}
+\subsection{E2, E3 \& T5: Convolutional models with objective onset dates}
 \label{sst:nn_e2t5}
 After further analysis of onset distributions for different onset datasets, the objective definition of monsoon onset proposed by \citet{Singh.2009} seemed to be the most adequate for our training. The distribution seemed to be much less skewed overall, with more similarities to a uniform distribution than to a Gaussian normal distribution, at least when data was restricted to the relevant area between 1979-2017 (see \cref{apx:onset_dates} for the full analysis).
 
 While it might be counterintuitive that the ISM onset would not follow a normal distribution (as many natural processes do), a more balanced distribution of labels can improve the performance of machine learning models. Many models work better if input data is preprocessed with stratification methods (i.e., classes are rebalanced), as the model might otherwise tend to predict the label that occurs most often in the training set.
 
-Building on these findings, we then created the E2, T5 and ET1 model versions, i.e., new models for both ERA-Interim and TRMM (as well as a combination of them) that were primarily a repetition of the best previous experiments with updated labels for the new onset dates.
+Building on these findings, we then created the E2, E3 and T5 model versions, i.e., new models for both ERA-Interim and TRMM (as well as a combination of them) that were primarily a repetition of the best previous experiments with updated labels for the new onset dates.
 
 \subsubsection{Data preprocessing}
 \label{ssst:nn_e2t5_data}
@@ -254,7 +254,7 @@ However, close examination of the actual predictions of the model was not as rea
 \clearpage
 \subsection{E4: Increasing the amount of training data}
 \label{sst:nn_e4}
-Following the bad generalization capabilities of all models up to their latest versions, an improvement to the overall training approach was sought. Up to versions E3, T5 and ET1, the dates of prediction were always fixed to a single date during the pre-monsoon period (22nd of May). This meant that for each year of data, only a single sequence could be extracted and used as a training example.
+Following the bad generalization capabilities of all models up to their latest versions, an improvement to the overall training approach was sought. Up to versions E3 and T5, the dates of prediction were always fixed to a single date during the pre-monsoon period (22nd of May). This meant that for each year of data, only a single sequence could be extracted and used as a training example.
 
 The patterns during the pre-monsoon period might not be conclusive enough to allow a model to predict future onsets reliably. Some patterns might be closely tied to a temporal distance to the monsoon onset, i.e., some event might always happen approximately two weeks before onset. This would have been captured by the model at different steps in the sequence, which could, in turn, have been suitable for prediction. On the other hand, the model might have missed many of these events because the data was cut off at the prediction date, possibly multiple weeks before the real onset date.
 
@@ -327,25 +327,25 @@ The nodes of the Kraken cluster worked well for most of the experiments, especia
 
 \subsubsection{Results}
 \label{ssst:experimental_results}
-We prefer to summarize the model performance where no important details are left out, as the number of experiments run in total exceeds a number that could be reasonably displayed on a sheet of paper. ([TODO: Appendix] contains the full tables containing all experiment results)
+We prefer to summarize the model performance where no important details are left out, as the number of experiments run in total exceeds a number that could be reasonably displayed on a sheet of paper. The full experiment results can be found in the corresponding spreadsheet ([TODO: yes?]).
 
 \begin{landscape}
   \begin{table}[h]
-    \begin{tabularx}{\linewidth}{|c|X|X|}
+    \begin{tabularx}{\linewidth}{|c|c|c|c|c|c|c|X|}
       \hline
-      Model & Trained on & ... \\
+      Model & Architecture & Trained on & Epochs & Loss after 5 epochs & Loss after final epoch & Test Loss & Evaluation \\
       \hline
-      T2 & TBD & ... \\
-      T3 & TBD & ... \\
-      T4 & TBD & ... \\
-      T5 & TBD & ... \\
-      E1 & TBD & ... \\
-      E2 & TBD & ... \\
-      E4 & TBD & ... \\
-      ET1 & TBD & ... \\
+      T2 & & GRU & 500 & 4 / 4 & 3 / 9 & - & ... \\
+      T3 & & GRU & 40 & 285 / 409 & 96 / 1792 & 3611 & ... \\
+      T4 & & GRU & 267 & 288 / 349 & 93 / 69 & - & ... \\
+      T5 & & GRU & 50 & 5862 / 15240 & 132 / 7 & - & ... \\
+      E1 & & GRU & 50 & 83 / 98 & 63 / 95 & - & ... \\
+      E2 & & GRU & 50 & 67 / 37 & 58 / 35 & - & ...\\
+      E4 & & PS & 500 & 57 / 458 & 6 / 17 & 23 & ...\\
+      E4 & & PS & 500 & ... & ... & ... & ...\\
       \hline
     \end{tabularx}
-    \caption{[TODO: Overview of the best models for all architectures.]}
+    \caption{Overview of the best models for all architectures. Training and validation losses are given after 5 epochs as well as after the final epoch and for the best epoch overall.}
     \label{tab:experimental_results}
   \end{table}
 \end{landscape}
