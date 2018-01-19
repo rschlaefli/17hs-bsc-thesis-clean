@@ -1894,7 +1894,7 @@ for era_level in ['invariant', 'surface', 1000, 700, 200]:
         features = features + [dataset[feature] for feature in TUNING['features'][era_level]]
 
 if 'trmm' in TUNING['features']:
-    features = features + TRMM.load_dataset(range(1998, 2017), range(1, 6), invalidate=False, aggregation_resolution=0.75, version='v3', lon_slice=slice(61.125, 97.625), lat_slice=slice(4.125, 40.625))
+    features = features + TRMM.load_dataset(range(1998, 2017), range(1, 6), invalidate=True, aggregation_resolution=0.75, version='v3', lon_slice=slice(61.125, 97.625), lat_slice=slice(4.125, 40.625))
 
 # train test split
 print("> Train-Test Split")
