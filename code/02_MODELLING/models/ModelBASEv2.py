@@ -91,6 +91,7 @@ class ModelBASEv2:
               dense_dropout=[0.0, 0.0, 0.0],
               dense_nodes=[1024, 512, 256],
               dense_activation='relu',
+              dense_activation_final=None,
               dense_kernel_regularizer=('L2', 0.02),
               lstm_dropout=[0.0, 0.0, 0.0],
               lstm_filters=[30, 30, 30],
@@ -277,7 +278,7 @@ class ModelBASEv2:
                 )(x)
 
         # final dense layer for numerical prediction
-        main_output = Dense(1, name='main_output')(x)
+        main_output = Dense(1, name='main_output', activation=dense_activation_final)(x)
 
         # --- MODEL CREATION ---
         model = Model(inputs=main_input, outputs=main_output)
