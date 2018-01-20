@@ -1,9 +1,9 @@
 %%
 %% This is file `ddis_thesis.cls'
-%% 
+%%
 %% Many thanks to Beat Fluri (fluri@ifi.uzh.ch) and s.e.a.l.
 %% (seal.ifi.uzh.ch) who kindly made this file available to ddis.
-%% 
+%%
 %%  \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -21,7 +21,7 @@
 %%   Right brace   \}     Tilde         \~}
 
 %% Change log
-%% 
+%%
 %% 20/10/05 initial version         Christoph Kiefer (ck)
 %% 13/12/05 chapter headings changed    ck
 %% 06/06/06 switched to German version  ck
@@ -107,7 +107,7 @@
 \def\@makechapterhead#1{%
   \reset@font
   \vspace*{10\p@}%
-  {\parindent \z@ 
+  {\parindent \z@
     \begin{flushleft}
 %       \reset@font \scshape \bfseries \Huge \thechapter \par
         \reset@font {\fontfamily{pfr}\fontsize{72}{0}\selectfont\bfseries \thechapter} \par
@@ -149,7 +149,7 @@
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {-3.3ex\@plus -1ex \@minus -.2ex}%
                                      {1.5ex \@plus .2ex}%
-                                     {\fontfamily{pfr}\selectfont\large\bfseries}}
+                                     {\textbf\fontfamily{pfr}\selectfont\large\bfseries}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
                                     {3.25ex \@plus1ex \@minus.2ex}%
                                     {-1em}%

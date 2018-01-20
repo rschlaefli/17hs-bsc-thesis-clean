@@ -2,20 +2,18 @@
 \label{c:event_sync}
 During the primary monsoon season, floodings and landslides caused by extreme rainfall can lead to massive societal and environmental damage \citep{Stolbova.2015}. It is thus crucial to be able to analyze, detect and potentially predict such extreme rainfall events, especially as their proportion tends to further increase with global warming \citep{Stolbova.2015} [TODO: cite Goswami?].
 
-A way of analysis that \citet{Stolbova.2015} has proposed is the computation of climate networks based on different locations in India, followed by an analysis of the resulting networks using centrality measures. We strongly base this chapter on her work and thus summarize her approach in \cref{sst:event_sync}. We also explain the network measures that will be applied to the resulting climate networks (\cref{sst:network_measures}) and introduce the dataset that will be used as a basis for all calculations (TRMM, \cref{sst:trmm_dataset}).
+A way of analysis that \citet{Stolbova.2015} has proposed is the computation of climate networks based on different locations in India, followed by an analysis of the resulting networks using centrality measures. We strongly base this chapter on her work and thus summarize her approach in \cref{sst:event_sync}, after which we go on to explain the network measures that will be applied to the resulting climate networks (\cref{sst:network_measures}).
 
 \cref{st:event_sync_implementation} then provides an overview of our approach to the creation of climate networks and explains where our approach differs from the work of \citep{Stolbova.2015}. Following up in \cref{st:event_sync_results}, we analyze and visualize the computed climate networks using centrality measures and try to interpret the results in contrast to the known factors of monsoon behavior. Concluding this chapter in \cref{st:event_sync_conclusion}, we elaborate the usefulness of our results and how they could be improved upon.
 
-\section{Related Work}
-[TODO: need text here?]
 
-\subsection{The TRMM dataset}
-\label{sst:trmm_dataset}
+\section{The TRMM Dataset}
+\label{st:trmm_dataset}
 The Tropical Rainfall Measurement Mission (TRMM) is a precipitation research effort by the National Aeronautics and Space Administration (NASA) and the Japanese Aerospace Exploration Agency (JAXA). It is based on the TRMM observatory, a satellite that was launched into space on the 27th of November, 1997. The products based on TRMM range from the raw output of the multitude of sensors on the satellite to the highly aggregated and gridded rainfall estimates we will be using in this work \citep{GoddardEarthScienceDataInformationandServicesCenter.2016}.
 
-More specifically, the TRMM product that we will be using is a 3-hourly estimate of surface rainfall aggregated from the satellite sensors in combination with surface gauge values and imagery from other satellites. This product is referred to as 3B42 or TMPA and is also available in a daily variation, where the eight 3-hourly measurements (i.e., 00:00, 03:00, 06:00 and so on) have been summed up to provide a single daily rainfall estimate.
+More specifically, the TRMM product that we will be using is a 3-hourly estimate of surface rainfall aggregated from the satellite sensors in combination with surface gauge values and imagery from other satellites. This product is referred to as 3B42 or TMPA and is also available in a daily variation, where the eight 3-hourly measurements (i.e., 00:00, 03:00, 06:00 and so on) have been summed up to provide a single daily rainfall estimate. We use this daily 3B42 TRMM product during the remainder of this work and, for simplicity, mostly refer to it as TRMM.
 
-[TODO: update coordinates and grid specifics] 3B42 is available for the area between 50\degree N. and 50\degree S. We subset this area to cover the entire Indian subcontinent (x-x\degree N, x-x\degree E). These border coordinates are a superset of the ones used in \citep{Stolbova.2015}: the grid has been extended  such that it can be cleanly aggregated from a 0.25\degree spatial resolution to the 0.75\degree resolution of the ERA-Interim dataset (which we will use later on). \cref{fig:trmm_area} shows the excerpt of the TRMM dataset that we will be using in this work.
+3B42 is available for the area between 50\degree N. and 50\degree S. We subset this area to cover the entire Indian subcontinent (4.125-40.625\degree N, 61.125-97.625\degree E). These border coordinates are a small superset of the ones used in \citep{Stolbova.2015}: the grid has been extended such that it can be cleanly aggregated from a 0.25\degree spatial resolution to the 0.75\degree resolution of the ERA-Interim dataset (which we will use later on). \cref{fig:trmm_area} shows the excerpt of the TRMM dataset that we will be using in this work.
 
 \begin{figure}[h]
   \centering
@@ -30,6 +28,9 @@ After the TRMM satellite's fuel went low in 2014, it was decommissioned in April
 
 Built on the success of the TRMM mission, NASA and JAXA have launched its successor GPM (Global Precipitation Measurement) in 2014 \citep{GoddardEarthScienceDataInformationandServicesCenter.2011}. However, as its data is only available starting from 2014, GPM is currently unsuitable for long-term precipitation research. TRMM or an alternative dataset are currently still needed but the updated algorithm developed for GPM will soon be applied to the existing TRMM data. The availability of reprocessed data back to 1998 can thus be expected in 2018 \citep{Huffman.2016}.
 
+
+\section{Related Work}
+[TODO: need text here?]
 
 \subsection{Event synchronization \& climate networks}
 \label{sst:event_sync}

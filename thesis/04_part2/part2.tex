@@ -4,7 +4,13 @@ As we have already seen, the onset of the ISM plays a very important role in the
 
 [TODO: further intro]
 
+\section{The ERA-Interim Dataset}
+\label{st:era_interim}
+[TODO: describe ERA-Interim same as TRMM has been described]
+
 \section{Related Work}
+[TODO: filler]
+
 \subsection{Prediction of monsoon onset and variability}
 \label{sst:related_prediction}
 [TODO: ? describe other methods that have been proposed for onset prediction?]
@@ -13,12 +19,6 @@ As we have already seen, the onset of the ISM plays a very important role in the
 
 % Due to the large number of factors at play, the exact determination and accurate prediction of monsoon onset dates for different parts of India is a challenging task. The IMD is the official Indian agency that observes and predicts the behavior of monsoon and tries to determine such accurate onset dates \citep{Pradhan.2017}...
 
-\clearpage
-\subsection{ERA-Interim}
-\label{sst:era_interim}
-[TODO: describe ERA-Interim same as TRMM has been described]
-
-\clearpage
 \subsection{Neural networks}
 \label{sst:conv_recurrent_networks}
 Many of our experimental models are based on a relatively new approach to training neural networks on spatio-temporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM2D} neural network layer was first applied to precipitation forecasting. Due to the reliance of our models on these layers, we provide an intuition about their inner workings in this section.
@@ -37,12 +37,13 @@ We generally assume that the reader is at least familiar with basic neural netwo
 [TODO: basics of conv recurrent nets based on the ConvLSTM2D paper]
 
 
-\clearpage
 \section{Prediction of Monsoon Onset using Neural Networks}
 \label{st:nn_implementation}
-This section walks through the different variations of neural network models we have evaluated during the creation of this work. The variations can differ in their network structure, in the data used to train the model or simply in the tuning of hyperparameters applied. \cref{tab:nn_overall_summary} summarizes their key characteristics. All of the models presented were built and trained using the latest Keras 2.0 and Tensorflow 1.3/1.4 libraries for Python.
+This section walks through the different variations of neural network models we have evaluated during the creation of this work. The variations can differ in their network structure, in the data and features used to train the model or simply in the tuning of hyperparameters applied. \cref{tab:nn_overall_summary} summarizes the key characteristics of all models we have built and evaluated.
 
-Each model architecture is further associated a unique version identifier that we will use to refer to the specific architecture. The identifiers are based on the type of dataset used to train the model and the variation of the model architecture used (e.g., \textit{T1}: TRMM v1, \textit{E3}: ERA-Interim v3, \textit{TE1}: TRMM and ERA-Interim v1).
+Each model architecture is further associated a unique version identifier that we will use when referring to the specific architecture. The identifiers are based on the type of dataset used to train the model and the variation of the model architecture used (e.g., \textit{T1}: TRMM v1, \textit{E3}: ERA-Interim v3, \textit{TE1}: TRMM and ERA-Interim v1). All of the models presented were built and trained using the latest Keras 2.0 and Tensorflow 1.3/1.4 libraries for Python.
+
+[TODO: extend]
 
 \begin{table}[h]
   \begin{tabularx}{\linewidth}{|c|X|}
@@ -53,10 +54,10 @@ Each model architecture is further associated a unique version identifier that w
     T2 & Each location of each year as a separate example; Sequences of values for single grid cells processed with LSTM; Categorical prediction on the 11th of May (predicted MoK in 1-40 days) \\
     T3 & Each year as a separate example; One sequence of TRMM grids (daily values) per year processed with ConvLSTM2D; Numerical prediction on the 11th of May (predicted MoK in x days) \\
     T4 & Regularization for dense, convolutional and recurrent layers; Based on T3 \\
-    T5 & Objective onset dates from \citep{Singh.2009}; Prediction on the 22th of May; Based on E2 \\
+    T5 & Objective or IMD onset dates from \citep{Singh.2009}; Prediction on the 22nd of May; Based on E2 \\
     \hline
     E1 & Training on the ERA-Interim dataset and multiple features (temperature, relative humidity); Based on T4 \\
-    E2 & Objective onset dates from \citep{Singh.2009}; Prediction on the 22th of May; Based on E1 \\
+    E2 & Objective or IMD onset dates from \citep{Singh.2009}; Prediction on the 22nd of May; Based on E1 \\
     E3 & Improved structuring of Python classes; Extraction of core model logic into base classes; Same functionality as E2; No experiments \\
     E4 & Multiple examples per year with variable offset to the onset date; Choice of additional input features; Possibility for additional 2D-convolutions before ConvLSTM2D; Switch to the functional Keras API; Based on E3 \\
     \hline
@@ -65,7 +66,47 @@ Each model architecture is further associated a unique version identifier that w
   \label{tab:nn_overall_summary}
 \end{table}
 
-\clearpage
+\newpage
+\subsection{E4: A working model based on ERA-Interim}
+\label{sst:final_model}
+sdf
+
+\subsubsection{Data preprocessing}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/E4_preprocessing}
+  \caption{Average precipitation at MoK (TRMM, 1998-2017)}
+  \label{fig:trmm_prec_onset}
+\end{figure}
+
+\subsubsection{Model architecture}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/E4_architecture}
+  \caption{Average precipitation at MoK (TRMM, 1998-2017)}
+  \label{fig:trmm_prec_onset}
+\end{figure}
+
+\subsubsection{Model evaluation}
+listing of "meta" hyperparameters like sequence length, onset dates used, validation split etc.
+
+\begin{table}[h]
+  \begin{tabularx}{\linewidth}{|c|X|}
+    \hline
+    Model & Architectural Key Points \\
+    \hline
+
+    \hline
+  \end{tabularx}
+  \caption{}
+  \label{tab:evaluation_schemes}
+\end{table}
+
+
+
+\newpage
 \subsection{T2: Naive classification models using TRMM}
 \label{sst:nn_t2}
 The first models we evaluated were classification networks based on the TRMM dataset (see \cref{sst:trmm_dataset}) at various spatial resolutions (ranging from a 0.25\degree x 0.25\degree resolution to an aggregated 2.5\degree x 2.5\degree resolution). This chapter briefly describes the structure of these first models.
@@ -116,7 +157,6 @@ Secondly, using each grid cell as a separate example might have led to a larger 
 A further disqualifying factor against the use of any such classification approach was the fact that the model would be unable to express any future onset occurring outside the borders of the classification (e.g., more than 40 days after the prediction date). As we have elaborated in \cref{st:ism_trends}, the behavior of the ISM is ever-changing and it cannot be ruled out that the onset date distribution will change significantly in the time to come.
 
 
-\clearpage
 \subsection{T3 \& T4: First convolutional models using TRMM}
 \label{sst:nn_t3}
 The findings of the first naive classification suggested that the overall model architecture and the data input shape needed to be rethought. To be able to capture temporal as well as spatial relationships between different geographical locations in India, the input time series needed to be changed such that each timestep would contain daily data for the entire Indian subcontinent.
@@ -177,7 +217,7 @@ The results of experiments for the T4 variation were much improved, especially i
 
 We found that, in this case, the models learned a way to get close to the real outcomes without learning anything about the patterns in the input data: all the outcomes of the validation and test sets were simply predicted to be the mean value of the outcomes in the training set. There could be several explanations for this behavior, but many suggest that something is off with the input data. It might be that the sparsity of the TRMM dataset (as visualized in \cref{fig:trmm_prec_onset}) and its many places without any rainfall prevent the neural network from learning any useful patterns. Alternatively, it could be that we are trying to find patterns in the input data that don't exist in the way we would have imagined (i.e., that we are trying to fit a model to noise).
 
-\clearpage
+
 \subsection{E1: Convolutional models using ERA-Interim}
 \label{sst:nn_e1}
 The overall results from T1 up to T4 suggested that the TRMM dataset on its own might not be well suited for the prediction task at hand. An obvious way of improvement was to use another dataset for the prediction tasks, namely the ERA-Interim reanalysis dataset.
@@ -214,7 +254,6 @@ As experiments for entirely different datasets (TRMM and ERA) and many hyperpara
 The labels of the training, validation and test examples were all calculated using the skewed onset dataset. The early outliers in the dataset forced us to predict even earlier, which is why predictions up to this point were always made on the 11th of May, and why the sequences were restricted to the 72 days in between 01.03-11.05 of each year.
 
 
-\clearpage
 \subsection{E2, E3 \& T5: Convolutional models with objective onset dates}
 \label{sst:nn_e2t5}
 After further analysis of onset distributions for different onset datasets, the objective definition of monsoon onset proposed by \citet{Singh.2009} seemed to be the most adequate for our training. The distribution seemed to be much less skewed overall, with more similarities to a uniform distribution than to a Gaussian normal distribution, at least when data was restricted to the relevant area between 1979-2017 (see \cref{apx:onset_dates} for the full analysis).
@@ -251,7 +290,6 @@ Running the experiments for E2 and T5 yielded much better final losses. The vali
 However, close examination of the actual predictions of the model was not as reassuring, as the model still seemed to predict only one single number for any validation or test example that was fed into the model. Furthermore, a combination of the TRMM and ERA dataset by stacking the three features yielded comparable results: the model again seemed to resort to predicting the mean of onsets based on the TRMM dataset.
 
 
-\clearpage
 \subsection{E4: Increasing the amount of training data}
 \label{sst:nn_e4}
 Following the bad generalization capabilities of all models up to their latest versions, an improvement to the overall training approach was sought. Up to versions E3 and T5, the dates of prediction were always fixed to a single date during the pre-monsoon period (22nd of May). This meant that for each year of data, only a single sequence could be extracted and used as a training example.
