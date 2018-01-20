@@ -1,11 +1,11 @@
 \chapter{Introduction}
 \label{c:introduction}
 
-The Indian Summer Monsoon (herafter also referred to as ISM) is one of the most significant meteorological events on our planet and shapes the lives of the more than one billion people living on the Indian subcontinent. Stretching from the Tibetan Plateau and the Himalayas up north down to the coasts of the Indian Ocean, the Indian subcontinent is an enormous geographical area that encompasses countries like India, Pakistan and Bangladesh, amongst others. The terms ``Indian subcontinent'' and ``South Asia'' are often used interchangeably, even though they are both only loosely defined.
+The Indian Summer Monsoon (herafter also referred to as ISM) is one of the most significant meteorological events on our planet. Each year during the time-frame from June to September, it shapes the lives of the more than one billion people living on the Indian subcontinent. Stretching from the Tibetan Plateau and the Himalayas up north down to the coasts of the Indian Ocean, the Indian subcontinent is an enormous geographical area that encompasses countries like India, Pakistan and Bangladesh, amongst others. The terms ``Indian subcontinent'' and ``South Asia'' are often used interchangeably, even though they are both only loosely defined.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.4\linewidth]{./99_appendix/img/area_overview}
+  \includegraphics[width=0.35\linewidth]{./99_appendix/img/area_overview}
   \caption{Geographical area of the Indian subcontinent as used in our work.}
   \label{fig:the_indian_subcontinent}
 \end{figure}
@@ -32,7 +32,7 @@ Basing our first part on the work of \citet{Stolbova.2015}, we closely follow he
 
 As a first step in the analysis of the TRMM dataset, we extract extreme rainfall events and build event series for different locations in India. We then calculate the synchronicity of different pairs of these locations\footnote{Simplified example: two locations are synchronous if an extreme event in one location tends to be followed by an extreme event in the other location.} and build a network (a ``climate network'') connecting only the most significantly synchronous locations.
 
-Analysis of the resulting network using network centrality measures\footnote{Degree, Betweenness and PageRank} finally shows us the locations that are the most central and important in the network. This knowledge could potentially help in the analysis or even prediction of monsoon behavior. For example, extreme rainfall in a location that is very central might be a reason to implement additional safety measures in connected locations.
+Analysis of the resulting network using network centrality measures finally gives us an intuition about the importance of a location the network. Centrality measures have been applied to graphs and networks for a long time, but the concept of climate network analysis is relatively new \citep{Malik.2010}. In this work, we use several different measures: firstly, we calculate the degree of locations, giving us the number of locations to which a location is synchronous. Secondly, the betweenness of a location gives us the number of shortest paths between locations that this location lies on. And finally, the PageRank algorithm, which has been created by Larry Page and Sergey Brin to calculate the importance of web pages in their search engine (Google). Knowledge about these measures could potentially help in the analysis or even prediction of monsoon behavior. For example, extreme rainfall in a location that is very central might be a reason to implement additional safety measures in connected locations.
 
 The second major part of this work (\cref{c:part2}) deals with the critical issue of monsoon onset prediction. The onset date for a location in India depicts the point at which the monsoon reaches said location with strength and durability above a predefined threshold. We try to predict such an onset date for the Kerala region on the southern tip of the Indian subcontinent, which is generally one of the first locations reached by the ISM and as such marks the beginning of monsoon for the whole Indian subcontinent.
 
@@ -40,4 +40,4 @@ We base our onset prediction task on two climate datasets: in addition to the TR
 
 Based on the aforementioned datasets, we then build several neural network architectures using the Python Keras 2.0 and Tensorflow 1.4 libraries, describing the intuition of each. Experiments with each model allow us to evaluate and shortly summarize our most important findings. We iteratively improve upon the findings of each model, building models with vastly different architectures as well as for a number of datasets, features and combinations thereof (TRMM, ERA-Interim, different sets of onset dates). An overview and comparison of the learning capabilities of all models serves as a conclusion to the second part.
 
-Finally concluding our work in \cref{c:conclusion}, we summarize our overall findings and try to interpret the results of \cref{c:event_sync} and \cref{c:part2}. We additionally provide ideas for the improvement of our work and possible future research based on the topics of extreme event synchronization and monsoon onset prediction using neural networks.
+Finally concluding our work in \cref{c:conclusion}, we summarize our overall findings and reflect on the results of \cref{c:event_sync} and \cref{c:part2}. We additionally provide ideas for the improvement of our work and possible future research based on the topics of extreme event synchronization and monsoon onset prediction using deep learning methods.
