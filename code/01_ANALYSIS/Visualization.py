@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import arrow as ar
 import cartopy.crs as ccrs
-import cartopy.feature as cfeature
+from cartopy.feature import NaturalEarthFeature, COASTLINE, BORDERS, LAND, OCEAN
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import seaborn as sns
@@ -121,7 +121,7 @@ class Visualization:
         )
 
     @staticmethod
-    def create_cartopy_vis(df, ax=None, filename=None, title=None, cmap='afmhot', clabel=None, vis_type='mesh', no_cbar=False, log_norm=False, interpolation=None, gaussian_filtering=None, values_from='val', index_step=20):
+    def create_cartopy_vis(df, ax=None, filename=None, title=None, cmap='afmhot', clabel=None, vis_type='mesh', no_cbar=False, log_norm=False, interpolation=None, gaussian_filtering=None, values_from='val', index_step=20, stock=False):
         """
         Create a cartopy/matplotlib visualization from a passed in coordinate grid dataframe.
         The axes are expected to be named as "lat" and "lon" such that the df can be pivoted appropriately.
@@ -134,7 +134,12 @@ class Visualization:
             ax = plt.axes(projection=ccrs.PlateCarree())
 
         # add natural features
-        ax.add_feature(cfeature.BORDERS)
+        if stock:
+            ax.add_feature(OCEAN)
+            ax.stock_img()
+            ax.set_extent((61.125, 97.625, 4.125, 40.625), crs=ccrs.PlateCarree())
+
+        ax.add_feature(BORDERS)
         ax.coastlines(resolution='50m')
 
         if vis_type == 'barbs':
@@ -159,7 +164,7 @@ class Visualization:
             gridded_df = gridded_df.values
 
         # plot a color mesh on top
-        if vis_type == 'mesh':
+        if vis_type == 'mesh' and not stock:
             vis = ax.pcolormesh(
                 df_cols,
                 df_index,
@@ -193,7 +198,7 @@ class Visualization:
         ax.xaxis.set_major_formatter(FormatStrFormatter('%g° E'))
         ax.yaxis.set_major_formatter(FormatStrFormatter('%g° N'))
 
-        if vis_type != 'barbs' and not no_cbar:
+        if vis_type != 'barbs' and not no_cbar and not stock:
             # ensure the colorbar is of equal height as the grid ("magic" fraction)
             # see https://stackoverflow.com/questions/18195758/set-matplotlib-colorbar-size-to-match-graph
             cbar = plt.colorbar(vis, ax=ax, fraction=0.046, pad=0.04)
@@ -211,7 +216,8 @@ class Visualization:
         if filename is not None:
             plt.savefig(filename, bbox_inches='tight')
 
-        return vis
+        if not stock:
+            return vis
 
     @staticmethod
     def prepare_cartopy_df(data_dict, month=None, day=None, onset_dates=None, offset=0):
