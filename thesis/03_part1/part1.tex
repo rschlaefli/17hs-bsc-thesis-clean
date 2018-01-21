@@ -1,49 +1,46 @@
 \chapter{Part 1: Synchronization of Extreme Events}
 \label{c:event_sync}
-During the primary monsoon season, floodings and landslides caused by extreme rainfall can lead to massive societal and environmental damage \citep{Stolbova.2015}. It is thus crucial to be able to analyze, detect and potentially predict such extreme rainfall events, especially as their proportion tends to further increase with global warming \citep{Stolbova.2015} [TODO: cite Goswami?].
+During the primary monsoon season, floodings and landslides caused by extreme rainfall can lead to massive societal and environmental damage. As we have already seen, it is crucial to be able to analyze, detect and potentially predict such extreme rainfall events, especially as their proportion tends to further increase with global warming \citep{Stolbova.2015}.
 
-A way of analysis that \citet{Stolbova.2015} has proposed is the computation of climate networks based on different locations in India, followed by an analysis of the resulting networks using centrality measures. We strongly base this chapter on her work and thus summarize her approach in \cref{sst:event_sync}, after which we go on to explain the network measures that will be applied to the resulting climate networks (\cref{sst:network_measures}).
+One recently proposed way for such analysis is the computation of climate networks, followed by an analysis of the resulting networks using well-known network centrality measures \citep{Stolbova.2015}. The approach taken in \citet{Stolbova.2015} has its foundations on the work of \citet{QuianQuiroga.2002}, which is why we first go over their approach to event synchronization (\cref{sst:event_synchronization}). We then summarize the principles of climate networks as applied by \citet{Stolbova.2015} in \cref{sst:climate_networks}, after which we go on to explain the network measures that will be applied to the obtained climate networks (\cref{sst:network_measures}). Before we go into any of this related work, \cref{st:trmm_dataset} first introduces the TRMM dataset that we will use in this chapter.
 
-\cref{st:event_sync_implementation} then provides an overview of our approach to the creation of climate networks and explains where our approach differs from the work of \citep{Stolbova.2015}. Following up in \cref{st:event_sync_results}, we analyze and visualize the computed climate networks using centrality measures and try to interpret the results in contrast to the known factors of monsoon behavior. Concluding this chapter in \cref{st:event_sync_conclusion}, we elaborate the usefulness of our results and how they could be improved upon.
+After going over the foundational related work, \cref{st:event_sync_implementation} provides an overview of our own approach to the creation of climate networks. Following up in \cref{st:event_sync_results}, we analyze and visualize the computed climate networks using centrality measures and try to interpret the results in contrast to the known factors of monsoon behavior. We further compare our results to the ones obtained in \citet{Stolbova.2015} and assess any apparent differences. Concluding this chapter in \cref{st:event_sync_conclusion}, we elaborate the usefulness of our results and how they could be improved upon.
 
 
 \section{The TRMM Dataset}
 \label{st:trmm_dataset}
 The Tropical Rainfall Measurement Mission (TRMM) is a precipitation research effort by the National Aeronautics and Space Administration (NASA) and the Japanese Aerospace Exploration Agency (JAXA). It is based on the TRMM observatory, a satellite that was launched into space on the 27th of November, 1997. The products based on TRMM range from the raw output of the multitude of sensors on the satellite to the highly aggregated and gridded rainfall estimates we will be using in this work \citep{GoddardEarthScienceDataInformationandServicesCenter.2016}.
 
-More specifically, the TRMM product that we will be using is a 3-hourly estimate of surface rainfall aggregated from the satellite sensors in combination with surface gauge values and imagery from other satellites. This product is referred to as 3B42 or TMPA and is also available in a daily variation, where the eight 3-hourly measurements (i.e., 00:00, 03:00, 06:00 and so on) have been summed up to provide a single daily rainfall estimate. We use this daily 3B42 TRMM product during the remainder of this work and, for simplicity, mostly refer to it as TRMM.
+More specifically, the TRMM product that we will be using is a 3-hourly estimate of surface rainfall aggregated from the satellite sensors in combination with surface gauge values and imagery from other satellites. This product is referred to as 3B42 or TMPA and is also available in a daily variation, where the eight 3-hourly measurements (i.e., 00:00, 03:00, 06:00 and so on) have been summed up to provide a single daily rainfall estimate. We use this daily TMPA product during the remainder of this work and, for simplicity, generally refer to it as TRMM.
 
-3B42 is available for the area between 50\degree N. and 50\degree S. We subset this area to cover the entire Indian subcontinent (4.125-40.625\degree N, 61.125-97.625\degree E). These border coordinates are a small superset of the ones used in \citep{Stolbova.2015}: the grid has been extended such that it can be cleanly aggregated from a 0.25\degree spatial resolution to the 0.75\degree resolution of the ERA-Interim dataset (which we will use later on). \cref{fig:trmm_area} shows the excerpt of the TRMM dataset that we will be using in this work.
+TMPA is available for the area between 50\degree N. and 50\degree S. We subset this area to cover the entire Indian subcontinent (4.125-40.625\degree N, 61.125-97.625\degree E). These border coordinates are a small superset of the ones used in \citep{Stolbova.2015}: the grid has been extended such that it can be cleanly aggregated from a 0.25\degree spatial resolution to the 0.75\degree resolution of the ERA-Interim dataset (which we will use later on). The gridded area we extracted from the TRMM dataset is visualized in \cref{fig:trmm_grid}.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.5\linewidth]{./99_appendix/img/area_overview}
-  \caption{The Indian subcontinent as extracted from TRMM.}
-  \label{fig:trmm_area}
+  \includegraphics[width=0.5\linewidth]{./99_appendix/img/area_overview_grid}
+  \caption{Overview of the Indian subcontinent as extracted from the TRMM dataset (4.125-40.625\degree N, 61.125-97.625\degree E). The TRMM dataset has been aggregated to match the {0.75\degree} resolution of the ERA-Interim dataset.}
+  \label{fig:trmm_grid}
 \end{figure}
 
 The TRMM dataset is unique in that it offers very high-resolution precipitation estimates since January 1998. It can prove useful for research based on the distribution, frequency, and intensity of rainfall, i.e., for calculating extreme rainfall events \citep{Stolbova.2015}. However, it has to be taken into consideration that the TRMM products are based on complex algorithms and have been derived from different sensors and sources \citep{Huffman.2017b}.
 
-After the TRMM satellite's fuel went low in 2014, it was decommissioned in April 2015 and re-entered earth's atmosphere in June 2015. The TMPA product is still being produced until 2018, albeit without the sensors of the TRMM observatory and with less accuracy \citep{Huffman.2017}.
-
-Built on the success of the TRMM mission, NASA and JAXA have launched its successor GPM (Global Precipitation Measurement) in 2014 \citep{GoddardEarthScienceDataInformationandServicesCenter.2011}. However, as its data is only available starting from 2014, GPM is currently unsuitable for long-term precipitation research. TRMM or an alternative dataset are currently still needed but the updated algorithm developed for GPM will soon be applied to the existing TRMM data. The availability of reprocessed data back to 1998 can thus be expected in 2018 \citep{Huffman.2016}.
+After the TRMM satellite's fuel went low in 2014, it was decommissioned in April 2015 and re-entered earth's atmosphere in June 2015. The TMPA product is still being produced until 2018, albeit without the sensors of the TRMM observatory and with less accuracy \citep{Huffman.2017}. Built on the success of the TRMM mission, NASA and JAXA have already launched its successor GPM (Global Precipitation Measurement) in 2014 \citep{GoddardEarthScienceDataInformationandServicesCenter.2011}. However, as its data is only available starting from 2014, GPM is currently unsuitable for long-term precipitation research. TRMM or an alternative dataset are currently still needed but the updated algorithm developed for GPM will soon be applied to the existing TRMM data. The availability of reprocessed data back to 1998 can thus be expected in 2018 \citep{Huffman.2016}.
 
 
 \section{Related Work}
-[TODO: need text here?]
+The concept of event synchronization applied in \citet{Stolbova.2015} was first proposed in \citet{QuianQuiroga.2002}, where they sought to develop a simple algorithm that could be applied to any two time series of events, resulting in a measure that defines the synchronization of said time series. Synchronization measures are generally related to standard measures like cross correlation but can convey more complex relationships due to their non-linearity \citep{QuianQuiroga.2002}.
 
-\subsection{Event synchronization \& climate networks}
-\label{sst:event_sync}
-The concept of event synchronization applied in \citet{Stolbova.2015} as well as in our work was first defined in \citet{QuianQuiroga.2002}. \citet{QuianQuiroga.2002} sought to develop a simple algorithm that could be applied to any two time series of events, resulting in a measure that defines the synchronization of said time series. Synchronization measures are generally related to standard measures like cross correlation. They can, however, convey more complex relationships due to their non-linearity \citep{QuianQuiroga.2002}.
+While the work of \citet{QuianQuiroga.2002} focuses on the analysis of EEG\footnote{EEG: Electroencephalogram; A way of measuring brain activity.]} time series, their event synchronization approach is explicitly applicable to other domains. The works of \citet{Malik.2010} and \citet{Stolbova.2015} both expand upon simple event synchronization. However, they do so in different ways: \citet{Malik.2010} apply hierarchical clustering algorithms to identify different regions and their respective characteristics regarding the occurrence of extreme rainfall events. \citet{Stolbova.2015} builds ``climate networks'' and analyzes them with established network measures. For the purposes of our work, we will focus on the latter approach, using the work of \citet{Stolbova.2015} as a foundation for this chapter.
 
-\subsubsection{Basic event synchronization}
-The basic principle of the event synchronization measure as found in \citet{QuianQuiroga.2002}, \citet{Malik.2010} and \citet{Stolbova.2015} is setup as follows: given the two time series $i$ and $j$ and their respective events $l$ and $m$ occuring at times $t^i_l$ and $t_j^y$, we measure the synchronicity for all possible pairs of events between both series. We classify events as synchronous if they occur closely simultaneous, i.e., within a certain range from each other. This allowed range of occurrence is called \textit{time lag} and is calculated by taking the minimum interevent distance $\tau^{ij}_{lm}$ like so\footnote{If event rates were fixed, a global time lag $\tau$ could be defined, greatly simplifying calculations.}:
+\subsection{Event synchronization}
+\label{sst:event_synchronization}
+The basic principle of the event synchronization measure as found in \citet{QuianQuiroga.2002} is setup as follows: given the two time series $i$ and $j$ and their respective events $l$ and $m$ occuring at times $t^i_l$ and $t_j^y$, we measure the synchronicity for all possible pairs of events between both series. We classify events as synchronous if they occur closely simultaneous, i.e., within a certain range from each other. This allowed range of occurrence is called \textit{time lag} and is calculated by taking the minimum interevent distance $\tau^{ij}_{lm}$ like so\footnote{If event rates were fixed, a global time lag $\tau$ could be defined, greatly simplifying calculations.}:
 
 \begin{equation}
 \tau^{ij}_{lm} = 0.5 * min\left\{t^i_{l+1} - t^i_l, t^i_l - t^i_{l-1}, t^j_{m+1} - t^j_{m}, t^j_{m} - t^j_{m-1}\right\}
 \end{equation}
 
-The synchronicity $J$ of any two events $t_i^x$ and $t_j^y$ is then calculated as follows:
+The synchronicity $J_{ij}$ of any two events $t_i^x$ and $t_j^y$ is then calculated as follows:
 
 \begin{equation}
   J_{ij} =
@@ -60,7 +57,10 @@ Applying this to the full time series $i$ and $j$, the number of synchronous eve
   c(i \mid j) = \sum\limits^{s_i}_{l=1} \sum\limits^{s_j}_{m=1} J_{ij}
 \end{equation}
 
-The same formula applies to the reversed situation, i.e. $c(j \mid i)$, with $s_i$ and $s_j$ being the number of events in the respective time series. Combining the results of $c(i\mid j)$ and $c(j \mid i)$ and normalizing them by the total numbers of events $s_i$ and $s_j$, the \textit{strength of synchronization} is defined as
+The same formula applies to the reversed situation, i.e. $c(j \mid i)$.
+
+\pagebreak
+Combining the results of $c(i\mid j)$ and $c(j \mid i)$ and normalizing them by the total numbers of events $s_i$ and $s_j$, the \textit{strength of synchronization} is defined as
 
 \begin{equation} \label{eq:sync_strength}
   Q_{ij} = \frac{c(i \mid j) + c(j \mid i)}{\sqrt{(s_i - 2)(s_j - 2)}}
@@ -68,19 +68,17 @@ The same formula applies to the reversed situation, i.e. $c(j \mid i)$, with $s_
 
 where $Q_{ij} = 1$ means that the time series are completely synchronized, i.e., that each event in $i$ is either synchronously lead or followed by an event in $j$.
 
-\subsubsection{Application to climate networks}
-\label{ssst:appl_climate_networks}
-While the work of \citet{QuianQuiroga.2002} focuses on the analysis of EEG\footnote{EEG: Electroencephalogram; A way of measuring brain activity.]} time series, their event synchronization approach is explicitly applicable to other domains. The works of \citet{Malik.2010} and \citet{Stolbova.2015} both expand upon simple event synchronization. For the purposes of our work, we focus on the approach using climate networks as found in \citet{Stolbova.2015}.
+\subsection{Climate networks}
+\label{sst:climate_networks}
+Looking at the TRMM dataset as shown in \cref{fig:trmm_grid}, each cell of its coordinate grid represents a separate precipitation time series. As the analysis of each monsoon season is performed seperately, one such coordinate grid per season needs to be extracted\footnote{The time series are then simply the respective months of each year, concatenated into a single series. For example: March 1998, April 1998, May 1998, March 1999, April 1999, and so on.}.
 
-Looking at the TRMM dataset as shown in \cref{fig:trmm_area}, each cell of its coordinate grid represents a separate precipitation time series. As the analysis of each monsoon season is performed seperately, one such coordinate grid per season needs to be extracted\footnote{The time series are then simply the respective months of each year, concatenated into a single series.}.
+The time series in the resulting grids are not event based and thus cannot be directly used to calculate synchronization. They can, however, easily be transformed into event series by extracting only the days where extreme rainfall occurred. As per \citet{Stolbova.2015}, such days are defined as days with rainfall that exceeds the 90th percentile for the respective location.
 
-The time series in the resulting grids are not event based and thus cannot be directly used to calculate synchronization. They can, however, easily be transformed into event series by extracting only the days where extreme rainfall occurred. As per \citet{Stolbova.2015}, such days are generally defined as days with rainfall that exceeds the 90th percentile for the respective location.
-
-The resulting series of extreme events can be used to calculate the synchronicity of different locations (grid cells) in the TRMM dataset. Computing the synchronicity for all possible permutations of two such locations then results in a synchronization matrix as can be seen in \cref{fig:synchronization_matrix}.
+The resulting series of extreme events can be used to calculate the synchronicity of different locations (grid cells) in the TRMM dataset, closely following the approach we have already introduced in \cref{sst:event_synchronization}. Computing the synchronicity for all possible permutations of two such locations then results in a synchronization matrix as can be seen in \cref{fig:synchronization_matrix}.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.65\textwidth]{./99_appendix/img/trmm_sync_example}
+  \includegraphics[width=0.5\textwidth]{./99_appendix/img/trmm_sync_example}
   \caption{Exemplary synchronization matrix for TRMM at a 0.75\degree resolution. We only show the top left 15x15 section of our actual matrix, as its full dimensions are 2401x2401 for a 0.75\degree resolution.}
   \label{fig:synchronization_matrix}
 \end{figure}
@@ -89,26 +87,37 @@ Applying a numerical threshold to this synchronization matrix results in a matri
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.65\textwidth]{./99_appendix/img/trmm_adjacency_example}
+  \includegraphics[width=0.5\textwidth]{./99_appendix/img/trmm_adjacency_example}
   \caption{Exemplary adjacency matrix for TRMM at a 0.75\degree resolution. We only show the top left 15x15 section of our actual matrix, as its full dimensions are 2401x2401 for a 0.75\degree resolution.}
   \label{fig:adjacency_matrix}
 \end{figure}
 
-Based upon the adjacency matrix, a network can then be computed and analyzed. However, before we detail our implementation of it, the next section briefly describes the measures that we will be using for said network analysis.
+Based on the adjacency matrix, a network can then be computed and analyzed. However, before we detail our implementation of it, the next section briefly describes the measures that we will be using for said network analysis.
 
-\subsection{Graph centrality}
+\subsection{Network centrality}
 \label{sst:network_measures}
-Constructing climate networks from an adjacency matrix as seen in \cref{ssst:appl_climate_networks} enables the analysis of their structural features using various graph-based measures. We now shortly go over the concepts of the measures that we apply to our networks in this work.
+Constructing climate networks from an adjacency matrix as seen in \cref{sst:climate_networks} enables the analysis of their structural features using various network-based measures. We now shortly go over the concepts of the measures that we apply to our networks in this work.
 
-The climate networks in \citet{Stolbova.2015} are analyzed using the \textit{degree} and \textit{betweenness} of nodes as well as using the \textit{average/maximal geographical link length} between them. We also base our analysis on the \textit{degree} and \textit{betweenness} measures but replace the link length calculations with the PageRank algorithm, which could, in our opinion, show more distinct patterns than the other two measures.
+The climate networks in \citet{Stolbova.2015} are analyzed using the \textit{degree} and \textit{betweenness} of nodes as well as using the \textit{average/maximal geographical link length} between them. We also base our analysis on the \textit{degree} and \textit{betweenness} measures but replace the link length calculations with the \textit{PageRank} algorithm, which could, in our opinion, also show interesting patterns.
 
-The \textit{degree} of a node in a network is quite simply defined as the amount of links that are connected to the respective node. The same holds for vertices in graphs and their connected edges.
+\paragraph{Degree}
+The \textit{degree} of a node in a network is quite simply defined as the number of links that are connected to this node. The same holds for vertices in graphs and their connected edges.
 
-Calculating the \textit{betweenness} or \textit{betweenness centrality} of a node is a more involved effort. A node has a high betweenness if a large portion of shortest paths in the network pass through the respective node. If the resulting betweenness is to be an exact measure, this basically necessitates the calculation of all shortest paths in the network, which gets increasingly complex with the size of the network. There are, however, algorithms that achieve both accuracy and speed when calculating betweenness, one of the most popular being the approach proposed by \citet{Brandes.2001}\footnote{This algorithm is also used by the Python library \textit{networkx}, which we will be using for our calculations.}.
+\paragraph{Betweenness}
+Calculating the \textit{betweenness} or \textit{betweenness centrality} of a node is a more involved effort. A node has a high betweenness if a large portion of shortest paths in the network pass through the respective node. If the resulting betweenness is to be an exact measure, this can basically necessitate the calculation of all shortest paths in the network, which gets increasingly complex with the size of the network. There are, however, algorithms that achieve both accuracy and speed when calculating betweenness, one of the most popular being the approach proposed by \citet{Brandes.2001}. This algorithm is also used by the Python library \textit{networkx}, which we will be using for our calculations.
 
-The final measure that we will apply to climate networks, the \textit{PageRank} algorithm, was originally developed and published by the founders of Google (amongst others), Larry Page and Sergey Brin, during their studies at Stanford University \citep{Page.1999}.
+\paragraph{PageRank}
+The final measure that we will apply to climate networks, the \textit{PageRank} algorithm, was originally developed and published by the founders of Google (amongst others), Larry Page and Sergey Brin, during their studies at Stanford University \citep{Page.1999}. Originally developed as a way to rank indexed websites by their importance, the algorithm has since been applied to a variety of other problem domains (e.g., social network analysis, neuroscience, and many others). The PageRank algorithm seeks to calculate the importance of a node in a network by taking into account its incoming and outgoing links as well as the PageRank and number of outgoing links of the thereby connected nodes (which is intuitively shown in \cref{fig:simplified_pagerank}).
 
-[TODO: finish page rank]
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{./99_appendix/img/simplified_pagerank}
+  \caption{The simplified PageRank algorithm as presented in \citet{Page.1999}.}
+  \label{fig:simplified_pagerank}
+\end{figure}
+
+As \citet{Page.1999} intuitively describe it, PageRank can be thought to model the behavior of a ``random surfer'' that simply continues clicking links on the current page, traversing the network in a random fashion. The PageRank of a particular page then represents the ``probability'' that such random surfers end up accessing the respective page. However, to prevent any ``random surfer'' from getting stuck in loops (i.e., pages that link between each other), the simplified PageRank algorithm is further extended by a teleportation capability: a ``random surfer'' will jump to a random page with probability $\alpha$, while only following a link to another page with probability $1-\alpha$.
+
 
 \section{Implementation}
 \label{st:event_sync_implementation}
@@ -369,15 +378,15 @@ The creation of a climate network based on an adjacency network, as well as the 
     frame=lines,
     framesep=2mm]{python}
 
-    # build a graph from an adjacency matrix
+    # build a network from an adjacency matrix
     # using the networkx (nx) Python library
-    graph = nx.from_numpy_matrix(adjacency_matrix)
+    network = nx.from_numpy_matrix(adjacency_matrix)
 
     # calculate the degree, betweenness and PageRank for all nodes
-    # the weighted variant (simply leave the parameter for the unweighted variant)
-    nodes_degree = graph.degree(weight='weight')
-    nodes_betweenness = nx.betweenness_centrality(graph, normalized=False, weight='weight')
-    nodes_pagerank = nx.pagerank_numpy(graph, weight='weight')
+    # this shows the weighted variant (simply leave the parameter for the unweighted variant)
+    nodes_degree = network.degree(weight='weight')
+    nodes_betweenness = nx.betweenness_centrality(network, normalized=False, weight='weight')
+    nodes_pagerank = nx.pagerank_numpy(network, weight='weight')
 
   \end{minted}
   \caption{Simplified Python pseudocode for the creation of a climate network from an adjacency matrix as well as the calculation of corresponding network measures.}
