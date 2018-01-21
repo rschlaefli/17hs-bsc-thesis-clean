@@ -1,4 +1,14 @@
 \begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{} extract}
+\PYG{n}{quantile} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{nanpercentile}\PYG{p}{(}\PYG{n}{adjacency\PYGZus{}matrix}\PYG{o}{.}\PYG{n}{values}\PYG{p}{,} \PYG{l+m+mi}{95}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} set all values above and below the quantile to predefined values}
+\PYG{n}{ge} \PYG{o}{=} \PYG{n}{adjacency\PYGZus{}matrix} \PYG{o}{\PYGZgt{}} \PYG{n}{quantile}
+\PYG{n}{lte} \PYG{o}{=} \PYG{n}{adjacency\PYGZus{}matrix} \PYG{o}{\PYGZlt{}=} \PYG{n}{quantile}
+
+\PYG{n}{adjacency\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{ge}\PYG{p}{]} \PYG{o}{=} \PYG{n}{set\PYGZus{}ge}
+\PYG{n}{adjacency\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{lte}\PYG{p}{]} \PYG{o}{=} \PYG{n}{set\PYGZus{}lte}
+
 \PYG{c+c1}{\PYGZsh{} build a network from an adjacency matrix}
 \PYG{c+c1}{\PYGZsh{} using the networkx (nx) Python library}
 \PYG{n}{network} \PYG{o}{=} \PYG{n}{nx}\PYG{o}{.}\PYG{n}{from\PYGZus{}numpy\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{adjacency\PYGZus{}matrix}\PYG{p}{)}

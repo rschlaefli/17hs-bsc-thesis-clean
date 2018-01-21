@@ -20,7 +20,7 @@ As we have already seen, the onset of the ISM plays a very important role in the
 % Due to the large number of factors at play, the exact determination and accurate prediction of monsoon onset dates for different parts of India is a challenging task. The IMD is the official Indian agency that observes and predicts the behavior of monsoon and tries to determine such accurate onset dates \citep{Pradhan.2017}...
 
 \subsection{Neural networks}
-\label{sst:conv_recurrent_networks}
+\label{sst:neural_networks}
 Many of our experimental models are based on a relatively new approach to training neural networks on spatio-temporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM2D} neural network layer was first applied to precipitation forecasting. Due to the reliance of our models on these layers, we provide an intuition about their inner workings in this section.
 
 We generally assume that the reader is at least familiar with basic neural network principles for the remainder of this work. However, as convolutional and recurrent layers are what ConvLSTM2D layers are based on, we first shortly summarize the respective characteristics of these simpler layers. We then go into the work of \citet{Shi.2015} and their approach to creating the convolutional recurrent ConvLSTM2D layer and describe the areas where their an approach has already been tried.
@@ -37,41 +37,22 @@ We generally assume that the reader is at least familiar with basic neural netwo
 [TODO: basics of conv recurrent nets based on the ConvLSTM2D paper]
 
 
+\newpage
 \section{Prediction of Monsoon Onset using Neural Networks}
 \label{st:nn_implementation}
-This section walks through the different variations of neural network models we have evaluated during the creation of this work. The variations can differ in their network structure, in the data and features used to train the model or simply in the tuning of hyperparameters applied. \cref{tab:nn_overall_summary} summarizes the key characteristics of all models we have built and evaluated.
+Looking to find a model capable of learning the patterns leading up to the monsoon onset, as well as predicting the onset itself, we have evaluated many different approaches to training neural networks based on spatiotemporal datasets like TRMM and ERA-Interim. Each approach had its own advantages and disadvantages, many of which we only learned through trial and error and subsequently used to build an improved architecture. Over many iterations with vastly different model architectures, we have finally gotten to a model that seems to be able to learn patterns present before the monsoon onset and, based on these patterns, predict the monsoon onset with reasonable accuracy.
 
-Each model architecture is further associated a unique version identifier that we will use when referring to the specific architecture. The identifiers are based on the type of dataset used to train the model and the variation of the model architecture used (e.g., \textit{T1}: TRMM v1, \textit{E3}: ERA-Interim v3, \textit{TE1}: TRMM and ERA-Interim v1). All of the models presented were built and trained using the latest Keras 2.0 and Tensorflow 1.3/1.4 libraries for Python.
+The first part of this section (\cref{sst:final_model}) is thus focused on our certainly most important and useful result: our final working models and their evaluation. We describe their general architecture as well as the different evaluation schemes and parameters we have used. Furthermore, we evaluate how well the models have performed over all our experiments and assess the prediction capabilities from different points of view (e.g., how accurately can we predict on the 15th of May, or how accurately can we predict 10 days before onset).
 
-[TODO: extend]
+We would probably not have gotten to our final models without having tried many other architectures beforehand, iteratively improving upon the findings of each. The remainder of this section is thus dedicated to a brief overview over all the model architectures we have evaluated during the creation of this work along
 
-\begin{table}[h]
-  \begin{tabularx}{\linewidth}{|c|X|}
-    \hline
-    Model & Architectural Key Points \\
-    \hline
-    T1 & First trials with LSTM and TRMM; No experiments; Discarded \\
-    T2 & Each location of each year as a separate example; Sequences of values for single grid cells processed with LSTM; Categorical prediction on the 11th of May (predicted MoK in 1-40 days) \\
-    T3 & Each year as a separate example; One sequence of TRMM grids (daily values) per year processed with ConvLSTM2D; Numerical prediction on the 11th of May (predicted MoK in x days) \\
-    T4 & Regularization for dense, convolutional and recurrent layers; Based on T3 \\
-    T5 & Objective or IMD onset dates from \citep{Singh.2009}; Prediction on the 22nd of May; Based on E2 \\
-    \hline
-    E1 & Training on the ERA-Interim dataset and multiple features (temperature, relative humidity); Based on T4 \\
-    E2 & Objective or IMD onset dates from \citep{Singh.2009}; Prediction on the 22nd of May; Based on E1 \\
-    E3 & Improved structuring of Python classes; Extraction of core model logic into base classes; Same functionality as E2; No experiments \\
-    E4 & Multiple examples per year with variable offset to the onset date; Choice of additional input features; Possibility for additional 2D-convolutions before ConvLSTM2D; Switch to the functional Keras API; Based on E3 \\
-    \hline
-  \end{tabularx}
-  \caption{Overview of all neural network models that have been built \& evaluated}
-  \label{tab:nn_overall_summary}
-\end{table}
 
-\newpage
 \subsection{E4: A working model based on ERA-Interim}
 \label{sst:final_model}
-sdf
+
 
 \subsubsection{Data preprocessing}
+One of the most important parts during the training of any neural network is the analysis and preparation of its input data.
 
 \begin{figure}[h]
   \centering
@@ -102,6 +83,39 @@ listing of "meta" hyperparameters like sequence length, onset dates used, valida
   \end{tabularx}
   \caption{}
   \label{tab:evaluation_schemes}
+\end{table}
+
+
+
+
+we have evaluated many different neural network architectures and tunings during the creation of this work. This section provides a high-level overview of these architectures
+
+
+This section walks through the different variations of neural network models we have evaluated during the creation of this work. The variations can differ in their network structure, in the data and features used to train the model or simply in the tuning of hyperparameters applied. \cref{tab:nn_overall_summary} summarizes the key characteristics of all models we have built and evaluated.
+
+Each model architecture is further associated a unique version identifier that we will use when referring to the specific architecture. The identifiers are based on the type of dataset used to train the model and the variation of the model architecture used (e.g., \textit{T1}: TRMM v1, \textit{E3}: ERA-Interim v3, \textit{TE1}: TRMM and ERA-Interim v1). All of the models presented were built and trained using the latest Keras 2.0 and Tensorflow 1.3/1.4 libraries for Python.
+
+[TODO: extend]
+
+\begin{table}[h]
+  \begin{tabularx}{\linewidth}{|c|X|}
+    \hline
+    Model & Architectural Key Points \\
+    \hline
+    T1 & First trials with LSTM and TRMM; No experiments; Discarded \\
+    T2 & Each location of each year as a separate example; Sequences of values for single grid cells processed with LSTM; Categorical prediction on the 11th of May (predicted MoK in 1-40 days) \\
+    T3 & Each year as a separate example; One sequence of TRMM grids (daily values) per year processed with ConvLSTM2D; Numerical prediction on the 11th of May (predicted MoK in x days) \\
+    T4 & Regularization for dense, convolutional and recurrent layers; Based on T3 \\
+    T5 & Objective or IMD onset dates from \citep{Singh.2009}; Prediction on the 22nd of May; Based on E2 \\
+    \hline
+    E1 & Training on the ERA-Interim dataset and multiple features (temperature, relative humidity); Based on T4 \\
+    E2 & Objective or IMD onset dates from \citep{Singh.2009}; Prediction on the 22nd of May; Based on E1 \\
+    E3 & Improved structuring of Python classes; Extraction of core model logic into base classes; Same functionality as E2; No experiments \\
+    E4 & Multiple examples per year with variable offset to the onset date; Choice of additional input features; Possibility for additional 2D-convolutions before ConvLSTM2D; Switch to the functional Keras API; Based on E3 \\
+    \hline
+  \end{tabularx}
+  \caption{Overview of all neural network models that have been built \& evaluated}
+  \label{tab:nn_overall_summary}
 \end{table}
 
 
