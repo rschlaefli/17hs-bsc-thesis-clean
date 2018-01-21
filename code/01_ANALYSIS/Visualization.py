@@ -5,6 +5,8 @@ import cartopy.crs as ccrs
 from cartopy.feature import NaturalEarthFeature, COASTLINE, BORDERS, LAND, OCEAN
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
+import matplotlib.ticker as mticker
+from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 import seaborn as sns
 import scipy.ndimage
 from matplotlib.ticker import FormatStrFormatter
@@ -121,7 +123,7 @@ class Visualization:
         )
 
     @staticmethod
-    def create_cartopy_vis(df, ax=None, filename=None, title=None, cmap='afmhot', clabel=None, vis_type='mesh', no_cbar=False, log_norm=False, interpolation=None, gaussian_filtering=None, values_from='val', index_step=20, stock=False):
+    def create_cartopy_vis(df, ax=None, filename=None, title=None, cmap='afmhot', clabel=None, vis_type='mesh', no_cbar=False, log_norm=False, interpolation=None, gaussian_filtering=None, values_from='val', index_step=20, stock=False, grid=False):
         """
         Create a cartopy/matplotlib visualization from a passed in coordinate grid dataframe.
         The axes are expected to be named as "lat" and "lon" such that the df can be pivoted appropriately.
@@ -185,9 +187,9 @@ class Visualization:
 
         # ax.set_ylabel('Latitude', size=20, labelpad=10, rotation=90)
         ax.set_yticks([10.375, 22.375, 34.375])
-        ax.set_yticklabels([10.375, 22.375, 34.375], fontsize=12, rotation=90)
+        ax.set_yticklabels([10.375, 22.375, 34.375], fontsize=15, rotation=90)
         ax.set_xticks([67.375, 79.375, 91.375])
-        ax.set_xticklabels([67.375, 79.375, 91.375], fontsize=12, rotation=0)
+        ax.set_xticklabels([67.375, 79.375, 91.375], fontsize=15, rotation=0)
         # ax.set_xlabel('Longitude', size=20, labelpad=10)
 
         ax.set_xmargin(0)
@@ -195,8 +197,13 @@ class Visualization:
         ax.autoscale_view()
 
         # set ticks and labels
-        ax.xaxis.set_major_formatter(FormatStrFormatter('%g° E'))
-        ax.yaxis.set_major_formatter(FormatStrFormatter('%g° N'))
+        ax.xaxis.set_major_formatter(LONGITUDE_FORMATTER)
+        ax.yaxis.set_major_formatter(LATITUDE_FORMATTER)
+
+        if grid:
+            gl = ax.gridlines(crs=ccrs.PlateCarree(), alpha=0.6, color='black')
+            gl.xlocator = mticker.FixedLocator(df_cols)
+            gl.ylocator = mticker.FixedLocator(df_index)
 
         if vis_type != 'barbs' and not no_cbar and not stock:
             # ensure the colorbar is of equal height as the grid ("magic" fraction)
@@ -209,7 +216,7 @@ class Visualization:
 
         # set a title for the plot if so defined
         if title is not None:
-            ttl = ax.set_title(title, size=15)
+            ttl = ax.set_title(title, size=20)
             ttl.set_position([0.5, 1.02])
 
         # save the plot into a png if so defined
