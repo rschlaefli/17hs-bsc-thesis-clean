@@ -50,7 +50,7 @@ class ModelHelpers:
         # return standardized + abs(standardized.min())
 
     @staticmethod
-    def normalize_channels(arr, standardize=True):
+    def normalize_channels(arr, standardize=True, seperate=False, mean=None, std=None):
         """ Normalize or standardize channels of a 4D tensor """
 
         # normalize each channel seperately
@@ -61,6 +61,15 @@ class ModelHelpers:
 
         # the channels should be standardized to zero mean and unit variance seperately
         if standardize:
+            if mean is not None and std is not None:
+                return (arr - mean) / std
+
+            if seperate:
+                mean = np.mean(arr, axis=(1, 2), keepdims=True)
+                std = np.std(arr, axis=(1, 2), keepdims=True)
+
+                return (arr - mean) / std, mean, std
+
             return (arr - np.mean(arr, axis=(1, 2), keepdims=True)) / np.std(arr, axis=(1, 2), keepdims=True)
 
         # the channels should be normalized to the range [0, 1] sepeartely

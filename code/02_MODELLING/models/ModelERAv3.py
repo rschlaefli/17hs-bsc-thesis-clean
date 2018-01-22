@@ -40,7 +40,7 @@ class ModelERAv3(ModelBASEv2):
         print(X_train[0][0][0])
         print('> X_train', X_train.shape, 'y_train', y_train.shape)
 
-        X_train = ModelHelpers.normalize_channels(X_train)
+        X_train, X_mean, X_std = ModelHelpers.normalize_channels(X_train, seperate=True)
 
         # generate test data
         X_test = ModelHelpers.prepare_datasets(years_test, datasets, prediction_ts_test)
@@ -48,7 +48,7 @@ class ModelERAv3(ModelBASEv2):
         print(X_test)
         print('> X_test', X_test.shape, 'y_test', y_test.shape)
 
-        X_test = ModelHelpers.normalize_channels(X_test)
+        X_test = ModelHelpers.normalize_channels(X_test, mean=X_mean, std=X_std)
 
         if years_dev:
             X_dev = ModelHelpers.prepare_datasets(years_dev, datasets, prediction_ts)
@@ -56,7 +56,7 @@ class ModelERAv3(ModelBASEv2):
             print(X_dev.shape)
             print('> X_dev', X_dev.shape, 'y_dev', y_dev.shape)
 
-            X_dev = ModelHelpers.normalize_channels(X_dev)
+            X_dev = ModelHelpers.normalize_channels(X_dev, mean=X_mean, std=X_std)
 
             return X_train, y_train, X_test, y_test, X_dev, y_dev
 
