@@ -65,16 +65,14 @@ class ModelHelpers:
                 return (arr - mean) / std
 
             if seperate:
-                mean = np.mean(arr, axis=(1, 2), keepdims=True)
-                std = np.std(arr, axis=(1, 2), keepdims=True)
+                mean = np.mean(arr, axis=(0, 1), keepdims=True)
+                std = np.std(arr, axis=(0, 1), keepdims=True)
 
                 return (arr - mean) / std, mean, std
 
-            return (arr - np.mean(arr, axis=(1, 2), keepdims=True)) / np.std(arr, axis=(1, 2), keepdims=True)
-
         # the channels should be normalized to the range [0, 1] sepeartely
-        arr_min = arr.min(axis=(1, 2), keepdims=True)
-        arr_max = arr.max(axis=(1, 2), keepdims=True)
+        arr_min = arr.min(axis=(0, 1), keepdims=True)
+        arr_max = arr.max(axis=(0, 1), keepdims=True)
 
         return (arr - arr_min) / (arr_max - arr_min)
 
