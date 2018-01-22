@@ -21,19 +21,20 @@ As we have already seen, the onset of the ISM plays a very important role in the
 
 \subsection{Neural networks}
 \label{sst:neural_networks}
-Many of our experimental models are based on a relatively new approach to training neural networks on spatio-temporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM2D} neural network layer was first applied to precipitation forecasting. Due to the reliance of our models on these layers, we provide an intuition about their inner workings in this section.
+Many of our experimental models are based on a relatively new approach to training neural networks on spatio-temporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM2D} neural network layer was first applied to precipitation forecasting. Due to the reliance of many of our models on these layers, this section is thought to provide an intuition about their inner workings.
 
-We generally assume that the reader is at least familiar with basic neural network principles for the remainder of this work. However, as convolutional and recurrent layers are what ConvLSTM2D layers are based on, we first shortly summarize the respective characteristics of these simpler layers. We then go into the work of \citet{Shi.2015} and their approach to creating the convolutional recurrent ConvLSTM2D layer and describe the areas where their an approach has already been tried.
+We generally assume that the reader is at least familiar with basic neural network principles for the remainder of this work. However, as convolutional and recurrent layers are what ConvLSTM2D layers are based on, we first shortly summarize the respective characteristics of these types of layers. We then go into the specific work of \citet{Shi.2015} and their approach to creating the convolutional recurrent ConvLSTM2D layer and describe the areas where their approach has already been tried.
 
 \subsubsection{Convolutional neural networks}
-\label{sst:convolutional_networks}
+\label{ssst:convolutional_networks}
 [TODO: ? basics of conv nets (probably based on goodfellow "deep learning")?]
 
 \subsubsection{Recurrent neural networks}
-\label{sst:recurrent_networks}
+\label{ssst:recurrent_networks}
 [TODO: ? basics of recurrent nets (probably based on goodfellow "deep learning")?]
 
 \subsubsection{ConvLSTM2D}
+\label{ssst:conv_lstm_2d}
 [TODO: basics of conv recurrent nets based on the ConvLSTM2D paper]
 
 
@@ -42,33 +43,50 @@ We generally assume that the reader is at least familiar with basic neural netwo
 \label{st:nn_implementation}
 Looking to find a model capable of learning the patterns leading up to the monsoon onset, as well as predicting the onset itself, we have evaluated many different approaches to training neural networks based on spatiotemporal datasets like TRMM and ERA-Interim. Each approach had its own advantages and disadvantages, many of which we only learned through trial and error and subsequently used to build an improved architecture. Over many iterations with vastly different model architectures, we have finally gotten to a model that seems to be able to learn patterns present before the monsoon onset and, based on these patterns, predict the monsoon onset with reasonable accuracy.
 
-The first part of this section (\cref{sst:final_model}) is thus focused on our certainly most important and useful result: our final working models and their evaluation. We describe their general architecture as well as the different evaluation schemes and parameters we have used. Furthermore, we evaluate how well the models have performed over all our experiments and assess the prediction capabilities from different points of view (e.g., how accurately can we predict on the 15th of May, or how accurately can we predict 10 days before onset).
+The first part of this section is thus focused on our certainly most important and useful result: our final working models and their evaluation. We describe their general architecture as well as the different evaluation schemes and parameters we have used. Furthermore, we evaluate how well the models have performed over all our experiments and assess the prediction capabilities from different points of view (e.g., how accurately can we predict on the 15th of May, or how accurately can we predict 10 days before onset).
 
-We would probably not have gotten to our final models without having tried many other architectures beforehand, iteratively improving upon the findings of each. The remainder of this section is thus dedicated to a brief overview over all the model architectures we have evaluated during the creation of this work along
-
+That being said, we would probably not have gotten to our final models without having tried many other architectures beforehand, iteratively improving upon the findings of each. The remainder of this section is therefore dedicated to a brief overview over all the model architectures we have evaluated during the creation of this work (in chronological order), along with a summary of our most important findings and results during the process.
 
 \subsection{E4: A working model based on ERA-Interim}
 \label{sst:final_model}
+The neural network architectures and hyperparameter tunings that we have found to work best during the course of our experiments are based on two main ingredients: the ERA-Interim dataset with several of its features and multiple stacked convolutional recurrent layers (ConvLSTM2D). We have already introduced these
 
+Our models are all based on the latest Keras 2.0 and Tensorflow 1.4 Python libraries, which have greatly simplified the creation of our models. At its core, Keras already includes ConvLSTM2D functionality (along with an appropriate default tuning), which meant that we did not need to implement any layers ourselves (be it in Keras or Tensorflow).
+
+[TODO: extend]
 
 \subsubsection{Data preprocessing}
-One of the most important parts during the training of any neural network is the analysis and preparation of its input data.
+One of the most important parts during the process of creating a neural network model (or any other machine learning model at that) is the preparation of the data that is to be used as its foundation. Without properly formatted input data, a neural network will typically not be able to learn any meaningful patterns. Over the course of our experiments, we have tried different datasets (TRMM and ERA-Interim) and, more importantly, many heterogenous input formats, of which each had its own advantages and disadvantages (we go over all of these evaluated input formats in their respective sections).
+
+The approach we use in our final model architecture is most easily explained by means of an example: given time series data before the monsoon onset in an arbitrary year, we extract a fixed-length sequence (for example, a sequence of 60 subsequent days). The sequence ends at a given distance before the onset (e.g., 14 days before) and starts 60 more days before that. Feeding this sequence (corresponding to a single training example) to our neural network model after training, we would like it to predict the number 14, which is comparable to a simple regression task. Intuitively, we ask our model the following question: "given the last 60 days, in how many days from today will the monsoon arrive?".
+
+If we were to train our model only based on sequences that end 14 days before the onset, it would most certainly always predict the number 14, no matter the actual input. To train our model for different distances, we need to repeat the sequence extraction process many times per year, using a different distance to the monsoon onset in each repetition. Our most successful models are based on 30 training examples per year with distances in the range of $[1, 30]$ and a sequence length of around 2 months.
+
+The actual preprocessing of the ERA-Interim dataset is only slightly more complex: instead of a simple time series, from which a sequence is extracted, we have a time series where each timestep is represented by a multidimensional matrix (a \textit{3D-tensor}). For each location in the ERA-Interim coordinate grid as well as for each feature used from ERA-Interim (e.g., temperature), these tensors contain the value of the respective feature at the respective location (at that timestep). This is more intuitively shown in \cref{fig:e4_preprocessing}.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./99_appendix/img/E4_preprocessing}
-  \caption{Average precipitation at MoK (TRMM, 1998-2017)}
-  \label{fig:trmm_prec_onset}
+  \caption{Data preprocessing for models of the E4 class.}
+  \label{fig:e4_preprocessing}
 \end{figure}
 
+\paragraph{Normalization} An additional step during data preprocessing is often the normalization of data into certain consistent ranges. Even though neural networks could learn without normalization, it often improves and speeds up their learning process. If different input features clearly do not adhere to the same distribution (e.g., temperature and rainfall), the different magnitudes can lead to problems during the optimization process (when multiplying with the learning rate). When processing the ERA-Interim dataset into a training, validation and test set, we therefore apply statistical standardization to center the mean of each feature seperately. To prevent the introduction of any bias, the mean and standard deviation of the training set are reused when normalizing the validation and test sets.
+
+\clearpage
 \subsubsection{Model architecture}
+It is not hard to see that a single ERA-Interim coordinate grid is inherently similar to a simple multichannel image: we have a height (latitudes), a width (longitudes) and multiple channels (e.g., temperature and relative humidity). When working with images, convolutional neural networks are by far the most prevalent approach, having led to great progress in image recognition and other domains. However, 2D-convolutions are not directly applicable to multiple images ordered in a sequence (like a movie). Instead, they first need to be combined with recurrent network structures like LSTM.
+
+We have already introduced a recent approach to the problem of learning from spatiotemporal data: the ConvLSTM2D neural network layer (\cref{ssst:conv_lstm_2d}). In our case, this layer performed much better than a simple stacking of convolutional and recurrent layers, making it the most important part of many of our models (including E4). With ConvLSTM2D at its core, the E4 model architecture performs a regression by flattening the final output of the ConvLSTM2D layers and passing it through multiple dense layers, the final one of which has only a single neuron (and thus yields a single number). As an optional addition, time-distributed convolutional and pooling layers can be applied before passing the sequence into the ConvLSTM2D layers, adding further feature detection and dimensionality reduction capabilities. An exemplary model based on the described architecture is shown in \cref{fig:e4_architecture}.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\linewidth]{./99_appendix/img/E4_architecture}
-  \caption{Average precipitation at MoK (TRMM, 1998-2017)}
-  \label{fig:trmm_prec_onset}
+  \includegraphics[width=0.8\linewidth]{./99_appendix/img/E4_architecture}
+  \caption{Exemplary model architecture of the E4 class.}
+  \label{fig:e4_architecture}
 \end{figure}
+
+\paragraph{Regularization} To reduce the tendency of the model to overfit to the training set, we apply L2-regularization to the kernels of all types of layers (Conv2D, ConvLSTM2D, Dense). This increases the loss whenever the model's internal representation of the problem gets too complex, effectively improving its ability to generalize. In addition, we can and do most often use dropout after each layer. However, the exact regularization and dropout parameters vary with each tuning.
 
 \subsubsection{Model evaluation}
 listing of "meta" hyperparameters like sequence length, onset dates used, validation split etc.
@@ -86,6 +104,9 @@ listing of "meta" hyperparameters like sequence length, onset dates used, valida
 \end{table}
 
 
+
+\subsection{T1-T5 and E1-E3: Other model architectures}
+blabla
 
 
 we have evaluated many different neural network architectures and tunings during the creation of this work. This section provides a high-level overview of these architectures
