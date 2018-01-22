@@ -50,29 +50,32 @@ class ModelHelpers:
         # return standardized + abs(standardized.min())
 
     @staticmethod
-    def normalize_channels(arr, standardize=True, seperate=False, mean=None, std=None):
+    def normalize_channels(arr, standardize=True, dims=(0, 1), seperate=False, mean=None, std=None):
         """ Normalize or standardize channels of a 4D tensor """
-
-        # normalize each channel seperately
-        # axes 1 and 2 should be fixed (lat and lon)
-        # axes 0 and 2 should be variable (for each channel seperately over all images)
         # see: https://stackoverflow.com/questions/42460217/how-to-normalize-a-4d-numpy-array
         # and: https://stackoverflow.com/questions/40956114/numpy-standardize-2d-subsets-of-a-4d-array
 
         # the channels should be standardized to zero mean and unit variance seperately
         if standardize:
+            # if the mean and std over the training set are passed in, use these
+            # to prevent any optimistical bias
             if mean is not None and std is not None:
                 return (arr - mean) / std
 
-            if seperate:
-                mean = np.mean(arr, axis=(0, 1), keepdims=True)
-                std = np.std(arr, axis=(0, 1), keepdims=True)
+            # calculate the mean and std over the specified dimensions
+            mean = np.mean(arr, axis=dims, keepdims=True)
+            std = np.std(arr, axis=dims, keepdims=True)
 
+            # check whether the mean and std should additionally be returned
+            # normally only done for the training set
+            if seperate:
                 return (arr - mean) / std, mean, std
 
+            return (arr - mean) / std
+
         # the channels should be normalized to the range [0, 1] sepeartely
-        arr_min = arr.min(axis=(0, 1), keepdims=True)
-        arr_max = arr.max(axis=(0, 1), keepdims=True)
+        arr_min = arr.min(axis=dims, keepdims=True)
+        arr_max = arr.max(axis=dims, keepdims=True)
 
         return (arr - arr_min) / (arr_max - arr_min)
 
