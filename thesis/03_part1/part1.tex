@@ -27,6 +27,7 @@ The TRMM dataset is unique in that it offers very high-resolution precipitation 
 After the TRMM satellite's fuel went low in 2014, it was decommissioned in April 2015 and re-entered earth's atmosphere in June 2015. The TMPA product is still being produced until 2018, albeit without the sensors of the TRMM observatory and with less accuracy \citep{Huffman.2017}. Built on the success of the TRMM mission, NASA and JAXA have already launched its successor GPM (Global Precipitation Measurement) in 2014 \citep{GoddardEarthScienceDataInformationandServicesCenter.2011}. However, as its data is only available starting from 2014, GPM is currently unsuitable for long-term precipitation research. TRMM or an alternative dataset are currently still needed but the updated algorithm developed for GPM will soon be applied to the existing TRMM data. The availability of reprocessed data back to 1998 can thus be expected in 2018 \citep{Huffman.2016}.
 
 
+\clearpage
 \section{Related Work}
 The concept of event synchronization applied in \citet{Stolbova.2015} was first proposed in \citet{QuianQuiroga.2002}, where they sought to develop a simple algorithm that could be applied to any two time series of events, resulting in a measure that defines the synchronization of said time series. Synchronization measures are generally related to standard measures like cross correlation but can convey more complex relationships due to their non-linearity \citep{QuianQuiroga.2002}.
 
@@ -98,15 +99,15 @@ Based on the adjacency matrix, a network can then be computed and analyzed. Howe
 \label{sst:network_measures}
 Constructing climate networks from an adjacency matrix as seen in \cref{sst:climate_networks} enables the analysis of their structural features using various network-based measures. We now shortly go over the concepts of the measures that we apply to our networks in this work.
 
-The climate networks in \citet{Stolbova.2015} are analyzed using the \textit{degree} and \textit{betweenness} of nodes as well as using the \textit{average/maximal geographical link length} between them. We also base our analysis on the \textit{degree} and \textit{betweenness} measures but replace the link length calculations with the \textit{PageRank} algorithm, which could, in our opinion, also show interesting patterns.
+The climate networks in \citet{Stolbova.2015} are analyzed using the \textit{degree} and \textit{betweenness} of nodes as well as using the \textit{average/maximal geographical link length} between them. We also base our analysis on the \textit{degree} and \textit{betweenness} measures but replace the link length calculations with the \textit{PageRank} algorithm, which should, in our opinion, also show interesting patterns.
 
-\paragraph{Degree}
+\subsubsection{Degree}
 The \textit{degree} of a node in a network is quite simply defined as the number of links that are connected to this node. The same holds for vertices in graphs and their connected edges.
 
-\paragraph{Betweenness}
+\subsubsection{Betweenness}
 Calculating the \textit{betweenness} or \textit{betweenness centrality} of a node is a more involved effort. A node has a high betweenness if a large portion of shortest paths in the network pass through the respective node. If the resulting betweenness is to be an exact measure, this can basically necessitate the calculation of all shortest paths in the network, which gets increasingly complex with the size of the network. There are, however, algorithms that achieve both accuracy and speed when calculating betweenness, one of the most popular being the approach proposed by \citet{Brandes.2001}. This algorithm is also used by the Python library \textit{networkx}, which we will be using for our calculations.
 
-\paragraph{PageRank}
+\subsubsection{PageRank}
 The final measure that we will apply to climate networks, the \textit{PageRank} algorithm, was originally developed and published by the founders of Google (amongst others), Larry Page and Sergey Brin, during their studies at Stanford University \citep{Page.1999}. Originally developed as a way to rank indexed websites by their importance, the algorithm has since been applied to a variety of other problem domains (e.g., social network analysis, neuroscience, and many others). The PageRank algorithm seeks to calculate the importance of a node in a network by taking into account its incoming and outgoing links as well as the PageRank and number of outgoing links of the thereby connected nodes (which is intuitively shown in \cref{fig:simplified_pagerank}).
 
 \begin{figure}[h]
@@ -116,18 +117,17 @@ The final measure that we will apply to climate networks, the \textit{PageRank} 
   \label{fig:simplified_pagerank}
 \end{figure}
 
-As \citet{Page.1999} intuitively describe it, PageRank can be thought to model the behavior of a ``random surfer'' that simply continues clicking links on the current page, traversing the network in a random fashion. The PageRank of a particular page then represents the ``probability'' that such random surfers end up accessing the respective page. However, to prevent any ``random surfer'' from getting stuck in loops (i.e., pages that link between each other), the simplified PageRank algorithm is further extended by a teleportation capability: a ``random surfer'' will jump to a random page with probability $\alpha$, while only following a link to another page with probability $1-\alpha$.
+As \citet{Page.1999} intuitively describe it, PageRank can be thought to model the behavior of a ``random surfer'' that simply continues clicking links on the current page, traversing the network in a random fashion. The PageRank of a particular page then represents the probability that such random surfers end up accessing the respective page. However, to prevent any random surfer from getting stuck in loops (i.e., pages that link between each other), the simplified PageRank algorithm is further extended by a teleportation capability: a random surfer will jump to a random page with probability $\alpha$, while following a link to another page with probability $1-\alpha$.
 
 
+\clearpage
 \section{Implementation}
 \label{st:event_sync_implementation}
-Our implementation of the event synchronization and climate network computations is strongly based on the concepts and measures as described in \cref{sst:event_sync} and \cref{sst:building_climate_network}. As our algorithmic implementation is most certainly different than the one used in the original work \citep{Stolbova.2015}, we shortly go over our approach to the problem in this section.
+Our implementation of the event synchronization and climate network computations is strongly based on the concepts and measures as described in \cref{sst:event_synchronization} and \cref{sst:climate_networks}. As our algorithmic implementation is most certainly different than the one used in the original work \citep{Stolbova.2015}, we detail our approach in this section.
 
 \subsection{Calculating event synchronization}
 \label{sst:event_sync_calculation}
-
-\subsubsection{Necessary preparations}
-Before we are able to calculate the synchronicity for any two locations, the precipitation time series need to be transformed into series of events. Assume that we have extracted pre-monsoon time series as shown in \cref{tab:example_rainfall_ts} from the TRMM dataset and now want to convert these into extreme event series.
+Before we are able to calculate the synchronicity for any two locations, the precipitation time series need to be transformed into series of events. Assume that we have extracted pre-monsoon time series as shown in \cref{tab:example_rainfall_ts} from the TRMM dataset and want to convert these into extreme event series.
 
 \begin{table}[h]
   \centering
@@ -145,7 +145,7 @@ Before we are able to calculate the synchronicity for any two locations, the pre
   \label{tab:example_rainfall_ts}
 \end{table}
 
-We calculate the 90th percentile seperately for each row and apply the result as a threshold to the respective row. This yields event series where each value represents the date of an extreme event in the series. This would look as shown in \cref{tab:example_rainfall_events} if applied to the time series in \cref{tab:example_rainfall_ts}.
+We then calculate the 90th percentile for each row and apply the result as a threshold to the respective row. This yields event series where each value represents the date of an extreme event. If applied to the time series in \cref{tab:example_rainfall_ts}, this would look as shown in \cref{tab:example_rainfall_events} .
 
 \begin{table}[h]
   \centering
@@ -159,40 +159,30 @@ We calculate the 90th percentile seperately for each row and apply the result as
     34.375 & 88.375 & 18.03.98 & 30.03.98 & 31.03.98 & 01.04.98 & 05.04.98 & 19.04.98 & ... \\
     \hline
   \end{tabular}
-  \caption{First events in the pre-monsoon extreme event series at 4 exemplary locations (TRMM, 0.75\degree).}
+  \caption{Events in the pre-monsoon extreme event series at 4 exemplary locations (TRMM, 0.75\degree).}
   \label{tab:example_rainfall_events}
 \end{table}
 
-With a matrix of extreme events as shown in excerpt in \cref{tab:example_rainfall_events}, we then want to calculate the event synchronization for all pairs of locations. \cref{tab:example_empty_sync} shows the state of a preliminary synchronization matrix before running any of the calculations. Locations are always perfectly synchronous to themselves, leading to a diagonal that will always be filled with ones.
+Going forward, we use \textit{epoch timestamps} to represent dates instead of the full representation shown in the examples of this section, as they are much easier to process using mathematical formulas (but less intuitive to visualize). Epoch timestamps measure the number of seconds (without leap seconds) that have elapsed since the 01.01.1970 at 00:00 UTC. For example, \textit{01.03.1998 00:00} would be represented as \textit{888710400}. An exemplary event series based on epoch timestamps is presented in \cref{tab:example_rainfall_events_unix}. Such timestamps or similar numerical representations are internally used in many applications and algorithms, as calculating differences between dates or shifting a date is as simple as performing mathematical addition or subtraction operations.
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{ |cc|cccc| }
+  \begin{tabular}{ |c|ccccccc| }
     \hline
-     & Latitude & 13.375 & 16.375 & 34.375 & 34.375 \\
-    Latitude & Longitude & 67.375 & 91.375 & 67.375 & 88.375 \\
+    Event & 1 & 2 & 3 & 4 & 5 & 6 & ... \\
     \hline
-    13.375 & 67.375 & 1 &   &   &   \\
-    16.375 & 91.375 &   & 1 &   &   \\
-    34.375 & 67.375 &   &   & 1 &   \\
-    34.375 & 88.375 &   &   &   & 1 \\
+    Date & 07.04.98 & 31.05.98 & 08.05.99 & 12.05.99 & 13.05.99 & 15.05.99 & ... \\
+    Epoch & 891907200 & 896572800 & 926121600 & 926467200 & 926553600 & 926726400 & ... \\
     \hline
   \end{tabular}
-  \caption{Empty synchronization matrix for 4 exemplary locations (TRMM, 0.75\degree).}
-  \label{tab:example_empty_sync}
+  \caption{Exemplary series of events represented with epoch timestamps (TRMM, 0.75\degree).}
+  \label{tab:example_rainfall_events_unix}
 \end{table}
 
-To further fill in the values of the synchronization matrix in \cref{tab:example_empty_sync}, our algorithm only needs to perform calculations for one of the now empty halves of the matrix. This is due to the fact that, at least in our approach, the synchronization between two locations can be symmetrically applied to both their permutations. The original work on event synchronization by \citet{QuianQuiroga.2002} describes some asymmetrical measures, that were, however, not used in the work of \citet{Stolbova.2015}.
-
-Going forward, we use \textit{unix timestamps}\footnote{Unix timestamps measure the number of seconds (without leap seconds) that have elapsed since the 01.01.1970 at 00:00 UTC. For example, "01.03.1998 00:00" would be represented as 888710400.} to represent dates instead of the full representation shown in the examples of this section, as they are much easier to process using mathematical formulas (but less intuitive to visualize).
-
-\pagebreak
 \subsubsection{Synchronization of two locations}
-Having explained the necessary setup of the event synchronization algorithm, we now go over some of the concepts of our implementation. To calculate the synchronization between any two locations (i.e., \textit{location1} and \textit{location2}), we need to process both time series and compare each event in \textit{location1} to the appropriate events in \textit{location2}, taking the immediate neighbors of both locations into account.
+Having explained the necessary setup of the event synchronization algorithm, we now go over more concrete aspects of our implementation. To calculate the synchronization between any two locations (i.e., \textit{location1} and \textit{location2}), we need to process both time series and compare each event in \textit{location1} to the appropriate events in \textit{location2}, taking the immediate neighbors of both locations into account. We found that this naturally fits the description of a \textit{sliding window} approach: a sliding window of size three over the event series of a location always encompasses a current event, its predecessor and its successor and thus everything we need for the time lag calculation. Application of a sliding window to \textit{location1} and nesting another such window for \textit{location2} then leads us to the naive implementation shown in \cref{lst:event_synchronization}\footnote{Notice that to allow sliding windows to go from the very first to the very last event, additional padding needs to be applied on either side. We pad with the timestamps 0 and 9999999999, preventing any influence on time lags.}.
 
-We found that this naturally fits the description of a sliding window approach: a sliding window of size three over the event series of a location always encompasses a current event, its predecessor and its successor and thus everything we need for the time lag calculation. Application of a sliding window to \textit{location1} and nesting another such window for \textit{location2} then leads us to a naive implementation of the event synchronization algorithm as shown in \cref{lst:event_synchronization}.
-
-\begin{listing}[H]
+\begin{listing}[h]
   \begin{minted}[mathescape,
     linenos,
     numbersep=5pt,
@@ -201,6 +191,7 @@ We found that this naturally fits the description of a sliding window approach: 
     framesep=2mm]{python}
 
     def calculate_synchronization(location1, location2):
+
         # initialize the number of synchronous events for the two locations
         num_sync_events = 0
 
@@ -211,7 +202,7 @@ We found that this naturally fits the description of a sliding window approach: 
             for j_prev, j_current, j_next in sliding_window(location2, 3):
 
                 # calculate the time delta between the current events
-                current_diff = i_current - j_current
+                current_diff = j_current - i_current
 
                 # check if the current events occur simultaneously
                 if current_diff == 0:
@@ -230,15 +221,15 @@ We found that this naturally fits the description of a sliding window approach: 
         return num_sync_events
 
   \end{minted}
-  \caption{Python pseudocode for a simplified event synchronization algorithm, applicable to any two series of events.}
+  \caption{Python pseudocode for a simplified event synchronization algorithm, applicable to any two series of events represented by epoch timestamps.}
   \label{lst:event_synchronization}
 \end{listing}
 
-The event synchronization algorithm as described in \cref{lst:event_synchronization} results in the number of synchronous events between \textit{location1} and \textit{location2} where the event in \textit{location2} leads the event in \textit{location1}. This is, however, only part of the full synchronization synchronization calculation, as we also need the number of synchronous events where \textit{location1} leads \textit{location2}, i.e., we need to evaluate $calculate\_synchronization(location2, location1)$. This is the reason that simultaneous events only count as "half synchronous": they are counted in both these calculations and, in total, then result in one synchronous event.
+The event synchronization algorithm as described in \cref{lst:event_synchronization} results in the number of synchronous events between \textit{location1} and \textit{location2} where the event in \textit{location1} leads the event in \textit{location2} (i.e., $c(\text{location1} \mid \text{location2})$). This is, however, only part of the full synchronization synchronization calculation, as we also need the number of synchronous events where \textit{location1} leads \textit{location2}, i.e., we need to evaluate $c(\text{location2} \mid \text{location1})$. This is the reason that simultaneous events only count as "half synchronous": they are counted in both these calculations and, in total, then result in one synchronous event.
 
-Calculating the strength of synchronization then boils down to a simple application of formula \eqref{eq:sync_strength} from \pageref{eq:sync_strength} and is further presented in \cref{lst:sync_strength}.
+Calculating the strength of synchronization boils down to a simple application of \cref{eq:sync_strength} from Page \pageref{eq:sync_strength} and is further presented in \cref{lst:sync_strength}. Notice that, in addition to the synchronization coefficient, we return both numbers of synchronous events (i.e., $c(i \mid j)$ and $c(j \mid i)$). This is used to build a directed network later on.
 
-\begin{listing}[H]
+\begin{listing}[h]
   \begin{minted}[mathescape,
     linenos,
     numbersep=5pt,
@@ -247,6 +238,7 @@ Calculating the strength of synchronization then boils down to a simple applicat
     framesep=2mm]{python}
 
     def calculate_sync_strength(loc1_events, loc2_events):
+
         # calculate synchronized events between loc1 and loc2 (and reverse)
         loc1_sync = calculate_synchronization(loc1_events, loc2_events)
         loc2_sync = calculate_synchronization(loc2_events, loc1_events)
@@ -265,9 +257,28 @@ Calculating the strength of synchronization then boils down to a simple applicat
 \end{listing}
 
 \subsubsection{Computing the values of the synchronization matrix}
-We then make use of \cref{lst:sync_strength} to fill in the missing values in a synchronization matrix like the one we have already prepared (see \cref{tab:example_empty_sync}). Firstly, the algorithm is applied to each empty cell in the upper half of the matrix, yielding a triangular matrix. Secondly, as the synchronization strength measure is symmetrical, the lower half of the matrix is filled by simply mirroring the upper half. This yields two matrices: one containing the synchronization strength and one containing the total count of synchronous events for all pairs of locations. A third asymmetrical matrix seperately contains the number of events where $i$ leads $j$ as well as the number of events where $j$ leads $i$. The procedure is shown in detail in \cref{lst:sync_matrix}.
+Given a matrix of extreme events as shown in excerpt in \cref{tab:example_rainfall_events} (but based on epoch timestamps), we want to calculate the synchronization coefficient and the number of synchronous events for all pairs of locations. \cref{tab:example_empty_sync} shows the state of a preliminary synchronization matrix before running any of the calculations. Locations are always perfectly synchronous to themselves, leading to a diagonal that is always filled with ones (in the case of a synchronization coefficient matrix).
 
-\begin{listing}[H]
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ |cc|cccc| }
+    \hline
+     & Latitude & 13.375 & 16.375 & 34.375 & 34.375 \\
+    Latitude & Longitude & 67.375 & 91.375 & 67.375 & 88.375 \\
+    \hline
+    13.375 & 67.375 & 1 &   &   &   \\
+    16.375 & 91.375 &   & 1 &   &   \\
+    34.375 & 67.375 &   &   & 1 &   \\
+    34.375 & 88.375 &   &   &   & 1 \\
+    \hline
+  \end{tabular}
+  \caption{``Empty'' synchronization matrix for 4 exemplary locations (TRMM, 0.75\degree).}
+  \label{tab:example_empty_sync}
+\end{table}
+
+Next to a synchronization matrix that contains all synchronization coefficients ($Q_{ij}$), we want to generate two more matrices with the same dimensions: one matrix containing the total count of synchronous events for all pairs of locations ($c(i \mid j) + c(j \mid i)$) as well as a matrix that seperately contains the results of $c(i \mid j)$ and $c(j \mid i)$ (and is thus asymmetrical). We can generate all three of these matrices in a single pass, as $c(i \mid j)$ and $c(j \mid i)$ are intermediate results when calculating $Q_{ij}$. The procedure is shown in detail in \cref{lst:sync_matrix}.
+
+\begin{listing}[h]
   \begin{minted}[mathescape,
     linenos,
     numbersep=5pt,
@@ -276,10 +287,13 @@ We then make use of \cref{lst:sync_strength} to fill in the missing values in a 
     framesep=2mm]{python}
 
     def calculate_sync_matrix(event_matrix):
+
         # calculate the sync strength for each permutation of grid cells
         for i in range(0, sync_matrix.shape[0]):
+
             # as the matrix is symmetrical, only calculate the upper half
             for j in range(0, i + 1):
+
                 # calculate the synchronicity for the permutation of rows
                 sync_strength, count = calculate_sync_strength(
                     event_matrix[i], event_matrix[j])
@@ -300,7 +314,11 @@ We then make use of \cref{lst:sync_strength} to fill in the missing values in a 
 \end{listing}
 
 \subsubsection{Improvements for the event synchronization algorithm}
-The implementation as shown so far naively processes all possible combinations of events when calculating the event synchronization measure. Given $i$ events at \textit{location1} and $j$ events at \textit{location2}, the simple nested loop algorithm potentially calculates a time lag up to $i * j$ times. This results in a lot of wasted computation, because the actual portion of $j$ that can be synchronous tends to be very small.
+The implementation as shown so far naively processes all possible combinations of events when calculating the event synchronization measure. Given two event series $i$ and $j$ as well as their respective number of events $s_i$ and $s_j$, the simple nested loop algorithm potentially calculates synchronicity up to $s_i * s_j$ times. This results in a lot of wasted computation, because the actual portion of $j$ that can be synchronous tends to be very small.
+
+However, we can define a range of events in $j$ for which we are sure that they cannot be synchronous and entirely skip their evaluation. According to our implementation, this holds for two cases: firstly, if the event in $j$ occurs earlier than the event in $i$, it can be safely skipped, as the reversed iteration of the algorithm will deal with it. Secondly, an event in $j$ can be skipped if the event in $j$ occurs earlier than the partial time lag of the event in $i$, as the minimum of the full time lag calculation will never change. In such a case, we can additionally break the inner loop early, as further events in $j$ would only occur even later. A version of the algorithm incorporating these improvements is shown in \cref{lst:event_synchronization_improved}.
+
+Another (obvious) improvement would be to select only the few relevant events from $j$ using advanced indexing and selection strategies, after which no more breaking or skipping in the loop would be needed. However, upon evaluation of such an approach, it became clear that this is not necessarily faster. Adequately selecting only relevant events from the series $j$ necessitates some complex indexing and selection operations, which in turn depend on the existence of an index or hash table for $j$. Creating such indices can take more than a second for a single series, making the approach especially slow for large matrices (as index creation is repeated $i$ times).
 
 \begin{listing}[H]
   \begin{minted}[mathescape,
@@ -311,21 +329,23 @@ The implementation as shown so far naively processes all possible combinations o
     framesep=2mm]{python}
 
     def calculate_synchronization(location1, location2):
+
         # initialize the number of synchronous events for the two locations
         num_sync_events = 0
 
         # iterate over all timesteps in location1 using a sliding window
         for i_prev, i_current, i_next in sliding_window(location1, 3):
+
             # calculate the last timestamp of location2 that could be synchronous
             latest = i_current + 0.5 * min(i_current - i_prev, i_next - i_current)
 
             # iterate over all timesteps in location2 using a sliding window
             for j_prev, j_current, j_next in sliding_window(location2, 3):
-                # continue for timestamps that cannot possibly be synchronous
-                if j_current < earliest:
-                    continue
 
-                # if the difference gets negative, continue
+                # calculate the time delta between the current events
+                current_diff = j_current - i_current
+
+                # if the difference is negative, continue (too early)
                 # the second pass will encompass these combinations
                 if current_diff < 0:
                     continue
@@ -356,21 +376,16 @@ The implementation as shown so far naively processes all possible combinations o
   \label{lst:event_synchronization_improved}
 \end{listing}
 
-However, we can define a range of events in $j$ for which we are sure that they cannot be synchronous and skip their evaluation (see an improved version of the algorithm in \cref{lst:event_synchronization_improved}). According to our implementation, this holds for two cases: firstly, if the event in $j$ occurs at earlier than the event in $i$, it can be safely skipped, as the reversed iteration of the algorithm will deal with it. Secondly, an event in $j$ can also be skipped if the event in $j$ occurs later than the time lag of the event in $i$. Additionally, we can safely break the inner loop early, as further events in $j$ only occur even later.
+A further performance consideration is the fact that the event synchronization calculation $c(i \mid j)$ is in itself an ``elementary'' operation that will provide results based on only two inputs $i$ and $j$ without any side effects. As a result, the entire synchronization matrix computation is heavily parallelizable, meaning that we can split the synchronization matrix into different jobs and run these jobs on different threads (or even machines). We have already implemented an (experimental) parallelized version of the event synchronization algorithm. The parallelized algorithm will, however, need further refinement to be fully applicable.
 
-Notice that another (obvious) improvement would be to "simply filter" the \textit{location2} series such that it only contains the few events that need to be evaluated, after which no more breaking or skipping in the loop would be needed. However, upon evaluation of such an approach, it became clear that this is not necessarily faster. Adequately filtering the series $j$ necessitates some complex indexing and selection operations, which in turn depend on the existence of an index or hash table for $j$. Creating such indices can take more than a second for a single series, making the approach especially slow for large matrices.
-
+\clearpage
 \subsection{Building climate networks}
 \label{sst:building_climate_network}
-Based on \cref{ssst:appl_climate_networks}, the next step after the computation of a full event synchronization matrix is the transformation of said matrix into an adjacency matrix, allowing the creation of a network and its analysis using various methods and libraries. This transformation is a simple thresholding of the matrix using a specified percentile.
+Based on \cref{sst:climate_networks}, the next step after the computation of a full event synchronization matrix is the transformation of said matrix into an adjacency matrix, allowing the creation of a network and its analysis using various methods and libraries. This transformation is a simple thresholding of the matrix using a specified percentile.
 
-\citet{Stolbova.2015} uses the 95th percentile to threshold the adjacency matrix, leaving only the most statistically significant links in the network. However, we use an aggregated {0.75\degree} resolution for our base dataset (instead of the full {0.25\degree} resolution), meaning that there is already much less data available to analyze (but the data is also less sparse). We thus use a decreased threshold equal to the 90th percentile.
+We further expand upon the work of \citet{Stolbova.2015} in two major ways: firstly, we build weighted networks in addition to the unweighted networks that have already been explored. To build a weighted network, values above the threshold are left as is, leading to links that are weighted with their corresponding synchronization measure. Contrarily, all values above the threshold are uniformly set to one when building an unweighted network. As a second addition, we build a directed network, meaning that we use an asymmetrical adjacency matrix based directly on the number of synchronous events (instead of combining both counts into a single synchronization coefficient). A directed network is  much more appropriate for an analysis using PageRank, as the results of PageRank on an undirected network are relatively similar to the degree of such a network. The creation of a climate network based on a synchronization matrix, as well as the calculation of the degree, betweenness and PageRank for all nodes in the network, are a matter of a few lines of code as shown in \cref{lst:climate_networks}.
 
-We further expand upon the work of \citet{Stolbova.2015} by building weighted networks in addition to the unweighted networks that have already been explored. To build a weighted network, values above the threshold are left as is, leading to links that are weighted with their corresponding synchronization measure. Contrarily, all values above the threshold are uniformly set to one when building an unweighted network.
-
-The creation of a climate network based on an adjacency network, as well as the calculation of the degree, betweenness and PageRank for all nodes in the network, are a matter of a few lines of code as shown in \cref{lst:climate_networks}.
-
-\begin{listing}[H]
+\begin{listing}[h]
   \begin{minted}[mathescape,
     linenos,
     numbersep=5pt,
@@ -378,34 +393,39 @@ The creation of a climate network based on an adjacency network, as well as the 
     frame=lines,
     framesep=2mm]{python}
 
-    # build a network from an adjacency matrix
-    # using the networkx (nx) Python library
+    # extract the 95th percentile from a synchronization matrix
+    95th_percentile = np.nanpercentile(sync_matrix, 95)
+
+    # set all values above and below the threshold to 0 and 1
+    adjacency_matrix[adjacency_matrix > 95th_percentile] = 1
+    adjacency_matrix[adjacency_matrix <= 95th_percentile] = 0
+
+    # build a network from the resulting adjacency matrix
     network = nx.from_numpy_matrix(adjacency_matrix)
 
     # calculate the degree, betweenness and PageRank for all nodes
-    # this shows the weighted variant (simply leave the parameter for the unweighted variant)
-    nodes_degree = network.degree(weight='weight')
-    nodes_betweenness = nx.betweenness_centrality(network, normalized=False, weight='weight')
-    nodes_pagerank = nx.pagerank_numpy(network, weight='weight')
+    nodes_degree = network.degree()
+    nodes_betweenness = nx.betweenness_centrality(network)
+    nodes_pagerank = nx.pagerank_numpy(network)
 
   \end{minted}
-  \caption{Simplified Python pseudocode for the creation of a climate network from an adjacency matrix as well as the calculation of corresponding network measures.}
+  \caption{Simplified Python pseudocode for the creation of a climate network from a synchronization matrix as well as the calculation of corresponding network measures.}
   \label{lst:climate_networks}
 \end{listing}
 
-The results of applying the algorithms we have described in this section to the TRMM dataset, more specifically the pre-monsoon, monsoon and post-monsoon seasons as extracted from TRMM, are presented in the next section (\cref{st:event_sync_results}).
 
+\clearpage
 \section{Results \& Evaluation}
 \label{st:event_sync_results}
-
+This sections presents the results of applying what we have described in \cref{st:event_sync_implementation} to the TRMM dataset, more specifically the pre-monsoon, monsoon and post-monsoon seasons as extracted from TRMM. For each season, we show the results of degree, betweenness and PageRank measures in their weighted and unweighted variation. The presented PageRank results are based on the corresponding asymmetrical synchronization count matrices (directed networks). Knowing about the fundamental factors that influence the ISM (as introduced in \cref{c:ism_overview}), we give our thoughts about the patterns that can be seen in the results and how they could be connected to the
 
 \subsection{Dataset}
-Our results are based on the TRMM dataset as introduced in \cref{sst:trmm_dataset}. We have extracted data for the years 1998-2016, which corresponds to all years that were fully available at the time. The area included in the dataset was cropped to an extended overview over the Indian subcontinent, more specifically the area between 4.125-40.625N, 61.125-97.625E. Aggregation of the native {0.25\degree} resolution to a lower {0.75\degree} resolution then yields grid borders of 4.375-40.375N, 61.375-97.375E \footnote{The TRMM dataset needed to be aggregated to reduce the computational effort required for event synchronization and climate network calculations. Going from {0.25\degree} to {0.75\degree} resolution effectively reduced the size of event synchronization matrices from 21609x21609 to around 2401x2401 (81x).}.
+The results presented in this section are based on the TRMM dataset as introduced in \cref{st:trmm_dataset}. We have extracted data for the years 1998-2016, which corresponds to all years that were fully available at the time (March-December). The area included in the dataset is cropped to an extended overview over the Indian subcontinent (4.125-40.625N, 61.125-97.625E). Aggregation of the native {0.25\degree} resolution to a lower {0.75\degree} resolution yields grid borders equal to 4.375-40.375N, 61.375-97.375E (as shown in \cref{fig:trmm_grid}). The dataset was aggregated to reduce the computational effort required for event synchronization and climate network calculations. Going from {0.25\degree} to {0.75\degree} resolution effectively reduced the dimensions of the event synchronization matrices from 21609x21609 to around 2401x2401 (81x). The reduced resolution further ensures compatibility with the ERA-Interim dataset used later on.
 
 \subsection{Pre-monsoon season (MAM)}
 [TODO: PageRank analysis once updated version is evaluated]
 
-The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We show the unweighted version, as also computed in \citet{Stolbova.2015}, as well as our extended version with weights applied to the links in the network. To enable an intercomparison with the work of \citet{Stolbova.2015}, which this part of our work is based on, we additionally assign the area identifiers used in her work to any areas we refer to.
+The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We show the unweighted version, as also computed in \citet{Stolbova.2015}, as well as our extended version with weights applied to the links in the network.
 
 \begin{figure}[h]
   \centering
@@ -425,7 +445,7 @@ However, the degree of a location does not (necessarily) represent the amount of
 Furthermore, the significant degree and high betweenness at the brim of the Himalayas could be caused by its connectedness to either one or both clusters over the Indian ocean. As an area displaying high betweenness lies on a large portion of shortest paths in the network, a connection of the cluster over the Bay of Bengal to the Himalayas certainly makes sense. This would also be supported by the general importance of the Himalaya region as a "monsoon through" that serves as an entry point to the subcontinent for moisture from the Bay of Bengal (see \cref{c:ism_overview}).
 
 
-\newpage
+\clearpage
 \subsection{Monsoon season (JJAS)}
 [TODO: PageRank analysis once updated version is evaluated]
 
@@ -442,7 +462,7 @@ High betweenness can be seen over Northern Pakistan (NP), near the Western Ghats
 
 The regions of strong betweenness flanking the Western Ghats could be explained by the important role of the Kerala region in the overall onset of the monsoon season. Kerala is typically the first region of the Indian subcontinent that is reached by monsoonal rainfalls. Thus, it can be argued that extreme events in Kerala tend to lead events on the mainland and are most probably connected to many locations in India. Furthermore, the jet coming from the Arabian Sea are split into two streams due to the heights of the Western Ghats. Continuing into the mainland, these two streams could be a cause for the patterns of high betweenness on either side of the Western Ghats.
 
-\newpage
+\clearpage
 \subsection{Post-monsoon season (OND)}
 [TODO: PageRank analysis once updated version is evaluated]
 
@@ -465,7 +485,7 @@ So far, we have strongly based our climate network analysis on the work of \cite
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{./99_appendix/img/results_stolbova.png}
-  \caption{Degree and betweenness centrality as presented in \citet{Stolbova.2015}. Based on the years 1998-2012 from the TRMM dataset at {0.25\degree} resolution}.
+  \caption{Degree and betweenness centrality as presented in \citet{Stolbova.2015}. Based on the years 1998-2012 from the TRMM dataset at {0.25\degree} resolution.}
   \label{fig:results_stolbova}
 \end{figure}
 
@@ -473,9 +493,10 @@ The visualizations as shown in \cref{fig:results_stolbova} are obviously much mo
 
 Comparing the results for the post-monsoon season, we find that the discrepancies are much more significant. While the most central locations are clustered around the Himalayas in both \cref{fig:results_ond} and \cref{fig:results_stolbova}, the area of high degree extends much farther to the west in our results. Additionally, the results as shown in \cref{fig:results_stolbova} seem to be more concentrated to the Himalaya region and extend far up on the Tibetan Plateau.
 
-We mainly attribute the observed discrepancies to one important factor: we have used a much lower resolution to be able to speed up computation of the synchronization matrix and climate networks. The full synchronization matrix for a {0.25\degree} resolution restricted to our area has a degree of 21609, making traversal of the matrix a computationally very complex effort (compared to the 2401 degree matrix using {0.75\degree} resolution). It is clearly visible that the higher resolution shows much more detail than our implementation. Furthermore, the choice of resolution might also have an impact on the general structure of a network, as a {0.25\degree} resolution results in a matrix that is much more sparse than it would be after aggregation.
+We partly attribute the observed discrepancies to one important factor: we have used a much lower resolution to be able to speed up computation of the synchronization matrix and climate networks. It is obvious that a higher resolution leads to much more detailed results. However, the full synchronization matrix for a native {0.25\degree} resolution restricted to our area has dimensions of 21609x21609, making traversal of the matrix a computationally very complex effort (compared to the 2401x2401 matrix using {0.75\degree} resolution). Furthermore, the choice of resolution probably also has an impact on the general structure of a network, as a {0.25\degree} resolution results in a matrix that is much more sparse than it is after aggregation. And lastly, we can see that
 
-% Furthermore, due to the lower resolution in our synchronization matrix, our implementation also differs in the threshold applied to the synchronization matrix. While the threshold was set to the 95th percentile in \citet{Stolbova.2015}, we used a lower threshold to get a network with a more meaningful amount of links. More specifically, we set the threshold to the 90th percentile, still only leaving the 10\% most significantly synchronous links. Especially
+
+
 
 \section{Conclusion}
 \label{st:event_sync_conclusion}

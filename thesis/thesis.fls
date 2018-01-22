@@ -333,8 +333,6 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/ts1ppl.fd
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 OUTPUT thesis.toc
 INPUT 01_introduction/introduction.tex
 INPUT 01_introduction/introduction.tex
@@ -407,8 +405,6 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplri7t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplri8r.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT 99_appendix/img/monsoon_system.png
 INPUT ./99_appendix/img/monsoon_system.png
 INPUT ./99_appendix/img/monsoon_system.png
@@ -469,15 +465,15 @@ INPUT ./99_appendix/img/trmm_adjacency_example.png
 INPUT ./99_appendix/img/trmm_adjacency_example.png
 INPUT ./99_appendix/img/trmm_adjacency_example.png
 INPUT ./99_appendix/img/trmm_adjacency_example.png
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT 99_appendix/img/simplified_pagerank.png
 INPUT ./99_appendix/img/simplified_pagerank.png
 INPUT ./99_appendix/img/simplified_pagerank.png
 INPUT ./99_appendix/img/simplified_pagerank.png
 INPUT ./99_appendix/img/simplified_pagerank.png
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 OUTPUT thesis.pyg
 INPUT _minted-thesis/default-pyg-prefix.pygstyle
 INPUT _minted-thesis/default-pyg-prefix.pygstyle
@@ -488,45 +484,43 @@ INPUT _minted-thesis/default.pygstyle
 INPUT _minted-thesis/default.pygstyle
 INPUT _minted-thesis/default.pygstyle
 INPUT ./thesis.pyg
-INPUT _minted-thesis/F9CF875B73A128579A747CB7A97CE4FDFAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/F9CF875B73A128579A747CB7A97CE4FDFAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/F9CF875B73A128579A747CB7A97CE4FDFAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/F9CF875B73A128579A747CB7A97CE4FDFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/05EADAE0ABAE66CE071BC5ADD79BEC4AFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/05EADAE0ABAE66CE071BC5ADD79BEC4AFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/05EADAE0ABAE66CE071BC5ADD79BEC4AFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/05EADAE0ABAE66CE071BC5ADD79BEC4AFAF12023780005D3C9033D251E403B9A.pygtex
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmtt9.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmitt10.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr7t.vf
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8r.tfm
 OUTPUT thesis.pyg
 INPUT ./thesis.pyg
-INPUT _minted-thesis/83B94AE025ADAE56AE1E6F1A962D9CB2FAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/83B94AE025ADAE56AE1E6F1A962D9CB2FAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/83B94AE025ADAE56AE1E6F1A962D9CB2FAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/83B94AE025ADAE56AE1E6F1A962D9CB2FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C7285C2CDA44DF5B10A030C7978ABFBBFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C7285C2CDA44DF5B10A030C7978ABFBBFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C7285C2CDA44DF5B10A030C7978ABFBBFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C7285C2CDA44DF5B10A030C7978ABFBBFAF12023780005D3C9033D251E403B9A.pygtex
 OUTPUT thesis.pyg
 INPUT ./thesis.pyg
-INPUT _minted-thesis/D96961A67B2388151CBB9D72EF330DE0FAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/D96961A67B2388151CBB9D72EF330DE0FAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/D96961A67B2388151CBB9D72EF330DE0FAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/D96961A67B2388151CBB9D72EF330DE0FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/F40D4F825A21547C3A08A044593ED796FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/F40D4F825A21547C3A08A044593ED796FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/F40D4F825A21547C3A08A044593ED796FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/F40D4F825A21547C3A08A044593ED796FAF12023780005D3C9033D251E403B9A.pygtex
 OUTPUT thesis.pyg
 INPUT ./thesis.pyg
-INPUT _minted-thesis/7839711C2234B4B191F063156E2E503FFAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/7839711C2234B4B191F063156E2E503FFAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/7839711C2234B4B191F063156E2E503FFAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/7839711C2234B4B191F063156E2E503FFAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/4F1C84D0B1CBDC1D2F3CDCF741DA1AE7FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/4F1C84D0B1CBDC1D2F3CDCF741DA1AE7FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/4F1C84D0B1CBDC1D2F3CDCF741DA1AE7FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/4F1C84D0B1CBDC1D2F3CDCF741DA1AE7FAF12023780005D3C9033D251E403B9A.pygtex
 OUTPUT thesis.pyg
 INPUT ./thesis.pyg
-INPUT _minted-thesis/9E32AA40A3A898F7DFA97FF001085647FAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/9E32AA40A3A898F7DFA97FF001085647FAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/9E32AA40A3A898F7DFA97FF001085647FAF12023780005D3C9033D251E403B9A.pygtex
-INPUT _minted-thesis/9E32AA40A3A898F7DFA97FF001085647FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C6C9851788EB99680AC7BFCA9C8F30D8FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C6C9851788EB99680AC7BFCA9C8F30D8FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C6C9851788EB99680AC7BFCA9C8F30D8FAF12023780005D3C9033D251E403B9A.pygtex
+INPUT _minted-thesis/C6C9851788EB99680AC7BFCA9C8F30D8FAF12023780005D3C9033D251E403B9A.pygtex
 INPUT 99_appendix/img/event_sync_0.75-0.9_MAM.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_MAM.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_MAM.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_MAM.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_MAM.png
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr8c.vf
-INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/fonts/tfm/public/mathpazo/fplmr.tfm
 INPUT 99_appendix/img/event_sync_0.75-0.9_JJAS.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_JJAS.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_JJAS.png
@@ -537,15 +531,11 @@ INPUT ./99_appendix/img/event_sync_0.75-0.9_OND.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_OND.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_OND.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_OND.png
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT 99_appendix/img/results_stolbova.png
 INPUT ./99_appendix/img/results_stolbova.png
 INPUT ./99_appendix/img/results_stolbova.png
 INPUT ./99_appendix/img/results_stolbova.png
 INPUT ./99_appendix/img/results_stolbova.png
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT 04_part2/part2.tex
 INPUT 04_part2/part2.tex
 INPUT 99_appendix/img/E4_preprocessing.png
@@ -560,6 +550,8 @@ INPUT ./99_appendix/img/E4_architecture.png
 INPUT ./99_appendix/img/E4_architecture.png
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/listings/lstlang1.sty
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT 99_appendix/img/prec_avg_onset.png
 INPUT ./99_appendix/img/prec_avg_onset.png
 INPUT ./99_appendix/img/prec_avg_onset.png
@@ -569,6 +561,9 @@ INPUT 05_conclusion/conclusion.tex
 INPUT 05_conclusion/conclusion.tex
 INPUT thesis.bbl
 INPUT thesis.bbl
+INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/fonts/vf/public/eulervm/zeusm7.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eufm7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eusm7.tfm
 INPUT 99_appendix/appendix.tex
 INPUT 99_appendix/appendix.tex
 INPUT 99_appendix/img/onset_hist_v1.png
@@ -631,9 +626,6 @@ INPUT ./99_appendix/img/onset_joint_v2_obj_uncut.png
 INPUT ./99_appendix/img/onset_joint_v2_obj_uncut.png
 INPUT ./99_appendix/img/onset_joint_v2_obj_uncut.png
 INPUT ./99_appendix/img/onset_joint_v2_obj_uncut.png
-INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/fonts/vf/public/eulervm/zeusm7.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eufm7.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eusm7.tfm
 INPUT 99_appendix/img/geopotential.png
 INPUT ./99_appendix/img/geopotential.png
 INPUT ./99_appendix/img/geopotential.png
