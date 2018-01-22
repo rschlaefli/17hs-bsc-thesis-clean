@@ -2129,57 +2129,6 @@ TUNINGS = [
             'conv_dropout': [],
             'conv_filters': [],
             'conv_kernels': [],
-            'conv_pooling': [0],
-            'conv_strides': [],
-            'conv_kernel_regularizer': ('L2', 0.002),
-            'conv_recurrent_regularizer': ('L2', 0.002),
-            'dense_dropout': [0.7, 0.7],
-            'dense_nodes': [1024, 1024],
-            'dense_activation': 'relu',
-            'dense_kernel_regularizer': ('L2', 0.001),
-            'learning_rate': 0.01,
-            'loss': 'mean_squared_error',
-            'lstm_filters': [16, 16, 16],
-            'lstm_kernels': [3, 3, 3],
-            'lstm_strides': [1, 1, 1],
-            'lstm_activation': 'tanh',
-            'lstm_dropout': [0.3, 0.3, 0.3],
-            'lstm_recurrent_dropout': [0.2, 0.2, 0.2],
-            'lstm_recurrent_activation': 'hard_sigmoid',
-            'optimizer': 'adam',
-            'padding': 'same'
-        },
-        'config_fit': {
-            'batch_size': 30,
-            'epochs': 500,
-            'lr_plateau': (0.1, 50, 0.0001),
-            'patience': PATIENCE,
-            'tensorboard': True,
-            'validation_split': 0.1
-        },
-        'features': {
-            'surface': ['msl'],
-            1000: ['r', 't'],
-            700: ['u', 'v']
-        },
-        'objective_onsets': False,
-        'predict_on': PREDICT_ON,
-        'prediction_sequence': 29,
-        'prediction_offset': 1,
-        'prediction_example_length': 60,
-        'years': YEARS,
-        'years_train': [1979, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2001, 2002, 2006, 2007, 2008, 2009, 2011, 2012, 2013],
-        'years_dev': [1980, 1990, 2000, 2010, 2016],
-        'years_test': [1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017]
-    },
-    { # 42
-        'aggregation_resolution': None,
-        'config_build': {
-            'batch_norm': True,
-            'conv_activation': 'relu',
-            'conv_dropout': [],
-            'conv_filters': [],
-            'conv_kernels': [],
             'conv_pooling': [2],
             'conv_strides': [],
             'conv_kernel_regularizer': ('L2', 0.002),
@@ -2210,8 +2159,7 @@ TUNINGS = [
         },
         'features': {
             'surface': ['msl'],
-            1000: ['r', 't'],
-            700: ['u', 'v']
+            1000: ['r', 't']
         },
         'objective_onsets': False,
         'predict_on': PREDICT_ON,
@@ -2219,10 +2167,10 @@ TUNINGS = [
         'prediction_offset': 1,
         'prediction_example_length': 60,
         'years': YEARS,
-        'years_train': [1979, 1980, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2016],
-        'years_dev': False,
+        'years_train': [1979, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2001, 2002, 2006, 2007, 2008, 2009, 2011, 2012, 2013],
+        'years_dev': [1980, 1990, 2000, 2010, 2016],
         'years_test': [1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017]
-    },
+    }
 ]
 
 # get the tuning for the current index
