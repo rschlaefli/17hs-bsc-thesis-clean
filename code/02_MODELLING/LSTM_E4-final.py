@@ -79,7 +79,7 @@ TUNINGS = [
         'prediction_example_length': 60,
         'years': YEARS,
         'years_train': [1979, 1980, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2016],
-        'years_dev': False,
+        'years_dev': None,
         'years_test': [1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017]
     },
     { # 1 (E33)
@@ -130,7 +130,7 @@ TUNINGS = [
         'prediction_example_length': 60,
         'years': YEARS,
         'years_train': [1979, 1980, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2016],
-        'years_dev': False,
+        'years_dev': None,
         'years_test': [1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017]
     },
     { # 2 (E41)
@@ -180,7 +180,7 @@ TUNINGS = [
         'prediction_example_length': 60,
         'years': YEARS,
         'years_train': [1979, 1980, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2016],
-        'years_dev': False,
+        'years_dev': None,
         'years_test': [1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017]
     },
     { # 3 (E42)
@@ -230,7 +230,7 @@ TUNINGS = [
         'prediction_example_length': 60,
         'years': YEARS,
         'years_train': [1979, 1980, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2016],
-        'years_dev': False,
+        'years_dev': None,
         'years_test': [1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017]
     },
     { # 4 (E43)
@@ -280,7 +280,7 @@ TUNINGS = [
         'prediction_example_length': 60,
         'years': YEARS,
         'years_train': [1979, 1980, 1981, 1982, 1983, 1984, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2016],
-        'years_dev': False,
+        'years_dev': None,
         'years_test': [1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017]
     }
 ]
@@ -293,8 +293,8 @@ onset_dates, onset_ts = ModelHelpers.load_onset_dates(version='v2', objective=Tr
 
 # prepare prediction timestamps
 # generate a sequence of timestamps for train and validation (and, optionally, test)
-prediction_ts = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], TUNING['years_train'], onset_dates=onset_dates, sequence_length=TUNING['prediction_sequence'], sequence_offset=TUNING['prediction_offset'], example_length=TUNING['prediction_example_length'])
-prediction_ts_test = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], TUNING['years_test'], onset_dates=onset_dates, sequence_length=TUNING['prediction_sequence'], sequence_offset=TUNING['prediction_offset'], example_length=TUNING['prediction_example_length'])
+prediction_ts = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], TUNING['years'], onset_dates=onset_dates, sequence_length=TUNING['prediction_sequence'], sequence_offset=TUNING['prediction_offset'], example_length=TUNING['prediction_example_length'])
+# prediction_ts_test = ModelHelpers.generate_prediction_ts(TUNING['predict_on'], TUNING['years_test'], onset_dates=onset_dates, sequence_length=TUNING['prediction_sequence'], sequence_offset=TUNING['prediction_offset'], example_length=TUNING['prediction_example_length'])
 
 # setup a filter function
 # this later prevents any data after the prediction timestamp from being fed as input
@@ -318,7 +318,7 @@ print("> Train-Test Split")
 X_train, y_train, X_test, y_test, X_dev, y_dev = ModelERAv3.train_test_split(
     features,
     prediction_ts,
-    prediction_ts_test,
+    # prediction_ts_test,
     onset_ts,
     years_train=TUNING['years_train'],
     years_test=TUNING['years_test'],
@@ -343,8 +343,8 @@ for iteration in range(3):
         X_train,
         y_train,
         invalidate=True,
-        evaluate=EVALUATE,
-        validation_data=(X_test, y_test) if TUNING['years_dev'] else None,
+        evaluate=None,
+        validation_data=None,
         cache_id=cache_id,
         version=version_id)
 

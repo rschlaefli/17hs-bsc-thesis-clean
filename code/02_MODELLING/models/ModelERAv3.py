@@ -14,7 +14,7 @@ class ModelERAv3(ModelBASEv2):
     @staticmethod
     def train_test_split(datasets,
                          prediction_ts,
-                         prediction_ts_test,
+                         # prediction_ts_test,
                          onset_ts,
                          years=range(1979, 2018),
                          years_train=range(1979, 2010),
@@ -30,9 +30,9 @@ class ModelERAv3(ModelBASEv2):
         """
 
         # generate outcomes
-        outcomes = ModelHelpers.generate_outcomes(prediction_ts, onset_ts, chain(years_train, years_dev), numerical=True, sequence=True)
-        outcomes_test = ModelHelpers.generate_outcomes(prediction_ts_test, onset_ts, years_test, numerical=True, sequence=True)
-        print(outcomes_test)
+        outcomes = ModelHelpers.generate_outcomes(prediction_ts, onset_ts, years, numerical=True, sequence=True)
+        # outcomes_test = ModelHelpers.generate_outcomes(prediction_ts_test, onset_ts, years_test, numerical=True, sequence=True)
+        # print(outcomes_test)
 
         # generate training data
         X_train = ModelHelpers.prepare_datasets(years_train, datasets, prediction_ts)
@@ -43,8 +43,8 @@ class ModelERAv3(ModelBASEv2):
         X_train, X_mean, X_std = ModelHelpers.normalize_channels(X_train, seperate=True)
 
         # generate test data
-        X_test = ModelHelpers.prepare_datasets(years_test, datasets, prediction_ts_test)
-        y_test = ModelHelpers.stack_outcomes(outcomes_test, years_test, augmented=True)
+        X_test = ModelHelpers.prepare_datasets(years_test, datasets, prediction_ts)
+        y_test = ModelHelpers.stack_outcomes(outcomes, years_test, augmented=True)
         print(X_test)
         print('> X_test', X_test.shape, 'y_test', y_test.shape)
 
