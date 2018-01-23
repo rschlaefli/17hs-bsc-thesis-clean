@@ -1,10 +1,7 @@
 #!/bin/bash -x
 
 # setup the log dir
-MODEL="E4-final"
-MODEL_VERSION="1"
-PATIENCE="130"
-LOG_DIR=~/17hs-bsc-thesis-clean/code/03_EVALUATION/logs/$MODEL
+LOG_DIR=~/17hs-bsc-thesis-clean/code/03_EVALUATION/logs/E4-final
 
 echo "> Activating conda environment..."
 
@@ -20,7 +17,7 @@ do
   mkdir -p $LOG_DIR
 
   # run the experiment, redirecting all output to the logfiles
-  ~/anaconda3/envs/gru-minimal/bin/python ./02_MODELLING/LSTM_$1.py $i >> $LOG_DIR/$MODEL-$MODEL_VERSION_$PATIENCE_$i.txt
+  ~/anaconda3/envs/gru-minimal/bin/python ./02_MODELLING/LSTM_E4-final.py $i >> $LOG_DIR/E4-final_130_$i.txt
 done
 
 echo "> Finished running configs. Shutdown..."
