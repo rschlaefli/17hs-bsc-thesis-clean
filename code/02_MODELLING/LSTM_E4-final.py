@@ -351,8 +351,8 @@ for iteration in range(3):
     # evaluate the latest state of the model above
     print('Train (latest):', model.evaluate(X_train, y_train), model.predict(X_train))
 
-    dev_preds = model.predict(X_dev)
-    print('Dev (latest):', model.evaluate(X_dev, y_dev), dev_preds, y_dev)
+    # dev_preds = model.predict(X_dev)
+    # print('Dev (latest):', model.evaluate(X_dev, y_dev), dev_preds, y_dev)
 
     test_preds = model.predict(X_test)
     print('Test (latest):', model.evaluate(X_test, y_test), test_preds, y_test)
@@ -360,11 +360,10 @@ for iteration in range(3):
     # evaluate the best state of the model above
     best_instance = ModelERAv3(version=version_id, cache_id=cache_id)
     best_model = best_instance.load_model()
-
     print('Train (best):', best_model.evaluate(X_train, y_train), best_model.predict(X_train))
 
-    dev_preds_best = best_model.predict(X_dev)
-    print('Dev (best):', best_model.evaluate(X_dev, y_dev), dev_preds_best, y_dev)
+    # dev_preds_best = best_model.predict(X_dev)
+    # print('Dev (best):', best_model.evaluate(X_dev, y_dev), dev_preds_best, y_dev)
 
     test_preds_best = best_model.predict(X_test)
     print('Test (best):', best_model.evaluate(X_test, y_test), test_preds_best, y_test)
