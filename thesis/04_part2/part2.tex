@@ -8,6 +8,24 @@ As we have already seen, the onset of the ISM plays a very important role in the
 \label{st:era_interim}
 [TODO: describe ERA-Interim same as TRMM has been described]
 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|r|l|}
+    \hline
+    \textbf{ID} & \textbf{Description} \\
+    \hline
+    \textbf{msl} & Mean-Sea Level Pressure \\
+    \textbf{r} & Relative Humidity at 1000hPa \\
+    \textbf{t} & Temperature at 1000hPa \\
+    \textbf{u700} & U-Component of Wind at 700hPa \\
+    \textbf{v700} & V-Component of Wind at 700hPa \\
+    \textbf{u200} & U-Component of Wind at 200hPa \\
+    \hline
+  \end{tabular}
+  \caption{List of features from ERA-Interim that are used in this work.}
+  \label{tab:era_features}
+\end{table}
+
 \section{Related Work}
 [TODO: filler]
 
@@ -77,7 +95,7 @@ The actual preprocessing of the ERA-Interim dataset is only slightly more comple
 \subsubsection{Model architecture}
 It is not hard to see that a single ERA-Interim coordinate grid is inherently similar to a simple multichannel image: we have a height (latitudes), a width (longitudes) and multiple channels (e.g., temperature and relative humidity). When working with images, convolutional neural networks are by far the most prevalent approach, having led to great progress in image recognition and other domains. However, 2D-convolutions are not directly applicable to multiple images ordered in a sequence (like a movie). Instead, they first need to be combined with recurrent network structures like LSTM.
 
-We have already introduced a recent approach to the problem of learning from spatiotemporal data: the ConvLSTM2D neural network layer (\cref{ssst:conv_lstm_2d}). In our case, this layer performed much better than a simple stacking of convolutional and recurrent layers, making it the most important part of many of our models (including E4). With ConvLSTM2D at its core, the E4 model architecture performs a regression by flattening the final output of the ConvLSTM2D layers and passing it through multiple dense layers, the final one of which has only a single neuron (and thus yields a single number). As an optional addition, time-distributed convolutional and pooling layers can be applied before passing the sequence into the ConvLSTM2D layers, adding further feature detection and dimensionality reduction capabilities. An exemplary model based on the described architecture is shown in \cref{fig:e4_architecture}.
+We have already introduced a recent approach to the problem of learning from spatiotemporal data: the ConvLSTM2D neural network layer (\cref{ssst:conv_lstm_2d}). In our case, this layer performed much better than a simple stacking of convolutional and recurrent layers, making it the most important part in many of our models (including E4). With ConvLSTM2D at its core, the E4 model architecture performs a regression by flattening the final output of the ConvLSTM2D layers and passing it through multiple dense layers, the final one of which has only a single neuron (and thus yields a single number). As an optional addition, time-distributed convolutional and pooling layers can be applied before passing the sequence into the ConvLSTM2D layers, adding further feature detection and dimensionality reduction capabilities. An exemplary model based on the described architecture is shown in \cref{fig:e4_architecture}.
 
 \begin{figure}[h]
   \centering
@@ -88,22 +106,123 @@ We have already introduced a recent approach to the problem of learning from spa
 
 \paragraph{Regularization} To reduce the tendency of the model to overfit to the training set, we apply L2-regularization to the kernels of all types of layers (Conv2D, ConvLSTM2D, Dense). This increases the loss whenever the model's internal representation of the problem gets too complex, effectively improving its ability to generalize. In addition, we can and do most often use dropout after each layer. However, the exact regularization and dropout parameters vary with each tuning.
 
+
 \subsubsection{Model evaluation}
-listing of "meta" hyperparameters like sequence length, onset dates used, validation split etc.
+On our search for the best configuration to train our models with, we have performed 45 experiments for this final model architecture alone. The parameter space we were searching through can be split into two major categories: ``hyperparameters'', referring to the parameters that are typically heavily tuned to improve model performance (e.g., learning rate, dropout rates, kernel sizes, etc.), and a second category that is more fundamental, as it already influences the data when it is being preprocessed. The choice of datasets and features thereof, as well as the amount of data that is being fed to the model (e.g., the sequence length), are exemplary parameters that we assign to the latter category. An overview of such ``meta-hyperparameters'' is shown in \cref{tab:meta_parameters}.
 
 \begin{table}[h]
-  \begin{tabularx}{\linewidth}{|c|X|}
+  \centering
+  \begin{tabular}{|r|c|c|c|c|c|c|}
     \hline
-    Model & Architectural Key Points \\
+    \textbf{ERA-Features} & \multicolumn{2}{c|}{msl/r/t} & \multicolumn{2}{c|}{msl/r/t/u700/v700} & \multicolumn{2}{c|}{msl/r/t/u700/v700/u200} \\
     \hline
+    \textbf{Onset Dates} & \multicolumn{3}{c|}{IMD (1979-2017)} & \multicolumn{3}{c|}{Objective (1979-2007) + IMD (2007-2017)} \\
+    \hline
+    \textbf{Sequence Length} & 32 & 42 & 47 & 62 & 77 & 92 \\
+    \hline
+    \textbf{Sequence Offset} & 0-8 & 0-21 & 0-22 & 5-25 & 0-30 & 1-30 \\
+    \hline
+  \end{tabular}
+  \caption{``Meta-hyperparameters'' as they have been used in the final E4-class models. IMD onset dates until 2007 are extracted from \citet{Singh.2009} and concatenated with official IMD dates (2007-2017). Objective onset dates are extracted from the same source, but then also concatenated with IMD dates. The Sequence Offset specifies the range of offsets that is generated (meaning that for a value of 1-30, 30 examples are generated for each year). Details about the ERA-Features can be found in \cref{tab:era_features}. }
+  \label{tab:meta_parameters}
+\end{table}
 
+\paragraph{Training, validation and test set}
+The ERA-Interim dataset was split into three fixed sets for each of our experiments: a training, validation and test set. As can be seen in \cref{tab:train_test_split}, we originally started with only 3 years in the validation and 5 years in the test set (out of 38 years). When many models seemed to fit to the training set very well, we decided to reduce the size of the training set, extending both the validation and test set (to 4 and 8 years, respectively).
+
+Due to the fact that the ``objective'' onset dates stem from two different distributions (data that follows the objective definition is available until 2007, after which the dates come from the IMD), model performance was much worse when using the second split. After it was reduced to the years 1979-2005, the training set did no longer contain years based on the official IMD dates, while most of the validation and test set were based on these IMD dates. Unsurprisingly, the overall strongest overfitting was observed in the few experiments that were carried out this way. As a remedy to this problem, we devised a third split scheme with a more appropriate distribution of years, which was then used successfully for the remainder of the experiments.
+
+It needs to be noted that tuning models on one split scheme and changing this scheme afterwards could introduce bias, as years that the model might have trained on in a previous experiment could suddenly belong to the test set. It cannot be completely disqualified that some bias might be present in our later models due to these changes, even though we took care to introduce the least possible of it. It is generally best to devise one split scheme and apply this scheme to all experiments.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|r|c|c|c|}
     \hline
-  \end{tabularx}
-  \caption{}
+    & \textbf{Split 1} & \textbf{Split 2} & \textbf{Split 3} \\
+    \hline
+    \textbf{Validation} & 2010-2012 & 2006-2009 & 80/90/00/10/16 \\
+    \textbf{Test} & 2013-2017 & 2010-2017 & 85/95/03/04/05/14/15/17 \\
+    \hline
+    \textbf{Experiments} & 0-27 & 28-31 & 32-45 \\
+    \hline
+  \end{tabular}
+  \caption{The three different splits that have been applied to the dataset in the experiments for E4.}
+  \label{tab:train_test_split}
+\end{table}
+
+\paragraph{Evaluation schemes}
+Over the course of our experiments, we have used various combinations of ``meta-hyperparameters'', leading to what can be called \textit{evaluation schemes}. An evaluation scheme is a group of experiments that are based on the same high-level parameters but have been tuned using different hyperparameters. We can reduce the total of our 45 experiments to 17 such evaluation schemes, each consisting of one to nine experiments. The listing in \cref{tab:evaluation_schemes} shows these 17 evaluation schemes along with their configuration.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|r|c|c|c|c|c|}
+    \hline
+    \textbf{ID} & \textbf{ERA-Features} & \textbf{Onset Dates} & \textbf{Seq. Length} & \textbf{Seq. Offset}  & \textbf{\#} \\
+    \hline
+    EV01 & msl/r/t & IMD & 47 & 1-30 & 1 \\
+    \hline
+    EV02 & msl/r/t & IMD & 62 & 1-30 & 2 \\
+    \hline
+    EV03 & msl/r/t & IMD & 77 & 1-30 & 1 \\
+    \hline
+    EV04 & msl/r/t & Objective+IMD & 62 & 5-25 & 3 \\
+    \hline
+    EV05 & msl/r/t & Objective+IMD & 62 & 0-30 & 3 \\
+    \hline
+    EV06 & msl/r/t & Objective+IMD & 62 & 1-30 & 3 \\
+    \hline
+    EV07 & msl/r/t/u700/v700 & IMD & 62 & 1-30 & 9 \\
+    \hline
+    EV08 & msl/r/t/u700/v700 & Objective+IMD & 32 & 0-30 & 1 \\
+    \hline
+    EV09 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0-21 & 3 \\
+    \hline
+    EV10 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0-22 & 8 \\
+    \hline
+    EV11 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0-30 & 3 \\
+    \hline
+    EV12 & msl/r/t/u700/v700 & Objective+IMD & 62 & 1-30 & 2 \\
+    \hline
+    EV13 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0-8 & 3 \\
+    \hline
+    EV14 & msl/r/t/u700/v700 & Objective+IMD & 92 & 0-30 & 1 \\
+    \hline
+    EV15 & msl/r/t/u700/v700/u200 & Objective+IMD & 42 & 0-30 & 1 \\
+    \hline
+    EV16 & msl/r/t/u700/v700/u200 & Objective+IMD & 62 & 0-30 & 1 \\
+    \hline
+    \multicolumn{5}{|r|}{\textbf{TOTAL}} & 45 \\
+    \hline
+  \end{tabular}
+  \caption{Evaluation schemes for the E4-class models and the corresponding number of experiments, based on the ``meta-hyperparameters'' as shown in \cref{tab:meta_parameters}. Details about the ERA-features can be found in \cref{tab:era_features}}
   \label{tab:evaluation_schemes}
 \end{table}
 
+Based on the evaluation schemes we have previously defined,
 
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|r|c|c|c|c|}
+    \hline
+    \textbf{ID} & \textbf{10 epochs} & \textbf{30 epochs} & \textbf{50 epochs} & \textbf{100 epochs} & & \textbf{Final epoch} \\
+    \hline
+    EV1 & 48/132 & 37/85 & 30/87 & 15/72 & 11/68 (500) \\
+    \hline
+    EVx &  &  &  &  &  \\
+    \hline
+    EVx &  &  &  &  &  \\
+    \hline
+
+    \hline
+  \end{tabular}
+  \caption{Easdf}
+  \label{tab:evaluation_scheme_results}
+\end{table}
+
+
+
+Based on the
 
 \subsection{T1-T5 and E1-E3: Other model architectures}
 blabla
@@ -391,7 +510,7 @@ The experiments were run in different environments and are explicitly marked as 
     \hline
   \end{tabular}
   \caption{Runtime environments for the deep learning experiments.}
-  \label{tab:experimental_environments}
+\label{tab:experimental_environments}
 \end{table}
 
 Depending on the model version and other experimental conditions (aggregation of input data, number of features, number of sequences per year, etc.), the preprocessed input data can take up many gigabytes of RAM. Many combinations were not possible to run on the local GPU due to the comparatively low GPU-memory constraint. This was true especially when processing the raw, unaggregated dataset.
