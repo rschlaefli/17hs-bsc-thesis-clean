@@ -284,29 +284,6 @@ INPUT 00_abstract/abstract.tex
 INPUT 00_abstract/abstract.tex
 INPUT thesis.toc
 INPUT thesis.toc
-OUTPUT thesis.toc
-INPUT 01_introduction/introduction.tex
-INPUT 01_introduction/introduction.tex
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
-INPUT 99_appendix/img/area_overview.png
-INPUT ./99_appendix/img/area_overview.png
-INPUT ./99_appendix/img/area_overview.png
-INPUT ./99_appendix/img/area_overview.png
-INPUT ./99_appendix/img/area_overview.png
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb7t.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr7t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
 INPUT C:/Users/Roland/AppData/Roaming/MiKTeX/2.9/tex/latex/eulervm/uzeur.fd
@@ -356,6 +333,29 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/latex/psnfss/ts1ppl.fd
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
+OUTPUT thesis.toc
+INPUT 01_introduction/introduction.tex
+INPUT 01_introduction/introduction.tex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
+INPUT 99_appendix/img/area_overview.png
+INPUT ./99_appendix/img/area_overview.png
+INPUT ./99_appendix/img/area_overview.png
+INPUT ./99_appendix/img/area_overview.png
+INPUT ./99_appendix/img/area_overview.png
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb7t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr7t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
@@ -521,8 +521,6 @@ INPUT ./99_appendix/img/event_sync_0.75-0.9_MAM_both.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_MAM_both.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_MAM_both.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_MAM_both.png
-INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
-INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT 99_appendix/img/event_sync_0.75-0.9_JJAS_both.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_JJAS_both.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_JJAS_both.png
@@ -540,6 +538,8 @@ INPUT ./99_appendix/img/results_stolbova.png
 INPUT ./99_appendix/img/results_stolbova.png
 INPUT 04_part2/part2.tex
 INPUT 04_part2/part2.tex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT 99_appendix/img/E4_preprocessing.png
 INPUT ./99_appendix/img/E4_preprocessing.png
 INPUT ./99_appendix/img/E4_preprocessing.png
