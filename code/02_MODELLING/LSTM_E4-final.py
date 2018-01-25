@@ -332,7 +332,7 @@ if TUNING['years_dev']:
     assert round(X_dev[:, :, :, :, 0].mean()) == 0
 
 # build a model based on the above tunings
-for iteration in range(3):
+for iteration in range(3, 5):
     version_id = f'{VERSION}-{iteration}_seq{TUNING["prediction_sequence"]}'
     cache_id = f'{INDEX}-{iteration}'
 
