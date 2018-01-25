@@ -10,17 +10,17 @@ As we have already seen, the onset of the ISM plays a very important role in the
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{|r|l|}
-    \hline
+  \begin{tabular}{rl}
+    \toprule
     \textbf{ID} & \textbf{Description} \\
-    \hline
+    \midrule
     \textbf{msl} & Mean-Sea Level Pressure \\
     \textbf{r} & Relative Humidity at 1000hPa \\
     \textbf{t} & Temperature at 1000hPa \\
     \textbf{u700} & U-Component of Wind at 700hPa \\
     \textbf{v700} & V-Component of Wind at 700hPa \\
     \textbf{u200} & U-Component of Wind at 200hPa \\
-    \hline
+    \bottomrule
   \end{tabular}
   \caption{List of features from ERA-Interim that are used in this work.}
   \label{tab:era_features}
@@ -69,7 +69,7 @@ That being said, we would probably not have gotten to our final models without h
 \label{sst:final_model}
 The neural network architectures and hyperparameter tunings that we have found to work best during the course of our experiments are based on two main ingredients: the ERA-Interim dataset with several of its features and multiple stacked convolutional recurrent layers (ConvLSTM2D). We have already introduced these
 
-Our models are all based on the latest Keras 2.0 and Tensorflow 1.4 Python libraries, which have greatly simplified the creation of our models. At its core, Keras already includes ConvLSTM2D functionality (along with an appropriate default tuning), which meant that we did not need to implement any layers ourselves (be it in Keras or Tensorflow).
+Our models are all based on the latest Keras 2.0 and Tensorflow 1.4 Python libraries, which have greatly simplified the creation of our models.
 
 [TODO: extend]
 
@@ -114,7 +114,7 @@ On our search for the best configuration to train our models with, we have perfo
   \centering
   \begin{tabular}{|r|c|c|c|c|c|c|}
     \hline
-    \textbf{ERA-Features} & \multicolumn{2}{c|}{msl/r/t} & \multicolumn{2}{c|}{msl/r/t/u700/v700} & \multicolumn{2}{c|}{msl/r/t/u700/v700/u200} \\
+    \textbf{ERA-Features} & \multicolumn{1}{c|}{msl/r/t} & \multicolumn{2}{c|}{msl/r/t/u700/v700} & \multicolumn{3}{c|}{msl/r/t/u700/v700/u200} \\
     \hline
     \textbf{Onset Dates} & \multicolumn{3}{c|}{IMD (1979-2017)} & \multicolumn{3}{c|}{Objective (1979-2007) + IMD (2007-2017)} \\
     \hline
@@ -136,96 +136,113 @@ It needs to be noted that tuning models on one split scheme and changing this sc
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{|r|c|c|c|}
-    \hline
+  \begin{tabular}{rccc}
+    \toprule
     & \textbf{Split 1} & \textbf{Split 2} & \textbf{Split 3} \\
-    \hline
+    \midrule
     \textbf{Validation} & 2010-2012 & 2006-2009 & 80/90/00/10/16 \\
     \textbf{Test} & 2013-2017 & 2010-2017 & 85/95/03/04/05/14/15/17 \\
-    \hline
+    \midrule
     \textbf{Experiments} & 0-27 & 28-31 & 32-45 \\
-    \hline
+    \bottomrule
   \end{tabular}
   \caption{The three different splits that have been applied to the dataset in the experiments for E4.}
   \label{tab:train_test_split}
 \end{table}
 
 \paragraph{Evaluation schemes}
-Over the course of our experiments, we have used various combinations of ``meta-hyperparameters'', leading to what can be called \textit{evaluation schemes}. An evaluation scheme is a group of experiments that are based on the same high-level parameters but have been tuned using different hyperparameters. We can reduce the total of our 45 experiments to 17 such evaluation schemes, each consisting of one to nine experiments. The listing in \cref{tab:evaluation_schemes} shows these 17 evaluation schemes along with their configuration.
+Over the course of our experiments, we have used various combinations of the previously described ``meta-hyperparameters'', leading to what can be called \textit{evaluation schemes}. An evaluation scheme is a group of experiments that are based on the same high-level parameters but have been tuned using different hyperparameters. We can reduce the total of our 45 experiments to 17 such evaluation schemes, each consisting of up to nine experiments. The listing in \cref{tab:evaluation_schemes} shows these 17 evaluation schemes along with their configuration. For each evaluation scheme, we therein show the features from ERA-Interim that its experiments were based on, the source of onset datasets used, the number of days in input sequence, as well as the number of training examples per year and the minimum offset of these training examples.
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{|r|c|c|c|c|c|}
-    \hline
+  \begin{tabular}{cccccc}
+    \toprule
     \textbf{ID} & \textbf{ERA-Features} & \textbf{Onset Dates} & \textbf{Seq. Length} & \textbf{Seq. Offset}  & \textbf{\#} \\
-    \hline
-    EV01 & msl/r/t & IMD & 47 & 1-30 & 1 \\
-    \hline
-    EV02 & msl/r/t & IMD & 62 & 1-30 & 2 \\
-    \hline
-    EV03 & msl/r/t & IMD & 77 & 1-30 & 1 \\
-    \hline
-    EV04 & msl/r/t & Objective+IMD & 62 & 5-25 & 3 \\
-    \hline
-    EV05 & msl/r/t & Objective+IMD & 62 & 0-30 & 3 \\
-    \hline
-    EV06 & msl/r/t & Objective+IMD & 62 & 1-30 & 3 \\
-    \hline
-    EV07 & msl/r/t/u700/v700 & IMD & 62 & 1-30 & 9 \\
-    \hline
-    EV08 & msl/r/t/u700/v700 & Objective+IMD & 32 & 0-30 & 1 \\
-    \hline
-    EV09 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0-21 & 3 \\
-    \hline
-    EV10 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0-22 & 8 \\
-    \hline
-    EV11 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0-30 & 3 \\
-    \hline
-    EV12 & msl/r/t/u700/v700 & Objective+IMD & 62 & 1-30 & 2 \\
-    \hline
-    EV13 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0-8 & 3 \\
-    \hline
-    EV14 & msl/r/t/u700/v700 & Objective+IMD & 92 & 0-30 & 1 \\
-    \hline
-    EV15 & msl/r/t/u700/v700/u200 & Objective+IMD & 42 & 0-30 & 1 \\
-    \hline
-    EV16 & msl/r/t/u700/v700/u200 & Objective+IMD & 62 & 0-30 & 1 \\
-    \hline
-    \multicolumn{5}{|r|}{\textbf{TOTAL}} & 45 \\
-    \hline
+    \midrule
+    EV01 & msl/r/t & IMD & 47 & 1/30 & 1 \\
+    EV02 & msl/r/t & IMD & 62 & 1/30 & 2 \\
+    EV03 & msl/r/t & IMD & 77 & 1/30 & 1 \\
+    EV04 & msl/r/t & Objective+IMD & 62 & 5/25 & 3 \\
+    EV05 & msl/r/t & Objective+IMD & 62 & 0/30 & 3 \\
+    EV06 & msl/r/t & Objective+IMD & 62 & 1/30 & 3 \\
+    EV07 & msl/r/t/u700/v700 & IMD & 62 & 1/30 & 9 \\
+    EV08 & msl/r/t/u700/v700 & Objective+IMD & 32 & 0/30 & 1 \\
+    EV09 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0/21 & 3 \\
+    EV10 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0/22 & 8 \\
+    EV11 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0/30 & 3 \\
+    EV12 & msl/r/t/u700/v700 & Objective+IMD & 62 & 1/30 & 2 \\
+    EV13 & msl/r/t/u700/v700 & Objective+IMD & 62 & 0/8 & 3 \\
+    EV14 & msl/r/t/u700/v700 & Objective+IMD & 92 & 0/30 & 1 \\
+    EV15 & msl/r/t/u700/v700/u200 & Objective+IMD & 42 & 0/30 & 1 \\
+    EV16 & msl/r/t/u700/v700/u200 & Objective+IMD & 62 & 0/30 & 1 \\
+    \midrule
+    \multicolumn{5}{r}{\textbf{Total number of experiments}} & 45 \\
+    \bottomrule
   \end{tabular}
   \caption{Evaluation schemes for the E4-class models and the corresponding number of experiments, based on the ``meta-hyperparameters'' as shown in \cref{tab:meta_parameters}. Details about the ERA-features can be found in \cref{tab:era_features}}
   \label{tab:evaluation_schemes}
 \end{table}
 
-Based on the evaluation schemes we have previously defined,
-
+\clearpage
+\subsubsection{Evaluation results}
+To provide a better overview about the outcome of our experiments, we reduce the results presented to only the best experiment of a given evaluation scheme (i.e., its best performing ``hyperparameter tuning''). \cref{tab:evaluation_scheme_results} shows the loss and validation loss after some key epochs as well as after the overall final epoch. Notice that loss and validation loss measures are based on the mean-squared error but tend to be higher due to the regularization that is additionally applied.
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{|r|c|c|c|c|}
-    \hline
-    \textbf{ID} & \textbf{10 epochs} & \textbf{30 epochs} & \textbf{50 epochs} & \textbf{100 epochs} & & \textbf{Final epoch} \\
-    \hline
-    EV1 & 48/132 & 37/85 & 30/87 & 15/72 & 11/68 (500) \\
-    \hline
-    EVx &  &  &  &  &  \\
-    \hline
-    EVx &  &  &  &  &  \\
-    \hline
-
-    \hline
+  \begin{tabular}{crrrrrrrrrrr}
+    \toprule
+    \textbf{Epoch} & \multicolumn{2}{c}{\textbf{10}} & \multicolumn{2}{c}{\textbf{30}} & \multicolumn{2}{c}{\textbf{50}} & \multicolumn{2}{c}{\textbf{100}} & \multicolumn{3}{c}{\textbf{Final}} \\
+    & \textbf{L} & \textbf{VL} & \textbf{L} & \textbf{VL} & \textbf{L} & \textbf{VL} & \textbf{L} & \textbf{VL} & \textbf{L} & \textbf{VL} & \textbf{\#} \\
+    \midrule
+    \textbf{EV01} & 48 & 132 & 37 & 85 & 30 & 87 & 15 & 72 & 11 & 68 & 500 \\
+    \textbf{EV02} & 43 & 92 & 33 & 70 & 25 & 73 & 13 & 57 & 6 & 63 & 500 \\
+    \textbf{EV03} & 54 & 76 & 35 & 63 & 24 & 87 & 14 & 96 & 6 & 69 & 500 \\
+    \textbf{EV04} & 43 & 73 & 32 & 40 & 24 & 36 & 13 & 56 & 6 & 17 & 500 \\
+    \textbf{EV05} & 69 & 86 & 41 & 54 & 25 & 45 & 17 & 26 & 12 & 24 & 500 \\
+    \textbf{EV06} & 41 & 59 & 32 & 58 & 24 & 58 & 14 & 35 & 5 & 33 & 500 \\
+    \textbf{EV07} & 72 & 125	&	52 & 92	&	39 & 66 &	18 & 52 & 10 & 38 & 500 \\
+    \textbf{EV08} & 82 & 225	&	50 & 137 & 27 & 112	&	13 & 73 & 7 & 66 & 500 \\
+    \textbf{EV09} & 41 & 38 & 41 & 39 & 40 & 37 & 39 & 38 & 38 & 37 & 227 \\
+    \textbf{EV10} & 63 & 76 & 37 & 38 & 20 & 46 & 9 & 16 & 7 & 20 & 150 \\
+    \textbf{EV11} & 61 & 65 & 37 & 63 & 23 & 30 & 19 & 49 & 19 & 26 & 300 \\
+    \textbf{EV12} & 56 & 105	&	41 & 99	&	27 & 80	&	18 & 44 & 10 & 49 & 500 \\
+    \textbf{EV13} & 6 & 10	&	7 & 5	&	7 & 5	&	6 & 5 & 6 & 5 & 117 \\
+    \textbf{EV14} & 199 & 246 & 95 & 141 & 103 & 212 & 87 & 77 & 90 & 898 & 134 \\
+    \textbf{EV15} & 196 & 263 & 92 & 137	&	38 & 77	&	23 & 58 & 14 & 61 & 300 \\
+    \textbf{EV16} & 124 & 139 & 84 & 268	&	53 & 194 & 31 & 147 & 9 & 144 & 300 \\
+    \bottomrule
   \end{tabular}
-  \caption{Easdf}
+  \caption{Loss (L) and validation loss (VL) after a given number of epochs for the best experiment of each evaluation scheme. The best experiment is therein defined as whichever experiment has the lowest validation loss after its final epoch. It has to be taken into account that the range the offset can take on strongly influences the magnitude of the losses: in EV13, we had only 8 training examples per year, meaning that predictions should lie between 0 and 7 (a validation loss of 5 is thus very bad).}
   \label{tab:evaluation_scheme_results}
 \end{table}
 
+During the first 45 experiments, we have not applied any automated early stopping procedures. These procedures are often used to interrupt the training process once the performance stops improving (or once the difference between loss and validation loss increases again). Some experiments have, however, been interrupted manually, once it became clear that their performance would most certainly only get worse (specifically the experiments in EV09 and EV14).
+
+\paragraph{Final evaluation}
+After we had found some model configurations that seemed to perform well and completed the primary tuning phase, we wanted to finally assess the performance of our models and reduce the variance in the test results. We thus performed a further round of evaluation where we retrained the best-performing models several times each and averaged their predictions. More specifically, we chose the five experiments that had the lowest validation loss (out of the experiments that used Split 3). These five final experiments belonged to the EV02, EV06, EV07 and EV12 evaluation schemes, whereof both experiments in EV02 were amongst the top five.
+
+The final evaluation was then performed as follows: first, the validation set was recombined with the training set, as it was no longer needed for tuning the models. This step allowed the final models to train on more data, potentially resulting in more representative results. The fixed validation set was instead replaced with a random 20\% holdout set during training (changing every epoch). Furthermore, contrary to the previous experiments, we applied early stopping with a patience of 130 epochs, meaning that if the validation loss did not decrease during more than 130 epochs, the training process was interrupted and the models evaluated. The experiments could potentially run up to 500 but most were stopped early after around 200-300 epochs.
+
+After the successful completion of the final training rounds (consisting of 25 experiments), the test results of repetitious trainings were averaged, yielding a final set of test losses. These losses exhibit some interesting properties, as we will show in the remainder of this section.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/prediction_years}
+  \caption{Exemplary model architecture of the E4 class.}
+  \label{fig:e4_asdasd}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/prediction_years}
+  \caption{Exemplary model architecture of the E4 class.}
+  \label{fig:e4_asdasd}
+\end{figure}
 
 
-Based on the
 
 \subsection{T1-T5 and E1-E3: Other model architectures}
-blabla
+Next to the well performing
 
 
 we have evaluated many different neural network architectures and tunings during the creation of this work. This section provides a high-level overview of these architectures
