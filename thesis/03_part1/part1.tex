@@ -383,7 +383,9 @@ A further performance consideration is the fact that the event synchronization c
 \label{sst:building_climate_network}
 Based on \cref{sst:climate_networks}, the next step after the computation of a full event synchronization matrix is the transformation of said matrix into an adjacency matrix, allowing the creation of a network and its analysis using various methods and libraries. This transformation is a simple thresholding of the matrix using a specified percentile.
 
-We further expand upon the work of \citet{Stolbova.2015} in two major ways: firstly, we build weighted networks in addition to the unweighted networks that have already been explored. To build a weighted network, values above the threshold are left as is, leading to links that are weighted with their corresponding synchronization measure. Contrarily, all values above the threshold are uniformly set to one when building an unweighted network. As a second addition, we build a directed network, meaning that we use an asymmetrical adjacency matrix based directly on the number of synchronous events (instead of combining both counts into a single synchronization coefficient). A directed network is  much more appropriate for an analysis using PageRank, as the results of PageRank on an undirected network are relatively similar to the degree of such a network. The creation of a climate network based on a synchronization matrix, as well as the calculation of the degree, betweenness and PageRank for all nodes in the network, are a matter of a few lines of code as shown in \cref{lst:climate_networks}.
+We further expand upon the work of \citet{Stolbova.2015} in two major ways: firstly, we build weighted networks in addition to the unweighted networks that have already been explored. To build a weighted network, values above the threshold are left as is, leading to links that are weighted with their corresponding synchronization measure. Contrarily, all values above the threshold are uniformly set to one when building an unweighted network. As a second addition, we build a directed network, meaning that we use an asymmetrical adjacency matrix based directly on the number of synchronous events (instead of combining both counts into a single synchronization coefficient). A directed network is  much more appropriate for an analysis using PageRank, as the results of PageRank on an undirected network are relatively similar to the degree of such a network.
+
+The creation of a climate network based on a synchronization matrix, as well as the calculation of the degree, betweenness and PageRank for all nodes in the network, are a matter of a few lines of code as shown in \cref{lst:climate_networks}. Once the climate network computations have successfully finished, we are ready to visualize and interpret the results, which will be the major focus of the next section.
 
 \begin{listing}[h]
   \begin{minted}[mathescape,
@@ -413,17 +415,16 @@ We further expand upon the work of \citet{Stolbova.2015} in two major ways: firs
   \label{lst:climate_networks}
 \end{listing}
 
-
 \clearpage
 \section{Results \& Evaluation}
 \label{st:event_sync_results}
-This sections presents the results of applying what we have described in \cref{st:event_sync_implementation} to the TRMM dataset, more specifically the pre-monsoon, monsoon and post-monsoon seasons as extracted from TRMM. For each season, we show the results of degree, betweenness and PageRank measures in their weighted and unweighted variation. The presented PageRank results are based on the corresponding asymmetrical synchronization count matrices (directed networks). Knowing about the fundamental factors that influence the ISM (as introduced in \cref{c:ism_overview}), we give our thoughts about the patterns that can be seen in the results and how they could be connected to the
+This sections presents the results of applying what we have described in \cref{st:event_sync_implementation} to the TRMM dataset, more specifically the pre-monsoon, monsoon and post-monsoon seasons as extracted from TRMM. For each season, we show the results of degree, betweenness and PageRank measures in their weighted variation\footnote{The unweighted versions can be found in \cref{apx:event_sync}. There is, however, only little difference between them.}. The presented PageRank results are based on the corresponding asymmetrical synchronization count matrices (directed networks). Knowing about the fundamental factors that influence the ISM (as introduced in \cref{c:ism_overview}), we give our thoughts about the patterns that can be seen in the results and how they could be connected to the fndamental behavior of the ISM.
 
 \subsection{Dataset}
 The results presented in this section are based on the TRMM dataset as introduced in \cref{st:trmm_dataset}. We have extracted data for the years 1998-2016, which corresponds to all years that were fully available at the time (March-December). The area included in the dataset is cropped to an extended overview over the Indian subcontinent (4.125-40.625N, 61.125-97.625E). Aggregation of the native {0.25\degree} resolution to a lower {0.75\degree} resolution yields grid borders equal to 4.375-40.375N, 61.375-97.375E (as shown in \cref{fig:trmm_grid}). The dataset was aggregated to reduce the computational effort required for event synchronization and climate network calculations. Going from {0.25\degree} to {0.75\degree} resolution effectively reduced the dimensions of the event synchronization matrices from 21609x21609 to around 2401x2401 (81x). The reduced resolution further ensures compatibility with the ERA-Interim dataset used later on.
 
 \subsection{Pre-monsoon season (MAM)}
-The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We therein show the weighted network measures for a climate network thresholded by both its 95th and 90th percentile. The unweighted versions of all visualizations can be found in [TODO: someappendic].
+The results of applying our algorithms to the pre-monsoon season, namely the months of March, April and May (MAM), are shown in \cref{fig:results_mam}. We therein show the weighted network measures for a climate network thresholded by both its 95th and 90th percentile. The unweighted versions of all visualizations can be found in \cref{apx:event_sync}.
 
 \begin{figure}[h]
   \centering
@@ -461,7 +462,7 @@ The regions of strong betweenness flanking the Western Ghats could be explained 
 As it already has in the pre-monsoon season, the PageRank algorithm seems to attribute great importance to the Tibetan Plateau. The Tibetan Plateau is, in fact, one of the major drivers of the ISM, as its intense heating during the summer months and the resulting winds bring high amounts of moisture onto the subcontinent. With that being said, the plateau itself doesn't receive as much rainfall as many other parts of India, as we can see in \cref{apx:trmm_prec}. The most probable reason for it being ranked as high is that it is strongly connected to the important region over North Pakistan.
 
 \subsection{Post-monsoon season (OND)}
-Contrary to the pre-monsoon season, the months of the post-monsoon season (OND, October-December) can be thought of as the Indian winter months. During these winter months, the ISM retreats completely, giving lead to the north-east monsoon towards the end of the year. The patterns as shown in \cref{fig:results_ond} seem to largely track the retreat of the ISM.
+Contrary to the pre-monsoon season, the months of the post-monsoon season (OND, October-December) can be thought of as the Indian winter months. During these winter months, the ISM retreats completely, giving lead to the north-east monsoon towards the end of the year. The patterns as shown in \cref{fig:results_ond} seem to largely track this retreat of the ISM.
 
 \begin{figure}[h]
   \centering
@@ -470,9 +471,9 @@ Contrary to the pre-monsoon season, the months of the post-monsoon season (OND, 
   \label{fig:results_ond}
 \end{figure}
 
- More specifically, a single area of very high degree encompasses entire central and north-eastern India, starting over the Arabian Sea (WG) and ranging well into Bangladesh. The degree in this area is at its highest over Nepal close to the Himalayas. The area further extends over the Tibetan Plateau (TP), although with less strength. Similarly, areas of high betweenness are located over Nepal, at the coast of the Arabian Sea, over North Pakistan (NP) and on the Tibetan Plateau (TP). The PageRank algorithm again seems to rank the Tibetan Plateau region as more important than the other two measures.
+More specifically, a single area of very high degree encompasses entire central and north-eastern India, starting over the Arabian Sea (WG) and ranging well into Bangladesh. The degree in this area is at its highest over Nepal close to the Himalayas. The area further extends over the Tibetan Plateau (TP), although with less strength. Similarly, areas of high betweenness are located over Nepal, at the coast of the Arabian Sea, over North Pakistan (NP) and on the Tibetan Plateau (TP). The PageRank algorithm again seems to rank the Tibetan Plateau region as more important than the other two measures.
 
- [TODO: finalize interpretation]
+We mainly attribute the pattern of high degree and PageRank to the retreat of the ISM as well as the following buildup-phase of the north-east monsoon. [TODO: some more interpretation]
 
 \subsection{Intercomparison with \citet{Stolbova.2015}}
 So far, we have strongly based our climate network analysis on the work of \citet{Stolbova.2015}, additionally evaluating PageRank measures and weighted networks. This section shows the results as they have been presented in the referred work and compares them to the results we have obtained from our analysis. Next to giving an indication about the validity of our approach, this might also show new properties that have only recently developed, as we have had access to four additional years of the TRMM dataset.
@@ -488,12 +489,11 @@ The visualizations as shown in \cref{fig:results_stolbova} are obviously much mo
 
 Comparing the results for the post-monsoon season, we find that the discrepancies are much more significant. While the most central locations are clustered around the Himalayas in both \cref{fig:results_ond} and \cref{fig:results_stolbova}, the area of high degree extends much farther to the west in our results. Additionally, the results as shown in \cref{fig:results_stolbova} seem to be more concentrated to the Himalaya region and extend far up on the Tibetan Plateau.
 
-We partly attribute the observed discrepancies to one important factor: we have used a much lower resolution to be able to speed up computation of the synchronization matrix and climate networks. It is obvious that a higher resolution leads to much more detailed results. However, the full synchronization matrix for a native {0.25\degree} resolution restricted to our area has dimensions of 21609x21609, making traversal of the matrix a computationally very complex effort (compared to the 2401x2401 matrix using {0.75\degree} resolution). Furthermore, the choice of resolution probably also has an impact on the general structure of a network, as a {0.25\degree} resolution results in a matrix that is much more sparse than it is after aggregation. And lastly, we can see that
-
-[TODO: finalize this]
+We mainly attribute the observed discrepancies to one important factor: we have used a lower resolution to be able to speed up computation of the synchronization matrix and climate networks. It is obvious that a higher resolution leads to much more detailed results. However, the full synchronization matrix for a native {0.25\degree} resolution restricted to our area has dimensions of 21609x21609, making traversal of the matrix a computationally very complex effort (compared to the 2401x2401 matrix using {0.75\degree} resolution). Furthermore, the choice of resolution probably also has an impact on the general structure of a network, as a {0.25\degree} resolution results in a matrix that is much more sparse than it is after aggregation.
 
 \section{Conclusion}
 \label{st:event_sync_conclusion}
-[TODO: conclude this chapter (summary, main takeaways)]
+[TODO: finalize]
 
+When computing climate networks as shown in this chapter, the primary goal one has in mind is to analyze the spatial distribution of extreme rainfall and, based thereon, to potentially learn about patterns that might be useful for a more thorough understanding of the development of such events. Knowing how extreme events evolve and how an interconnection between different regions on the Indian subcontinent could influence their development can be of great use in predictive efforts. Successful predictions could help prepare for or even prevent the damage that is regularly caused by extreme rainfall. The methodology presented in \citet{Stolbova.2015} and our work could serve as a foundation for future such predictive approaches.
 

@@ -1,0 +1,85 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{} start building a sequential model}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{Sequential}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} add a first convolutional LSTM layer}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}
+  \PYG{n}{ConvLSTM2D}\PYG{p}{(}
+    \PYG{n}{filters}\PYG{o}{=}\PYG{n}{num\PYGZus{}filters}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],}
+    \PYG{n}{kernel\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{n}{kernel\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{kernel\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]),}
+    \PYG{n}{activation}\PYG{o}{=}\PYG{n}{recurrent\PYGZus{}activation}\PYG{p}{,}
+    \PYG{n}{padding}\PYG{o}{=}\PYG{n}{padding}\PYG{p}{,}
+    \PYG{n}{input\PYGZus{}shape}\PYG{o}{=}\PYG{n}{input\PYGZus{}shape}\PYG{p}{,}
+    \PYG{n}{return\PYGZus{}sequences}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{))}
+\PYG{k}{if} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{MaxPooling3D}\PYG{p}{(}\PYG{n}{pool\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])))}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+\PYG{k}{if} \PYG{n}{dropout\PYGZus{}conv}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dropout}\PYG{p}{(}\PYG{n}{dropout\PYGZus{}conv}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} add a second convolutional LSTM layer}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}
+  \PYG{n}{ConvLSTM2D}\PYG{p}{(}
+    \PYG{n}{filters}\PYG{o}{=}\PYG{n}{num\PYGZus{}filters}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],}
+    \PYG{n}{kernel\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{n}{kernel\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{kernel\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]),}
+    \PYG{n}{activation}\PYG{o}{=}\PYG{n}{recurrent\PYGZus{}activation}\PYG{p}{,}
+    \PYG{n}{padding}\PYG{o}{=}\PYG{n}{padding}\PYG{p}{,}
+    \PYG{n}{return\PYGZus{}sequences}\PYG{o}{=}\PYG{n+nb+bp}{True}\PYG{p}{))}
+\PYG{k}{if} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{MaxPooling3D}\PYG{p}{(}\PYG{n}{pool\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])))}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+\PYG{k}{if} \PYG{n}{dropout\PYGZus{}conv}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dropout}\PYG{p}{(}\PYG{n}{dropout\PYGZus{}conv}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} add a third convolutional LSTM layer}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}
+  \PYG{n}{ConvLSTM2D}\PYG{p}{(}
+    \PYG{n}{filters}\PYG{o}{=}\PYG{n}{num\PYGZus{}filters}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{],}
+    \PYG{n}{kernel\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{n}{kernel\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{],} \PYG{n}{kernel\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]),}
+    \PYG{n}{activation}\PYG{o}{=}\PYG{n}{recurrent\PYGZus{}activation}\PYG{p}{,}
+    \PYG{n}{padding}\PYG{o}{=}\PYG{n}{padding}\PYG{p}{,}
+    \PYG{n}{return\PYGZus{}sequences}\PYG{o}{=}\PYG{n+nb+bp}{False}\PYG{p}{))}
+\PYG{k}{if} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{n}{pool\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{],} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{])))}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+\PYG{k}{if} \PYG{n}{dropout\PYGZus{}conv}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dropout}\PYG{p}{(}\PYG{n}{dropout\PYGZus{}conv}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} add max pooling before flattening to reduce the dimensionality}
+\PYG{k}{if} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}
+    \PYG{n}{MaxPooling2D}\PYG{p}{(}
+      \PYG{n}{pool\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{],} \PYG{n}{pool\PYGZus{}dims}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{]),} \PYG{n}{padding}\PYG{o}{=}\PYG{n}{padding}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} flatten to make data digestible for dense layers}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Flatten}\PYG{p}{())}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+
+\PYG{c+c1}{\PYGZsh{} first dense layer}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dense}\PYG{p}{(}\PYG{n}{dense\PYGZus{}nodes}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{n}{dense\PYGZus{}activation}\PYG{p}{))}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+\PYG{k}{if} \PYG{n}{dropout}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dropout}\PYG{p}{(}\PYG{n}{dropout}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} second dense layer}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dense}\PYG{p}{(}\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{dense\PYGZus{}nodes} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{n}{dense\PYGZus{}activation}\PYG{p}{))}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+\PYG{k}{if} \PYG{n}{dropout}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dropout}\PYG{p}{(}\PYG{n}{dropout}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} third dense layer}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}
+  \PYG{n}{Dense}\PYG{p}{(}\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{dense\PYGZus{}nodes} \PYG{o}{/} \PYG{l+m+mi}{4}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{n}{dense\PYGZus{}activation}\PYG{p}{))}
+    \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+\PYG{k}{if} \PYG{n}{dropout}\PYG{p}{:}
+  \PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dropout}\PYG{p}{(}\PYG{n}{dropout}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} single linear neuron for numerical prediction}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} compile the model}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}
+  \PYG{n}{loss}\PYG{o}{=}\PYG{n}{numerical\PYGZus{}loss}\PYG{p}{,}
+  \PYG{n}{optimizer}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}rmsprop\PYGZsq{}}\PYG{p}{,}
+  \PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}mean\PYGZus{}squared\PYGZus{}error\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}mean\PYGZus{}absolute\PYGZus{}error\PYGZsq{}}\PYG{p}{])}
+\end{Verbatim}

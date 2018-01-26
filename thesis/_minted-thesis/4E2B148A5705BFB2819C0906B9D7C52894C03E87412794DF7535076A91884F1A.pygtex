@@ -1,0 +1,41 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} start building a sequential model}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{Sequential}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} add a ConvLSTM2D layer}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}
+  \PYG{n}{ConvLSTM2D}\PYG{p}{(}
+    \PYG{n}{filters}\PYG{o}{=}\PYG{l+m+mi}{16}\PYG{p}{,}
+    \PYG{n}{kernel\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{7}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{),}
+    \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}tanh\PYGZsq{}}\PYG{p}{,}
+    \PYG{n}{recurrent\PYGZus{}activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}hard\PYGZus{}sigmoid\PYGZsq{}}\PYG{p}{,}
+    \PYG{n}{kernel\PYGZus{}regularizer}\PYG{o}{=}\PYG{n}{regularizers}\PYG{o}{.}\PYG{n}{l2}\PYG{p}{(}\PYG{l+m+mf}{0.02}\PYG{p}{),}
+    \PYG{n}{recurrent\PYGZus{}regularizer}\PYG{o}{=}\PYG{n}{regularizers}\PYG{o}{.}\PYG{n}{l2}\PYG{p}{(}\PYG{l+m+mf}{0.02}\PYG{p}{)))}
+
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{MaxPooling3D}\PYG{p}{(}\PYG{n}{pool\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)))}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dropout}\PYG{p}{(}\PYG{l+m+mf}{0.6}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} ... repeat with 5x5/8 and 3x3/4}
+
+\PYG{c+c1}{\PYGZsh{} flatten to make data digestible for dense layers}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Flatten}\PYG{p}{())}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+
+\PYG{c+c1}{\PYGZsh{} add a new dense layer}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}
+  \PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1024}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{,} \PYG{n}{kernel\PYGZus{}regularizer}\PYG{o}{=}\PYG{n}{regularizers}\PYG{o}{.}\PYG{n}{l2}\PYG{p}{(}\PYG{l+m+mf}{0.02}\PYG{p}{)))}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{BatchNormalization}\PYG{p}{())}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dropout}\PYG{p}{(}\PYG{l+m+mf}{0.6}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} ... repeat with 512 and 256 nodes}
+
+\PYG{c+c1}{\PYGZsh{} final dense layer for numerical prediction}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} compile the model}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}
+  \PYG{n}{loss}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}mean\PYGZus{}squared\PYGZus{}error\PYGZsq{}}\PYG{p}{,}
+  \PYG{n}{optimizer}\PYG{o}{=}\PYG{n}{RMSprop}\PYG{p}{(}\PYG{n}{lr}\PYG{o}{=}\PYG{l+m+mf}{0.01}\PYG{p}{),}
+  \PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}mean\PYGZus{}squared\PYGZus{}error\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}mean\PYGZus{}absolute\PYGZus{}error\PYGZsq{}}\PYG{p}{])}
+\end{Verbatim}
