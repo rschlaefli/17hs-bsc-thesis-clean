@@ -184,7 +184,7 @@ Over the course of our experiments, we have used various combinations of the pre
 \end{table}
 
 \clearpage
-\subsubsection{Evaluation results}
+\subsubsection{Intermediary evaluation results}
 To provide a better overview about the outcome of our experiments, we reduce the results presented to only the best experiment of a given evaluation scheme (i.e., its best performing ``hyperparameter tuning''). \cref{tab:evaluation_scheme_results} shows the loss and validation loss after some key epochs as well as after the overall final epoch. Notice that loss and validation loss measures are based on the mean-squared error but tend to be higher due to the regularization that is additionally applied.
 
 \begin{table}[h]
@@ -218,27 +218,79 @@ To provide a better overview about the outcome of our experiments, we reduce the
 
 During the first 45 experiments, we have not applied any automated early stopping procedures. These procedures are often used to interrupt the training process once the performance stops improving (or once the difference between loss and validation loss increases again). Some experiments have, however, been interrupted manually, once it became clear that their performance would most certainly only get worse (specifically the experiments in EV09 and EV14).
 
-\paragraph{Final evaluation}
+\subsubsection{Final evaluation}
 After we had found some model configurations that seemed to perform well and completed the primary tuning phase, we wanted to finally assess the performance of our models and reduce the variance in the test results. We thus performed a further round of evaluation where we retrained the best-performing models several times each and averaged their predictions. More specifically, we chose the five experiments that had the lowest validation loss (out of the experiments that used Split 3). These five final experiments belonged to the EV02, EV06, EV07 and EV12 evaluation schemes, whereof both experiments in EV02 were amongst the top five.
 
-The final evaluation was then performed as follows: first, the validation set was recombined with the training set, as it was no longer needed for tuning the models. This step allowed the final models to train on more data, potentially resulting in more representative results. The fixed validation set was instead replaced with a random 20\% holdout set during training (changing every epoch). Furthermore, contrary to the previous experiments, we applied early stopping with a patience of 130 epochs, meaning that if the validation loss did not decrease during more than 130 epochs, the training process was interrupted and the models evaluated. The experiments could potentially run up to 500 but most were stopped early after around 200-300 epochs.
+\paragraph{Evaluation procedure}
+The final evaluations were performed as follows: first, the validation set was recombined with the training set, as it was no longer needed for tuning. This step allowed the final models to train on more data, potentially resulting in more representative results. The fixed validation set was instead replaced with a random 20\% holdout set during training (changing every epoch). The five final model configurations were then trained five times each. After the successful completion of all training rounds (consisting of 25 experiments), the predictions of repetitious trainings were averaged, yielding a final set of predictions. The accuracy of these predictions exhibits some interesting properties, as we will show in the remainder of this section.
 
-After the successful completion of the final training rounds (consisting of 25 experiments), the test results of repetitious trainings were averaged, yielding a final set of test losses. These losses exhibit some interesting properties, as we will show in the remainder of this section.
+\paragraph{Early stopping}
+Contrary to the previous experiments, we applied early stopping with a patience of 130 epochs, meaning that if the validation loss did not decrease during more than 130 epochs, the training process was interrupted and the models immediately evaluated. Most experiments were stopped after around 200-300 epochs, while they could have run up to a full 500 epochs.
 
-\begin{figure}[h]
+\paragraph{Test accuracy with respect to the distance from onset}
+Looking at the averaged predictions of each set of experiments as shown in \cref{fig:e4_prediction_accuracy_offset}, we can see that the models trained on IMD onset dates are generally capable of predicting monsoon onset with quite a bit less than 4 days of mean-absolute error (MAE). Contrary to our previous beliefs that the objectively calculated onset dates would better represent the underlying patterns, the models based on these dates seem to perform much worse: their accuracy mostly ranges between 4-4.5 days MAE. This is partly caused by the fact that from 2007 onwards, the objective onset dates needed to be completed using official IMD dates. As such, test years after 2007 are always evaluated on official IMD dates, while the model has mostly trained on objectively calculated dates.
+
+A further interesting pattern that can be observed is that the models seem to predict more accurately (down to 2.5 days MAE) when predictions are made close to the monsoon onset, which makes intuitive sense. However, the predictions also seem to be more accurate in all models when predictions are made more than about three weeks before the onset. There might be predictive patterns present that tend to lead the monsoon onset by several weeks.
+
+The first model from EV02 (2-EV02) seems to perform best overall, with short-term accuracy of about 2.5 days MAE, mid-term accuracy of 3-3.5 days MAD and longer-term accuracy (up to one month before the onset) of around 2.5-3 days MAE. This is, by a fair margin, below the 4 days MAE that were described as the error of IMD predictions. Interestingly, this model is the only model that does not use additional convolutional layers and passes the inputs directly through ConvLSTM2D (after pooling), which might mean that these additional feature detectors are not as useful as they were thought to be.
+
+\begin{figure}[h!]
   \centering
-  \includegraphics[width=\linewidth]{./99_appendix/img/prediction_years}
-  \caption{Exemplary model architecture of the E4 class.}
-  \label{fig:e4_asdasd}
+  \includegraphics[width=\linewidth]{./99_appendix/img/prediction_accuracy_offset}
+  \caption{The prediction accuracy of our final sets of experiments at a distance of 1-30 days from the true onset.}
+  \label{fig:e4_prediction_accuracy_offset}
 \end{figure}
 
-\begin{figure}[h]
+\paragraph{Test accuracy with respect to the prediction date}
+The results as presented in \cref{fig:e4_prediction_accuracy_offset} can be transformed in an interesting fashion: for each prediction made on the test set, we can assign the date the prediction would have been made according to the true onset date of the corresponding year. For example, given a prediction with a true distance of five days for the year 2017 (where the onset was on the 30th of May), we would end up with the 25th of May as a prediction date. Plotting these transformed results as shown in \cref{fig:e4_prediction_accuracy_dates} allows us to see how accurate we can expect a prediction to be on any given day.
+
+\begin{figure}[h!]
   \centering
-  \includegraphics[width=\linewidth]{./99_appendix/img/prediction_years}
-  \caption{Exemplary model architecture of the E4 class.}
-  \label{fig:e4_asdasd}
+  \includegraphics[width=\linewidth]{./99_appendix/img/prediction_accuracy_dates}
+  \caption{The prediction accuracy of our final sets of experiments at any given date before the true onset.}
+  \label{fig:e4_prediction_accuracy_dates}
 \end{figure}
 
+It is obviously much more useful to predict the onset earlier rather than later. According to \cref{fig:e4_prediction_accuracy_dates}, we might think that we would get our best predictions if we predicted towards the end of April. However, it has to be taken into account that not all dates in this visualization consist of the same number of predictions, leading to less significance of the average towards the extremes (\cref{fig:e4_prediction_dist}). As such, predictions performed around or after the 8th of May would most certainly lead to more accurate results. The prediction task could also be repeated every day after that, as our model is in its capabilities not restricted to only short- or long-term predictions.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/prediction_accuracy_dates_dist}
+  \caption{Tasdf.}
+  \label{fig:e4_prediction_dist}
+\end{figure}
+
+\paragraph{Test accuracy for each test year}
+A further interesting metric is the accuracy of the models when compared in between years of the test set. Looking at the distributions in \cref{fig:e4_prediction_years}, we can see that there seem to be some years that are ``easier to predict'' than others. However, each set of models seems to display its best prediction skills in slightly different years. The year 2015 especially stands out, as the mean over all sets of models (even the two objectively trained ones) is very similar.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\linewidth]{./99_appendix/img/prediction_years}
+  \caption{The prediction accuracy of our final sets of experiments for the different years in the test set (1985, 1995, 2003, 2004, 2005, 2014, 2015, 1017).}
+  \label{fig:e4_prediction_years}
+\end{figure}
+
+\paragraph{Overall average accuracy}
+When we combine the separate measures shown previously, we get a single accuracy measure over the entire test set. As shown in \cref{tab:overall_average}, \textit{2-EV02} is clearly the most accurate model, achieving an accuracy of around 2.8 days MAE. The other two models based on IMD onset dates follow the first model closely, while the models based on objective onset dates are significantly lagging behind. However, this might look different if objective onset dates were available for the entirety of the training and test years (i.e., 1979-2017).
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{rc}
+    \toprule
+    \textbf{EV} & \textbf{MAE} \\
+    \midrule
+    \textbf{0-EV12} & 4.11 \\
+    \textbf{1-EV07} & 3.05 \\
+    \textbf{2-EV02} & 2.82 \\
+    \textbf{3-EV02} & 3.03 \\
+    \textbf{4-EV06} & 4.25 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Overall averaged mean-absolute error for the five final evaluation models.}
+  \label{tab:overall_average}
+\end{table}
+
+We
 
 
 \subsection{T1-T5 and E1-E3: Other model architectures}
