@@ -1,10 +1,14 @@
 \chapter{Part 2: Prediction of Monsoon Onset}
 \label{c:part2}
-The onset of the ISM plays a crucial role in the daily lives of the Indian population as well as the Indian economy overall.
+The onset of the ISM plays a crucial role in the daily lives of the Indian population as well as the Indian economy overall. Whether the ISM is a blessing or a curse mostly depends on the timing and the strength and durability of monsoonal rainfalls. While we have analyzed the distribution of extreme rainfall events in the previous chapter, this chapter is fully dedicated to the problem of ISM onset prediction. We focus on the monsoon onset over Kerala (MoK), as it marks the beginning of the yearly monsoon season.
+
+Our approach to predicting
+
+
 
 \section{The ERA-Interim Dataset}
 \label{st:era_interim}
-[TODO: describe ERA-Interim same as TRMM has been described]
+The ERA-Interim dataset is a global atmospheric reanalysis product created by the ECMWF.
 
 \begin{table}[h]
   \centering
@@ -34,22 +38,30 @@ The onset of the ISM plays a crucial role in the daily lives of the Indian popul
 
 \subsection{Neural networks}
 \label{sst:neural_networks}
-Many of our experimental models are based on a relatively new approach to training neural networks on spatiotemporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM2D} neural network layer was first applied to precipitation forecasting. Due to the reliance of many of our models on these layers, this section is thought to provide intuition about their inner workings.
+Many of our experimental models are based on a relatively new approach to training neural networks on spatiotemporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM} neural network layer was first applied to precipitation forecasting. Due to the reliance of many of our models on these layers, this section is thought to provide intuition about their inner workings.
 
-We assume that the reader is at least familiar with basic neural network principles for the remainder of this work. However, as convolutional and recurrent layers are what ConvLSTM2D layers are based on, we first shortly summarize the respective characteristics of these types of layers. We then go into the specific work of \citet{Shi.2015} and their approach to creating the convolutional recurrent ConvLSTM2D layer.
+We assume that the reader is familiar with basic neural network principles for the remainder of this work. However, as convolutional and recurrent layers are what ConvLSTM2D layers are based on, we first shortly summarize the respective characteristics of these types of layers. We then go into the specific work of \citet{Shi.2015} and their approach to creating the convolutional recurrent ConvLSTM2D layer.
 
 \subsubsection{Convolutional neural networks}
 \label{ssst:convolutional_networks}
 [TODO: basics of conv nets where relevant (~1 page)]
+Convolutional Neural Network (CNN)
 
 \subsubsection{Recurrent neural networks}
 \label{ssst:recurrent_networks}
 [TODO: basics of recurrent nets where relevant (~1 page)]
+Long-Short Term Memory (LSTM)
+Recurrent Neural Network (RNN)
 
-\subsubsection{ConvLSTM2D}
+\subsubsection{ConvLSTM}
 \label{ssst:conv_lstm_2d}
-[TODO: basics of conv recurrent nets based on the ConvLSTM2D paper (~1 page)]
+ConvLSTM networks as introduced by \citet{Shi.2015} were originally used for the problem of precipitation nowcasting, the primary goal of which is described as giving a ``precise and timely prediction of rainfall intensity in a local region over a relatively short period of time (e.g., 0-6 hours)'' \citep{Shi.2015}. In the aforementioned work, the authors try to predict a sequence of future precipitation radar maps from a sequence of past radar maps, essentially performing sequence-to-sequence prediction. These kinds of prediction tasks based on spatiotemporal data (where time as well as geographical location needs to be accounted for) are generally challenging, as a suitable neural network needs to be able to handle very high input and output dimensionalities.
 
+An approach that is often used for sequence-to-sequence prediction is a two-layer architecture in which a first LSTM network reduces the input into a fixed-length sequence (``encodes'' the input into an internal representation), while a second LSTM network then predicts an output sequence using as input the fixed-length sequence (``decoding''). This encoder-decoder framework was originally described in [TODO: cite sutskever] and has been applied to many sequence-to-sequence tasks like machine translation. However, \citet{Shi.2015} have found that the regular LSTM networks used for regular sequence-to-sequence prediction are not well suited to process spatiotemporal data. While they use an encoding-decoding pattern in their models, \citet{Shi.2015} propose a new type of network layer based on regular LSTM layers that is able to better take into account the spatial dimension of input values.
+
+The newly proposed ConvLSTM network layer combines the concept of convolutions as applied in convolutional networks with the internal structure of regular LSTM layers. In a ConvLSTM network, the states in each LSTM-cell are represented by 3D-tensors with the same spatial dimensions as the input data. Updates to any hidden state are then performed by applying convolutions to both the input values and the previous state, meaning that the new state of any location is based on the previous and current values of its immediate neighbors \citep{Shi.2015}.
+
+Based on the previously mentioned encoding-decoding pattern and their new ConvLSTLM network layers, \citet{Shi.2015} have built several models and evaluated them on both a generated dataset with moving digits as well as on a real radar map dataset. Over both of these evaluations, the ConvLSTM architecture outperformed a fully-connected regular LSTM architecture by a significant margin. Additionally, while the countours of the precipitation predictions were found to be blurred, they still significantly outperformed the benchmark in terms of overall precision \citep{Shi.2015}.
 
 \newpage
 \section{Prediction of Monsoon Onset using Neural Networks}
@@ -176,7 +188,7 @@ Over the course of our experiments, we have used various combinations of the pre
 \end{table}
 
 \paragraph{Experimental conditions}
-The experiments were run in different environments and are explicitly marked as such: either on a local GPU, the IFI Kraken cluster or a Paperspace\footnote{https://www.paperspace.com/} virtual machine. \cref{tab:experimental_environments} provides a more detailed overview of the environments used during the experimental phase. While all of the experiments for the E4-class of models were run on the \textit{PS} environment due to performance constraints, most earlier experiments were run locally or on Kraken.
+The experiments were run in different environments and are explicitly marked as such: either on a local GPU, the Kraken cluster or a Paperspace\footnote{https://www.paperspace.com/} virtual machine. \cref{tab:experimental_environments} provides a more detailed overview of the environments used during the experimental phase. While all of the experiments for the E4-class of models were run on the \textit{PS} environment due to performance constraints, most earlier experiments were run locally or on Kraken.
 
 \begin{table}[h]
   \centering
@@ -195,7 +207,7 @@ The experiments were run in different environments and are explicitly marked as 
 
 \clearpage
 \subsubsection{Intermediary evaluation results}
-To provide a better overview of the outcome of our experiments, we reduce the results presented to only the best experiment of any given evaluation scheme (i.e., its best performing ``hyperparameter tuning''). \cref{tab:evaluation_scheme_results} shows the loss and validation loss after some key epochs as well as after the overall final epoch. Notice that loss and validation loss measures are based on the mean-squared error but tend to be higher due to the regularization that is additionally applied.
+To provide a better overview of the outcome of our experiments, we reduce the results presented to only the best experiment of any given evaluation scheme (i.e., its best performing ``hyperparameter tuning''). \cref{tab:evaluation_scheme_results} shows the loss and validation loss after some key epochs as well as after the overall final epoch. Notice that loss and validation loss measures are based on the mean-squared error (MSE) but tend to be higher due to the regularization that is additionally applied.
 
 \begin{table}[h]
   \centering
@@ -244,7 +256,7 @@ Looking at the averaged predictions of each set of experiments as shown in \cref
 
 A further interesting pattern that can be observed is that the models seem to predict more accurately (down to 2.5 days MAE) when predictions are made close to the monsoon onset, which makes intuitive sense. However, the predictions also seem to be more accurate in all models when predictions are made more than about three weeks before the onset. There might be predictive patterns present that tend to lead the monsoon onset by several weeks.
 
-The first model from EV02 (2-EV02) seems to perform best overall, with a short-term accuracy of about 2.5 days MAE, a mid-term accuracy of 3-3.5 days MAD and a longer-term accuracy (up to one month before the onset) of around 2.5-3 days MAE. This is, by a fair margin, below the four days MAE that was described as the error of IMD predictions. Interestingly, this model is the only model that does not use additional convolutional layers and passes the inputs directly through ConvLSTM2D (after pooling), which might mean that these additional feature detectors are not as useful as they were thought to be.
+The first model from EV02 (2-EV02) seems to perform best overall, with a short-term accuracy of about 2.5 days MAE, a mid-term accuracy of 3-3.5 days MAE and a longer-term accuracy (up to one month before the onset) of around 2.5-3 days MAE. This is, by a fair margin, below the four days MAE that was described as the error of IMD predictions. Interestingly, this model is the only model that does not use additional convolutional layers and passes the inputs directly through ConvLSTM2D (after pooling), which might mean that these additional feature detectors are not as useful as they were thought to be.
 
 \begin{figure}[h!]
   \centering
@@ -259,7 +271,7 @@ A further interesting metric is the accuracy of the models when compared in-betw
 \begin{figure}[h!]
   \centering
   \includegraphics[width=\linewidth]{./99_appendix/img/prediction_years}
-  \caption{The prediction accuracy of our final sets of experiments for the different years in the test set (1985, 1995, 2003, 2004, 2005, 2014, 2015, 1017).}
+  \caption{The prediction accuracy of our final sets of experiments for the different years in the test set (1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017).}
   \label{fig:e4_prediction_years}
 \end{figure}
 
@@ -335,7 +347,7 @@ The first models we evaluated were classification networks based on the TRMM dat
 \label{ssst:nn_t2_data}
 A single TRMM cell (i.e., a single location on the grid) was taken at a time and transformed into a time series for that specific location (from the first of May up to the prediction date). The latitude and longitude indices were appended in front of the time series to allow the network to learn the spatial features of each example. This led to training examples each consisting of a one-dimensional fixed-length sequence containing coordinates and daily rainfall amounts as well as a label corresponding to its category. \cref{tab:nn_t2_data} provides an overview of the structure of the examples used to train and evaluate the model.
 
-The labels were represented as one-hot encoded vectors like $\left[ 0, ..., 1, ..., 0 \right]$. They were calculated based on the difference in days between the fixed prediction date and the monsoon onset date over Kerala. As the earliest onset in [Onset Dates v1] for the relevant period (1998-2017) was found to be on the 12th of May, the prediction date was set to be the 11th of May. With the latest historical onset during the available period (1887-2017) being on the 15th of June, the category labels were naturally restricted to a range of $\left[ 1, 35 \right]$. Some additional padding was added to allow for future late onsets, yielding a range of $\left[ 1, 40 \right]$. Due to the focus on the onset date over Kerala, the examples for each year could all be assigned the label for the respective year.
+The labels were represented as one-hot encoded vectors like $\left[ 0, ..., 1, ..., 0 \right]$. They were calculated based on the difference in days between the fixed prediction date and the monsoon onset date over Kerala. As the earliest onset in the used source \citep{Ordonez.2016} for the relevant period (1998-2017) was found to be on the 12th of May, the prediction date was set to be the 11th of May. With the latest historical onset during the available period (1887-2017) being on the 15th of June, the category labels were naturally restricted to a range of $\left[ 1, 35 \right]$. Some additional padding was added to allow for future late onsets, yielding a range of $\left[ 1, 40 \right]$. Due to the focus on the onset date over Kerala, the examples for each year could all be assigned the label for the respective year.
 
 \begin{table}[h]
   \centering
@@ -619,7 +631,7 @@ To allow a model to capture all the events leading up to the onset of each respe
 
 This would not be that useful by itself, as the model would then only be able to predict the onset one day in advance. However, this approach to training allows feeding the model multiple sequences per year, each with a different offset to the onset date and a correspondingly different label. The amount of available examples is as such greatly increased: generating three such sequences per year would triple the overall number of examples available for training. Furthermore, the prediction capabilities of the model could then be evaluated separately for each offset, yielding results on how well the model can predict one day in advance, one week in advance or even multiple weeks in advance.
 
-The detailed architecture and evaluation of this final model architecture have already been described in depth in previous sections (\cref{e4}).
+The detailed architecture and evaluation of this final model architecture have already been described in depth in previous sections (\cref{e4}). Having described all the models that we used during the creation of this work, we now conclude this chapter in the next section, and our work in the section after that.
 
 \section{Conclusion}
 [TODO: TBD]
