@@ -36,28 +36,13 @@ The ERA-Interim dataset is a global atmospheric reanalysis product created by th
 \label{sst:related_prediction}
 [TODO:  describe other methods that have been proposed for onset prediction (~1 page)]
 
-\subsection{Neural networks}
+\subsection{Convolutional recurrent neural networks}
 \label{sst:neural_networks}
-Many of our experimental models are based on a relatively new approach to training neural networks on spatiotemporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM} neural network layer was first applied to precipitation forecasting. Due to the reliance of many of our models on these layers, this section is thought to provide intuition about their inner workings.
+Many of our experimental models are based on a relatively new approach to training neural networks on spatiotemporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM} neural network layer was first applied to precipitation forecasting. Due to the reliance of many of our models on these layers, this section is thought to provide intuition about their inner workings. We assume that the reader is familiar with neural network principles for the remainder of this work. However, as convolutional and recurrent layers are what ConvLSTM layers are based on, we explain some of their characteristics where needed.
 
-We assume that the reader is familiar with basic neural network principles for the remainder of this work. However, as convolutional and recurrent layers are what ConvLSTM2D layers are based on, we first shortly summarize the respective characteristics of these types of layers. We then go into the specific work of \citet{Shi.2015} and their approach to creating the convolutional recurrent ConvLSTM2D layer.
-
-\subsubsection{Convolutional neural networks}
-\label{ssst:convolutional_networks}
-[TODO: basics of conv nets where relevant (~1 page)]
-Convolutional Neural Network (CNN)
-
-\subsubsection{Recurrent neural networks}
-\label{ssst:recurrent_networks}
-[TODO: basics of recurrent nets where relevant (~1 page)]
-Long-Short Term Memory (LSTM)
-Recurrent Neural Network (RNN)
-
-\subsubsection{ConvLSTM}
-\label{ssst:conv_lstm_2d}
 ConvLSTM networks as introduced by \citet{Shi.2015} were originally used for the problem of precipitation nowcasting, the primary goal of which is described as giving a ``precise and timely prediction of rainfall intensity in a local region over a relatively short period of time (e.g., 0-6 hours)'' \citep{Shi.2015}. In the aforementioned work, the authors try to predict a sequence of future precipitation radar maps from a sequence of past radar maps, essentially performing sequence-to-sequence prediction. These kinds of prediction tasks based on spatiotemporal data (where time as well as geographical location needs to be accounted for) are generally challenging, as a suitable neural network needs to be able to handle very high input and output dimensionalities.
 
-An approach that is often used for sequence-to-sequence prediction is a two-layer architecture in which a first LSTM network reduces the input into a fixed-length sequence (``encodes'' the input into an internal representation), while a second LSTM network then predicts an output sequence using as input the fixed-length sequence (``decoding''). This encoder-decoder framework was originally described in [TODO: cite sutskever] and has been applied to many sequence-to-sequence tasks like machine translation. However, \citet{Shi.2015} have found that the regular LSTM networks used for regular sequence-to-sequence prediction are not well suited to process spatiotemporal data. While they use an encoding-decoding pattern in their models, \citet{Shi.2015} propose a new type of network layer based on regular LSTM layers that is able to better take into account the spatial dimension of input values.
+An approach that is often used for sequence-to-sequence prediction is a two-layer architecture in which a first Long-Short Term Memory (LSTM) network reduces the input into a fixed-length sequence (``encodes'' the input into an internal representation), while a second LSTM network then predicts an output sequence using as input the fixed-length sequence (``decoding''). This encoder-decoder framework was originally described in [TODO: cite sutskever] and has been applied to many sequence-to-sequence tasks like machine translation. However, \citet{Shi.2015} have found that the regular LSTM networks used for regular sequence-to-sequence prediction are not well suited to process spatiotemporal data. While they use an encoding-decoding pattern in their models, \citet{Shi.2015} propose a new type of network layer based on regular LSTM layers that is able to better take into account the spatial dimension of input values.
 
 The newly proposed ConvLSTM network layer combines the concept of convolutions as applied in convolutional networks with the internal structure of regular LSTM layers. In a ConvLSTM network, the states in each LSTM-cell are represented by 3D-tensors with the same spatial dimensions as the input data. Updates to any hidden state are then performed by applying convolutions to both the input values and the previous state, meaning that the new state of any location is based on the previous and current values of its immediate neighbors \citep{Shi.2015}.
 

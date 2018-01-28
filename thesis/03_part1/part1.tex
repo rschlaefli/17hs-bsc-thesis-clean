@@ -9,7 +9,7 @@ After going over the foundational related work, \cref{st:event_sync_implementati
 
 \section{The TRMM Dataset}
 \label{st:trmm_dataset}
-The Tropical Rainfall Measurement Mission (TRMM) is a precipitation research effort by NASA and JAXA. It is based on the TRMM observatory, a satellite that was launched into space on the 27th of November, 1997. The products based on TRMM range from the raw output of the multitude of sensors on the satellite to the highly aggregated and gridded rainfall estimates we will be using in this work \citep{GoddardEarthScienceDataInformationandServicesCenter.2016}.
+The TRMM dataset is a precipitation research effort by NASA and JAXA. It is based on the TRMM observatory, a satellite that was launched into space on the 27th of November, 1997. The products based on TRMM range from the raw output of the multitude of sensors on the satellite to the highly aggregated and gridded rainfall estimates we will be using in this work \citep{GoddardEarthScienceDataInformationandServicesCenter.2016}.
 
 More specifically, the TRMM product that we will be using is a 3-hourly estimate of surface rainfall aggregated from the satellite sensors in combination with surface gauge values and imagery from other satellites. This product is referred to as 3B42 or TMPA and is also available in a daily variation, where the eight 3-hourly measurements (i.e., 00:00, 03:00, 06:00 and so on) have been summed up to provide a single daily rainfall estimate. We use this daily TMPA product during the remainder of this work and, for simplicity, generally refer to it as TRMM.
 
@@ -31,7 +31,7 @@ After the TRMM satellite's fuel went low in 2014, it was decommissioned in April
 \section{Related Work}
 The concept of event synchronization applied in \citet{Stolbova.2015} was first proposed in \citet{QuianQuiroga.2002}, where they sought to develop a simple algorithm that could be applied to any two time series of events, resulting in a measure that defines the synchronization of said time series. Synchronization measures are generally related to standard measures like cross correlation but can convey more complex relationships due to their non-linearity \citep{QuianQuiroga.2002}.
 
-While the work of \citet{QuianQuiroga.2002} focuses on the analysis of electroencephalogram (EEG)\footnote{A way of measuring brain activity.]} time series, their event synchronization approach is explicitly applicable to other domains. The works of \citet{Malik.2010} and \citet{Stolbova.2015} both expand upon simple event synchronization. However, they do so in different ways: \citet{Malik.2010} apply hierarchical clustering algorithms to identify different regions and their respective characteristics regarding the occurrence of extreme rainfall events. \citet{Stolbova.2015} builds ``climate networks'' and analyzes them with established network measures. For the purposes of our work, we will focus on the latter approach, using the work of \citet{Stolbova.2015} as a foundation for this chapter.
+While the work of \citet{QuianQuiroga.2002} focuses on the analysis of electroencephalogram (EEG)\footnote{A way of measuring brain activity.} time series, their event synchronization approach is explicitly applicable to other domains. The works of \citet{Malik.2010} and \citet{Stolbova.2015} both expand upon simple event synchronization. However, they do so in different ways: \citet{Malik.2010} apply hierarchical clustering algorithms to identify different regions and their respective characteristics regarding the occurrence of extreme rainfall events. \citet{Stolbova.2015} builds ``climate networks'' and analyzes them with established network measures. For the purposes of our work, we will focus on the latter approach, using the work of \citet{Stolbova.2015} as a foundation for this chapter.
 
 \subsection{Event synchronization}
 \label{sst:event_synchronization}
@@ -80,7 +80,7 @@ The resulting series of extreme events can be used to calculate the synchronicit
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.5\textwidth]{./99_appendix/img/trmm_sync_example}
-  \caption{Exemplary synchronization matrix for TRMM at a 0.75\degree resolution. We only show the top left 15x15 section of our actual matrix, as its full dimensions are 2401x2401 for a 0.75\degree resolution.}
+  \caption{Exemplary synchronization matrix for TRMM at a {0.75\degree} resolution. We only show the top left 15x15 section of our actual matrix, as its full dimensions are 2401x2401 for a {0.75\degree} resolution.}
   \label{fig:synchronization_matrix}
 \end{figure}
 
@@ -89,7 +89,7 @@ Applying a numerical threshold to this synchronization matrix results in a matri
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.5\textwidth]{./99_appendix/img/trmm_adjacency_example}
-  \caption{Exemplary adjacency matrix for TRMM at a 0.75\degree resolution. We only show the top left 15x15 section of our actual matrix, as its full dimensions are 2401x2401 for a 0.75\degree resolution.}
+  \caption{Exemplary adjacency matrix for TRMM at a {0.75\degree} resolution. We only show the top left 15x15 section of our actual matrix, as its full dimensions are 2401x2401 for a {0.75\degree} resolution.}
   \label{fig:adjacency_matrix}
 \end{figure}
 
@@ -97,9 +97,9 @@ Based on the adjacency matrix, a network can then be computed and analyzed. Howe
 
 \subsection{Network centrality}
 \label{sst:network_measures}
-Constructing climate networks from an adjacency matrix as seen in \cref{sst:climate_networks} enables the analysis of their structural features using various network-based measures. We now shortly go over the concepts of the measures that we apply to our networks in this work.
+Constructing climate networks from an adjacency matrix as seen in \cref{sst:climate_networks} enables the analysis of their structural features using various network-based measures. We now briefly introduce these measures, before we go on to apply them in the next section.
 
-The climate networks in \citet{Stolbova.2015} are analyzed using the \textit{degree} and \textit{betweenness} of nodes as well as using the \textit{average/maximal geographical link length} between them. We also base our analysis on the \textit{degree} and \textit{betweenness} measures but replace the link length calculations with the \textit{PageRank} algorithm, which should, in our opinion, also show interesting patterns.
+The climate networks in \citet{Stolbova.2015} are analyzed using the \textit{degree} and \textit{betweenness} of nodes as well as using the \textit{average/maximal geographical link length} between them. We also base our analysis on the \textit{degree} and \textit{betweenness} measures but replace the link length calculations with the \textit{PageRank} algorithm, which should also show interesting patterns in our opinion.
 
 \subsubsection{Degree}
 The \textit{degree} of a node in a network is quite simply defined as the number of links that are connected to this node. The same holds for vertices in graphs and their connected edges.
@@ -127,37 +127,37 @@ Our implementation of the event synchronization and climate network computations
 
 \subsection{Calculating event synchronization}
 \label{sst:event_sync_calculation}
-Before we are able to calculate the synchronicity for any two locations, the precipitation time series need to be transformed into series of events. Assume that we have extracted pre-monsoon time series as shown in \cref{tab:example_rainfall_ts} from the TRMM dataset and want to convert these into extreme event series.
+Before we are able to calculate the synchronicity for any two locations, the precipitation time series need to be transformed into series of events. Assume that we have extracted pre-monsoon precipitation time series as shown in \cref{tab:example_rainfall_ts} from the TRMM dataset and want to convert these into extreme event series.
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{ |c|c|ccccccc| }
-    \hline
-    Latitude & Longitude & 01.03.98 & ... & 29.05.98 & 30.05.98 & 31.05.98 & 01.03.99 & ...\\
-    \hline
+  \begin{tabular}{ cc|ccccccc }
+    \toprule
+    \textbf{Latitude} & \textbf{Longitude} & \textbf{01.03.98} & \textbf{...} & \textbf{29.05.98} & \textbf{30.05.98} & \textbf{31.05.98} & \textbf{01.03.99} & ...\\
+    \midrule
     13.375 & 67.375 & 0.0  & ... & 0.12 & 2.31  & 2.85  & 0.00 & ... \\
     16.375 & 91.375 & 0.0  & ... & 0.09 & 34.80 & 49.49 & 0.00 & ... \\
     34.375 & 67.375 & 0.52 & ... & 0.00 & 0.00  & 0.00  & 0.00 & ... \\
     34.375 & 88.375 & 0.86 & ... & 2.01 & 51.85 & 68.72 & 0.29 & ... \\
-    \hline
+    \bottomrule
   \end{tabular}
   \caption{Precipitation time series during pre-monsoon at 4 exemplary locations (TRMM, 0.75\degree).}
   \label{tab:example_rainfall_ts}
 \end{table}
 
-We then calculate the 90th percentile for each row and apply the result as a threshold to the respective row. This yields event series where each value represents the date of an extreme event. If applied to the time series in \cref{tab:example_rainfall_ts}, this would look as shown in \cref{tab:example_rainfall_events} .
+We then calculate the 90th percentile for each row and apply the result as a threshold to the respective row. This yields event series where each value represents the date of an extreme event. If applied to the time series in \cref{tab:example_rainfall_ts}, this results in event series as shown in \cref{tab:example_rainfall_events} .
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{ |c|c|ccccccc| }
-    \hline
-    Latitude & Longitude & 1 & 2 & 3 & 4 & 5 & 6 & ... \\
-    \hline
+  \begin{tabular}{ cc|ccccccc }
+    \toprule
+    \textbf{Latitude} & \textbf{Longitude} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{...} \\
+    \midrule
     13.375 & 67.375 & 07.04.98 & 31.05.98 & 08.05.99 & 12.05.99 & 13.05.99 & 15.05.99 & ... \\
     16.375 & 91.375 & 17.05.98 & 18.05.98 & 19.05.98 & 30.04.99 & 01.05.99 & 05.05.99 & ... \\
     34.375 & 67.375 & 03.03.98 & 29.03.98 & 02.04.98 & 03.04.98 & 09.04.98 & 22.04.98 & ... \\
     34.375 & 88.375 & 18.03.98 & 30.03.98 & 31.03.98 & 01.04.98 & 05.04.98 & 19.04.98 & ... \\
-    \hline
+    \bottomrule
   \end{tabular}
   \caption{Events in the pre-monsoon extreme event series at 4 exemplary locations (TRMM, 0.75\degree).}
   \label{tab:example_rainfall_events}
@@ -167,20 +167,20 @@ Going forward, we use \textit{epoch timestamps} to represent dates instead of th
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{ |c|ccccccc| }
-    \hline
-    Event & 1 & 2 & 3 & 4 & 5 & 6 & ... \\
-    \hline
-    Date & 07.04.98 & 31.05.98 & 08.05.99 & 12.05.99 & 13.05.99 & 15.05.99 & ... \\
-    Epoch & 891907200 & 896572800 & 926121600 & 926467200 & 926553600 & 926726400 & ... \\
-    \hline
+  \begin{tabular}{ cccccccc }
+    \toprule
+    \textbf{Event} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{...} \\
+    \midrule
+    \textbf{Date} & 07.04.98 & 31.05.98 & 08.05.99 & 12.05.99 & 13.05.99 & 15.05.99 & ... \\
+    \textbf{Epoch} & 891907200 & 896572800 & 926121600 & 926467200 & 926553600 & 926726400 & ... \\
+    \bottomrule
   \end{tabular}
   \caption{Exemplary series of events represented with epoch timestamps (TRMM, 0.75\degree).}
   \label{tab:example_rainfall_events_unix}
 \end{table}
 
 \subsubsection{Synchronization of two locations}
-Having explained the necessary setup of the event synchronization algorithm, we now go over more concrete aspects of our implementation. To calculate the synchronization between any two locations (i.e., \textit{location1} and \textit{location2}), we need to process both time series and compare each event in \textit{location1} to the appropriate events in \textit{location2}, taking the immediate neighbors of both locations into account. We found that this naturally fits the description of a \textit{sliding window} approach: a sliding window of size three over the event series of a location always encompasses a current event, its predecessor and its successor and thus everything we need for the time lag calculation. Application of a sliding window to \textit{location1} and nesting another such window for \textit{location2} then leads us to the naive implementation shown in \cref{lst:event_synchronization}\footnote{Notice that to allow sliding windows to go from the very first to the very last event, additional padding needs to be applied on either side. We pad with the timestamps 0 and 9999999999, preventing any influence on time lags.}.
+Having explained the necessary setup of the event synchronization algorithm, we now focus on more concrete aspects of our implementation. To calculate the synchronization between any two locations (i.e., \textit{location1} and \textit{location2}), we need to process both time series and compare each event in \textit{location1} to the appropriate events in \textit{location2}, taking the immediate neighbors of both locations into account. We found that this naturally fits the description of a \textit{sliding window} approach: a sliding window of size three over the event series of a location always encompasses a current event, its predecessor and its successor and thus everything we need for the time lag calculation. Application of a sliding window to \textit{location1} and nesting another such window for \textit{location2} then leads us to the naive implementation shown in \cref{lst:event_synchronization}\footnote{Notice that to allow sliding windows to go from the very first to the very last event, additional padding needs to be applied on either side. We pad with the timestamps 0 and 9999999999, preventing any influence on time lags.}.
 
 \begin{listing}[h]
   \begin{minted}[mathescape,
@@ -225,7 +225,7 @@ Having explained the necessary setup of the event synchronization algorithm, we 
   \label{lst:event_synchronization}
 \end{listing}
 
-The event synchronization algorithm as described in \cref{lst:event_synchronization} results in the number of synchronous events between \textit{location1} and \textit{location2} where the event in \textit{location1} leads the event in \textit{location2} (i.e., $c(\text{location1} \mid \text{location2})$). This is, however, only part of the full synchronization synchronization calculation, as we also need the number of synchronous events where \textit{location1} leads \textit{location2}, i.e., we need to evaluate $c(\text{location2} \mid \text{location1})$. This is the reason that simultaneous events only count as "half synchronous": they are counted in both these calculations and, in total, then result in one synchronous event.
+The event synchronization algorithm as described in \cref{lst:event_synchronization} results in the number of synchronous events between \textit{location1} and \textit{location2} where the event in \textit{location1} leads the event in \textit{location2} (i.e., $c(\text{location1} \mid \text{location2})$). The above is, however, only part of the full synchronization calculation, as we also need the number of synchronous events where \textit{location1} leads \textit{location2}, i.e., we need to evaluate $c(\text{location2} \mid \text{location1})$. This is the reason that simultaneous events only count as "half synchronous": they are counted in both these calculations and, in total, then result in one synchronous event.
 
 Calculating the strength of synchronization boils down to a simple application of \cref{eq:sync_strength} from Page \pageref{eq:sync_strength} and is further presented in \cref{lst:sync_strength}. Notice that, in addition to the synchronization coefficient, we return both numbers of synchronous events (i.e., $c(i \mid j)$ and $c(j \mid i)$). This is used to build a directed network later on.
 
@@ -261,16 +261,16 @@ Given a matrix of extreme events as shown in excerpt in \cref{tab:example_rainfa
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{ |cc|cccc| }
-    \hline
-     & Latitude & 13.375 & 16.375 & 34.375 & 34.375 \\
-    Latitude & Longitude & 67.375 & 91.375 & 67.375 & 88.375 \\
-    \hline
+  \begin{tabular}{ cccccc }
+    \toprule
+     & \textbf{Latitude} & \textbf{13.375} & \textbf{16.375} & \textbf{34.375} & \textbf{34.375} \\
+     \textbf{Latitude} & \textbf{Longitude} & \textbf{67.375} & \textbf{91.375} & \textbf{67.375} & \textbf{88.375} \\
+    \midrule
     13.375 & 67.375 & 1 &   &   &   \\
     16.375 & 91.375 &   & 1 &   &   \\
     34.375 & 67.375 &   &   & 1 &   \\
     34.375 & 88.375 &   &   &   & 1 \\
-    \hline
+    \bottomrule
   \end{tabular}
   \caption{``Empty'' synchronization matrix for 4 exemplary locations (TRMM, 0.75\degree).}
   \label{tab:example_empty_sync}
@@ -418,7 +418,7 @@ The creation of a climate network based on a synchronization matrix, as well as 
 \clearpage
 \section{Results \& Evaluation}
 \label{st:event_sync_results}
-This sections presents the results of applying what we have described in \cref{st:event_sync_implementation} to the TRMM dataset, more specifically the pre-monsoon, monsoon and post-monsoon seasons as extracted from TRMM. For each season, we show the results of degree, betweenness and PageRank measures in their weighted variation\footnote{The unweighted versions can be found in \cref{apx:event_sync}. There is, however, only little difference between them.}. The presented PageRank results are based on the corresponding asymmetrical synchronization count matrices (directed networks). Knowing about the fundamental factors that influence the ISM (as introduced in \cref{c:ism_overview}), we give our thoughts about the patterns that can be seen in the results and how they could be connected to the fndamental behavior of the ISM.
+This sections presents the results of applying what we have described in \cref{st:event_sync_implementation} to the TRMM dataset, more specifically the pre-monsoon, monsoon and post-monsoon seasons as extracted from TRMM. For each season, we show the results of degree, betweenness and PageRank measures in their weighted variation\footnote{The unweighted versions can be found in \cref{apx:event_sync}. There is, however, only little difference between them.}. The presented PageRank results are based on the corresponding asymmetrical synchronization count matrices (directed networks). Knowing about the fundamental factors that influence the ISM (as introduced in \cref{c:ism_overview}), we give our thoughts about the patterns that can be seen in the results and how they could be connected to the fundamental behavior of the ISM.
 
 \subsection{Dataset}
 The results presented in this section are based on the TRMM dataset as introduced in \cref{st:trmm_dataset}. We have extracted data for the years 1998-2016, which corresponds to all years that were fully available at the time (March-December). The area included in the dataset is cropped to an extended overview over the Indian subcontinent (4.125-40.625N, 61.125-97.625E). Aggregation of the native {0.25\degree} resolution to a lower {0.75\degree} resolution yields grid borders equal to 4.375-40.375N, 61.375-97.375E (as shown in \cref{fig:trmm_grid}). The dataset was aggregated to reduce the computational effort required for event synchronization and climate network calculations. Going from {0.25\degree} to {0.75\degree} resolution effectively reduced the dimensions of the event synchronization matrices from 21609x21609 to around 2401x2401 (81x). The reduced resolution further ensures compatibility with the ERA-Interim dataset used later on.
