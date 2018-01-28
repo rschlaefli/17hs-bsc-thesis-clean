@@ -244,10 +244,6 @@ INPUT C:/Program Files (x86)/MiKTeX 2.9/tex/generic/oberdiek/kvdefinekeys.sty
 INPUT C:/Program Files (x86)/MiKTeX 2.9/tex/generic/oberdiek/kvdefinekeys.sty
 INPUT C:/Program Files (x86)/MiKTeX 2.9/tex/latex/microtype/mt-ppl.cfg
 INPUT C:/Program Files (x86)/MiKTeX 2.9/tex/latex/microtype/mt-ppl.cfg
-OUTPUT thesis.pdf
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr7t.vf
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8r.tfm
-INPUT C:/Users/rolan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map
 INPUT 00_title/title.tex
 INPUT 00_title/title.tex
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb7t.tfm
@@ -266,10 +262,12 @@ INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
 INPUT ./00_title/figures/uzh_logo_e_pos.eps
 INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
 INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
+OUTPUT thesis.pdf
 INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
 INPUT ./00_title/figures/uzh_logo_e_pos-eps-converted-to.pdf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
+INPUT C:/Users/rolan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvr7t.vf
@@ -284,10 +282,17 @@ INPUT 00_abstract/zusammenfassung.tex
 INPUT 00_abstract/zusammenfassung.tex
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr7t.vf
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT 00_abstract/abstract.tex
 INPUT 00_abstract/abstract.tex
-INPUT thesis.toc
-INPUT thesis.toc
+OUTPUT thesis.toc
+INPUT 01_introduction/introduction.tex
+INPUT 01_introduction/introduction.tex
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/tex/latex/eulervm/uzeur.fd
@@ -337,13 +342,6 @@ INPUT C:/Program Files (x86)/MiKTeX 2.9/tex/latex/psnfss/ts1ppl.fd
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
-OUTPUT thesis.toc
-INPUT 01_introduction/introduction.tex
-INPUT 01_introduction/introduction.tex
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
@@ -371,6 +369,7 @@ INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/mathpazo/zplmr7t.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8c.tfm
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT 99_appendix/img/area_overview_kerala.png
 INPUT ./99_appendix/img/area_overview_kerala.png
 INPUT ./99_appendix/img/area_overview_kerala.png
@@ -389,14 +388,18 @@ INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8r.tfm
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8r.tfm
-INPUT 02_ism_overview/ism_overview.tex
-INPUT 02_ism_overview/ism_overview.tex
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr8c.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/mathpazo/fplmr.tfm
+INPUT 02_ism_overview/ism_overview.tex
+INPUT 02_ism_overview/ism_overview.tex
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvr7t.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb7t.tfm
 INPUT 99_appendix/img/stolbova_propagation.png
@@ -409,6 +412,8 @@ INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/helvetic/phvb7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplri7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplri8r.tfm
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT 99_appendix/img/monsoon_system.png
 INPUT ./99_appendix/img/monsoon_system.png
 INPUT ./99_appendix/img/monsoon_system.png
@@ -478,8 +483,6 @@ INPUT ./99_appendix/img/simplified_pagerank.png
 INPUT ./99_appendix/img/simplified_pagerank.png
 INPUT ./99_appendix/img/simplified_pagerank.png
 INPUT ./99_appendix/img/simplified_pagerank.png
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 OUTPUT thesis.pyg
 INPUT _minted-thesis/default-pyg-prefix.pygstyle
 INPUT _minted-thesis/default-pyg-prefix.pygstyle
@@ -537,11 +540,15 @@ INPUT ./99_appendix/img/event_sync_0.75-0.9_OND_both.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_OND_both.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_OND_both.png
 INPUT ./99_appendix/img/event_sync_0.75-0.9_OND_both.png
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr7t.tfm
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb7t.tfm
 INPUT 99_appendix/img/results_stolbova.png
 INPUT ./99_appendix/img/results_stolbova.png
 INPUT ./99_appendix/img/results_stolbova.png
 INPUT ./99_appendix/img/results_stolbova.png
 INPUT ./99_appendix/img/results_stolbova.png
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplb7t.vf
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplb8r.tfm
 INPUT 04_part2/part2.tex
 INPUT 04_part2/part2.tex
 INPUT 99_appendix/img/E4_preprocessing.png
@@ -599,13 +606,11 @@ INPUT _minted-thesis/72C5D92BB2FBF3A8CCF6A03D1D896DC294C03E87412794DF7535076A918
 INPUT _minted-thesis/72C5D92BB2FBF3A8CCF6A03D1D896DC294C03E87412794DF7535076A91884F1A.pygtex
 INPUT 05_conclusion/conclusion.tex
 INPUT 05_conclusion/conclusion.tex
-INPUT thesis.bbl
-INPUT thesis.bbl
+INPUT 99_appendix/appendix.tex
+INPUT 99_appendix/appendix.tex
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/public/eulervm/zeusm7.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eufm7.tfm
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/amsfonts/euler/eusm7.tfm
-INPUT 99_appendix/appendix.tex
-INPUT 99_appendix/appendix.tex
 INPUT 99_appendix/img/onset_hist_v1.png
 INPUT ./99_appendix/img/onset_hist_v1.png
 INPUT ./99_appendix/img/onset_hist_v1.png
@@ -741,11 +746,7 @@ INPUT ./99_appendix/img/prediction_accuracy_dates_split.png
 INPUT ./99_appendix/img/prediction_accuracy_dates_split.png
 INPUT ./99_appendix/img/prediction_accuracy_dates_split.png
 INPUT ./99_appendix/img/prediction_accuracy_dates_split.png
-INPUT thesis.lof
-INPUT thesis.lof
 OUTPUT thesis.lof
-INPUT thesis.lot
-INPUT thesis.lot
 OUTPUT thesis.lot
 INPUT thesis.lol
 INPUT thesis.lol
@@ -762,8 +763,6 @@ INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
-INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb
