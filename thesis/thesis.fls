@@ -286,6 +286,8 @@ INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/vf/adobe/palatino/pplr7t.vf
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/adobe/palatino/pplr8r.tfm
 INPUT 00_abstract/abstract.tex
 INPUT 00_abstract/abstract.tex
+INPUT thesis.toc
+INPUT thesis.toc
 OUTPUT thesis.toc
 INPUT 01_introduction/introduction.tex
 INPUT 01_introduction/introduction.tex
@@ -746,7 +748,11 @@ INPUT ./99_appendix/img/prediction_accuracy_dates_split.png
 INPUT ./99_appendix/img/prediction_accuracy_dates_split.png
 INPUT ./99_appendix/img/prediction_accuracy_dates_split.png
 INPUT ./99_appendix/img/prediction_accuracy_dates_split.png
+INPUT thesis.lof
+INPUT thesis.lof
 OUTPUT thesis.lof
+INPUT thesis.lot
+INPUT thesis.lot
 OUTPUT thesis.lot
 INPUT thesis.lol
 INPUT thesis.lol
@@ -757,7 +763,6 @@ OUTPUT thesis.lol
 INPUT abbrev.tex
 INPUT abbrev.tex
 INPUT thesis.aux
-INPUT thesis.pyg
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
