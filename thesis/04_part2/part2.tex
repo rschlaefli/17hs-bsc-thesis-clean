@@ -1,14 +1,14 @@
 \chapter{Part 2: Prediction of Monsoon Onset}
 \label{c:part2}
-The onset of the ISM plays a crucial role in the daily lives of the Indian population as well as the Indian economy overall. Whether the ISM is a blessing or a curse mostly depends on the timing and the strength and durability of monsoonal rainfalls. While we have analyzed the distribution of extreme rainfall events in the previous chapter, this chapter is fully dedicated to the problem of ISM onset prediction. We focus on the monsoon onset over Kerala (MoK), as it marks the beginning of the yearly monsoon season.
+The onset of the ISM plays a crucial role in the daily lives of the Indian population as well as with regards to the Indian economy overall. Whether the ISM is a blessing or a curse mostly depends on the timing, strength and durability of monsoonal rainfalls. While we have analyzed the distribution of extreme rainfall events in the previous chapter, this chapter is fully dedicated to the problem of ISM onset prediction. We focus on the monsoon onset over Kerala (MoK), as it marks the beginning of the yearly monsoon season for the entire Indian subcontinent.
 
-Our approach to predicting
+Our approach to predicting the ISM onset is based on neural networks and their training on spatiotemporal meteorological datasets. An example for such a dataset is the TRMM dataset we have introduced and used in the previous chapter. As the TRMM dataset is focused solely on precipitation, we have found that it is not well suitable for our prediction task: the data is very sparse, as there are many locations that do not receive rainfall at any given time. As an alternative source, we introduce the ERA-Interim dataset in the first part of this chapter (\cref{st:era_interim}). The ERA-Interim dataset provides many more features (e.g., temperature), many of which are less sparse, making them more suitable as training data of our neural network models.
 
-
+The neural network architecture we have found to work best is based on a new layer that has been introduced relatively recently. This new layer, the ``ConvLSTM'' layer, is itself based on a combination of convolutional and recurrent neural network concepts. We shortly introduce its main characteristics in \cref{sst:neural_networks}. Following up in \cref{st:nn_implementation}, we introduce the architecture of our final neural network model and present the experiments we have performed for its evaluation. In addition to our final model, \cref{st:nn_implementation} also provides an overview of the other model architectures we have tried but not developed further, as their accuracy was subpar.
 
 \section{The ERA-Interim Dataset}
 \label{st:era_interim}
-The ERA-Interim dataset is a global atmospheric reanalysis product created by the ECMWF. Reanalysis produces like ERA-Interim are created by
+The ERA-Interim dataset is a global atmospheric reanalysis product created by the ECMWF. Reanalysis products like ERA-Interim are created by
 
 \begin{table}[h]
   \centering
@@ -31,7 +31,6 @@ The ERA-Interim dataset is a global atmospheric reanalysis product created by th
 \section{Related Work}
 [TODO: filler]
 
-
 \subsection{Prediction of monsoon onset and variability}
 \label{sst:related_prediction}
 [TODO:  describe other methods that have been proposed for onset prediction (~1 page)]
@@ -48,10 +47,9 @@ The newly proposed ConvLSTM network layer combines the concept of convolutions a
 
 Based on the previously mentioned encoding-decoding pattern and their new ConvLSTLM network layers, \citet{Shi.2015} have built several models and evaluated them on both a generated dataset with moving digits as well as on a real radar map dataset. Over both of these evaluations, the ConvLSTM architecture outperformed a fully-connected regular LSTM architecture by a significant margin. Additionally, while the countours of the precipitation predictions were found to be blurred, they still significantly outperformed the benchmark in terms of overall precision \citep{Shi.2015}.
 
-\newpage
 \section{Prediction of Monsoon Onset using Neural Networks}
 \label{st:nn_implementation}
-Looking to find a model capable of learning the patterns leading up to the monsoon onset, as well as predicting the onset itself, we evaluated many different approaches to training neural networks based on spatiotemporal datasets like TRMM and ERA-Interim. Each approach had its advantages and disadvantages, many of which we only learned through trial and error and subsequently used to build an improved architecture. Over many iterations with vastly different model architectures, we finally got to a model that seems to be able to learn patterns present before the monsoon onset and, based on these patterns, predict the monsoon onset with reasonable accuracy.
+Looking to find a model capable of learning the patterns leading up to the monsoon onset, as well as predicting the onset itself, we evaluated many different approaches to training neural networks based on spatiotemporal meteorological datasets like TRMM and ERA-Interim. Each approach had its advantages and disadvantages, many of which we only learned through trial and error and subsequently used to build an improved architecture. Over many iterations with vastly different model architectures, we finally got to a model that seems to be able to learn patterns present before the monsoon onset and, based on these patterns, predict the monsoon onset with reasonable accuracy.
 
 The first part of this section is thus focused on our certainly most important and useful result: our final working models and their evaluation. We describe their general architecture as well as the different evaluation schemes and parameters we have used. Furthermore, we evaluate how well the models have performed over the entirety of our experiments and assess the prediction capabilities from different points of view (e.g., how accurately can we predict on the 15th of May, or how accurately can we predict ten days before onset).
 
@@ -68,22 +66,28 @@ The approach we use in our final model architecture (E4) is most easily explaine
 
 If we were to train our model only based on sequences that end 14 days before the onset, it would most certainly always predict the number 14, no matter the actual input. To train our model for different distances, we need to repeat the sequence extraction process many times per year, using a different distance to the monsoon onset in each repetition. Our most successful models are based on 30 training examples per year with distances in the range of $[1, 30]$ and a sequence length of around two months.
 
-The actual preprocessing of the ERA-Interim dataset is only slightly more complex: instead of a simple time series, from which a sequence is extracted, we have a time series where each timestep is represented by a multidimensional matrix (a \textit{3D-tensor}). For each location in the ERA-Interim coordinate grid as well as for each feature used from ERA-Interim (e.g., temperature), these tensors contain the value of the respective feature at the respective location (at that timestep). This is more intuitively shown in \cref{fig:e4_preprocessing}.
+The actual preprocessing of the ERA-Interim dataset is only slightly more complex: instead of a simple time series, from which a sequence is extracted, we have a time series where each timestep is represented by a multidimensional matrix (a \textit{3D-tensor}). For each location in the ERA-Interim coordinate grid as well as for each feature used from ERA-Interim (e.g., temperature), these tensors contain the value of the respective feature at the respective location (at that timestep). This is more intuitively shown in \cref{fig:e4_preprocessing} and \cref{fig:e4_tensor}.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{./99_appendix/img/E4_preprocessing}
-  \caption{Data preprocessing for models of the E4 class.}
+  \caption{Two exemplary training examples based on three ERA-Interim features and a sequence length of 60 days. One training example consists of 60 timesteps, each of which is represented by a 3D-tensor as shown in \cref{fig:e4_tensor}.}
   \label{fig:e4_preprocessing}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\linewidth]{./99_appendix/img/E4_tensor}
+  \caption{A single timestep as extracted from a training example.}
+  \label{fig:e4_tensor}
 \end{figure}
 
 \paragraph{Normalization} An additional step during data preprocessing is often the normalization of data into certain consistent ranges. Even though neural networks could learn without normalization, it often improves and speeds up their learning process. If different input features do not adhere to the same distribution (e.g., temperature and rainfall), the different magnitudes can lead to problems during the optimization process (when multiplying with the learning rate). When processing the ERA-Interim dataset into a training, validation and test set, we therefore apply statistical standardization to center the mean of each feature separately. To prevent the introduction of any bias, the mean and standard deviation of the training set are reused when normalizing the validation and test sets.
 
-\clearpage
 \subsubsection{Model architecture}
 It is not hard to see that a single ERA-Interim coordinate grid is inherently similar to a simple multichannel image: we have a height (latitudes), a width (longitudes) and multiple channels (e.g., temperature and relative humidity). When working with images, convolutional neural networks are by far the most prevalent approach. They have led to great progress in image recognition and other domains. However, 2D-convolutions are not directly applicable to multiple images ordered in a sequence (like a movie). Instead, they first need to be combined with recurrent network structures like LSTM.
 
-We have already introduced a recent approach to the problem of learning from spatiotemporal data: the ConvLSTM2D neural network layer (\cref{ssst:conv_lstm_2d}). In our case, this layer performed much better than a simple stacking of convolutional and recurrent layers, making it the most important part of many of our models (including E4). With ConvLSTM2D at its core, the E4 model architecture performs a regression by flattening the final output of the ConvLSTM2D layers and passing it through multiple dense layers, the final one of which has only a single neuron (and thus yields a single number). As an optional addition, time-distributed convolutional and pooling layers can be applied before passing the sequence into the ConvLSTM2D layers, adding further feature detection and dimensionality reduction capabilities. An exemplary model based on the described architecture is shown in \cref{fig:e4_architecture}.
+We have already introduced a recent approach to the problem of learning from spatiotemporal data: the ConvLSTM2D neural network layer (\cref{sst:neural_networks}). In our case, this layer performed much better than a simple stacking of convolutional and recurrent layers, making it the most important part of many of our models (including E4). With ConvLSTM2D at its core, the E4 model architecture performs a regression by flattening the final output of the ConvLSTM2D layers and passing it through multiple dense layers, the final one of which has only a single neuron (and thus yields a single number). As an optional addition, time-distributed convolutional and pooling layers can be applied before passing the sequence into the ConvLSTM2D layers, adding further feature detection and dimensionality reduction capabilities. An exemplary model based on the described architecture is shown in \cref{fig:e4_architecture}.
 
 \begin{figure}[h]
   \centering
@@ -190,7 +194,6 @@ The experiments were run in different environments and are explicitly marked as 
 \label{tab:experimental_environments}
 \end{table}
 
-\clearpage
 \subsubsection{Intermediary evaluation results}
 To provide a better overview of the outcome of our experiments, we reduce the results presented to only the best experiment of any given evaluation scheme (i.e., its best performing ``hyperparameter tuning''). \cref{tab:evaluation_scheme_results} shows the loss and validation loss after some key epochs as well as after the overall final epoch. Notice that loss and validation loss measures are based on the mean-squared error (MSE) but tend to be higher due to the regularization that is additionally applied.
 
@@ -299,6 +302,7 @@ When we combine the separate measures shown previously, we get a single accuracy
 \end{table}
 
 \subsection{T1-T5 and E1-E3: Other model architectures}
+\label{sst:other_models}
 On the path towards the well-working E4-class of models, there were many other approaches that disappointed with their learning capabilities. However, even though they did not end up to be a working model, each model architecture we have evaluated and subsequently discarded has led to important findings, without which we could not have created a working model at all. In this section, we walk through these different variations of neural network models and shortly summarize the key takeaways of each variation.
 
 The model variations we have evaluated differ in their network structure, in the data and features used to train the models or simply in the tuning of hyperparameters applied. \cref{tab:nn_overall_summary} summarizes the key characteristics of the models we have built and evaluated and shows how the E4-class has come to be. Each model architecture is assigned a unique version identifier that we use when referring to the specific architecture (like we already did with \textit{E4}). The identifiers are based on the type of dataset used to train the model and the variation of the model architecture used (e.g., \textit{T1}: TRMM v1, \textit{E3}: ERA-Interim v3). All of the models presented were built and trained using the latest Keras 2.0 and Tensorflow 1.3/1.4 libraries for Python.
@@ -616,7 +620,7 @@ To allow a model to capture all the events leading up to the onset of each respe
 
 This would not be that useful by itself, as the model would then only be able to predict the onset one day in advance. However, this approach to training allows feeding the model multiple sequences per year, each with a different offset to the onset date and a correspondingly different label. The amount of available examples is as such greatly increased: generating three such sequences per year would triple the overall number of examples available for training. Furthermore, the prediction capabilities of the model could then be evaluated separately for each offset, yielding results on how well the model can predict one day in advance, one week in advance or even multiple weeks in advance.
 
-The detailed architecture and evaluation of this final model architecture have already been described in depth in previous sections (\cref{e4}). Having described all the models that we used during the creation of this work, we now conclude this chapter in the next section, and our work in the section after that.
+The detailed architecture and evaluation of this final model architecture have already been described in depth in previous sections (\cref{sst:final_model}). Having described all the models that we used during the creation of this work, we now conclude this chapter in the next section, and our work in the section after that.
 
 \section{Conclusion}
 [TODO: TBD]

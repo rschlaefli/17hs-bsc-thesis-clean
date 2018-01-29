@@ -26,8 +26,6 @@ The TRMM dataset is unique in that it offers very high-resolution precipitation 
 
 After the TRMM satellite's fuel went low in 2014, it was decommissioned in April 2015 and re-entered earth's atmosphere in June 2015. The TMPA product is still being produced until 2018, albeit without the sensors of the TRMM observatory and with less accuracy \citep{Huffman.2017}. Built on the success of the TRMM mission, NASA and JAXA have already launched its successor Global Precipitation Measurement (GPM) in 2014 \citep{GoddardEarthScienceDataInformationandServicesCenter.2011}. However, as its data is only available starting from 2014, GPM is currently unsuitable for long-term precipitation research. TRMM or an alternative dataset are currently still needed but the updated algorithm developed for GPM will soon be applied to the existing TRMM data. The availability of reprocessed data back to 1998 can thus be expected in 2018 \citep{Huffman.2016}.
 
-
-\clearpage
 \section{Related Work}
 The concept of event synchronization applied in \citet{Stolbova.2015} was first proposed in \citet{QuianQuiroga.2002}, where they sought to develop a simple algorithm that could be applied to any two time series of events, resulting in a measure that defines the synchronization of said time series. Synchronization measures are generally related to standard measures like cross correlation but can convey more complex relationships due to their non-linearity \citep{QuianQuiroga.2002}.
 
@@ -119,8 +117,6 @@ The final measure that we will apply to climate networks, the \textit{PageRank} 
 
 As intuitively described by \citet{Page.1999}, PageRank can be thought to model the behavior of a ``random surfer'' that simply continues clicking links on the current page, traversing the network in a random fashion. The PageRank of a particular page then represents the probability that such random surfers end up accessing the respective page. However, to prevent any random surfer from getting stuck in loops (i.e., pages that link between each other), the simplified PageRank algorithm is further extended by a teleportation capability: a random surfer will jump to a random page with probability $\alpha$, while following a link to another page with probability $1-\alpha$.
 
-
-\clearpage
 \section{Implementation}
 \label{st:event_sync_implementation}
 Our implementation of the event synchronization and climate network computations is strongly based on the concepts and measures as described in \cref{sst:event_synchronization} and \cref{sst:climate_networks}. As our algorithmic implementation is most certainly different than the one used in the original work \citep{Stolbova.2015}, we detail our approach in this section.
@@ -378,7 +374,6 @@ Another (obvious) improvement would be to select only the few relevant events fr
 
 A further performance consideration is the fact that the event synchronization calculation $c(i \mid j)$ is in itself an ``elementary'' operation that will provide results based on only two inputs $i$ and $j$ without any side effects. As a result, the entire synchronization matrix computation is heavily parallelizable, meaning that we can split the synchronization matrix into different jobs and run these jobs on different threads (or even machines). We have already implemented an (experimental) parallelized version of the event synchronization algorithm. The parallelized algorithm will, however, need further refinement to be fully applicable.
 
-\clearpage
 \subsection{Building climate networks}
 \label{sst:building_climate_network}
 Based on \cref{sst:climate_networks}, the next step after the computation of a full event synchronization matrix is the transformation of said matrix into an adjacency matrix, allowing the creation of a network and its analysis using various methods and libraries. This transformation is a simple thresholding of the matrix using a specified percentile.
@@ -415,7 +410,6 @@ The creation of a climate network based on a synchronization matrix, as well as 
   \label{lst:climate_networks}
 \end{listing}
 
-\clearpage
 \section{Results \& Evaluation}
 \label{st:event_sync_results}
 This sections presents the results of applying what we have described in \cref{st:event_sync_implementation} to the TRMM dataset, more specifically the pre-monsoon, monsoon and post-monsoon seasons as extracted from TRMM. For each season, we show the results of degree, betweenness and PageRank measures in their weighted variation\footnote{The unweighted versions can be found in \cref{apx:event_sync}. There is, however, only little difference between them.}. The presented PageRank results are based on the corresponding asymmetrical synchronization count matrices (directed networks). Knowing about the fundamental factors that influence the ISM (as introduced in \cref{c:ism_overview}), we give our thoughts about the patterns that can be seen in the results and how they could be connected to the fundamental behavior of the ISM.
@@ -513,7 +507,13 @@ We mainly attribute the observed discrepancies to two important factors: the cho
 
 \section{Conclusion}
 \label{st:event_sync_conclusion}
-[TODO: finalize]
+In this part of our work, we have introduced the concepts of event synchronization and climate networks and have applied them for the analysis of extreme rainfall events on the Indian subcontinent. We have applied established network measures like betweenness centrality and PageRank to climate networks, allowing us to make observations about the importance of different regions on the Indian subcontinent (with respect to extreme rainfall).
 
-When computing climate networks as shown in this chapter, the primary goal one has in mind is to analyze the spatial distribution of extreme rainfall and, based thereon, to potentially learn about patterns that might be useful for a more thorough understanding of the development of such events. Knowing how extreme events evolve and how an interconnection between different regions on the Indian subcontinent could influence their development can be of great use in predictive efforts. Successful predictions could help prepare for or even prevent the damage that is regularly caused by extreme rainfall. The methodology presented in \citet{Stolbova.2015} and our work could serve as a foundation for future such predictive approaches.
+During the pre-monsoon season, the Indian Ocean and the Tibetan Plateau were identified as the most central regions in the network. We have attributed this to their importance during the reversal of the temperature gradient due to unequal solar heating and due to the fact that most rainfall during the pre-monsoon season is concentrated over the oceans, while the subcontinent remains very dry.
+
+For the monsoon season, a region over North Pakistan was surprisingly attributed the highest levels of centrality by all measures. While this is coherent with the findings in \citet{Stolbova.2015}, it is nonetheless non-trivial to link to a specific climatic driver. We have suggested that the region might act as a pivot between several influential regions, leading to its high connectedness and centrality in the network.
+
+The post-monsoon season has displayed the most significant differences from the results of \citet{Stolbova.2015}: areas of high centrality and ranking span the entirety of central India and parts of the Tibetan Plateau, which we have linked to the retreat of the ISM as well as the starting transition to the north-east monsoon. The significant differences between the results of \citet{Stolbova.2015} and our own were attributed to the lower dataset resolution used in our work and, possibly, the additional TRMM years we were able to use.
+
+When computing climate networks as shown in this chapter, the primary goal one has in mind is to analyze the spatial distribution of extreme rainfall and, based thereon, to potentially learn about patterns that are useful for a better understanding of the development of extreme rainfall events. Knowing how such events evolve and how an interconnection between regions on the Indian subcontinent could influence their development can be of great use in predictive efforts. Successful predictions of upcoming events could help prepare for or even prevent the damage that is regularly caused by extreme rainfall events.
 
