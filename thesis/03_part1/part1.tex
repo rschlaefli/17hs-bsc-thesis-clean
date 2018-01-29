@@ -473,24 +473,30 @@ Contrary to the pre-monsoon season, the months of the post-monsoon season (OND, 
 
 More specifically, a single area of very high degree encompasses entire central and north-eastern India, starting over the Arabian Sea (WG) and ranging well into Bangladesh. The degree in this area is at its highest over Nepal close to the Himalayas. The area further extends over the Tibetan Plateau (TP), although with less strength. Similarly, areas of high betweenness are located over Nepal, at the coast of the Arabian Sea, over North Pakistan (NP) and on the Tibetan Plateau (TP). The PageRank algorithm again seems to rank the Tibetan Plateau region as more important than the other two measures.
 
-We mainly attribute the pattern of high degree and PageRank to the retreat of the ISM as well as the following buildup-phase of the north-east monsoon. Some locations experience more rainfall than even during monsoon, because the reversal of the temperature gradient leads to [TODO: finish]
+We mainly attribute the pattern of high degree and PageRank to the retreat of the ISM as well as the following buildup-phase of the north-east monsoon. During the later parts of the year, some locations experience more rainfall than even during monsoon. As the land cools down faster than the oceans surrounding it, the temperature gradient reverses, causing winds to change direction. This can dramatically change the spatial distribution of rainfall and could thus be a reason for the difference in patterns between the monsoon and post-monsoon periods.
 
 \subsection{Intercomparison with \citet{Stolbova.2015}}
 This section shows the results as they have been presented in the referred work \citep{Stolbova.2015} and compares them to the results we have obtained from our own analysis. Next to giving an indication about the validity of our approach, this might also show new properties that have only recently developed, as we have had access to four additional years of the TRMM dataset.
 
 \subsubsection{Differences in implementation}
-As we have based our analyses on the work of \citet{Stolbova.2015}, we have similarly calculated the degree and betweenness for climate networks thresholded at the 95th percentile. However, there are certain important differences and additions in our implementation that need to be taken into account when comparing the results in the next section. More specifically:
+The calculations and results in \citet{Stolbova.2015} are based on unweighted climate networks with event series containing only the events above the 90th percentile. Furthermore, the climate networks are thresholded at the 95th percentile, leaving only the most statistically significant edges in a network. We have calculated the degree and betweenness measures in similar ways. There are, however, certain important differences and additions in our implementation that need to be taken into account when comparing the results of both works. These differences can be categorized in the following three categories:
 
 \paragraph{PageRank and directed networks}
-We have calculated the PageRank of climate networks, expecting to get further insights about the importance of locations. As the PageRank algorithm was originally developed for directed networks, we have computed directed variations of each network and network measure.
+As a new measure, we have calculated the PageRank of climate networks, expecting to get further insights about the importance of locations. As the PageRank algorithm works best on directed networks, we have additionally computed directed variations of each network and network measure.
 
 \paragraph{Weighted networks}
 The climate network analyses as shown so far are based on weighted climate networks, where each link between two locations is weighted with the respective synchronization coefficient. While we have found this to represent certain details differently, the overall differences are small.
 
+\paragraph{Dataset resolution}
+We have aggregated the TRMM dataset to a {0.75\degree} resolution by summarizing patches of 3x3 grid cells into one single grid cell. We have done this mainly due to performance reasons, as the full synchronization matrix for a native {0.25\degree} resolution restricted to our area has dimensions of 21609x21609, making traversal of the matrix a computationally very complex effort (compared to a 2401x2401 matrix using {0.75\degree} resolution).
+
 \paragraph{Network thresholding}
-As the much lower resolution of our TRMM input reduces the size of the networks by a large proportion, we have decided to perform an additional evaluation at the 90th percentile, trading off less significance for bigger networks. A full overview of additional climate networks we have computed is shown in \cref{apx:event_sync}.
+As the much lower resolution of our TRMM input reduces the size of the networks by a large proportion, we have decided to perform an additional evaluation at the 90th percentile, trading off less significance for bigger networks.
+\\ \\
+\cref{apx:event_sync} contains an overview of the climate networks we have created, taking into account their differentiation into unweighted/weighted and directed/undirected networks.
 
 \subsubsection{Differences in results}
+While we have already shown the differences between the implementation of both \citet{Stolbova.2015} and our work, the network measures that finally result also exhibit some different characteristics. The visualizations as shown in \cref{fig:results_stolbova} have been extracted from \citet{Stolbova.2015} and will now be used to provide an overview about these differences in our results.
 
 \begin{figure}[H]
   \centering
@@ -503,9 +509,7 @@ The visualizations as shown in \cref{fig:results_stolbova} are obviously much mo
 
 Comparing the results for the post-monsoon season, we find that the discrepancies are much more significant. While the most central locations are clustered around the Himalayas in both \cref{fig:results_ond} and \cref{fig:results_stolbova}, the area of high degree extends much farther to the west in our results. Additionally, the results as shown in \cref{fig:results_stolbova} seem to be more concentrated to the Himalaya region and extend far up on the Tibetan Plateau. However, while the degree doesn't match all that well, the PageRank seems to acurately recognize the importance of the Tibetan Plateau during the post-monsoon season.
 
-We mainly attribute the observed discrepancies to two important factors: the choice of resolution and the availability of data. We have used a lower data resolution to be able to speed up computation of the synchronization matrix and climate networks. It is obvious that a higher resolution leads to much more detailed results. However, the full synchronization matrix for a native {0.25\degree} resolution restricted to our area has dimensions of 21609x21609, making traversal of the matrix a computationally very complex effort (compared to the 2401x2401 matrix using {0.75\degree} resolution). Furthermore, the choice of resolution probably also has an impact on the general structure of a network, as a {0.25\degree} resolution results in a matrix that is much more sparse than it is after aggregation.
-
-An additional non-negligible factor is the availability of four additional years of TRMM data. We have been able to use the years 1998-2016 instead of 1998-2012, which corresponds to an increase of more than 25\%. The trend that causes extreme events to occur more and more often could certainly also cause significant changes in the spatial distribution of extreme events.
+We mainly attribute the observed discrepancies to two important factors: the choice of resolution and the availability of data. We have used a lower data resolution to be able to speed up computation of the synchronization matrix and climate networks. It is obvious that a higher resolution leads to much more detailed results. Furthermore, the choice of resolution probably also has an impact on the general structure of a network, as a {0.25\degree} resolution results in a matrix that is much more sparse than it is after aggregation. An additional non-negligible factor is the availability of four additional years of TRMM data. We have been able to use the years 1998-2016 instead of 1998-2012, which corresponds to an increase of more than 25\%. The trend that causes extreme events to occur more and more often would certainly also be capable of causing significant changes in the spatial distribution of extreme events, which might further explain the differences between our results.
 
 \section{Conclusion}
 \label{st:event_sync_conclusion}

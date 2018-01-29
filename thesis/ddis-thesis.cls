@@ -194,6 +194,7 @@
 \newenvironment{acknowledgements}{%
   \chapter*{Acknowledgements}}{}
 
-
+\newenvironment{abbreviations}{%
+  \chapter*{Abbreviations}}{}
 
 \endinput
