@@ -770,3 +770,39 @@ INPUT thesis.lol
 INPUT thesis.lol
 OUTPUT thesis.lol
 INPUT thesis.aux
+INPUT thesis.pyg
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmitt10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/euex10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/euex10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eufm10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eufm10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eufm7.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eufm7.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eurm10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eurm10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eurm7.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eurm7.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eusm10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/euler/eusm10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb
+INPUT C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb
