@@ -8,9 +8,17 @@ The neural network architecture we have found to work best is based on a new lay
 
 \section{The ERA-Interim Dataset}
 \label{st:era_interim}
-The ERA-Interim dataset is a global atmospheric reanalysis product created by the ECMWF. Reanalysis products like ERA-Interim are created by
+The ERA-Interim dataset is a global atmospheric reanalysis product created by the ECMWF in the United Kingdom. The centre had already produced the popular ERA-40 reanalysis until 2002 and, during this process, had identified several issues in data assimilation that they addressed with the creation of the ERA-Interim reanalysis. ERA-Interim is also thought as a ``bridge'' between ERA-40 and a future reanalysis that spans the entire 20th century \citep{Dee.2011b}.
 
-\begin{table}[h]
+Generally speaking, a reanalysis product is a dataset that provides many meteorological features through a single framework, for the same locations and at the same resolution. Most often, reanalysis products are available on a global scale, which also holds true for ERA-Interim. The features provided by reanalysis datasets are not purely based on real observations, as this would often be unfeasible for such high spatial and temporal resolutions. Instead, the features are based on complex data assimilation algorithms and a combinataion of observations, simulations and forecasts.
+
+The ERA-Interim reanalysis provides hundreds of features for locations all around the world. ERA-Interim is available starting in 1979 and continues to be produced, albeit with a two month delay. The native spatial resolution of the dataset is equal to approximately {0.75\degree} on a coordinate system. Notice that the resolution is not perfectly accurate, as the spherical dataset is projected into a coordinate grid on extraction.
+
+To achieve consistency and comparability with the TRMM dataset, we subset the global ERA-Interim reanalysis into a gridded area between (4.5-40.5\degree N, 61.5-97.5\degree E). While this is slightly smaller compared to the area we have extracted from TRMM, the TRMM dataset shrinks to equal dimensions after the aggregation algorithm is applied. After the described aggregation of the TRMM dataset, the two datasets are both in a 0.75\degree resolution. The final coordinate systems are offset by 0.125\degree, which is inherent to the datasets themselves.
+
+While the ERA-Interim reanalysis provides hundreds of features for locations all around the world, we focus on a handful of key features in this work. More specifically, we extract the temperature and relative humidity at a 1000hPa pressure level, the U and V components of wind at 700hPa and the U-component of wind at 200hPa. An overview of the extracted features is shown in \cref{tab:era_features}, along with the corresponding identifiers we use later on.
+
+\begin{table}[h!]
   \centering
   \begin{tabular}{rl}
     \toprule
@@ -29,16 +37,16 @@ The ERA-Interim dataset is a global atmospheric reanalysis product created by th
 \end{table}
 
 \section{Related Work}
-[TODO: filler]
+The onset of the Indian Summer Monsoon is a thoroughly-researched phenomenon. Many researchers have developed methods for the prediction of ISM onset and withdrawal dates that have been found to deliver relatively accurate predictions, even though the variability still poses a big challenge. The proposed approaches range from statistical analyses to, more recently, the application of machine learning methods and even deep learning. In \cref{sst:related_prediction}, we shortly introduce some of the proposed approaches (including the approach in \citet{Stolbova.2015}), focusing mainly on the achieved accuracy of predictions as a benchmark to our own predictions.
+
+Many of our experimental models are based on a relatively new approach to training neural networks on spatiotemporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM} neural network layer was first applied to precipitation forecasting. Due to the reliance of many of our models on these layers, \cref{sst:neural_networks} is thought to provide intuition about their inner workings. We assume that the reader is familiar with neural network principles for the remainder of this work. However, as convolutional and recurrent layers are what ConvLSTM layers are based on, we explain some of their characteristics along the way.
 
 \subsection{Prediction of monsoon onset and variability}
 \label{sst:related_prediction}
-[TODO:  describe other methods that have been proposed for onset prediction (~1 page)]
+[TODO:]
 
 \subsection{Convolutional recurrent neural networks}
 \label{sst:neural_networks}
-Many of our experimental models are based on a relatively new approach to training neural networks on spatiotemporal data. We specifically refer to the work of \citet{Shi.2015}, where a newly defined \textit{ConvLSTM} neural network layer was first applied to precipitation forecasting. Due to the reliance of many of our models on these layers, this section is thought to provide intuition about their inner workings. We assume that the reader is familiar with neural network principles for the remainder of this work. However, as convolutional and recurrent layers are what ConvLSTM layers are based on, we explain some of their characteristics where needed.
-
 ConvLSTM networks as introduced by \citet{Shi.2015} were originally used for the problem of precipitation nowcasting, the primary goal of which is described as giving a ``precise and timely prediction of rainfall intensity in a local region over a relatively short period of time (e.g., 0-6 hours)'' \citep{Shi.2015}. In the aforementioned work, the authors try to predict a sequence of future precipitation radar maps from a sequence of past radar maps, essentially performing sequence-to-sequence prediction. These kinds of prediction tasks based on spatiotemporal data (where time as well as geographical location needs to be accounted for) are generally challenging, as a suitable neural network needs to be able to handle very high input and output dimensionalities.
 
 An approach that is often used for sequence-to-sequence prediction is a two-layer architecture in which a first Long-Short Term Memory (LSTM) network reduces the input into a fixed-length sequence (``encodes'' the input into an internal representation), while a second LSTM network then predicts an output sequence using as input the fixed-length sequence (``decoding''). This encoder-decoder framework was originally described in [TODO: cite sutskever] and has been applied to many sequence-to-sequence tasks like machine translation. However, \citet{Shi.2015} have found that the regular LSTM networks used for regular sequence-to-sequence prediction are not well suited to process spatiotemporal data. While they use an encoding-decoding pattern in their models, \citet{Shi.2015} propose a new type of network layer based on regular LSTM layers that is able to better take into account the spatial dimension of input values.

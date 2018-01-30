@@ -7,8 +7,8 @@
 \contentsline {listing}{\numberline {4}{\ignorespaces Python pseudocode for an improved version of the event synchronization algorithm, applicable to any two series of events.\relax }}{19}
 \contentsline {listing}{\numberline {5}{\ignorespaces Simplified Python pseudocode for the creation of a climate network from a synchronization matrix as well as the calculation of corresponding network measures.\relax }}{20}
 \addvspace {10\p@ }
-\contentsline {listing}{\numberline {6}{\ignorespaces Simplified Python pseudocode for an exemplary T2 model (default configuration).\relax }}{44}
-\contentsline {listing}{\numberline {7}{\ignorespaces Simplified Python pseudocode for an exemplary T3 model (default configuration).\relax }}{46}
-\contentsline {listing}{\numberline {8}{\ignorespaces Simplified Python pseudocode for an exemplary E1 model (default configuration).\relax }}{48}
+\contentsline {listing}{\numberline {6}{\ignorespaces Simplified Python pseudocode for an exemplary T2 model (default configuration).\relax }}{45}
+\contentsline {listing}{\numberline {7}{\ignorespaces Simplified Python pseudocode for an exemplary T3 model (default configuration).\relax }}{47}
+\contentsline {listing}{\numberline {8}{\ignorespaces Simplified Python pseudocode for an exemplary E1 model (default configuration).\relax }}{49}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
