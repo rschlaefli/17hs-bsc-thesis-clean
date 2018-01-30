@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{\PYGZsh{} extract the 95th percentile from a synchronization matrix}
+\PYG{l+m+mi}{95}\PYG{n}{th\PYGZus{}percentile} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{nanpercentile}\PYG{p}{(}\PYG{n}{sync\PYGZus{}matrix}\PYG{p}{,} \PYG{l+m+mi}{95}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} set all values above and below the threshold to 0 and 1}
+\PYG{n}{adjacency\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{adjacency\PYGZus{}matrix} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{95}\PYG{n}{th\PYGZus{}percentile}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}
+\PYG{n}{adjacency\PYGZus{}matrix}\PYG{p}{[}\PYG{n}{adjacency\PYGZus{}matrix} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{95}\PYG{n}{th\PYGZus{}percentile}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+\PYG{c+c1}{\PYGZsh{} build a network from the resulting adjacency matrix}
+\PYG{n}{network} \PYG{o}{=} \PYG{n}{nx}\PYG{o}{.}\PYG{n}{from\PYGZus{}numpy\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{adjacency\PYGZus{}matrix}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} calculate the degree, betweenness and PageRank for all nodes}
+\PYG{n}{nodes\PYGZus{}degree} \PYG{o}{=} \PYG{n}{network}\PYG{o}{.}\PYG{n}{degree}\PYG{p}{()}
+\PYG{n}{nodes\PYGZus{}betweenness} \PYG{o}{=} \PYG{n}{nx}\PYG{o}{.}\PYG{n}{betweenness\PYGZus{}centrality}\PYG{p}{(}\PYG{n}{network}\PYG{p}{)}
+\PYG{n}{nodes\PYGZus{}pagerank} \PYG{o}{=} \PYG{n}{nx}\PYG{o}{.}\PYG{n}{pagerank\PYGZus{}numpy}\PYG{p}{(}\PYG{n}{network}\PYG{p}{)}
+
+\PYG{n}{r} \PYG{n}{simultaneously}
+            \PYG{k}{if} \PYG{n}{current\PYGZus{}diff} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{:}
+                \PYG{n}{num\PYGZus{}sync\PYGZus{}events} \PYG{o}{+=} \PYG{l+m+mf}{0.5}
+                \PYG{k}{continue}
+
+            \PYG{c+c1}{\PYGZsh{} calculate the time lag based on the two sliding windows}
+            \PYG{n}{time\PYGZus{}lag} \PYG{o}{=} \PYG{l+m+mf}{0.5} \PYG{o}{*} \PYG{n+nb}{min}\PYG{p}{(}
+                \PYG{n}{i\PYGZus{}next} \PYG{o}{\PYGZhy{}} \PYG{n}{i\PYGZus{}current}\PYG{p}{,} \PYG{n}{i\PYGZus{}current} \PYG{o}{\PYGZhy{}} \PYG{n}{i\PYGZus{}prev}\PYG{p}{,}
+                \PYG{n}{j\PYGZus{}next} \PYG{o}{\PYGZhy{}} \PYG{n}{j\PYGZus{}current}\PYG{p}{,} \PYG{n}{j\PYGZus{}current} \PYG{o}{\PYGZhy{}} \PYG{n}{j\PYGZus{}prev}\PYG{p}{)}
+
+            \PYG{c+c1}{\PYGZsh{} decide whether the events are synchronous}
+            \PYG{k}{if} \PYG{l+m+mi}{0} \PYG{o}{\PYGZlt{}} \PYG{n}{current\PYGZus{}diff} \PYG{o}{\PYGZlt{}=} \PYG{n}{time\PYGZus{}lag}\PYG{p}{:}
+                \PYG{n}{num\PYGZus{}sync\PYGZus{}events} \PYG{o}{+=} \PYG{l+m+mf}{1.0}
+
+    \PYG{k}{return} \PYG{n}{num\PYGZus{}sync\PYGZus{}events}
+\end{Verbatim}
