@@ -78,7 +78,7 @@ The resulting series of extreme events can be used to calculate the synchronicit
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.5\textwidth]{./99_appendix/img/trmm_sync_example}
-  \caption{Exemplary synchronization matrix for TRMM at a {0.75\degree} resolution. We only show the top left 15x15 section of our actual matrix, as its full dimensions are 2401x2401 for a {0.75\degree} resolution.}
+  \caption{Exemplary synchronization matrix for TRMM at a {0.75\degree} resolution. We only show the top left 15x15 section of an actual matrix, as the full dimensions are 2401x2401 for a {0.75\degree} resolution.}
   \label{fig:synchronization_matrix}
 \end{figure}
 
@@ -87,7 +87,7 @@ Applying a numerical threshold to this synchronization matrix results in a matri
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.5\textwidth]{./99_appendix/img/trmm_adjacency_example}
-  \caption{Exemplary adjacency matrix for TRMM at a {0.75\degree} resolution. We only show the top left 15x15 section of our actual matrix, as its full dimensions are 2401x2401 for a {0.75\degree} resolution.}
+  \caption{Exemplary adjacency matrix for TRMM at a {0.75\degree} resolution. We only show the top left 15x15 section of an actual matrix, as the full dimensions are 2401x2401 for a {0.75\degree} resolution.}
   \label{fig:adjacency_matrix}
 \end{figure}
 
@@ -433,7 +433,7 @@ Many patterns in the betweenness are much less clear and conclusive. There are, 
 
 Our final measure, the PageRank algorithm, seems to follow the major patterns we have already seen in the degree. However, contrary to the degree, PageRank attributes very little importance to the region to the north-west of India. Instead, central India and especially the Tibetan Plateau are ranked to be much more important.
 
-During the pre-monsoon or "summer" season, rainfall in southern or central India is a rare occasion, as can be seen in \cref{apx:trmm_prec}. Temperatures during these hot summer months range around 30-40\degree Celsius (\cref{apx:era_t}), even causing drought-like conditions in some years. This coincides well with our findings that the most central parts of the network are located in big clusters over the Indian ocean: as the ocean temperatures are lower than the ones on the subcontinent, wind channels moisture away from the land and onto the ocean.
+During the pre-monsoon or "summer" season, rainfall in southern or central India is a rare occasion, as can be seen in \cref{apx:trmm_prec}. Temperatures during these hot summer months range around 30-40\degree Celsius (\cref{apx:era_t}), even causing drought-like conditions in some years. This coincides well with our findings that the most central parts of the network are located in big clusters over the Indian ocean, where most rainfall is concentrated during summer.
 
 However, the centrality of a location does not (necessarily) represent the amount of rainfall but the overall ``importance'' of a location in the network, which is harder to reason about. For example, a location can obtain high degree centrality simply because it is part of many large-scale events like thunderstorms that cause high or even extreme precipitation in a large area, which would certainly explain the clusters over the ocean.
 

@@ -64,6 +64,7 @@
 
 \clearpage
 \subsection{Feature analysis}
+\label{apx:era_features}
 The visualizations in this section show the development of different relevant ERA and TRMM features over the duration of an average monsoon. To calculate the visualizations, the data for each feature has been averaged over all years available (1998-2017 for TRMM, 1979-2017 for ERA).
 
 \textbf{Example:} The temperature grids 10 days previous to the objective onset dates (MoK; \ref{apx:era_t}) for all available years are extracted and then averaged to yield an averaged grid representation. The visualization is then simply calculated based on the averaged grid.
@@ -123,9 +124,23 @@ The visualizations in this section show the development of different relevant ER
 
 \begin{figure}[h]
   \centering
+  \includegraphics[width=\linewidth]{{./99_appendix/img/event_sync_0.75-0.9_90}.png}
+  \caption{Climate network analysis for unweighted, undirected climate networks (based on TRMM at {0.75\degree} resolution and a threshold set at the 90th percentile).}
+  \label{apx:climate_network_basic_90}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
   \includegraphics[width=\linewidth]{{./99_appendix/img/event_sync_0.75-0.9_weighted}.png}
   \caption{Climate network analysis for weighted, undirected climate networks (based on TRMM at {0.75\degree} resolution and a threshold set at the 95th percentile).}
   \label{apx:climate_network_weighted}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{{./99_appendix/img/event_sync_0.75-0.9_weighted_90}.png}
+  \caption{Climate network analysis for weighted, undirected climate networks (based on TRMM at {0.75\degree} resolution and a threshold set at the 90th percentile).}
+  \label{apx:climate_network_weighted_90}
 \end{figure}
 
 \begin{figure}[h]
@@ -137,8 +152,22 @@ The visualizations in this section show the development of different relevant ER
 
 \begin{figure}[h]
   \centering
+  \includegraphics[width=\linewidth]{{./99_appendix/img/event_sync_0.75-0.9_directed_90}.png}
+  \caption{Climate network analysis for unweighted, directed climate networks (based on TRMM at {0.75\degree} resolution and a threshold set at the 90th percentile).}
+  \label{apx:climate_network_directed}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
   \includegraphics[width=\linewidth]{{./99_appendix/img/event_sync_0.75-0.9_directed_weighted}.png}
   \caption{Climate network analysis for weighted, directed climate networks (based on TRMM at {0.75\degree} resolution and a threshold set at the 95th percentile).}
+  \label{apx:climate_network_both}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{{./99_appendix/img/event_sync_0.75-0.9_directed_weighted_90}.png}
+  \caption{Climate network analysis for weighted, directed climate networks (based on TRMM at {0.75\degree} resolution and a threshold set at the 90th percentile).}
   \label{apx:climate_network_both}
 \end{figure}
 
@@ -155,7 +184,7 @@ The visualizations in this section show the development of different relevant ER
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.9\linewidth]{./99_appendix/img/prediction_error_offset_split.png}
+  \includegraphics[width=\linewidth]{./99_appendix/img/prediction_error_offset_split.png}
   \caption{Mean error (with 0.95 CI) of each offset from MoK, averaged over the predictions of the final experiments on the test set (1985, 1995, 2003, 2004, 2005, 2014, 2015, 2017).}
   \label{apx:prediction_error_offset_ci}
 \end{figure}
