@@ -106,21 +106,30 @@ class ModelBASEv2:
         Build a stateless LSTM model
 
         :X_train: Training features for input_shape calculation
-        :dropout: How much dropout to use after dense layers
-        :dropout_recurrent: How much recurrent dropout to use in ConvLSTM2D
-        :dropout_conv: How much dropout to use after convolutional layers
+        :optimizer: The optimizer to use
+        :learning_rate: The initial learning rate to apply
+        :loss: The loss function to use
         :batch_norm: Whether to use batch normalization
+        :padding: The kind of padding to apply in CNNs
         :conv_activation: The activation to use in the convolutional layers
+        :conv_dropout: The dropout to use in each convolutional layer as a list
         :conv_filters: The number of filters for all convolutional layers as a list
         :conv_kernels: The dimensions of the kernels for all convolutional layers as a list
         :conv_pooling: Dimensions of the max pooling layers => one after each conv layer, final one before flatten
-        :recurrent_activation: The activation for the LSTM recurrent part of ConvLSTM2D
-        :padding: Whether to apply padding or not
+        :conv_kernel_regularizer: Regularizer function applied to the kernel weights matrix of convolutional layers.
+        :conv_recurrent_regularizer: Regularizer function applied to the recurrent_kernel weights matrix of convolutional layers.
+        :dense_dropout: The dropout to use in each dense layer as a list
         :dense_nodes: The number of dense nodes for all dense layers as a list
         :dense_activation: The activation to use in all dense nodes except the final one
-        :conv_kernel_regularizer: Regularizer function applied to the kernel weights matrix of ConvLSTM2D layers.
-        :conv_recurrent_regularizer: Regularizer function applied to the recurrent_kernel weights matrix of ConvLSTM2D layers.
+        :dense_activation_final: The activation to use in the final dense layer (defaults to linear)
         :dense_kernel_regularizer: Regularizer function applied to the kernel weights matrix of Dense layers.
+        :lstm_dropout: The dropout to use in each ConvLSTM layer
+        :lstm_filters: The number of filters for all ConvLSTM layers as a list
+        :lstm_kernels: The dimensions of the kernels for all ConvLSTM layers as a list
+        :lstm_activation: The activation to use in all ConvLSTM layers
+        :lstm_recurrent_activation: The recurrent activation to use in all ConvLSTM layers
+        :lstm_recurrent_dropout: The recurrent dropout to use in each ConvLSTM layer
+        :with_sequences: Whether to use experimental prediction using final Conv3D
 
         :return: The fitted model
         :return: The history of training the model
@@ -304,9 +313,19 @@ class ModelBASEv2:
 
     def fit(self, X_train, y_train, epochs=50, batch_size=1, validation_data=None, validation_split=0.1, invalidate=False, patience=0, tensorboard=False, lr_plateau=(0.5, 5, 0.0001), tensorboard_id=None):
         """
-        Fit a stateless LSTM model
+        Fit a model of the E4 architecture
 
-        :epochs: The number of epochs to train for
+        :X_train: Training set
+        :y_train: Training outcomes
+        :epochs: The number of epochs to train for (maximally)
+        :batch_size: The batch size to use
+        :validation_data: The fixed validation set to use
+        :validation_split: The random holdout set to use if no validation set is specified
+        :invalidate: whether to invalidate cached models in 00_CACHE
+        :patience: The patience with which to train (early stopping)
+        :tensorboard: Whether to output tensorboard logs in 00_LOGS
+        :lr_plateau: The learning rate decay to apply if no improvement in validation loss is present
+        :tensorboard_id: The identifier to be added to tensorboard logs
         """
 
         # load the model from cache if it already exists

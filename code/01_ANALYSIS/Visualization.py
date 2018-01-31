@@ -127,6 +127,20 @@ class Visualization:
         """
         Create a cartopy/matplotlib visualization from a passed in coordinate grid dataframe.
         The axes are expected to be named as "lat" and "lon" such that the df can be pivoted appropriately.
+
+        :df: The data to be plotted (two columns need to be called lat and lon to allow pivoting)
+        :ax: Matplotlib ax the result should be plotted to
+        :filename: Filename to save the result as (in ./output/)
+        :title: Title of the graph
+        :cmap: The color map to be applied
+        :clabel: The colorbar label
+        :vis_type: The visualization type to use (mesh/contour/barbs)
+        :no_cbar: Hide the colorbar
+        :log_norm: Whether log normalization should be applied to the graph
+        :gaussian_filtering: The level of gaussian filtering to be applied
+        :values_from: The dataframe column that contains the values for the plot
+        :stock: Whether to show a stock image in the background
+        :grid: Whether to show gridlines
         """
 
         # setup a projection
@@ -232,6 +246,12 @@ class Visualization:
         Create a dataframe that has the appropriate format for visualization generation.
         Can be passed in any dictionary with years as keys.
         If onset dates are passed in, the result can be generated relative to them (by specifiyng an offset).
+
+        :data_dict: The dictionary with yearly dataframes
+        :month: The month that should be extracted from the dataframes (not needed for onset dates)
+        :day: The day that should be extracted from the month as specified above (not needed for onset dates)
+        :onset_dates: An onset date dataframe allowing relative calculations
+        :offset: The offset of each years onset for which data should be loaded
         """
 
         all_years = []
@@ -249,7 +269,10 @@ class Visualization:
 
             all_years.append(year_data.values)
 
+        # stack all years into a single dataframe
         all_years = np.stack(all_years, axis=-1)
+
+        # calculate the average over the last axis (the values)
         averaged_years = pd.DataFrame(np.mean(all_years, axis=-1), columns=['lat', 'lon', 'val'])
 
         return averaged_years

@@ -23,7 +23,9 @@ class TRMM(Dataset):
         """
         Load a single month of data
 
-        :param date_template: Template with year and month for date formatting
+        :date_template: Template with year and month for date formatting (e.g., "2017-01-{}")
+        :timestamp: Whether to convert dates to epoch timestamps:
+        :version: The version of the TRMM dataset to load
 
         :return: Dataframe
         """
@@ -79,13 +81,13 @@ class TRMM(Dataset):
         """
         Load the entire TRMM dataset
 
-        :param years: A list of years to include
-        :param months: A list of months to include for each year
-        :param invalidate: Whether the cache should be invalidated
-        :param filter_fun: An optional filtering function to be applied after each imported year
-        :param aggregation_resolution: The resolution of the aggregation to be applied
-        :param bundled: Whether the data should be bundled into a single dataframe or into a dictionary
-        :param fill_na: Whether to fill NaN values with zero or column mean values ('zero' | 'mean' | None)
+        :years: A list of years to include
+        :months: A list of months to include for each year
+        :invalidate: Whether the cache should be invalidated
+        :filter_fun: An optional filtering function to be applied after each imported year
+        :aggregation_resolution: The resolution of the aggregation to be applied
+        :bundled: Whether the data should be bundled into a single dataframe or into a dictionary
+        :fill_na: Whether to fill NaN values with zero or column mean values ('zero' | 'mean' | None)
         :lat_slice: Optional slice of latitudes to be included in the dataframe
         :lon_slice: Optional slice of longitudes to be included in the dataframe
 
@@ -152,6 +154,7 @@ class TRMM(Dataset):
             print(str(year) + ' ', end='')
 
         # if the data should be bundled into a single dataframe, perform a second pass
+        # otherwise, a dictionary with yearly dataframes is returned
         if bundled:
             bundle = None
 
@@ -194,8 +197,9 @@ class TRMM(Dataset):
         """
         Generate an iterator that serves as a sliding window of given size
 
-        :param iterable: The row to iterate over
-        :param window_size: The size of the sliding window
+        :iterable: The row to iterate over
+        :window_size: The size of the sliding window
+        :padded: Whether to apply padding at this stage instead of at extreme event extraction stage
 
         :return: Iterator
         """
@@ -230,8 +234,8 @@ class TRMM(Dataset):
         """
         Calculate the number of synchronous events between two rows where row1 leads row2
 
-        :param row1: First row
-        :param row2: Second row
+        :row1: First row
+        :row2: Second row
 
         :return: The number of synchronous events (integer)
         """
@@ -282,11 +286,13 @@ class TRMM(Dataset):
         """
         Calculate the synchronicity coefficient between two rows
 
-        :param row1: First row
-        :param row2: Second row
+        :row1: First row
+        :row2: Second row
+        :v2: Whether returns should adhere to the v2 format (allowing split matrices)
 
         :return: The strength of synchronicity
         :return: The number of total synchronous events
+        :return: The numbers of synchronous events for c(i|j) and c(j|i)
         """
 
         # extract only the timestamps that are actually extreme events
@@ -312,12 +318,14 @@ class TRMM(Dataset):
         """
         Calculate the synchronization matrix for all permutations of grid cells
 
-        :param df: Dataframe containing extreme events
-        :param cache_id: A unique identifier to use in the cache path
-        :param invalidate: Whether the cache should be invalidated
+        :df: Dataframe containing extreme events
+        :cache_id: A unique identifier to use in the cache path
+        :invalidate: Whether the cache should be invalidated
+        :v2: Whether returns should adhere to the v2 format (return a split matrix)
 
         :return: Dataframe with synchronization coefficient
         :return: Dataframe with synchronous event count
+        :return: Dataframe with an asymmetrical split matrix
         :return: Runtime for calculations
         """
         current_path = pathlib.Path(__file__).resolve().parent.parent
@@ -381,10 +389,11 @@ class TRMM(Dataset):
         """
         Generate a graph/network from a sync/count matrix
 
-        :param df: The calculated matrix with event synchronization counts
-        :param quantile: The quantile to use for extraction of relevant values
-        :param set_geq: What value to set elements above the quantile to
-        :param set_lt: What value to set elements below the quantile to
+        :df: The calculated matrix with event synchronization counts
+        :quantile: The quantile to use for extraction of relevant values
+        :set_geq: What value to set elements above the quantile to
+        :set_lt: What value to set elements below the quantile to
+        :directed: Whether the generated graph should be directed
 
         :return: A networkx graph representation of the adjacency matrix
         """
@@ -428,7 +437,8 @@ class TRMM(Dataset):
         """
         Calculate centrality measures for a given graph
 
-        :param graph: The full climate network representation
+        :graph: The full climate network representation
+        :weighted: Whether weighted centrality measures should be applied
 
         :return: Dataframes for each centrality measure
         """
@@ -451,8 +461,8 @@ class TRMM(Dataset):
         """
         Convert calculated centrality measures to a clean and extended dataframe for further use
 
-        :param graph: The full climate network graph
-        :param nodes: A list with centrality values for each node
+        :graph: The full climate network graph
+        :nodes: A list with centrality values for each node
 
         :return: An extended dataframe with converted data
         """
@@ -492,6 +502,8 @@ class TRMM(Dataset):
     @staticmethod
     def parallel_calculate_sync(extreme_events, i, j, q):
         """
+        LEGACY: see EventSync.py
+
         Setup an asynchronous worker that performs the sync calculation
         """
 
@@ -505,6 +517,8 @@ class TRMM(Dataset):
     @staticmethod
     def parallel_log_results(q, df_shape, cache_id=None):
         """
+        LEGACY: see EventSync.py
+
         Setup an asynchronous listener that logs each sync calculation result
         """
 
@@ -526,6 +540,8 @@ class TRMM(Dataset):
     @staticmethod
     def parallel_calculate_sync_matrix(extreme_events, cache_id, invalidate=False, hard_cpu_count=None):
         """
+        LEGACY: see EventSync.py
+
         Parallelized version of the sync matrix calculation
         """
 

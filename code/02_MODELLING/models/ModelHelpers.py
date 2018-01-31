@@ -26,32 +26,19 @@ class ModelHelpers:
     client = None
     db = None
 
-    @classmethod
-    def connect_mongo(cls):
-        """ Connect to the result database """
-
-        if cls.client is not None:
-            return cls.client, cls.db
-
-        client = MongoClient('mongodb://rschlaefli:3wP0cS7dlSyd@ds131137.mlab.com:31137')
-        db = client['nn-results']
-
-        cls.client = client
-        cls.db = db
-
-        return client, db
-
-    @staticmethod
-    def normalize(column):
-        """ Normalize a dataframe column (MinMax) """
-
-        return (column - column.min()) / (column.max() - column.min())
-        # standardized = (column - column.mean()) / column.std()
-        # return standardized + abs(standardized.min())
-
     @staticmethod
     def normalize_channels(arr, standardize=True, dims=(0, 1), seperate=False, mean=None, std=None):
-        """ Normalize or standardize channels of a 4D tensor """
+        """
+        Normalize or standardize channels of a 4D tensor
+
+        :arr: A numpy array with data to be standardized
+        :standardize: Whether to use z-scores or [0, 1] normalization
+        :dims: The dimensions to standardize over
+        :separate: Whether the mean and std should be returned (bias prevention)
+        :mean: The mean to be applied instead of calculated (bias prevention)
+        :std: The std to be applied instead of calculated (bias prevention)
+        """
+
         # see: https://stackoverflow.com/questions/42460217/how-to-normalize-a-4d-numpy-array
         # and: https://stackoverflow.com/questions/40956114/numpy-standardize-2d-subsets-of-a-4d-array
 
@@ -118,7 +105,9 @@ class ModelHelpers:
         """
         Load and preprocess the monsoon onset dates from csv
 
-        :param data_path: Path to the data directory
+        :data_path: Path to the data directory
+        :version: The version of onset dates to use (v1/v2)
+        :objective: Whether to read objective or IMD dates for v2
 
         :return: A dataframe, a timestamps series
         """
@@ -155,8 +144,8 @@ class ModelHelpers:
         """
         Filter a dataframe by epochs up to the given timestamp
 
-        :param df: Dataframe
-        :param epoch: The epoch timestamp of the last day to be included
+        :df: Dataframe
+        :epoch: The epoch timestamp of the last day to be included
 
         :return: A filtered dataframe
         """
@@ -167,6 +156,10 @@ class ModelHelpers:
     def filter_between(df, after_ts, before_ts):
         """
         Filter a dataframe by epochs in between two timestamps
+
+        :df: The dataframe to be filtered
+        :after_ts: The timestamp after which data should be extracted
+        :before_ts: The timestamp until which data should be extracted
         """
 
         return df.loc[:, after_ts:before_ts]
@@ -180,6 +173,9 @@ class ModelHelpers:
         :param years: The years to generate epochs for
         :example_length: The sequence length of training examples (i.e., how many days are in a training example)
         :sequence_length: The length of the offset sequence (i.e., how many different sequences are generated per year)
+        :sequence_offset: The distance of the sequence to the onset
+        :fake_sequence: If only one prediction should be performed on the test set, we return a "fake" sequence containing only the specified offset
+        :example_length: The length of a single training example in days
 
         :return: A dictionary of epochs indexed by year
         """
@@ -221,6 +217,8 @@ class ModelHelpers:
         :param onset_ts: Epoch timestamp of monsoon onset
         :param years: Years to generate outcomes for
         :numerical: Whether to apply one-hot encoding to the results
+        :sequence: Whether to generate a sequence of outcomes (for E4)
+        :true_offset: Whether to generate binary outcomes (1 only for the true offset)
 
         :return: Dictionary of outcomes indexed by year
         """
@@ -318,53 +316,71 @@ class ModelHelpers:
 
     @staticmethod
     def prepare_dataset_year(year, datasets, prediction_ts, true_offset=None):
-            channels = []
+        """
+        Prepare a year of one or multiple datasets for processing by the E4 model architecture
 
-            # prepare each dataset seperately
-            for dataset in datasets:
-                # extract the dataframe for the current year
-                df = dataset[year]
+        :year: The year to process from the datasets
+        :datasets: An array of datasets to process
+        :prediction_ts: A dictionary with sequences of prediction timestamps for each year
+        :true_offset: Binary prediction (legacy)
+        """
 
-                # prepare an array for augmented data
-                filtered = []
-                stratified = None
-                for index, (before_ts, after_ts) in enumerate(prediction_ts[year]):
-                    # for each sequence of the same year, filter the dataset
-                    filtered_df = ModelHelpers.filter_between(df, after_ts, before_ts)
+        channels = []
 
-                    # unstack the filtered dataframe
-                    unstacked_df = np.array([filtered_df.iloc[:, i].unstack().values for i in range(filtered_df.shape[1])])
+        # prepare each dataset seperately
+        for dataset in datasets:
+            # extract the dataframe for the current year
+            df = dataset[year]
 
-                    # if we are currently processing the single true element of the sequence
-                    # we need to duplicate it to stratify the dataset
-                    # such that 0 and 1 are represented equally often
+            # prepare an array for augmented data
+            filtered = []
+            stratified = None
+            for index, (before_ts, after_ts) in enumerate(prediction_ts[year]):
+                # for each sequence of the same year, filter the dataset
+                filtered_df = ModelHelpers.filter_between(df, after_ts, before_ts)
 
-                    filtered.append(unstacked_df)
+                # unstack the filtered dataframe
+                unstacked_df = np.array([filtered_df.iloc[:, i].unstack().values for i in range(filtered_df.shape[1])])
 
-                    if index == true_offset:
-                        stratified = unstacked_df
+                # if we are currently processing the single true element of the sequence
+                # we need to duplicate it to stratify the dataset
+                # such that 0 and 1 are represented equally often
 
-                    # print('Unstacked', unstacked_df.shape)
+                filtered.append(unstacked_df)
 
-                # stack all the different sequences of the same year
-                # stacked = np.stack(filtered)
+                if index == true_offset:
+                    stratified = unstacked_df
 
-                if true_offset is not None:
-                     filtered = filtered + [stratified for _ in range(0, len(prediction_ts[year]) - 2)]
+                # print('Unstacked', unstacked_df.shape)
 
-                channels.append(filtered)
+            # stack all the different sequences of the same year
+            # stacked = np.stack(filtered)
 
-                # print('Filtered', stacked.shape)
+            if true_offset is not None:
+                    filtered = filtered + [stratified for _ in range(0, len(prediction_ts[year]) - 2)]
 
-            # stack the different datasets in the channel dimension
-            with_channels = np.stack(channels, axis=-1)
+            channels.append(filtered)
 
-            print('Processed', year, with_channels.shape)
+            # print('Filtered', stacked.shape)
 
-            return with_channels
+        # stack the different datasets in the channel dimension
+        with_channels = np.stack(channels, axis=-1)
+
+        print('Processed', year, with_channels.shape)
+
+        return with_channels
 
     @staticmethod
     def prepare_datasets(years, datasets, prediction_ts, true_offset=None):
+        """
+        Prepare one or multiple datasets for processing by the E4 architecture
+
+        :years: The years available in the datasets
+        :datasets: An array of datasets to process
+        :prediction_ts: A dictionary with sequences of prediction timestamps for each year
+        :true_offset: Binary prediction (legacy)
+        """
+
         # pass through each year in the datasets
         result = None
         for year in years:
@@ -530,3 +546,34 @@ class ModelHelpers:
             models.append(dict(config=config, model=model))
 
         return models
+
+    @classmethod
+    def connect_mongo(cls):
+        """
+        LEGACY
+
+        Connect to the result database
+        """
+
+        if cls.client is not None:
+            return cls.client, cls.db
+
+        client = MongoClient('mongodb://rschlaefli:3wP0cS7dlSyd@ds131137.mlab.com:31137')
+        db = client['nn-results']
+
+        cls.client = client
+        cls.db = db
+
+        return client, db
+
+    @staticmethod
+    def normalize(column):
+        """
+        LEGACY
+
+        Normalize a dataframe column (MinMax)
+        """
+
+        return (column - column.min()) / (column.max() - column.min())
+        # standardized = (column - column.mean()) / column.std()
+        # return standardized + abs(standardized.min())

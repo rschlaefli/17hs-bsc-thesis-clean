@@ -20,6 +20,11 @@ class ERA(Dataset):
     def prepare_variable(data, timestamp=True):
         """
         Prepare an ERA variable for processing
+
+        :data: Dataset as loaded from NetCDF using xarray
+        :timestamp: Whether to convert dates to epoch timestamps
+
+        :return: Dataframe
         """
 
         df = data.to_dataframe()
@@ -32,91 +37,24 @@ class ERA(Dataset):
         return df
 
     @staticmethod
-    def load_year(year, version=None, filter_fun=None, timestamp=True):
-        """
-        Load a single year of the ERA dataset
-        """
-
-        current_path = pathlib.Path(__file__).resolve().parent.parent
-
-        # interim narrow contains 01-03 until 31-05 of each year
-        data = xr.open_dataset(
-            current_path /
-            f'00_DATA/ERA/{year}_interim_narrow{f"_{version}" if version else ""}.nc'
-        )
-
-        # resample to daily values
-        # TODO: what aggregation should we use here?
-        data = data.resample(time='24H').median()
-
-        # split up dataset into temperature and humidity dataframes
-        temperature = ERA.prepare_variable(data['t'], timestamp=timestamp)
-        humidity = ERA.prepare_variable(data['r'], timestamp=timestamp)
-
-        if filter_fun is not None:
-            temperature = filter_fun(temperature, year)
-            humidity = filter_fun(humidity, year)
-
-        # return the two dataframes
-        return temperature, humidity
-
-
-    @staticmethod
-    def load_dataset(years, version='v3', filter_fun=None, aggregation_resolution=None, invalidate=False, timestamp=True):
-        """
-        Load the ERA dataset
-        """
-
-        temp_dict = dict()
-        hum_dict = dict()
-
-        current_path = pathlib.Path(__file__).resolve().parent.parent
-        temp_path = current_path / f'00_CACHE/ERA_{str(years)}{"_filtered" if filter_fun is not None else ""}{f"_aggregated{aggregation_resolution}" if aggregation_resolution is not None else ""}{"_no-ts" if timestamp is False else ""}_temp_{version}.pkl'
-        hum_path = current_path / f'00_CACHE/ERA_{str(years)}{"_filtered" if filter_fun is not None else ""}{f"_aggregated{aggregation_resolution}" if aggregation_resolution is not None else ""}{"_no-ts" if timestamp is False else ""}_hum_{version}.pkl'
-
-        # if the data has already been processed, use the cache
-        if not invalidate and os.path.isfile(temp_path) and os.path.isfile(hum_path):
-            print('> Loading from cache...')
-
-            temp = None
-            with open(temp_path, 'rb') as file:
-                temp = pickle.load(file)
-
-            hum = None
-            with open(hum_path, 'rb') as file:
-                hum = pickle.load(file)
-
-            return temp, hum
-
-        print('> Processing: ', end='')
-
-        for year in years:
-            temperature, humidity = ERA.load_year(year, version=version, filter_fun=filter_fun, timestamp=timestamp)
-
-            if aggregation_resolution is not None:
-                temperature = ERA.aggregate_cells(temperature, resolution=aggregation_resolution, timestamp=timestamp, method='mean')
-                humidity = ERA.aggregate_cells(humidity, resolution=aggregation_resolution, timestamp=timestamp, method='mean')
-
-            temp_dict[year] = temperature
-            hum_dict[year] = humidity
-
-            print(str(year) + ' ', end='')
-
-        pickle.dump(temp_dict, open(temp_path, 'wb'))
-        pickle.dump(hum_dict, open(hum_path, 'wb'))
-
-        return temp_dict, hum_dict
-
-
-    @staticmethod
     def load_year_v2(year, level, variables, version='v5', filter_fun=None, timestamp=True):
         """
         Load a single year of the ERA dataset (v2)
+
+        :year: The year for which data should be loaded
+        :level: The pressure level for which data should be loaded
+        :variables: The variables that should be included in the dataframe
+        :version: The version of the underlying dataset to load
+        :filter_fun: A function by which the dataframe can be optionally filtered
+        :timestamp: Whether to convert dates to epoch timestamps:
+
+        :return: Dictionary with dataframes for each variable
         """
+
         current_path = pathlib.Path(__file__).resolve().parent.parent
         var_dict = {}
 
-        # interim contains 01.03 until 31.10 of each year
+        # load the dataset using xarray
         data = xr.open_dataset(
             current_path /
             f'00_DATA/ERA/{year}_interim_{version}_{level}.nc'
@@ -140,6 +78,17 @@ class ERA(Dataset):
     def load_dataset_v2(years, level, variables, version='v5', filter_fun=None, aggregation_resolution=None, invalidate=False, timestamp=True):
         """
         Load the ERA dataset (v2)
+
+        :year: The year for which data should be loaded
+        :level: The pressure level for which data should be loaded
+        :variables: The variables that should be included in the dataframe
+        :version: The version of the underlying dataset to load
+        :filter_fun: A function by which the dataframe can be optionally filtered
+        :aggregation_resolution: The resolution to which the dataset should be aggregated
+        :invalidate: Whether to invalidate any cached artifacts in 00_CACHE
+        :timestamp: Whether to convert dates to epoch timestamps:
+
+        :return: Dictionary with dataframes for each variable and year
         """
 
         current_path = pathlib.Path(__file__).resolve().parent.parent
@@ -185,3 +134,87 @@ class ERA(Dataset):
                 pickle.dump(var_years[variable], handle)
 
         return var_years
+
+    @staticmethod
+    def load_year(year, version=None, filter_fun=None, timestamp=True):
+        """
+        LEGACY
+
+        Load a single year of the ERA dataset
+
+        :year: The year for which data should be loaded
+        :version: The version of the underlying dataset that should be used
+        :filter_fun: A function with which the data should be filtered
+        :timestamp: Whether to convert dates to epoch timestamps
+        """
+
+        current_path = pathlib.Path(__file__).resolve().parent.parent
+
+        # interim narrow contains 01-03 until 31-05 of each year
+        data = xr.open_dataset(
+            current_path /
+            f'00_DATA/ERA/{year}_interim_narrow{f"_{version}" if version else ""}.nc'
+        )
+
+        # resample to daily values
+        # TODO: what aggregation should we use here?
+        data = data.resample(time='24H').median()
+
+        # split up dataset into temperature and humidity dataframes
+        temperature = ERA.prepare_variable(data['t'], timestamp=timestamp)
+        humidity = ERA.prepare_variable(data['r'], timestamp=timestamp)
+
+        if filter_fun is not None:
+            temperature = filter_fun(temperature, year)
+            humidity = filter_fun(humidity, year)
+
+        # return the two dataframes
+        return temperature, humidity
+
+    @staticmethod
+    def load_dataset(years, version='v3', filter_fun=None, aggregation_resolution=None, invalidate=False, timestamp=True):
+        """
+        LEGACY
+
+        Load the ERA dataset
+        """
+
+        temp_dict = dict()
+        hum_dict = dict()
+
+        current_path = pathlib.Path(__file__).resolve().parent.parent
+        temp_path = current_path / f'00_CACHE/ERA_{str(years)}{"_filtered" if filter_fun is not None else ""}{f"_aggregated{aggregation_resolution}" if aggregation_resolution is not None else ""}{"_no-ts" if timestamp is False else ""}_temp_{version}.pkl'
+        hum_path = current_path / f'00_CACHE/ERA_{str(years)}{"_filtered" if filter_fun is not None else ""}{f"_aggregated{aggregation_resolution}" if aggregation_resolution is not None else ""}{"_no-ts" if timestamp is False else ""}_hum_{version}.pkl'
+
+        # if the data has already been processed, use the cache
+        if not invalidate and os.path.isfile(temp_path) and os.path.isfile(hum_path):
+            print('> Loading from cache...')
+
+            temp = None
+            with open(temp_path, 'rb') as file:
+                temp = pickle.load(file)
+
+            hum = None
+            with open(hum_path, 'rb') as file:
+                hum = pickle.load(file)
+
+            return temp, hum
+
+        print('> Processing: ', end='')
+
+        for year in years:
+            temperature, humidity = ERA.load_year(year, version=version, filter_fun=filter_fun, timestamp=timestamp)
+
+            if aggregation_resolution is not None:
+                temperature = ERA.aggregate_cells(temperature, resolution=aggregation_resolution, timestamp=timestamp, method='mean')
+                humidity = ERA.aggregate_cells(humidity, resolution=aggregation_resolution, timestamp=timestamp, method='mean')
+
+            temp_dict[year] = temperature
+            hum_dict[year] = humidity
+
+            print(str(year) + ' ', end='')
+
+        pickle.dump(temp_dict, open(temp_path, 'wb'))
+        pickle.dump(hum_dict, open(hum_path, 'wb'))
+
+        return temp_dict, hum_dict

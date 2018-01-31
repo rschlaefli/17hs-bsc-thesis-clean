@@ -7,8 +7,11 @@ class Dataset:
         """
         Aggregate grid cells to a lower resolution to reduce dimensionality
 
-        :param df: Dataframe
-        :param resolution: The spatial resolution to aggregate to
+        :df: Dataframe
+        :resolution: The spatial resolution to aggregate to
+        :timestamp: Whether to use epoch timestamps
+        :method: The method to use for aggregation (median/mean/sum)
+        :prevent_invalid: Prevent invalid aggregations where the dataset is not divisible by the new resolution
 
         :return: A reduced and aggregated version of the dataframe
         """
